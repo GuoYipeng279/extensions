@@ -1,0 +1,5 @@
+,0,1
+0,die_1.wav,"{'alternative': [{'transcript': '这就是桃园吗', 'confidence': 0.92163593}, {'transcript': '这就是桃源吗'}, {'transcript': '这就是桃源码'}, {'transcript': '这就是桃园嘛'}, {'transcript': '这就是桃园么'}], 'final': True}"
+1,die_2.wav,"{'alternative': [{'transcript': '什么是地名叫卖场', 'confidence': 0.83815819}, {'transcript': '什么是地名叫卖茶'}, {'transcript': '什么词的名叫卖场'}, {'transcript': '什么词的名叫卖茶'}, {'transcript': '什么此地名叫卖场'}], 'final': True}"
+2,die_3.wav,"{'alternative': [{'transcript': '实在是差不多', 'confidence': 0.86934459}, {'transcript': '实在是搞不懂'}, {'transcript': '实在是上不动'}, {'transcript': '实在是说不动'}, {'transcript': '实在是傻逼'}], 'final': True}"
+3,die_4.wav,"{'alternative': [{'transcript': '蒋心若天命难违', 'confidence': 0.83470017}, {'transcript': '将星陨落天命难违'}, {'transcript': '蒋星陨落天命难违'}, {'transcript': '讲心若天命难违'}, {'transcript': '蒋欣若天命难违'}], 'final': True}"
