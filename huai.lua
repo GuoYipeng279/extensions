@@ -327,13 +327,13 @@ MarkCard = function(first, second)
     first:drawCards(2)
     local aName = first:getMarkNames()
     local bName = second:getMarkNames()
-    first:drawCards(2)
+    first:drawCards(3)
     local aNum = {}
     for name in aName do 
         aNum:append(first:getMark(name))
         first:loseAllMarks(name)
     end
-    first:drawCards(2)
+    first:drawCards(4)
     local bNum = {}
     for name in bName do
         bNum:append(second:getMark(name))
