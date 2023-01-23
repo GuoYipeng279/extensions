@@ -268,9 +268,9 @@ DimengCard = function(room, a,b)
     room:moveCardsAtomic(exchangeMove, false)
     local exchangeMovej = sgs.CardsMoveList()
     
-    local msg = sgs.LogMessage()
-    msg.type = sgs.QVariant(sgs.Player_PlaceDelayedTrick):toString().."hhhh"--:toString()
-    room:sendLog(msg)
+    -- local msg = sgs.LogMessage()
+    -- msg.type = sgs.QVariant(sgs.Player_PlaceDelayedTrick):toString().."hhhh"--:toString()
+    -- room:sendLog(msg)
     local ag, bg = sgs.IntList(), sgs.IntList()
     for _,c in sgs.qlist(a:getJudgingArea()) do ag:append(c:getEffectiveId()) end
     for _,c in sgs.qlist(b:getJudgingArea()) do bg:append(c:getEffectiveId()) end
