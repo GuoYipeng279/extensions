@@ -1146,9 +1146,17 @@ zhuni = sgs.CreateTriggerSkill{
         local room = player:getRoom()
         local death = data:toDeath()
         local victim = death.who
+        -- room:setTag("SkipGameRule", sgs.QVariant(true))
+        -- victim:clearFlags();
+        -- victim:clearHistory();
+        -- victim:throwAllCards();
+        -- victim:throwAllMarks();
+        -- victim:clearPrivatePiles();
+        -- return false
         if victim:getRole() == "rebel" then
             room:setTag("SkipGameRule", sgs.QVariant(true))
             victim:bury()
+            room:setTag("SkipGameRule", sgs.QVariant(false))
         end
     end,
     can_trigger = function(self, target)
@@ -1392,13 +1400,13 @@ Edou = sgs.CreateTreasure{
         if player:getTag("Meihuo"):toInt() == 1 then return false end
         if not player:isAlive() then return false end
         local room = player:getRoom()
-        room:loseHp(player)
         player:removePileByName("hufu")
         room:detachSkillFromPlayer(player, self:objectName())
         room:detachSkillFromPlayer(player, "#EdouNumber")
         room:detachSkillFromPlayer(player, "#EdouDefense")
         room:detachSkillFromPlayer(player, "#EdouLimit")
         toOriginal(player)
+        room:loseHp(player)
         -- pt(room, "on_uninstall")
     end
 }
@@ -1490,13 +1498,13 @@ edouGiveCard = sgs.CreateSkillCard{
             if p:hasSkill("xieyou") then
                 mifuren = p
                 edouTags = p:getTag("edouTags"):toString()
-                pt(room, edouTags)
+                -- pt(room, edouTags)
                 local skill = room:askForChoice(source, "EdouSkill", edouTags)
                 targets[1]:setTag("edouSkill", sgs.QVariant(skill))
             end
         end
         targets[1]:addToPile("hufu",source:getPile("hufu"))
-		room:moveCardTo(source:getEquip(4), source, targets[1], sgs.Player_PlaceEquip,sgs.CardMoveReason(sgs.CardMoveReason_S_REASON_PUT, source:objectName(), "edouGive", ""))
+		room:moveCardTo(source:getEquip(4), targets[1], sgs.Player_PlaceEquip)
         -- pt(room, "giveEdouOver")
 	end
 }
@@ -1515,6 +1523,7 @@ edouCard = sgs.CreateSkillCard{
         table.insert(skillTable, "cancel")
         skills = table.concat(skillTable, "+")
         local skill = room:askForChoice(source, "EdouSkill", skills)
+        if skill == "cancel" then return end
         for _,p in sgs.qlist(room:getAllPlayers(true)) do
             if p:hasSkill("xieyou") then
                 p:setTag("edouTags", sgs.QVariant(p:getTag("edouTags"):toString().."+"..skill))
@@ -1557,19 +1566,30 @@ edou = sgs.CreateViewAsSkill{
 }
 xieyou = sgs.CreateTriggerSkill{
     name = "xieyou",
-    events = {sgs.GameStart, sgs.EventPhaseChanging, sgs.Death},
+    events = {sgs.GameStart, sgs.EventPhaseChanging, sgs.BuryVictim, sgs.Death},
     on_trigger = function(self, event, player, data)
         local room = player:getRoom()
+        if event == sgs.BuryVictim then
+            local death = data:toDeath()
+            local victim = death.who
+            room:setTag("SkipGameRule", sgs.QVariant(true))
+            victim:clearFlags();
+            victim:clearHistory();
+            victim:throwAllCards();
+            victim:throwAllMarks();
+            victim:clearPrivatePiles();
+            return false
+        end
         if event == sgs.GameStart and player:hasSkill(self:objectName()) then
             player:setTag("edouTags", sgs.QVariant("cancel"))
             room:moveCardTo(sgs.Sanguosha:getCard(230), player, sgs.Player_PlaceEquip)
         elseif event == sgs.Death and player:hasSkill(self:objectName()) or player:hasSkill(self:objectName()) and event == sgs.EventPhaseChanging and data:toPhaseChange().to == sgs.Player_NotActive then
             for _,p in sgs.qlist(room:getAllPlayers(true)) do
                 if p:hasSkill(self:objectName()) then
-                    if p:getTreasure():getEffectiveId() == 230 then 
-                        pt(room, "XieyouStart")
+                    if p:getTreasure() ~= nil and p:getTreasure():getEffectiveId() == 230 then 
+                        -- pt(room, "XieyouStart")
                         room:askForUseCard(p, "@edou", self:objectName())
-                        pt(room, "XieyouOver")
+                        -- pt(room, "XieyouOver")
                     end
                     break
                 end
@@ -1587,7 +1607,7 @@ nichang = sgs.CreateTriggerSkill{
 	events = {sgs.CardAsked},
 	on_trigger = function(self, event, wolong, data)
 		local pattern = data:toStringList()[1]
-		if pattern ~= "jink" and pattern ~= "slash" or wolong:getPhase() ~= sgs.Player_NotActive then return true end
+		if pattern ~= "jink" and pattern ~= "slash" or wolong:getPhase() ~= sgs.Player_NotActive then return false end
 		local room = wolong:getRoom()
         -- pt(room, "nichang1")
         local suits, numbers, hufu = {}, {}, {}
@@ -1637,13 +1657,8 @@ nichang = sgs.CreateTriggerSkill{
             -- pt(room, "nichang4")
             local failed = false
             for j=showed:getNumber()-wolong:getLostHp(), showed:getNumber()+wolong:getLostHp() do
-                if numbers[j] and not hufu[j] then
-                    room:loseHp(wolong, math.max(1,math.floor(wolong:getHp() / 2)))
-                    failed = true
-                    break
-                end
+                if numbers[j] and not hufu[j] then failed = true break end
             end
-            if failed then break end
             if table.contains(suits, sgs.Card_Suit2String(showed:getSuit())) then
                 table.removeOne(suits, sgs.Card_Suit2String(showed:getSuit()))
                 if #suits == 0 then
@@ -1664,13 +1679,25 @@ nichang = sgs.CreateTriggerSkill{
                     break
                 end
             end
+            -- pt(room, "nichang5")
+            if failed then
+                room:loseHp(wolong, math.max(1,math.floor(wolong:getHp() / 2)))
+                -- pt(room, "nichang7")
+                if not wolong:isAlive() then
+                    -- pt(room, "nichang8")
+                    room:provide(Edou:clone())
+                    return true end
+                break
+            end
+            -- pt(room, "nichang6")
         end
+        return false
     end
 }
 yuyi = sgs.CreateTriggerSkill{
     name = "yuyi",
     -- event = sgs.Damage,
-	events = {sgs.TargetConfirming, sgs.CardFinished} ,-- 卡过bug触发实际太奇怪，需要加标记
+	events = {sgs.TargetConfirming, sgs.CardFinished} ,-- 卡过bug，触发时机太奇怪，需要加标记
 	on_trigger = function(self, event, player, data)
         -- return
 		local room = player:getRoom()
@@ -1694,7 +1721,11 @@ yuyi = sgs.CreateTriggerSkill{
             local choices = {}
             local total = math.min(player:getHp(), to:getHp())
             for i=0, total do table.insert(choices,i) end
+            local decide = to:getHandcardNum() >= player:getHandcardNum()
+            to:setTag("yuyiDecide", sgs.QVariant(decide))
             local choice = sgs.QVariant(room:askForChoice(to, self:objectName(), table.concat(choices, "+"), data)):toInt()
+            pt(room, choice..table.concat(choices, "+"))
+            to:removeTag("yuyiDecide")
             to:drawCards(choice)
             player:drawCards(total-choice)
             use.to:append(player)
@@ -1705,12 +1736,17 @@ yuyi = sgs.CreateTriggerSkill{
             player:removeTag("yuyi")
             local to = use.to:at(0)
             local total = math.max(player:getHp(), to:getHp())
-            for i=0, math.min(total, to:getHandcardNum()) do table.insert(choices,i) end
+            for i=0, total do table.insert(choices,i) end
+            local decide = to:getHandcardNum() < player:getHandcardNum()
+            to:setTag("yuyiDecide", sgs.QVariant(decide))
             local choice = sgs.QVariant(room:askForChoice(to, self:objectName(), table.concat(choices, "+"), data)):toInt()
-            local msg = sgs.LogMessage()
-            msg.type = "fin"..choice
-            room:sendLog(msg)
-            if choice > 0 then room:askForDiscard(to, self:objectName(), choice, choice) end
+            pt(room, choice..table.concat(choices, "+"))
+            to:removeTag("yuyiDecide")
+            -- local msg = sgs.LogMessage()
+            -- msg.type = "fin"..choice
+            -- room:sendLog(msg)
+            local to_discard = math.min(to:getHandcardNum(), choice)
+            if choice > 0 then room:askForDiscard(to, self:objectName(), to_discard, to_discard) end
             if choice ~= total then room:askForDiscard(player, self:objectName(), total-choice, total-choice) end
         end
 	end,
@@ -1721,8 +1757,18 @@ yuyi = sgs.CreateTriggerSkill{
 wifemi:addSkill(xieyou)
 wifemi:addSkill(nichang)
 wifemi:addSkill(yuyi)
+-- wifemi:addSkill(zhuni)
 ed = Edou:clone(2,2)
 ed:setParent(extension)
+
+
+tianxu = sgs.General(extension1, "tianxu", "wei")
+zhusha = sgs.CreateTriggerSkill{
+    name = "zhusha",
+    event = {sgs.Damage, sgs.AskForPeachesDone},
+    on_trigger = function(self, event, player, data)
+    end
+}
 
 shenzhangjiao = sgs.General(extension1, "shenzhangjiao", "god", "3")
 fushui = sgs.CreatePhaseChangeSkill{
@@ -1754,7 +1800,7 @@ shenzhangjiao:addSkill(leicai)
 shenzhangjiao:addSkill(tiangong)
 
 local skillList = sgs.SkillList()
-local newgenerals_skills = {edou,EdouNumber,EdouDefense}
+local newgenerals_skills = {edou,EdouNumber,EdouDefense,EdouLimit}
 for _,sk in ipairs(newgenerals_skills) do
 	if not sgs.Sanguosha:getSkill(sk:objectName()) then
 		skillList:append(sk)
@@ -1763,6 +1809,9 @@ end
 sgs.Sanguosha:addSkills(skillList)
 
 sgs.LoadTranslationTable{
+    ["tianxu"] = "田续",
+    ["zhusha"] = "诛杀",
+    [":zhusha"] = "当一名体力值为1的角色受到伤害时，你可弃置X张牌并自减X点体力，若如此做该角色流失X点体力，并且其脱离濒死状态后对你造成一点伤害。",
     ["wifemi"] = "糜夫人",
     ["~wifemi"] = "糜夫人",
     ["#wifemi"] = "烽烟碎玉",
