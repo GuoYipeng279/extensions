@@ -6,6 +6,16 @@ extension = sgs.Package("huai")
 --     shits:setParent(extension)
 -- end
 dabusi = sgs.General(extension, "dabusi", "god", "7")
+dummy = sgs.CreatePhaseChangeSkill{
+    name = "dummy",
+    frequency = sgs.Skill_Frequent,
+	on_phasechange = function(self, target)
+        local room = target:getRoom()
+        room:throwEvent(sgs.TurnBroken)
+        target:drawCards(1)
+    end
+}
+dabusi:addSkill(dummy)
 --界徐盛
 jiexusheng = sgs.General(extension, "jiexusheng", "wu")
 jiexushengPojun = sgs.CreateTriggerSkill{
@@ -1347,7 +1357,7 @@ end
 wifemi = sgs.General(extension, "wifemi", "shu", "3", false)
 toEdou = function(player, order)
     -- pt(room, "toEdouStart")
-    if order == "" then return end
+    if order == "" or order == "cancel" then return end
     local room = player:getRoom()
     local skillList = player:getVisibleSkillList()
     local skillTable = {}
@@ -1473,16 +1483,10 @@ edouChangeCard = sgs.CreateSkillCard{
     target_fixed = true,
 	on_use = function(self, room, source)
         local room = source:getRoom()
-        local mifuren, edouTags
-        for _,p in sgs.qlist(room:getAllPlayers(true)) do
-            if p:hasSkill("xieyou") then
-                mifuren = p
-                edouTags = p:getTag("edouTags"):toString()
-                local skill = room:askForChoice(source, "EdouSkill", edouTags)
-                if skill == "cancel" then toOriginal(source)
-                else changeEdou(source, skill) end
-            end
-        end
+        local edouTags = room:getTag("edouTags"):toString()
+        local skill = room:askForChoice(source, "EdouSkill", edouTags)
+        if skill == "cancel" then toOriginal(source)
+        else changeEdou(source, skill) end
 	end
 }
 edouGiveCard = sgs.CreateSkillCard{
@@ -1493,15 +1497,21 @@ edouGiveCard = sgs.CreateSkillCard{
 	end,
 	on_use = function(self, room, source, targets)
         -- pt(room, "giveEdouStart")
-        local mifuren, edouTags, order
-        for _,p in sgs.qlist(room:getAllPlayers(true)) do
-            if p:hasSkill("xieyou") then
-                mifuren = p
-                edouTags = p:getTag("edouTags"):toString()
-                -- pt(room, edouTags)
-                local skill = room:askForChoice(source, "EdouSkill", edouTags)
-                targets[1]:setTag("edouSkill", sgs.QVariant(skill))
-            end
+        local edouTags = room:getTag("edouTags"):toString()
+        pt(room, edouTags)
+        -- pt(room, edouTags)
+        local skill = room:askForChoice(source, "EdouSkill", edouTags)
+        targets[1]:setTag("edouSkill", sgs.QVariant(skill))
+        local msg = sgs.LogMessage()
+        msg.from = source
+        msg.to:append(targets[1])
+        if skill ~= "cancel" then
+            msg.type = "#edouSkillOrder"
+            msg.arg = skill
+            room:sendLog(msg)
+        else
+            msg.type = "#edouSkillEmpty"
+            room:sendLog(msg)
         end
         targets[1]:addToPile("hufu",source:getPile("hufu"))
 		room:moveCardTo(source:getEquip(4), targets[1], sgs.Player_PlaceEquip)
@@ -1519,24 +1529,30 @@ edouCard = sgs.CreateSkillCard{
         source:addToPile("hufu", cards, true)
         local skills = source:getVisibleSkillList()
         local skillTable = {}
-        for _, skill in sgs.qlist(skills) do table.insert(skillTable, skill:objectName()) end
+        -- pt(room, room:getTag("edouTags"):toString())
+        for _, skill in sgs.qlist(skills) do
+            if table.contains(room:getTag("edouTags"):toString():split("+"), skill:objectName()) then continue end
+            table.insert(skillTable, skill:objectName())
+        end
         table.insert(skillTable, "cancel")
         skills = table.concat(skillTable, "+")
         local skill = room:askForChoice(source, "EdouSkill", skills)
         if skill == "cancel" then return end
-        for _,p in sgs.qlist(room:getAllPlayers(true)) do
-            if p:hasSkill("xieyou") then
-                p:setTag("edouTags", sgs.QVariant(p:getTag("edouTags"):toString().."+"..skill))
-            else p:setTag("edouTags", sgs.QVariant(skill)) end
-        end
+        local msg = sgs.LogMessage()
+        msg.type = "#edouSkillInput"
+        msg.from = source
+        msg.arg = skill
+        room:sendLog(msg)
+        if room:getTag("edouTags"):toString() == "" then room:setTag("edouTags", sgs.QVariant("cancel")) end
+        room:setTag("edouTags", sgs.QVariant(skill.."+"..room:getTag("edouTags"):toString()))
 	end
 }
 edou = sgs.CreateViewAsSkill{
 	name = "edou" ,
 	n = 999,
-	expand_pile = "edou",
+	expand_pile = "hufu",
 	response_pattern = "@edou" ,
-	filter_pattern = ".|.|.|hand,edou" ,
+	filter_pattern = ".|.|.|hand,hufu" ,
 	view_filter = function(self, selected, to_select)
         local edouPile = sgs.Self:getPile("hufu")
         -- if #selected + edouPile:length() >= sgs.Self:getHp() and not edouPile:contains(to_select:getEffectiveId()) then return false end
@@ -1581,15 +1597,15 @@ xieyou = sgs.CreateTriggerSkill{
             return false
         end
         if event == sgs.GameStart and player:hasSkill(self:objectName()) then
-            player:setTag("edouTags", sgs.QVariant("cancel"))
+            room:setTag("edouTags", sgs.QVariant("cancel"))
             room:moveCardTo(sgs.Sanguosha:getCard(230), player, sgs.Player_PlaceEquip)
         elseif event == sgs.Death and player:hasSkill(self:objectName()) or player:hasSkill(self:objectName()) and event == sgs.EventPhaseChanging and data:toPhaseChange().to == sgs.Player_NotActive then
             for _,p in sgs.qlist(room:getAllPlayers(true)) do
                 if p:hasSkill(self:objectName()) then
                     if p:getTreasure() ~= nil and p:getTreasure():getEffectiveId() == 230 then 
-                        -- pt(room, "XieyouStart")
+                        pt(room, "XieyouStart")
                         room:askForUseCard(p, "@edou", self:objectName())
-                        -- pt(room, "XieyouOver")
+                        pt(room, "XieyouOver")
                     end
                     break
                 end
@@ -1824,6 +1840,9 @@ sgs.LoadTranslationTable{
     ["edou"] = "阿斗",
     ["hufu"] = "护符",
     [":edou"] = "教子：出牌阶段限一次，你可展示任意张手牌并置于【阿斗】牌上称为“护符”，若如此做，你可以向【阿斗】中添加一个你拥有的技能；或弃一张“护符”将当前技能替换为【阿斗】牌上的一项技能；或将【阿斗】及“护符”置于其他角色的装备区。锁定技：“护符”不允许数量超过你的体力值或有点数重复，当你的牌点数与“护符”点数有重复时，视为无点数；你成为【过河拆桥】/【顺手牵羊】目标时，若你有“护符”，使用者只能从“护符”中选择弃置或获得牌。你装备【阿斗】时，摸2张牌；你失去【阿斗】时，流失一点体力，失去其全部效果。",
+    ["#edouSkillInput"] = "%from 将技能【%arg】放入【阿斗】中",
+    ["#edouSkillOrder"] = "%from 令 %to 获得技能【%arg】",
+    ["#edouSkillEmpty"] = "%from 未向 %to 指定技能",
     ["duyou"] = "督邮",
     ["~duyou"] = "督邮",
     ["#duyou"] = "监察九州",
