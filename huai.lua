@@ -6,16 +6,17 @@ extension = sgs.Package("huai")
 --     shits:setParent(extension)
 -- end
 dabusi = sgs.General(extension, "dabusi", "god", "7")
-dummy = sgs.CreatePhaseChangeSkill{
-    name = "dummy",
-    frequency = sgs.Skill_Frequent,
+dummy = sgs.General(extension1, "dummy", "god", "100")
+idle = sgs.CreatePhaseChangeSkill{
+    name = "idle",
+    frequency = sgs.Skill_Compulsory,
 	on_phasechange = function(self, target)
         local room = target:getRoom()
         room:throwEvent(sgs.TurnBroken)
         target:drawCards(1)
     end
 }
-dabusi:addSkill(dummy)
+dummy:addSkill(idle)
 --界徐盛
 jiexusheng = sgs.General(extension, "jiexusheng", "wu")
 jiexushengPojun = sgs.CreateTriggerSkill{
@@ -115,7 +116,7 @@ Yuqi = sgs.CreateTriggerSkill{
         local room = player:getRoom()
         local damage = data:toDamage()
         for _, caojinyu in sgs.qlist(room:getAllPlayers()) do
-            if not caojinyu or caojinyu:isDead() or not caojinyu:hasSkill(self:objectName()) or caojinyu:getMark("@Yuqi6")>=2 then continue end
+            if not caojinyu or caojinyu:isDead() or not caojinyu:hasSkill(self:objectName()) or caojinyu:getMark("@Yuqi6")>=2 then else
             if caojinyu:distanceTo(damage.to) <= caojinyu:getMark("@Yuqi1") and room:askForSkillInvoke(caojinyu, self:objectName(), data) then
                 caojinyu:gainMark("@Yuqi6",1)
                 sgs.Sanguosha:playSkillAudioEffect(self:objectName(),math.random(2))
@@ -162,6 +163,7 @@ Yuqi = sgs.CreateTriggerSkill{
 				-- room:returnToTopDrawPile(card_ids)
                 room:clearAG()
             end
+            end
         end
     end,
     can_trigger = function(self, target)
@@ -178,7 +180,7 @@ Shanshen = sgs.CreateTriggerSkill{
             local all_players = room:getAllPlayers()
             local death = data:toDeath()
             for _, caojinyu in sgs.qlist(all_players) do
-                if not caojinyu or not caojinyu:isAlive() or not caojinyu:hasSkill(self:objectName()) then continue end
+                if not caojinyu or not caojinyu:isAlive() or not caojinyu:hasSkill(self:objectName()) then else
                 local choice = room:askForChoice(caojinyu, self:objectName(), "yuqirange+yuqiget+yuqigive+yuqitake")
                 -- self.player = caojinyu
                 -- caojinyu:drawCards(10)
@@ -204,6 +206,7 @@ Shanshen = sgs.CreateTriggerSkill{
                     recover.who = caojinyu
                     recover.recover = 1
                     room:recover(caojinyu, recover)
+                end
                 end
             end
         end
@@ -289,9 +292,14 @@ DimengCard = function(room, a,b)
     exchangeMovej:append(move1j)
     exchangeMovej:append(move2j)
     room:moveCardsAtomic(exchangeMovej, false)
+    pt(room, "startpile")
     local p1, p2 = a:getPileNames(), b:getPileNames()
-    for _,pile in sgs.list(p1) do b:addToPile(pile, a:getPile(pile)) end
-    for _,pile in sgs.list(p2) do a:addToPile(pile, b:getPile(pile)) end
+    local use1, use2 = {},{}
+    for _,pile in sgs.list(p1) do if not a:getPile(pile):isEmpty() then table.insert(use1, pile) end end
+    for _,pile in sgs.list(p2) do if not b:getPile(pile):isEmpty() then table.insert(use2, pile) end end
+    for _,pile in ipairs(use1) do b:addToPile(pile, a:getPile(pile)) end
+    for _,pile in ipairs(use2) do a:addToPile(pile, b:getPile(pile)) end
+    pt(room, "endpile")
     a:setFlags("-DimengTarget")
     b:setFlags("-DimengTarget")
 end
@@ -328,9 +336,10 @@ MarkCard = function(first, second)
     end
     for i=1, #aName do
         for j=1, #bName do
-            if aName[i] ~= bName[j] or aNum:at(i-1) == bNum:at(j-1) then continue end
+            if aName[i] ~= bName[j] or aNum:at(i-1) == bNum:at(j-1) then else
             second:gainMark(aName[i], aNum:at(i-1)-bNum:at(j-1))
             first:gainMark(aName[i], bNum:at(j-1)-aNum:at(i-1))
+            end
         end
     end
     for i=1, #aName do
@@ -500,10 +509,11 @@ LuaLeiji = sgs.CreateTriggerSkill{
 GetPeach = sgs.CreateTriggerSkill{
     name = "#GetPeach",
     events = {sgs.AskForPeaches},
-    frequency = sgs.Skill_Compulsory,
+    frequency = sgs.Skill_Frequent,
 	on_trigger = function(self, event, player, data)
         local room = player:getRoom()
         local liege = toTagPlayer(room, "Meihuoing")
+        if room:askForSkillInvoke(player, "GetPeach", data) then
         local card = AskMaster(self, player, "Peach")
         -- player:drawCards(3)
         -- local msg = sgs.LogMessage()
@@ -520,6 +530,7 @@ GetPeach = sgs.CreateTriggerSkill{
             room:moveCardsAtomic(move, true)
             local use = sgs.CardUseStruct(sgs.Sanguosha:cloneCard("peach"), liege, data:toDying().who)
             room:useCard(use)
+        end
         end
     end,
     -- can_trigger = function(self, target)
@@ -678,6 +689,11 @@ HuoxinEffect = function(self, diaochan, target)
     local h1, h2 = math.max(diaochan:getHp(),0), math.max(target:getHp(),0)
     local m1, m2 = math.max(diaochan:getMaxHp(),0), math.max(target:getMaxHp(),0)
     local k1, k2 = diaochan:getKingdom(), target:getKingdom()
+    local f1, f2 = diaochan:faceUp(), target:faceUp()
+    if f1 ~= f2 then
+        diaochan:turnOver()
+        target:turnOver()
+    end
     DimengCard(room,diaochan,target)
     GanluCard(diaochan,target)
     local n1,n2 = diaochan:getGeneralName(), target:getGeneralName()
@@ -806,7 +822,7 @@ Huoxin = sgs.CreatePhaseChangeSkill{
 		if target:getPhase() == 0 and target:getMark("@Mei") >= 2 then
 			local all_players = room:getAllPlayers()
 			for _, diaochan in sgs.qlist(all_players) do
-                if not diaochan:isAlive() or not diaochan:hasSkill(self:objectName()) then continue end
+                if not diaochan:isAlive() or not diaochan:hasSkill(self:objectName()) then else
                 if room:askForSkillInvoke(diaochan, self:objectName(), sgs.QVariant(1)) then
                     target:loseAllMarks("@Mei")
                     sgs.Sanguosha:playSkillAudioEffect("lihun",math.random(2))
@@ -822,9 +838,18 @@ Huoxin = sgs.CreatePhaseChangeSkill{
                     room:detachSkillFromPlayer(target, "LuaKanpo")
                     room:detachSkillFromPlayer(target, "#GetPeach")
                     room:detachSkillFromPlayer(target, "#Huoxin")
+                    -- pt(room, "output")
+                    -- pt(room, target:getState())
+                    if target:getState() == "online" then target:setTag("human", sgs.QVariant(true))
+                    else target:setTag("human", sgs.QVariant(false)) end
+                    target:setState("robotxx")
                     diaochan:gainAnExtraTurn()
+                    -- pt(room, "output")
+                    -- pt(room, target:getState())
+                    if target:getTag("human"):toBool() then target:setState("online") end
                     room:throwEvent(sgs.TurnBroken)
                     return true
+                end
                 end
             end
         end
@@ -1455,7 +1480,7 @@ EdouDefense = sgs.CreateTriggerSkill{
                 room:fillAG(hufu, effect.from)
                 local cd = room:askForAG(effect.from, hufu, false, "edou")
                 room:clearAG(effect.from)
-                if effect.card:isKindOf("snatch") then
+                if effect.card:isKindOf("Snatch") then
                     room:moveCardTo(sgs.Sanguosha:getCard(cd), effect.from, sgs.Player_PlaceHand)
                 else
                     room:throwCard(cd, effect.to, effect.from)
@@ -1484,7 +1509,7 @@ edouChangeCard = sgs.CreateSkillCard{
 	on_use = function(self, room, source)
         local room = source:getRoom()
         local edouTags = room:getTag("edouTags"):toString()
-        local skill = room:askForChoice(source, "EdouSkill", edouTags)
+        local skill = room:askForChoice(source, self:objectName(), edouTags)
         if skill == "cancel" then toOriginal(source)
         else changeEdou(source, skill) end
 	end
@@ -1500,7 +1525,7 @@ edouGiveCard = sgs.CreateSkillCard{
         local edouTags = room:getTag("edouTags"):toString()
         pt(room, edouTags)
         -- pt(room, edouTags)
-        local skill = room:askForChoice(source, "EdouSkill", edouTags)
+        local skill = room:askForChoice(source, self:objectName(), edouTags)
         targets[1]:setTag("edouSkill", sgs.QVariant(skill))
         local msg = sgs.LogMessage()
         msg.from = source
@@ -1531,12 +1556,13 @@ edouCard = sgs.CreateSkillCard{
         local skillTable = {}
         -- pt(room, room:getTag("edouTags"):toString())
         for _, skill in sgs.qlist(skills) do
-            if table.contains(room:getTag("edouTags"):toString():split("+"), skill:objectName()) then continue end
+            if table.contains(room:getTag("edouTags"):toString():split("+"), skill:objectName()) then else
             table.insert(skillTable, skill:objectName())
+            end
         end
         table.insert(skillTable, "cancel")
         skills = table.concat(skillTable, "+")
-        local skill = room:askForChoice(source, "EdouSkill", skills)
+        local skill = room:askForChoice(source, self:objectName(), skills)
         if skill == "cancel" then return end
         local msg = sgs.LogMessage()
         msg.type = "#edouSkillInput"
@@ -1678,9 +1704,9 @@ nichang = sgs.CreateTriggerSkill{
             if table.contains(suits, sgs.Card_Suit2String(showed:getSuit())) then
                 table.removeOne(suits, sgs.Card_Suit2String(showed:getSuit()))
                 if #suits == 0 then
-                    local msg = sgs.LogMessage()
-                    msg.type = s_j:length().."sj"
-                    room:sendLog(msg)
+                    -- local msg = sgs.LogMessage()
+                    -- msg.type = s_j:length().."sj"
+                    -- room:sendLog(msg)
                     if not s_j:isEmpty() then
                         wolong:setTag("nichang", sgs.QVariant(pattern))
                         room:fillAG(s_j, wolong)
@@ -1778,13 +1804,58 @@ ed = Edou:clone(2,2)
 ed:setParent(extension)
 
 
-tianxu = sgs.General(extension1, "tianxu", "wei")
+tianxu = sgs.General(extension, "tianxu", "wei")
+zhushaCard = sgs.CreateSkillCard{
+    name = "zhushaCard",
+}
+zhushaVS = sgs.CreateViewAsSkill{
+    name = "zhusha",
+    response_pattern = "@zhusha", 
+    view_filter = function(self, selected, to_select)
+        for _, c in ipairs(selected) do
+            if c:getSuit() == to_select:getSuit() then return false end
+        end
+        return true
+	end ,
+    view_as = function(self, cards)
+        local card = zhushaCard:clone()
+        for _, c in ipairs(cards) do card:addSubcard(c) end
+        return card
+    end,
+    enabled_at_play = false
+}
 zhusha = sgs.CreateTriggerSkill{
     name = "zhusha",
-    event = {sgs.Damage, sgs.AskForPeachesDone},
+    view_as_skill = zhushaVS,
+    event = {sgs.DamageCaused, sgs.AskForPeachesDone},
     on_trigger = function(self, event, player, data)
-    end
+        local room = player:getRoom()
+        if event == sgs.DamageCaused and player:hasSkill(self:objectName()) then
+            if data:toDamage().to:getHp() == 1 then
+                local card = room:askForUseCard(player, "@zhusha", "")
+                if card then
+                    local num = card:getSubcards():length()
+                    damage.damage = damage.damage + num
+                    data:setValue(damage)
+                    room:loseHp(player)
+                    local tag = sgs.QVariant()
+                    tag:setValue(player)
+                    damage.to:setTag("zhushaRevenge", tag)
+                end
+            end
+        else
+            local tianxu = player:getTag("zhushaRevenge"):toPlayer()
+            if tianxu then
+                player:removeTag("zhushaRevenge")
+                room:damage(sgs.DamageStruct(self:objectName(), player, tianxu))
+            end
+        end
+    end,
+    can_trigger = function(self, target)
+		return target:isAlive()
+	end
 }
+tianxu:addSkill(zhusha)
 
 shenzhangjiao = sgs.General(extension1, "shenzhangjiao", "god", "3")
 fushui = sgs.CreatePhaseChangeSkill{
@@ -1826,8 +1897,9 @@ sgs.Sanguosha:addSkills(skillList)
 
 sgs.LoadTranslationTable{
     ["tianxu"] = "田续",
+    ["#tianxu"] = "奸贼之手",
     ["zhusha"] = "诛杀",
-    [":zhusha"] = "当一名体力值为1的角色受到伤害时，你可弃置X张牌并自减X点体力，若如此做该角色流失X点体力，并且其脱离濒死状态后对你造成一点伤害。",
+    [":zhusha"] = "当一名体力值为1的角色受到伤害时，你可弃置X张不同花色手牌并自减X点体力，若如此做该角色所受伤害+X，并且其脱离濒死状态后对你造成一点伤害。",
     ["wifemi"] = "糜夫人",
     ["~wifemi"] = "糜夫人",
     ["#wifemi"] = "烽烟碎玉",
@@ -1839,7 +1911,7 @@ sgs.LoadTranslationTable{
     [":yuyi"] = "当一名与你相邻的角色成为黑色基本牌/非延时锦囊的唯一目标时，你可与其摸共计X张牌，若如此做你也成为此牌的目标，结算后你与其共计弃置Y张手牌。X为你与其当前体力较小值，Y为较大值，分配方式由对方选择。",
     ["edou"] = "阿斗",
     ["hufu"] = "护符",
-    [":edou"] = "教子：出牌阶段限一次，你可展示任意张手牌并置于【阿斗】牌上称为“护符”，若如此做，你可以向【阿斗】中添加一个你拥有的技能；或弃一张“护符”将当前技能替换为【阿斗】牌上的一项技能；或将【阿斗】及“护符”置于其他角色的装备区。锁定技：“护符”不允许数量超过你的体力值或有点数重复，当你的牌点数与“护符”点数有重复时，视为无点数；你成为【过河拆桥】/【顺手牵羊】目标时，若你有“护符”，使用者只能从“护符”中选择弃置或获得牌。你装备【阿斗】时，摸2张牌；你失去【阿斗】时，流失一点体力，失去其全部效果。",
+    [":edou"] = "教子：出牌阶段限一次，你可展示至少一张手牌并置于【阿斗】牌上称为“护符”，并向【阿斗】中添加一个你拥有的技能；或弃一张“护符”将当前技能替换为【阿斗】牌上的一项技能；或将【阿斗】及“护符”置于其他角色的装备区，可指定一项技能替换原有技能。锁定技：“护符”不允许数量超过你的体力值或有点数重复，当你的牌点数与“护符”点数有重复时，视为A；你成为【过河拆桥】/【顺手牵羊】目标时，若你有“护符”，使用者只能从“护符”中选择弃置或获得牌。你装备【阿斗】时，摸2张牌；你卸载【阿斗】时，流失一点体力，失去其全部效果。",
     ["#edouSkillInput"] = "%from 将技能【%arg】放入【阿斗】中",
     ["#edouSkillOrder"] = "%from 令 %to 获得技能【%arg】",
     ["#edouSkillEmpty"] = "%from 未向 %to 指定技能",
@@ -1942,4 +2014,6 @@ sgs.LoadTranslationTable{
     [":wuchang"] = "锁定技，主公玩家不可选择孟达，且其体力值为0时，身份为魏势力内奸，1或3时为主公同势力忠臣，其他情况为魏势力反贼。",
     [":zhuni"] = "锁定技，若孟达出场，“杀死反贼的角色摸3张牌”的规则无效。",
     [":shijiu"] = "锁定技，你的红桃手牌视为【酒】。",
+    ["dummy"] = "训练假人",
+    ["idle"] = "标靶",
 }
