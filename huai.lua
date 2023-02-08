@@ -1177,6 +1177,7 @@ zhuni = sgs.CreateTriggerSkill{
         local room = player:getRoom()
         local death = data:toDeath()
         local victim = death.who
+        local killer = death.damage.from
         -- room:setTag("SkipGameRule", sgs.QVariant(true))
         -- victim:clearFlags();
         -- victim:clearHistory();
@@ -1188,6 +1189,17 @@ zhuni = sgs.CreateTriggerSkill{
             room:setTag("SkipGameRule", sgs.QVariant(true))
             victim:bury()
             room:setTag("SkipGameRule", sgs.QVariant(false))
+            local choices = {}
+            -- pt(room, "zhuni1")
+            for i=0, math.min(3, killer:getHandcardNum()) do
+                table.insert(choices, i)
+            end
+            -- pt(room, "zhuni2")
+            local disc = room:askForChoice(killer, self:objectName(), table.concat(choices, "+"))
+            -- pt(room, "zhuni3")
+            room:askForDiscard(killer, self:objectName(), disc, disc)
+            room:askForDiscard(room:getLord(), self:objectName(), 3-disc, 3-disc)
+            -- pt(room, "zhuni4")
         end
     end,
     can_trigger = function(self, target)
@@ -1872,7 +1884,7 @@ zhusha = sgs.CreateTriggerSkill{
 }
 tianxu:addSkill(zhusha)
 
-zhoushan = sgs.General(extension, "zhoushan", "wu", "4")
+zhoushan = sgs.General(extension1, "zhoushan", "wu", "4")
 duoziCard = sgs.CreateSkillCard{
     name = "duoziCard",
     target_fixed = true
@@ -1968,17 +1980,163 @@ shenzhangjiao:addSkill(fushui)
 shenzhangjiao:addSkill(fushui_use)
 shenzhangjiao:addSkill(leicai)
 shenzhangjiao:addSkill(tiangong)
-
-local skillList = sgs.SkillList()
-local newgenerals_skills = {edou,EdouNumber,EdouDefense,EdouLimit,GetPeach,LuaKanpo}
-for _,sk in ipairs(newgenerals_skills) do
-	if not sgs.Sanguosha:getSkill(sk:objectName()) then
-		skillList:append(sk)
-	end
-end
-sgs.Sanguosha:addSkills(skillList)
+kuangshouren = sgs.General(extension, "kuangshouren", "god", "6")
+bingju = sgs.General(extension, "bingju", "god", "3", false)
+kuangfengtank = sgs.General(extension, "kuangfengtank", "god", "6")
+gaitetank = sgs.General(extension, "gaitetank", "god", "4")
+naoche = sgs.General(extension, "naoche", "god", "10")
+feidie = sgs.General(extension, "feidie", "god", "6")
+kuangshou = sgs.CreateTriggerSkill{
+    name = "kuangshou",
+    events = {sgs.DamageInflicted},
+    on_trigger = function()
+    end
+}
+kuangshouren:addSkill(kuangshou)
+yuanshe = sgs.CreateTriggerSkill{
+    name = "yuanshe",
+    events = {sgs.DamageInflicted},
+    on_trigger = function()
+    end
+}
+bingdu = sgs.CreateTriggerSkill{
+    name = "bingdu",
+    events = {sgs.DamageInflicted},
+    on_trigger = function()
+    end
+}
+infection = sgs.CreateTriggerSkill{
+    name = "infection",
+    events = {sgs.DamageInflicted},
+    on_trigger = function()
+    end
+}
+bingju:addSkill(yuanshe)
+bingju:addSkill(bingdu)
+bingju:addSkill(infection)
+huopao = sgs.CreateTriggerSkill{
+    name = "huopao",
+    events = {sgs.DamageInflicted},
+    on_trigger = function()
+    end
+}
+nianya = sgs.CreateTriggerSkill{
+    name = "nianya",
+    events = {sgs.DamageInflicted},
+    on_trigger = function()
+    end
+}
+zhanche = sgs.CreateTriggerSkill{
+    name = "zhanche",
+    events = {sgs.DamageInflicted},
+    on_trigger = function()
+    end
+}
+kuangfengtank:addSkill(huopao)
+kuangfengtank:addSkill(nianya)
+kuangfengtank:addSkill(zhanche)
+jipao = sgs.CreateTriggerSkill{
+    name = "jipao",
+    events = {sgs.DamageInflicted},
+    on_trigger = function()
+    end
+}
+gaitetank:addSkill(jipao)
+gaitetank:addSkill(zhanche)
+zhunao = sgs.CreateTriggerSkill{
+    name = "zhunao",
+    events = {sgs.DamageInflicted},
+    on_trigger = function()
+    end
+}
+xiufu = sgs.CreateTriggerSkill{
+    name = "xiufu",
+    events = {sgs.DamageInflicted},
+    on_trigger = function()
+    end
+}
+naoche:addSkill(zhanche)
+naoche:addSkill(zhunao)
+naoche:addSkill(xiufu)
+xuanfu = sgs.CreateTriggerSkill{
+    name = "xuanfu",
+    events = {sgs.DamageInflicted},
+    on_trigger = function()
+    end
+}
+bossdidong = sgs.CreateTriggerSkill{
+    name = "bossdidong",
+    events = {sgs.DamageInflicted},
+    on_trigger = function()
+    end
+}
+tuxi = sgs.CreateTriggerSkill{
+    name = "nostuxi",
+    events = {sgs.DamageInflicted},
+    on_trigger = function()
+    end
+}
+feidie:addSkill(xiufu)
+feidie:addSkill(xuanfu)
+feidie:addSkill(bossdidong)
+feidie:addSkill(tuxi)
+youli = sgs.General(extension, "youli", "god", "4")
+xinkong = sgs.CreateTriggerSkill{
+    name = "xinkong",
+    events = {sgs.DamageInflicted},
+    on_trigger = function()
+    end
+}
+naobo = sgs.CreateTriggerSkill{
+    name = "naobo",
+    events = {sgs.DamageInflicted},
+    on_trigger = function()
+    end
+}
+bossguimei = sgs.CreateTriggerSkill{
+    name = "bossguimei",
+    events = {sgs.DamageInflicted},
+    on_trigger = function()
+    end
+}
+youli:addSkill(xinkong)
+youli:addSkill(naobo)
+youli:addSkill(bossguimei)
 
 sgs.LoadTranslationTable{
+    ["kuangshouren"] = "狂兽人",
+    ["kuangshou"] = "狂兽",
+    [":kuangshou"] = "<font color=\"blue\"><b>锁定技</b></font>，你的装备牌均视为【杀】，你的牌对攻击范围外的角色无效，你的【杀】伤害始终为2。",
+    ["bingju"] = "病毒狙击手",
+    ["yuanshe"] = "远射",
+    [":yuanshe"] = "<font color=\"blue\"><b>锁定技</b></font>，你的【杀】无距离限制。",
+    ["bingdu"] = "病毒",
+    [":bingdu"] = "当你的【杀】造成伤害后，你可以弃置一张手牌并免除此伤害，令其获得一个“病毒”标记。",
+    ["infection"] = "感染",
+    [":infection"] = "<font color=\"blue\"><b>锁定技</b></font>，一名角色的回合开始阶段，若其拥有“病毒”标记，增加一个“病毒”标记，若一名角色的“病毒”标记大于等于其体力值，该角色流失“病毒”标记数等量的体力，然后将“病毒”标记随机分配给自己及相邻角色。当一名角色使用【桃】时，移除其全部“病毒”标记。",
+    ["kuangfengtank"] = "狂风坦克",
+    ["huopao"] = "火炮",
+    [":huopao"] = "<font color=\"blue\"><b>锁定技</b></font>，当你造成伤害时，弃置一张“弹药”牌，受伤角色须弃置一张牌，然后你进行判定，若为黑色，此伤害-1，若为红色，你此伤害+1且视为火属性。",
+    ["nianya"] = "碾压",
+    [":nianya"] = "出牌阶段限一次，你可以与一名与你距离为1的角色拼点，若你赢，该角色流失1点体力。",
+    ["zhanche"] = "战车",
+    [":zhanche"] = "<font color=\"blue\"><b>锁定技</b></font>，你登场时，展示与体力值相同张牌置于武将牌上称为“弹药”，若你没有“弹药”牌，你造成的伤害-1，黑色非属性【杀】对你无效。",
+    ["gaitetank"] = "盖特坦克",
+    ["jipao"] = "机炮",
+    [":jipao"] = "当你使用【杀】时，可令目标展示一张手牌，若如此做，你须弃置一张手牌或“弹药”牌，若此牌与展示牌颜色相同，视为对一名不同角色使用一张【杀】。",
+    ["naoche"] = "精神控制车",
+    ["zhunao"] = "主脑",
+    [":zhunao"] = "<font color=\"blue\"><b>锁定技</b></font>，当一名其他角色的回合开始时，你须流失一点体力，其本回合改为由你操控。",
+    ["xiufu"] = "修复",
+    [":xiufu"] = "<font color=\"blue\"><b>锁定技</b></font>，你的回合结束阶段，进行一次判断，若为黑桃，你回复一点体力。",
+    ["feidie"] = "镭射幽浮",
+    ["xuanfu"] = "悬浮",
+    [":xuanfu"] = "<font color=\"blue\"><b>锁定技</b></font>，其他角色与你计算距离时+4。",
+    ["youli"] = "尤里X",
+    ["xinkong"] = "心控",
+    [":xinkong"] = "出牌阶段限一次，你可以操控一名其他角色进行一个额外的回合。",
+    ["naobo"] = "脑波",
+    [":naobo"] = "出牌阶段限一次，你可以令与你相邻的全部角色流失一点体力。",
     ["zhoushan"] = "周善",
     ["~zhoushan"] = "周善",
     ["duozi"] = "夺子",
@@ -2100,8 +2258,71 @@ sgs.LoadTranslationTable{
     ["zhuni"] = "助逆",
     ["shijiu"] = "嗜酒",
     [":wuchang"] = "<font color=\"blue\"><b>锁定技</b></font>，主公玩家不可选择孟达，且其体力值为0时，身份为魏势力内奸，1或3时为主公同势力忠臣，其他情况为魏势力反贼。",
-    [":zhuni"] = "<font color=\"blue\"><b>锁定技</b></font>，若孟达出场，“杀死反贼的角色摸3张牌”的规则无效。",
+    [":zhuni"] = "<font color=\"blue\"><b>锁定技</b></font>，若孟达出场，“杀死反贼的角色摸3张牌”的规则无效，且杀死反贼的角色需选择弃置0~3张手牌，若其弃牌不足3张，则主公须弃置剩余张数的手牌。",
     [":shijiu"] = "<font color=\"blue\"><b>锁定技</b></font>，你的红桃手牌视为【酒】。",
     ["dummy"] = "训练假人",
     ["idle"] = "标靶",
+    ["chongxue"] = "御蟲少女",
+    ["#chongxue"] = "御蟲师",
+    ["duoyin"] = "堕淫",
+    [":duoyin"] = "<font color=\"blue\"><b>锁定技</b></font>，所有角色无法使用与其武将牌上“蟲”亮出点数重复的牌，若一名女性角色的“蟲”牌大于其体力值，其获得技能【蟲孕】。你脱离濒死时，失去此技能。若所有存活角色都拥有【堕淫】，或你死亡/失去此技能且场上无人拥有【堕淫】时，存活角色获得胜利。",
+    ["chongyun"] = "蟲孕",
+    [":chongyun"] = "<font color=\"blue\"><b>锁定技</b></font>，摸牌阶段你额外从一名其他角色手牌中抽取一张，摸牌阶段结束时，若你拥有“蟲”牌，你回复一点体力，并将至少两张手牌（若有）置于“蟲”中。若你的“蟲”数为10或更多时且武将牌正面朝上，你将武将牌翻面。你将武将牌翻回正面时若“蟲”数为10或更多，你对自己造成体力值-1点火属性伤害，获得技能【堕淫】，弃置所有装备，亮出所有暗置的“蟲”牌，将其按以下规则明置分配：每名角色分配数不超过3，若角色A与你的距离比角色B更远，其被分配点数之和不可大于B，其余“蟲”牌弃置。",
+    ["huanyu"] = "幻缘",
+    [":huanyu"] = "弃牌阶段你可以将武将牌横置，弃置的牌交给任意名男性角色，并将这些角色武将牌横置，直到你的下回合开始，这些角色造成或受到伤害时，你回复一点体力并交给其一张牌。",
+    ["yuchong"] = "御蟲",
+    [":yuchong"] = "游戏开始时，你可以额外摸2张牌置于武将牌上称为“蟲”。若你没有技能【堕淫】，出牌阶段限一次，你可以弃置一张“蟲”，令一名其他角色失去技能【堕淫】和【蟲孕】并摸一张牌，若如此做，你获得技能【蟲孕】。",
 }
+
+
+chongxue = sgs.General(extension1, "chongxue", "qun", "3", false)
+duoyinp = sgs.CreateProhibitSkill{
+	name = "#duoyinp",
+	is_prohibited = function(self, from, to, card)
+        local ming = {}
+        for _,c in from:getPile("chongming") do
+            if sgs.Sanguosha:getCard(c):getNumber() == card:getNumber() then
+                return true
+            end
+        end
+		return false
+	end
+}
+duoyin = sgs.CreateTriggerSkill{
+    name = "duoyin",
+    events = {sgs.CardsMoveOneTime, sgs.HpChanged, sgs.AskForPeachesDone, sgs.EventAcquireSkill, sgs.},
+    on_trigger = function()
+    end
+}
+chongyun = sgs.CreateTriggerSkill{
+    name = "chongyun",
+    events = {sgs.DamageInflicted},
+    on_trigger = function()
+    end
+}
+huanyu = sgs.CreateTriggerSkill{
+    name = "huanyu",
+    events = {sgs.DamageInflicted},
+    on_trigger = function()
+    end
+}
+yuchong = sgs.CreateTriggerSkill{
+    name = "yuchong",
+    events = {sgs.DamageInflicted},
+    on_trigger = function()
+    end
+}
+chongxue:addSkill(yuchong)
+chongxue:addSkill(huanyu)
+chongxue:addSkill(duoyin)
+chongxue:addSkill(chongyun)
+
+
+local skillList = sgs.SkillList()
+local newgenerals_skills = {edou,EdouNumber,EdouDefense,EdouLimit,GetPeach,LuaKanpo,duoyinp}
+for _,sk in ipairs(newgenerals_skills) do
+	if not sgs.Sanguosha:getSkill(sk:objectName()) then
+		skillList:append(sk)
+	end
+end
+sgs.Sanguosha:addSkills(skillList)
