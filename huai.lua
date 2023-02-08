@@ -2269,7 +2269,7 @@ sgs.LoadTranslationTable{
     ["chongyun"] = "蟲孕",
     [":chongyun"] = "<font color=\"blue\"><b>锁定技</b></font>，摸牌阶段你额外从一名其他角色手牌中抽取一张，摸牌阶段结束时，若你拥有“蟲”牌，你回复一点体力，并将至少两张手牌（若有）置于“蟲”中。若你的“蟲”数为10或更多时且武将牌正面朝上，你将武将牌翻面。你将武将牌翻回正面时若“蟲”数为10或更多，你对自己造成体力值-1点火属性伤害，获得技能【堕淫】，弃置所有装备，亮出所有暗置的“蟲”牌，将其按以下规则明置分配：每名角色分配数不超过3，若角色A与你的距离比角色B更远，其被分配点数之和不可大于B，其余“蟲”牌弃置。",
     ["huanyu"] = "幻缘",
-    [":huanyu"] = "弃牌阶段你可以将武将牌横置，弃置的牌交给任意名男性角色，并将这些角色武将牌横置，直到你的下回合开始，这些角色造成或受到伤害时，你回复一点体力并交给其一张牌。",
+    [":huanyu"] = "弃牌阶段你可以将武将牌横置，任意名男性角色按顺序选取并获得你弃置的牌，并将这些角色武将牌横置，直到你的下回合开始，这些角色造成或受到伤害时，你回复一点体力并交给其一张牌。",
     ["yuchong"] = "御蟲",
     [":yuchong"] = "游戏开始时，你可以额外摸2张牌置于武将牌上称为“蟲”。若你没有技能【堕淫】，出牌阶段限一次，你可以弃置一张“蟲”，令一名其他角色失去技能【堕淫】和【蟲孕】并摸一张牌，若如此做，你获得技能【蟲孕】。",
 }
@@ -2290,20 +2290,130 @@ duoyinp = sgs.CreateProhibitSkill{
 }
 duoyin = sgs.CreateTriggerSkill{
     name = "duoyin",
-    events = {sgs.CardsMoveOneTime, sgs.HpChanged, sgs.AskForPeachesDone, sgs.EventAcquireSkill, sgs.},
-    on_trigger = function()
+    events = {sgs.CardsMoveOneTime, sgs.HpChanged, sgs.AskForPeachesDone, sgs.EventAcquireSkill, sgs.EventLoseSkill},
+    on_trigger = function(self, event, player, data)
+        local room = player:getRoom()
+        if event == sgs.CardsMoveOneTime or event == sgs.HpChanged then
+            if player:getPile("chongming"):length() + player:getPile("chongan"):length() > player:getHp() and not player:hasSkill("chongyun") then
+                room:acquireSkill(player, "chongyun")
+            end
+        elseif event == sgs.AskForPeachesDone then
+            if player:isAlive() then
+                room:detachSkillFromPlayer(player, self:objectName())
+            end
+        elseif event == sgs.EventAcquireSkill then
+            for _,p in sgs.qlist(room:getAllPlayers()) then
+                if not p:hasSkill(self:objectName()) then return false end
+            end
+            return true
+        elseif event == sgs.EventLoseSkill then
+            for _,p in sgs.qlist(room:getAllPlayers()) then
+                if p:hasSkill(self:objectName()) then return false end
+            end
+            return true
+        end
     end
 }
+chongyunCard = sgs.CreateSkillCard{
+	name = "chongyunCard" ,
+	will_throw = false ,
+	handling_method = sgs.Card_MethodNone ,
+    target_fixed = true,
+	on_use = function(self, room, source, targets)
+		local cards = self:getSubcards()
+        source:addToPile("chongan", cards, false)
+	end
+}
+chongyunVS = sgs.CreateViewAsSkill{
+	name = "chongyun" ,
+    response_pattern = "@chongyun"
+	n = 2,
+	view_filter = function(self, selected, to_select)
+		if #selected < 2 then return true end
+	end,
+	view_as = function(self, cards)
+		if #cards < 2 then return nil end
+		local rende_card = chongyunCard:clone()
+		for _, c in ipairs(cards) do
+			rende_card:addSubcard(c)
+		end
+		return rende_card
+	end ,
+	enabled_at_play = function(self, player)
+		return false
+	end
+}
+chanCard = sgs.CreateSkillCard{
+	name = "chanCard" ,
+	will_throw = false ,
+	handling_method = sgs.Card_MethodNone ,
+    target_fixed = true,
+	on_use = function(self, room, source, targets)
+		local cards = self:getSubcards()
+        source:addToPile("chongan", cards, false)
+	end
+}
+chanVS = sgs.CreateViewAsSkill{
+	name = "chan" ,
+    response_pattern = "@chan"
+	n = 999,
+	view_filter = function(self, selected, to_select)
+		if #selected < 2 then return true end
+	end,
+	view_as = function(self, cards)
+		if #cards < 2 then return nil end
+		local rende_card = chongyunCard:clone()
+		for _, c in ipairs(cards) do
+			rende_card:addSubcard(c)
+		end
+		return rende_card
+	end ,
+	enabled_at_play = function(self, player)
+		return false
+	end
+}
+Fire = function(player,target,damagePoint)
+	local damage = sgs.DamageStruct()
+	damage.from = player
+	damage.to = target
+	damage.damage = damagePoint
+	damage.nature = sgs.DamageStruct_Fire
+	player:getRoom():damage(damage)
+end
 chongyun = sgs.CreateTriggerSkill{
     name = "chongyun",
-    events = {sgs.DamageInflicted},
-    on_trigger = function()
+    events = {sgs.AfterDrawNCards, sgs.CardsMoveOneTime, sgs.TurnedOver},
+    on_trigger = function(self, event, player, data)
+        local room = player:getRoom()
+        if event == sgs.AfterDrawNCards then
+            local to = room:askForPlayerChosen(player, room:getAllPlayers(), self:objectName(), "cyt", false)
+            if to:isKongcheng() then return false end
+            local id = room:askForCardChosen(player, to, "h", self:objectName())
+            room:obtainCard(player, sgs.Sanguosha:getCard(id))
+            room:askForUseCard(player, "@chongyunCard", self:objectName())
+        elseif event == sgs.CardsMoveOneTime then
+            if player:getPile("chongming"):length() + player:getPile("chongan"):length() >= 10 then
+                player:turnOver()
+            end
+        elseif event == sgs.TurnedOver then
+            if player:faceUp() and player:getPile("chongming"):length() + player:getPile("chongan"):length() >= 10 then
+                player:addToPile("chongming", player:getPile("chongan"))
+                Fire(player, player, player:getHp()-1)
+                if not player:hasSkill("duoyin") then room:acquireSkill(player, "duoyin") end
+                local move = sgs.CardsMoveStruct()
+                move.to_place = sgs.Player_DiscardPile
+                for _, c in sgs.qlist(player:getEquips()) do
+                    move.card_ids:append(c:getEffectiveId())
+                end
+                room:moveCardsAtomic(move, true)
+                room:askForUseCard(player, "@chanCard", self:objectName())
+            end
+        end
     end
 }
-huanyu = sgs.CreateTriggerSkill{
+huanyu = sgs.CreatePhaseChangeSkill{
     name = "huanyu",
-    events = {sgs.DamageInflicted},
-    on_trigger = function()
+    on_phasechange = function(self, chongxue)
     end
 }
 yuchong = sgs.CreateTriggerSkill{
