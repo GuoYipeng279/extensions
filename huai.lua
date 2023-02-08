@@ -2267,9 +2267,9 @@ sgs.LoadTranslationTable{
     ["duoyin"] = "堕淫",
     [":duoyin"] = "<font color=\"blue\"><b>锁定技</b></font>，所有角色无法使用与其武将牌上“蟲”亮出点数重复的牌，若一名女性角色的“蟲”牌大于其体力值，其获得技能【蟲孕】。你脱离濒死时，失去此技能。若所有存活角色都拥有【堕淫】，或你死亡/失去此技能且场上无人拥有【堕淫】时，存活角色获得胜利。",
     ["chongyun"] = "蟲孕",
-    [":chongyun"] = "<font color=\"blue\"><b>锁定技</b></font>，摸牌阶段你额外从一名其他角色手牌中抽取一张，摸牌阶段结束时，若你拥有“蟲”牌，你回复一点体力，并将至少两张手牌（若有）置于“蟲”中。若你的“蟲”数为10或更多时且武将牌正面朝上，你将武将牌翻面。你将武将牌翻回正面时若“蟲”数为10或更多，你对自己造成体力值-1点火属性伤害，获得技能【堕淫】，弃置所有装备，亮出所有暗置的“蟲”牌，将其按以下规则明置分配：每名角色分配数不超过3，若角色A与你的距离比角色B更远，其被分配点数之和不可大于B，其余“蟲”牌弃置。",
+    [":chongyun"] = "<font color=\"blue\"><b>锁定技</b></font>，摸牌阶段结束时，若你拥有“蟲”牌，你回复一点体力，并将至少两张手牌置于“蟲”中。若你的“蟲”数为10或更多时且武将牌正面朝上，你将武将牌翻面。你将武将牌翻回正面时若“蟲”数为10或更多，你对自己造成体力值-1点火属性伤害，获得技能【堕淫】，弃置所有装备，亮出所有暗置的“蟲”牌，将所有“蟲”按以下规则从近到远明置分配：若角色A与你的距离比角色B更远，其被分配点数之和不可大于B，剩余“蟲”牌弃置。",
     ["huanyu"] = "幻缘",
-    [":huanyu"] = "弃牌阶段你可以将武将牌横置，任意名男性角色按顺序选取并获得你弃置的牌，并将这些角色武将牌横置，直到你的下回合开始，这些角色造成或受到伤害时，你回复一点体力并交给其一张牌。",
+    [":huanyu"] = "你于弃牌阶段弃牌后，你可以将武将牌横置，然后场上男性角色可以各自扣置一张手牌或装备牌，",
     ["yuchong"] = "御蟲",
     [":yuchong"] = "游戏开始时，你可以额外摸2张牌置于武将牌上称为“蟲”。若你没有技能【堕淫】，出牌阶段限一次，你可以弃置一张“蟲”，令一名其他角色失去技能【堕淫】和【蟲孕】并摸一张牌，若如此做，你获得技能【蟲孕】。",
 }
@@ -2411,10 +2411,103 @@ chongyun = sgs.CreateTriggerSkill{
         end
     end
 }
-huanyu = sgs.CreatePhaseChangeSkill{
+function strcontain(a, b)
+	if a == "" then return false end
+	local c = a:split("+")
+	local k = false
+	for i=1, #c, 1 do
+		if a[i] == b then
+			k = true
+			break
+		end
+	end
+	return k
+end
+LuaGuzheng = sgs.CreateTriggerSkill{
+	name = "LuaGuzheng",
+	frequency = sgs.Skill_NotFrequent,
+	events = {sgs.CardsMoveOneTime},
+	on_trigger = function(self, event, player, data)
+		local room = player:getRoom()
+		local player = room:getCurrent()
+		local move = data:toMoveOneTime()
+		local source = move.from
+		if source then
+			if player:objectName() == source:objectName() and player:getPhase() == sgs.Player_Discard then
+                local tag = room:getTag("GuzhengToGet")
+                local guzhengToGet= tag:toString()
+                if guzhengToGet == nil then guzhengToGet = "" end
+                for _,card_id in sgs.qlist(move.card_ids) do
+                    local flag = bit32.band(move.reason.m_reason, sgs.CardMoveReason_S_MASK_BASIC_REASON)
+                    if flag == sgs.CardMoveReason_S_REASON_DISCARD then
+                        if guzhengToGet == "" then guzhengToGet = tostring(card_id)
+                        else guzhengToGet = guzhengToGet.."+"..tostring(card_id) end
+                    end
+                end
+                if guzhengToGet then room:setTag("GuzhengToGet", sgs.QVariant(guzhengToGet)) end
+			end
+		end
+		return false
+	end,
+}
+LuaGuzhengGet = sgs.CreateTriggerSkill{
+	name = "#LuaGuzhengGet",
+	frequency = sgs.Skill_Frequent,
+	events = {sgs.EventPhaseEnd},
+	on_trigger = function(self, event, player, data)
+		if not player:isDead() then
+			local room = player:getRoom()
+            local tag = room:getTag("GuzhengToGet")
+            local guzheng_cardsToGet
+            if tag then guzheng_cardsToGet = tag:toString():split("+")
+            else return false end
+            room:removeTag("GuzhengToGet")
+            local cardsToGet = sgs.IntList()
+            local cards = sgs.IntList()
+            for i=1,#guzheng_cardsToGet, 1 do
+                local card_data = guzheng_cardsToGet[i]
+                if card_data == nil then return false end
+                if card_data ~= "" then --弃牌阶段没弃牌则字符串为""
+                    local card_id = tonumber(card_data)
+                    if room:getCardPlace(card_id) == sgs.Player_DiscardPile then
+                        cardsToGet:append(card_id)
+                        cards:append(card_id)
+                    end
+                end
+            end
+            if cardsToGet:length() > 0 then
+                if not room:askForSkillInvoke(player, self:objectName()) then return false end
+                room:setPlayerProperty(player, "chained", sgs.QVariant(true))
+                while cardsToGet:length() > 0 do
+                    for _,p in sgs.qlist(room:getAllPlayers()) do
+                        if cardsToGet:length() < 1 then break end
+                        if p:isMale() then
+                            room:fillAG(cardsToGet)
+                            local to_back = room:askForAG(p, cardsToGet, false, self:objectName())
+                            local backcard = sgs.Sanguosha:getCard(to_back)
+                            p:obtainCard(backcard)
+                            room:setPlayerProperty(p, "chained", sgs.QVariant(true))
+                            p:setTag("huanyu", sgs.QVariant(true))
+                            cardsToGet:removeOne(to_back)
+                            room:clearAG()
+                        end
+                    end
+                end
+            end
+		end
+		return false
+	end,
+}
+huanyu = sgs.CreateTriggerSkill{
     name = "huanyu",
-    on_phasechange = function(self, chongxue)
-    end
+    events = {sgs.DamageCaused}
+    on_trigger = function(self, event, player, data)
+        if player:isChained() then
+            
+    end,
+    can_trigger = function(self, target)
+		return target ~= nil
+	end
 }
 yuchong = sgs.CreateTriggerSkill{
     name = "yuchong",
