@@ -2265,17 +2265,17 @@ sgs.LoadTranslationTable{
     ["chongxue"] = "御蟲少女",
     ["#chongxue"] = "御蟲师",
     ["duoyin"] = "堕淫",
-    [":duoyin"] = "<font color=\"blue\"><b>锁定技</b></font>，所有角色无法使用与其武将牌上“蟲”亮出点数重复的牌，若一名女性角色的“蟲”牌大于其体力值，其获得技能【蟲孕】。你脱离濒死时，失去此技能。若所有存活角色都拥有【堕淫】，或你死亡/失去此技能且场上无人拥有【堕淫】时，存活角色获得胜利。",
+    [":duoyin"] = "<font color=\"blue\"><b>锁定技</b></font>，回合开始阶段，你进行一次判定，若：不为黑桃，回复一点体力，不为梅花，摸牌阶段多摸一张牌，不为红桃，跳过出牌阶段，不为方块，手牌上限减一。你脱离濒死时，失去此技能。若所有存活角色都拥有【堕淫】，或你死亡/失去此技能且场上无人拥有【堕淫】时，存活角色获得胜利。",
     ["chongyun"] = "蟲孕",
-    [":chongyun"] = "<font color=\"blue\"><b>锁定技</b></font>，摸牌阶段结束时，若你拥有“蟲”牌，你回复一点体力，并将至少两张手牌置于“蟲”中。若你的“蟲”数为10或更多时且武将牌正面朝上，你将武将牌翻面。你将武将牌翻回正面时若“蟲”数为10或更多，你对自己造成体力值-1点火属性伤害，获得技能【堕淫】，弃置所有装备，亮出所有暗置的“蟲”牌，将所有“蟲”按以下规则从近到远明置分配：若角色A与你的距离比角色B更远，其被分配点数之和不可大于B，剩余“蟲”牌弃置。",
+    [":chongyun"] = "<font color=\"blue\"><b>锁定技</b></font>，摸牌阶段结束时，若你拥有“蟲”牌，你须将两张手牌（若有）置于“蟲”中。若你的“蟲”数为10或更多且武将牌正面朝上，你将武将牌翻面。你将武将牌翻回正面时若“蟲”数为10或更多，你对自己造成体力值-1点火属性伤害，获得技能【堕淫】，弃置所有装备，亮出所有暗置的“蟲”牌，将所有“蟲”按以下规则从近到远明置分配：若角色A与你的距离比角色B更远，其被分配点数之和不可大于B，剩余“蟲”牌弃置，然后若一名女性角色的“蟲”牌大于其体力值，其获得技能【蟲孕】。",
     ["huanyu"] = "幻缘",
-    [":huanyu"] = "你于弃牌阶段弃牌后，你可以将武将牌横置，然后场上男性角色可以各自扣置一张手牌或装备牌，",
+    [":huanyu"] = "你于弃牌阶段弃牌后，你可以将武将牌横置，然后场上男性角色可以各自扣置一张手牌或装备牌，扣置牌的角色亮出所扣牌，点数唯一最大者横置武将牌并获得你弃置的牌，然后你获得所有扣置的牌。",
     ["yuchong"] = "御蟲",
-    [":yuchong"] = "游戏开始时，你可以额外摸2张牌置于武将牌上称为“蟲”。若你没有技能【堕淫】，出牌阶段限一次，你可以弃置一张“蟲”，令一名其他角色失去技能【堕淫】和【蟲孕】并摸一张牌，若如此做，你获得技能【蟲孕】。",
+    [":yuchong"] = "游戏开始时，你可以额外摸2张牌暗置于武将牌上称为“蟲”。你可以翻开一张黑色“蟲”视为使用，或将一张红色“蟲”当【桃】对任意角色使用，若如此做，你获得技能【蟲孕】。",
 }
 
 
-chongxue = sgs.General(extension1, "chongxue", "qun", "3", false)
+chongxue = sgs.General(extension, "chongxue", "qun", "3", false)
 duoyinp = sgs.CreateProhibitSkill{
 	name = "#duoyinp",
 	is_prohibited = function(self, from, to, card)
@@ -2302,12 +2302,12 @@ duoyin = sgs.CreateTriggerSkill{
                 room:detachSkillFromPlayer(player, self:objectName())
             end
         elseif event == sgs.EventAcquireSkill then
-            for _,p in sgs.qlist(room:getAllPlayers()) then
+            for _,p in sgs.qlist(room:getAllPlayers()) do
                 if not p:hasSkill(self:objectName()) then return false end
             end
             return true
         elseif event == sgs.EventLoseSkill then
-            for _,p in sgs.qlist(room:getAllPlayers()) then
+            for _,p in sgs.qlist(room:getAllPlayers()) do
                 if p:hasSkill(self:objectName()) then return false end
             end
             return true
@@ -2326,7 +2326,7 @@ chongyunCard = sgs.CreateSkillCard{
 }
 chongyunVS = sgs.CreateViewAsSkill{
 	name = "chongyun" ,
-    response_pattern = "@chongyun"
+    response_pattern = "@chongyun",
 	n = 2,
 	view_filter = function(self, selected, to_select)
 		if #selected < 2 then return true end
@@ -2355,7 +2355,7 @@ chanCard = sgs.CreateSkillCard{
 }
 chanVS = sgs.CreateViewAsSkill{
 	name = "chan" ,
-    response_pattern = "@chan"
+    response_pattern = "@chan",
 	n = 999,
 	view_filter = function(self, selected, to_select)
 		if #selected < 2 then return true end
@@ -2500,10 +2500,10 @@ LuaGuzhengGet = sgs.CreateTriggerSkill{
 }
 huanyu = sgs.CreateTriggerSkill{
     name = "huanyu",
-    events = {sgs.DamageCaused}
+    events = {sgs.DamageCaused},
     on_trigger = function(self, event, player, data)
         if player:isChained() then
-            
+        end
     end,
     can_trigger = function(self, target)
 		return target ~= nil
