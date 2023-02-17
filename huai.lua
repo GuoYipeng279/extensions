@@ -17,7 +17,7 @@ idle = sgs.CreatePhaseChangeSkill{
     end
 }
 dummy:addSkill(idle)
---界徐盛
+--界徐�?
 jiexusheng = sgs.General(extension, "jiexusheng", "wu")
 jiexushengPojun = sgs.CreateTriggerSkill{
     name = "jiexushengPojun",
@@ -128,7 +128,7 @@ Yuqi = sgs.CreateTriggerSkill{
                 caojinyu:setTag("yuqigive", sgs.QVariant("give"))
                 caojinyu:setTag("yuqigiveto", data)
                 caojinyu:setTag("yuqirefusable", sgs.QVariant(0))
-                -- self.y1 = 5 一定不要这样写，无法赋值
+                -- self.y1 = 5 一定不要这样写，无法赋�?
                 for i=1, caojinyu:getMark("@Yuqi3") do
                     local card_id = room:askForAG(caojinyu, card_ids, caojinyu:getTag("yuqirefusable"):toInt()==1, self:objectName())
                     caojinyu:setTag("yuqirefusable", sgs.QVariant(1))
@@ -1751,7 +1751,7 @@ nichang = sgs.CreateTriggerSkill{
 yuyi = sgs.CreateTriggerSkill{
     name = "yuyi",
     -- event = sgs.Damage,
-	events = {sgs.TargetConfirming, sgs.CardFinished} ,-- 卡过bug，触发时机太奇怪，需要加标记
+	events = {sgs.TargetConfirming, sgs.CardFinished} ,-- 卡过bug，触发时机太奇�?，需要加标�??
 	on_trigger = function(self, event, player, data)
         -- return
 		local room = player:getRoom()
@@ -1980,12 +1980,12 @@ shenzhangjiao:addSkill(fushui)
 shenzhangjiao:addSkill(fushui_use)
 shenzhangjiao:addSkill(leicai)
 shenzhangjiao:addSkill(tiangong)
-kuangshouren = sgs.General(extension, "kuangshouren", "god", "6")
-bingju = sgs.General(extension, "bingju", "god", "3", false)
-kuangfengtank = sgs.General(extension, "kuangfengtank", "god", "6")
-gaitetank = sgs.General(extension, "gaitetank", "god", "4")
-naoche = sgs.General(extension, "naoche", "god", "10")
-feidie = sgs.General(extension, "feidie", "god", "6")
+kuangshouren = sgs.General(extension1, "kuangshouren", "god", "6")
+bingju = sgs.General(extension1, "bingju", "god", "3", false)
+kuangfengtank = sgs.General(extension1, "kuangfengtank", "god", "6")
+gaitetank = sgs.General(extension1, "gaitetank", "god", "4")
+naoche = sgs.General(extension1, "naoche", "god", "10")
+feidie = sgs.General(extension1, "feidie", "god", "6")
 kuangshou = sgs.CreateTriggerSkill{
     name = "kuangshou",
     events = {sgs.DamageInflicted},
@@ -2080,7 +2080,7 @@ feidie:addSkill(xiufu)
 feidie:addSkill(xuanfu)
 feidie:addSkill(bossdidong)
 feidie:addSkill(tuxi)
-youli = sgs.General(extension, "youli", "god", "4")
+youli = sgs.General(extension1, "youli", "god", "4")
 xinkong = sgs.CreateTriggerSkill{
     name = "xinkong",
     events = {sgs.DamageInflicted},
@@ -2263,19 +2263,19 @@ sgs.LoadTranslationTable{
     ["dummy"] = "训练假人",
     ["idle"] = "标靶",
     ["chongxue"] = "御蟲少女",
-    ["#chongxue"] = "御蟲师",
+    ["#chongxue"] = "御蟲�?",
     ["duoyin"] = "堕淫",
-    [":duoyin"] = "<font color=\"blue\"><b>锁定技</b></font>，回合开始阶段，你进行一次判定，若：不为黑桃，回复一点体力，不为梅花，摸牌阶段多摸一张牌，不为红桃，跳过出牌阶段，不为方块，手牌上限减一。你脱离濒死时，失去此技能。若所有存活角色都拥有【堕淫】，或你死亡/失去此技能且场上无人拥有【堕淫】时，存活角色获得胜利。",
+    [":duoyin"] = "<font color=\"blue\"><b>锁定技</b></font>，回合开始阶段，你进行一次判定，若不为红桃，�?回合手牌上限�?0。你脱�?�濒死时，失去�?�技能。若所有存活�?�色都拥有【堕�?】，或你死亡/失去此技能且场上无人拥有【堕�?】时，存活�?�色获得胜利�?",
     ["chongyun"] = "蟲孕",
-    [":chongyun"] = "<font color=\"blue\"><b>锁定技</b></font>，摸牌阶段结束时，若你拥有“蟲”牌，你须将两张手牌（若有）置于“蟲”中。若你的“蟲”数为10或更多且武将牌正面朝上，你将武将牌翻面。你将武将牌翻回正面时若“蟲”数为10或更多，你对自己造成体力值-1点火属性伤害，获得技能【堕淫】，弃置所有装备，亮出所有暗置的“蟲”牌，将所有“蟲”按以下规则从近到远明置分配：若角色A与你的距离比角色B更远，其被分配点数之和不可大于B，剩余“蟲”牌弃置，然后若一名女性角色的“蟲”牌大于其体力值，其获得技能【蟲孕】。",
+    [":chongyun"] = "<font color=\"blue\"><b>锁定技</b></font>，摸牌阶段结束时，若你拥有“蟲”牌，你须将两张手牌（若有）�?于“蟲”中。若你的“蟲”数�?10或更多且武将牌�?�面朝上，你将�?�将牌翻�?。你将�?�将牌翻回�?�面时若“蟲”数�?10或更多，你�?�自己造成体力�?-1点火属性伤害，获得技能【堕�?】，弃置所有�?��?�，�?出所有暗�?的“蟲”牌，将所有“蟲”按以下规则从近到远明置分配：若角色A与你的距离比角色B更远，其�?分配点数之和不可大于B，剩余“蟲”牌弃置，然后若一名女性�?�色的“蟲”牌大于其体力值，其获得技能【蟲孕】�?",
     ["huanyu"] = "幻缘",
-    [":huanyu"] = "你于弃牌阶段弃牌后，你可以将武将牌横置，然后场上男性角色可以各自扣置一张手牌或装备牌，扣置牌的角色亮出所扣牌，点数唯一最大者横置武将牌并获得你弃置的牌，然后你获得所有扣置的牌。",
+    [":huanyu"] = "你于弃牌阶�?�弃牌后，你�?以将武将牌横�?，然后场上男性�?�色�?以各�?扣置一张手牌或装�?�牌，扣�?牌的角色�?出所扣牌，点数唯一最大者横�?武将牌并获得你弃�?的牌，然后你获得所有扣�?的牌�?",
     ["yuchong"] = "御蟲",
-    [":yuchong"] = "游戏开始时，你可以额外摸2张牌暗置于武将牌上称为“蟲”。你可以翻开一张黑色“蟲”视为使用，或将一张红色“蟲”当【桃】对任意角色使用，若如此做，你获得技能【蟲孕】。",
+    [":yuchong"] = "游戏开始时，你�?以�?��?�摸2张牌暗置于�?�将牌上称为“蟲”。你�?以翻开一张黑色“蟲”�?�为使用，或将一张红色“蟲”当【�?�】�?�任意�?�色使用，若如�?�做，你获得技能【蟲孕】�?",
 }
 
 
-chongxue = sgs.General(extension, "chongxue", "qun", "3", false)
+chongxue = sgs.General(extension1, "chongxue", "qun", "3", false)
 duoyinp = sgs.CreateProhibitSkill{
 	name = "#duoyinp",
 	is_prohibited = function(self, from, to, card)
@@ -2467,7 +2467,7 @@ LuaGuzhengGet = sgs.CreateTriggerSkill{
             for i=1,#guzheng_cardsToGet, 1 do
                 local card_data = guzheng_cardsToGet[i]
                 if card_data == nil then return false end
-                if card_data ~= "" then --弃牌阶段没弃牌则字符串为""
+                if card_data ~= "" then --弃牌阶�?�没弃牌则字符串�?""
                     local card_id = tonumber(card_data)
                     if room:getCardPlace(card_id) == sgs.Player_DiscardPile then
                         cardsToGet:append(card_id)
@@ -2522,7 +2522,7 @@ chongxue:addSkill(chongyun)
 
 
 local skillList = sgs.SkillList()
-local newgenerals_skills = {edou,EdouNumber,EdouDefense,EdouLimit,GetPeach,LuaKanpo,duoyinp}
+local newgenerals_skills = {edou,EdouNumber,EdouDefense,EdouLimit,GetPeach,LuaKanpo}
 for _,sk in ipairs(newgenerals_skills) do
 	if not sgs.Sanguosha:getSkill(sk:objectName()) then
 		skillList:append(sk)

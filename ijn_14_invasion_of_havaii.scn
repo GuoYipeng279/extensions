@@ -1,0 +1,3022 @@
+header {
+  uniqueID 15;
+  NextUID 5;
+  properties {
+    AffterEffects = S "" ;
+    "Cloud" {
+      "Area00" {
+        BigWeight = F 0.0000 ;
+        BoxMaxX = F 0.0000 ;
+        BoxMaxY = F 0.0000 ;
+        BoxMaxZ = F 0.0000 ;
+        BoxMinX = F 0.0000 ;
+        BoxMinY = F 0.0000 ;
+        BoxMinZ = F 0.0000 ;
+        MediumWeight = F 0.0000 ;
+        Num = I 0 ;
+        SmallWeight = F 0.0000 ;
+      }
+      "Area01" {
+        BigWeight = F 0.0000 ;
+        BoxMaxX = F 0.0000 ;
+        BoxMaxY = F 0.0000 ;
+        BoxMaxZ = F 0.0000 ;
+        BoxMinX = F 0.0000 ;
+        BoxMinY = F 0.0000 ;
+        BoxMinZ = F 0.0000 ;
+        MediumWeight = F 0.0000 ;
+        Num = I 0 ;
+        SmallWeight = F 0.0000 ;
+      }
+      "Area02" {
+        BigWeight = F 0.0000 ;
+        BoxMaxX = F 0.0000 ;
+        BoxMaxY = F 0.0000 ;
+        BoxMaxZ = F 0.0000 ;
+        BoxMinX = F 0.0000 ;
+        BoxMinY = F 0.0000 ;
+        BoxMinZ = F 0.0000 ;
+        MediumWeight = F 0.0000 ;
+        Num = I 0 ;
+        SmallWeight = F 0.0000 ;
+      }
+      "Area03" {
+        BigWeight = F 0.0000 ;
+        BoxMaxX = F 0.0000 ;
+        BoxMaxY = F 0.0000 ;
+        BoxMaxZ = F 0.0000 ;
+        BoxMinX = F 0.0000 ;
+        BoxMinY = F 0.0000 ;
+        BoxMinZ = F 0.0000 ;
+        MediumWeight = F 0.0000 ;
+        Num = I 0 ;
+        SmallWeight = F 0.0000 ;
+      }
+    }
+    CompetitiveModeParty = E Party : Allied  ;
+    FileSystemLua = S "" ;
+    GameMode = E GameMode : Single  ;
+    GroundCollision = B true ;
+    "IdleCameraPos" {
+      "Capture1" {
+        "Allied" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+        "Japanese" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+      }
+      "Capture2" {
+        "Allied" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+        "Japanese" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+      }
+      "Capture3" {
+        "Allied" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+        "Japanese" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+      }
+      "Capture4" {
+        "Allied" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+        "Japanese" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+      }
+      "Competitive" {
+        "Allied" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+        "Japanese" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+      }
+      "Duel" {
+        "Allied" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+        "Japanese" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+      }
+      "Escort" {
+        "Allied" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+        "Japanese" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+      }
+      "Siege" {
+        "Allied" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+        "Japanese" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+      }
+    }
+    LocKitPaths = S "missionglobals" ;
+    "Map" {
+      BorderSizeX = F 20000.0000 ;
+      BorderSizeY = F 20000.0000 ;
+      BorderZoneEC = E Party : Neutral  ;
+      BorderZoneEN = E Party : Neutral  ;
+      BorderZoneES = E Party : Neutral  ;
+      BorderZoneNC = E Party : Neutral  ;
+      BorderZoneNE = E Party : Neutral  ;
+      BorderZoneNW = E Party : Neutral  ;
+      BorderZoneSC = E Party : Neutral  ;
+      BorderZoneSE = E Party : Neutral  ;
+      BorderZoneSW = E Party : Neutral  ;
+      BorderZoneWC = E Party : Neutral  ;
+      BorderZoneWN = E Party : Neutral  ;
+      BorderZoneWS = E Party : Neutral  ;
+      "MultiPlayMapSizes" {
+        Competitive_nw = V3 -100.0000 0.0000 -100.0000 ;
+        Competitive_se = V3 100.0000 0.0000 100.0000 ;
+        Duel_nw = V3 -100.0000 0.0000 -100.0000 ;
+        Duel_se = V3 100.0000 0.0000 100.0000 ;
+        Escort_nw = V3 -100.0000 0.0000 -100.0000 ;
+        Escort_se = V3 100.0000 0.0000 100.0000 ;
+        IslandCapture1v1_nw = V3 -100.0000 0.0000 -100.0000 ;
+        IslandCapture1v1_se = V3 100.0000 0.0000 100.0000 ;
+        IslandCapture2v2_nw = V3 -100.0000 0.0000 -100.0000 ;
+        IslandCapture2v2_se = V3 100.0000 0.0000 100.0000 ;
+        IslandCapture3v3_nw = V3 -100.0000 0.0000 -100.0000 ;
+        IslandCapture3v3_se = V3 100.0000 0.0000 100.0000 ;
+        IslandCapture4v4_nw = V3 -100.0000 0.0000 -100.0000 ;
+        IslandCapture4v4_se = V3 100.0000 0.0000 100.0000 ;
+        Siege_nw = V3 -100.0000 0.0000 -100.0000 ;
+        Siege_se = V3 100.0000 0.0000 100.0000 ;
+      }
+    }
+    MaxPlayerNum = I 8 ;
+    "Multiplay" {
+      "Player1" {
+        Party = E Party : Japanese  ;
+        Race = E Races : Japan  ;
+      }
+      "Player2" {
+        Party = E Party : Japanese  ;
+        Race = E Races : Japan  ;
+      }
+      "Player3" {
+        Party = E Party : Allied  ;
+        Race = E Races : USA  ;
+      }
+      "Player4" {
+        Party = E Party : Japanese  ;
+        Race = E Races : Japan  ;
+      }
+      "Player5" {
+        Party = E Party : Allied  ;
+        Race = E Races : USA  ;
+      }
+      "Player6" {
+        Party = E Party : Japanese  ;
+        Race = E Races : Japan  ;
+      }
+      "Player7" {
+        Party = E Party : Allied  ;
+        Race = E Races : USA  ;
+      }
+      "Player8" {
+        Party = E Party : Japanese  ;
+        Race = E Races : Japan  ;
+      }
+    }
+    "Sound" {
+      "Ambient" {
+        "Air" {
+          Distance = F 50.0000 ;
+          Distance2 = F 800.0000 ;
+          FileName = S "environment_smoothwind.fsb" ;
+        }
+        "Ocean" {
+          Distance = F 15.0000 ;
+          FileName = S "environment_ocean.fsb" ;
+        }
+        "Underwater" {
+          FileName = S "environment_underwater.fsb" ;
+        }
+      }
+      "Music" {
+        "Party0" {
+          "Action" {
+            Channel = S "action" ;
+            FileName = S "US_calm_tension_action.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Calm" {
+            Channel = S "" ;
+            FileName = S "" ;
+            SoundEffect = S "" ;
+          }
+          "Custom1" {
+            Channel = S "" ;
+            FileName = S "" ;
+            SoundEffect = S "" ;
+          }
+          "Custom2" {
+            Channel = S "" ;
+            FileName = S "" ;
+            SoundEffect = S "" ;
+          }
+          "Custom3" {
+            Channel = S "" ;
+            FileName = S "" ;
+            SoundEffect = S "" ;
+          }
+          "Default" {
+            Channel = S "tension" ;
+            FileName = S "US_calm_tension_action.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Defeat" {
+            Channel = S "" ;
+            FileName = S "US_defeat.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Tension" {
+            Channel = S "tension" ;
+            FileName = S "US_calm_tension_action.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Victory" {
+            Channel = S "" ;
+            FileName = S "US_victory.fsb" ;
+            SoundEffect = S "" ;
+          }
+        }
+        "Party1" {
+          "Action" {
+            Channel = S "action" ;
+            FileName = S "Yamato_calm_tension_action.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Calm" {
+            Channel = S "calm" ;
+            FileName = S "Yamato_calm_tension_action.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Custom1" {
+            Channel = S "" ;
+            FileName = S "JP_Victory_Short.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Custom2" {
+            Channel = S "" ;
+            FileName = S "JP_Defeat_Short.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Custom3" {
+            Channel = S "" ;
+            FileName = S "" ;
+            SoundEffect = S "" ;
+          }
+          "Default" {
+            Channel = S "tension" ;
+            FileName = S "Yamato_calm_tension_action.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Defeat" {
+            Channel = S "" ;
+            FileName = S "JP_defeat.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Tension" {
+            Channel = S "tension" ;
+            FileName = S "Yamato_calm_tension_action.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Victory" {
+            Channel = S "" ;
+            FileName = S "JP_victory.fsb" ;
+            SoundEffect = S "" ;
+          }
+        }
+      }
+    }
+    StageScript = S "Ijn\\JM14" ;
+    StageScriptCompetiton = S "" ;
+    StageScriptDuel = S "" ;
+    StageScriptEscort = S "" ;
+    StageScriptIslandCapture = S "" ;
+    StageScriptSiege = S "" ;
+    "TerritoryMap" {
+      FileName = S "" ;
+    }
+    Title = S "error!notitle!" ;
+    "g_Environment" {
+      CloudShadowDir = F 0.0000 ;
+      CloudShadowMap = S "white.tga" ;
+      CloudShadowSize = F 1000.0000 ;
+      CloudShadowVelocity = F 10.0000 ;
+      "Lights" {
+        "Ambient" {
+          B = F 0.3176 ;
+          G = F 0.3176 ;
+          L = F 1.0000 ;
+          R = F 0.3176 ;
+        }
+        "AmbientCube" {
+          "HDR" {
+            "Back" {
+              B = F 0.6941 ;
+              G = F 0.5804 ;
+              L = F 1.0000 ;
+              R = F 0.5059 ;
+            }
+            "Bottom" {
+              B = F 0.3686 ;
+              G = F 0.3137 ;
+              L = F 0.1000 ;
+              R = F 0.2431 ;
+            }
+            "Front" {
+              B = F 0.9412 ;
+              G = F 0.9882 ;
+              L = F 1.0000 ;
+              R = F 1.0000 ;
+            }
+            "Left" {
+              B = F 0.7412 ;
+              G = F 0.6510 ;
+              L = F 1.0000 ;
+              R = F 0.5922 ;
+            }
+            "Right" {
+              B = F 0.7529 ;
+              G = F 0.6588 ;
+              L = F 1.0000 ;
+              R = F 0.5804 ;
+            }
+            "Top" {
+              B = F 0.4902 ;
+              G = F 0.4000 ;
+              L = F 1.0000 ;
+              R = F 0.3490 ;
+            }
+          }
+        }
+        AmbientLumOffset = F 0.0000 ;
+        AmbientLumScale = F 1.0000 ;
+        "Angles" {
+          HorizontalAngle = F 340.0000 ;
+          VerticalAngle = F 55.0000 ;
+        }
+        BushDiffuseFactor = F 0.3000 ;
+        BushNormalAllowed = B true ;
+        BushShadowAllowed = B true ;
+        BushTextureName = S "foliageatlas.dds" ;
+        "Diffuse" {
+          B = F 0.8118 ;
+          G = F 0.8824 ;
+          Luminance = F 2.0000 ;
+          R = F 0.9059 ;
+        }
+        ForceDisableDynShadow = B false ;
+        ParticleMultiplier = F 1.0000 ;
+        "Specular" {
+          B = F 0.7529 ;
+          G = F 0.6627 ;
+          Luminance = F 20.0000 ;
+          R = F 0.6392 ;
+        }
+        "UWAmbient" {
+          B = F 1.0000 ;
+          G = F 1.0000 ;
+          L = F 1.0000 ;
+          R = F 1.0000 ;
+        }
+        "UWDiffuse" {
+          B = F 1.0000 ;
+          G = F 1.0000 ;
+          L = F 1.0000 ;
+          R = F 1.0000 ;
+        }
+        "WaterTracerColor" {
+          A = F 1.0000 ;
+          B = F 1.0000 ;
+          G = F 1.0000 ;
+          R = F 1.0000 ;
+        }
+      }
+      ReflCubemap = S "RCS_ijn_14_invasion.dds" ;
+      Skybox = S "sky_077" ;
+      SkyboxLuminance = F 1.0000 ;
+      SkyboxRotate = F 180.0000 ;
+      Sun = S "SunDayTime" ;
+      ThunderStorm = S "" ;
+    }
+    "g_Ocean" {
+      0_SimpleOcean = B false ;
+      "Beam" {
+        "Color" {
+          A = F 0.0000 ;
+          B = F 0.6706 ;
+          G = F 0.5255 ;
+          R = F 0.3804 ;
+        }
+        NumBeams = I 100 ;
+        Speed = F 0.5000 ;
+        Tex00 = F 300.0000 ;
+        Tex01 = F 9.0000 ;
+        Tex02 = F 30.0000 ;
+        Tex03 = F 2.0000 ;
+        Tex04 = F 0.0000 ;
+        Tex05 = F 2.0000 ;
+        Tex06 = F 50.0000 ;
+        Tex07 = F 2.0000 ;
+        Tex08 = F 0.0800 ;
+        Tex09 = F 0.9000 ;
+        Tex10 = F 0.9500 ;
+        Tex11 = F 0.9900 ;
+        Tex12 = F 0.5000 ;
+        Tex13 = F 0.1000 ;
+        Tex14 = F 0.1000 ;
+        Tex15 = F 0.1000 ;
+        TextureFile = S "stripes4.tga" ;
+      }
+      "Caustics" {
+        "CausticsColor" {
+          B = F 0.9255 ;
+          G = F 0.9176 ;
+          R = F 0.8824 ;
+        }
+        CausticsScale = F 0.2000 ;
+        CausticsType = E CausticsTypes : CausticsDayLight  ;
+      }
+      "Foam" {
+        FadeRange = F 3.0000 ;
+        Height = F 1.1000 ;
+        NoiseScale = F 600.0000 ;
+        NoiseScrollSpeed = F 5.0000 ;
+        NoiseTexture = S "foam_noise02.tga" ;
+        Scale = F 20.0000 ;
+        ScrollSpeed = F 3.0000 ;
+        Texture = S "foam_f02.tga" ;
+        UseFoam = B true ;
+      }
+      "Fog" {
+        UWExpDistMaxdist = F 1000.0000 ;
+        UWExpDistMinvalue = F 50.0000 ;
+        UWExpHeightCutdepth = F -200.0000 ;
+        UWExpHeightMaxdepth = F -140.0000 ;
+        UWExpHeightMaxvalue = F 99.5000 ;
+        "UWFogColor" {
+          B = F 0.1725 ;
+          G = F 0.1373 ;
+          L = F 1.0000 ;
+          MaxDarken = F 0.7000 ;
+          R = F 0.1451 ;
+        }
+      }
+      "NormalMaps" {
+        Texture = S "oceannormalmap02.tga" ;
+        layer0_Scale = F 1000.0000 ;
+        layer0_ScrollSpeed = F 3.0000 ;
+        layer1_Scale = F 250.0000 ;
+        layer1_ScrollSpeed = F 2.0000 ;
+        layer2_Scale = F 20.0000 ;
+        layer2_ScrollSpeed = F 1.0000 ;
+      }
+      "Optics" {
+        "1LocalReflectionTint" {
+          B = F 0.2824 ;
+          G = F 0.2824 ;
+          R = F 0.2824 ;
+        }
+        "1ReflectionTint" {
+          B = F 0.4275 ;
+          G = F 0.3451 ;
+          R = F 0.2392 ;
+        }
+        "1RefractionTint" {
+          B = F 0.3922 ;
+          G = F 0.2235 ;
+          R = F 0.0000 ;
+        }
+        "1SprayTintColor" {
+          B = F 1.0000 ;
+          G = F 1.0000 ;
+          R = F 1.0000 ;
+        }
+        "1UWRefractionTint" {
+          B = F 1.0000 ;
+          G = F 1.0000 ;
+          R = F 1.0000 ;
+        }
+        2DeepWaterRefractionExponent = F 5.0000 ;
+        2DeepWaterRefractionTintPower = F 2.0000 ;
+        2RefractionTintExponent = F 2.0000 ;
+        2RefractionTintPower = F 10.0000 ;
+        3RefractionDepthFadeRange = F 20.0000 ;
+        3RefractionMaxDepth = F 50.0000 ;
+        4FresnelExponent = F 15.0000 ;
+        4FresnelOffset = F 0.1000 ;
+        4FresnelScale = F 1.0000 ;
+        5ShoreFadeDepth = F 2.0000 ;
+        5ShoreFadePower = F 1.0000 ;
+        5ShoreFadeRange = F 2.0000 ;
+        6FinalMultiplier = F 1.0000 ;
+        6ReflectionMultiplier = F 1.0000 ;
+        7SkyReflBaseFact = F 0.3000 ;
+        7SkyReflDesatFact = F 0.0100 ;
+        7SkyReflPowDiv = F 10.0000 ;
+        7SkyReflPowExp = F 1.0000 ;
+        8UWBaseGlowStrength = F 80.0000 ;
+        8UWSkyGlowStrength = F 0.2000 ;
+        8UWSunSpotStrength = F 80.0000 ;
+        9ShadowStrength = F 0.7000 ;
+        "RefrSpecularColor" {
+          B = F 0.6275 ;
+          G = F 0.0000 ;
+          R = F 0.0000 ;
+        }
+        UnderWaterRefrIndex = F 0.9000 ;
+      }
+      "WaterParticle" {
+        "Color" {
+          A = F 0.5000 ;
+          B = F 0.3020 ;
+          G = F 0.2549 ;
+          R = F 0.1922 ;
+        }
+        NumParticles = I 5000 ;
+        Speed = F 2.0000 ;
+        Tex00 = F 0.1000 ;
+        Tex01 = F 0.1000 ;
+        Tex02 = F 0.1000 ;
+        Tex03 = F 10000.0000 ;
+        Tex04 = F 0.1000 ;
+        Tex05 = F 0.1000 ;
+        Tex06 = F 0.1000 ;
+        Tex07 = F 0.0000 ;
+        Tex08 = F -100.0000 ;
+        Tex09 = F -100.0000 ;
+        Tex10 = F -100.0000 ;
+        Tex11 = F 1.0000 ;
+        Tex12 = F 200.0000 ;
+        Tex13 = F 200.0000 ;
+        Tex14 = F 200.0000 ;
+        Tex15 = F 1.0000 ;
+        TextureFile = S "lampea128dxt5.tga" ;
+      }
+      "Waves" {
+        1WaveDampModel = S "" ;
+        1WaveDampeningDepth = F 60.0000 ;
+        1WaveDampeningPower = F 1.5000 ;
+        1WaveDampeningScale = F 1.0000 ;
+        ChoppyWavesFactor = F 2.5000 ;
+        Falloff = F 0.3000 ;
+        HeightScale = F 2.0000 ;
+        LayerScale = F 100.0000 ;
+        TimeScale = F 0.6000 ;
+        WaveHeight = F 100.0000 ;
+        WindDirection = F 0.4000 ;
+        WindSpeed = F 1.0000 ;
+      }
+    }
+    "g_PostProcess" {
+      "Colorize" {
+        TextureName = S "volume_IJN_14.dds" ;
+        TextureNameOldFilm = S "volume_technicolor_002.tga" ;
+        TextureNameOldFilmUW = S "volume_remap_UW.tga" ;
+        TextureNameUW = S "ColourRemap_uw.tga" ;
+      }
+      "HDR" {
+        AdaptationPercent = F 11.0000 ;
+        AntiBandingON = B false ;
+        BloomScale = F 0.3000 ;
+        BrightPassOffset = F 10.0000 ;
+        BrightPassTreshold = F 0.1000 ;
+        MaxLuminance = F 2.0000 ;
+        MiddleGray = F 1.0000 ;
+        MinLuminance = F 0.6000 ;
+        NewHDRParam0 = F 3.0000 ;
+        NewHDRParam1 = F 10.0000 ;
+        ParticleLuminanceMul = F 1.0000 ;
+      }
+      "MotionBlur" {
+        Divider = F 600.0000 ;
+        MaxBlur = F 100.0000 ;
+        MaxVelocity = F 0.6000 ;
+        MinSpeed = F 100.0000 ;
+        VelocityScale = F 0.3000 ;
+      }
+      "UnderWaterWave" {
+        HorizAmplitude = F 1.5000 ;
+        HorizPhase = F 1.0000 ;
+        HorizScale = F 50.0000 ;
+        HorizSpeed = F 5.0000 ;
+        VertAmplitude = F 0.0000 ;
+        VertPhase = F 0.0000 ;
+        VertScale = F 0.0000 ;
+        VertSpeed = F 0.0000 ;
+      }
+    }
+    "g_Terrain" {
+      a_UW_Coral_Sand_Delta = F 0.2000 ;
+      a_UW_Coral_Sand_Slope = F 0.2000 ;
+      ab_UW_Sand_Rock_Delta = F 0.1000 ;
+      ab_UW_Sand_Rock_Slope = F 0.1000 ;
+      b_SHORE_Sand_Rock_Delta = F 0.3000 ;
+      c_GROUND_Grass_Dirt_Delta = F 0.2000 ;
+      c_GROUND_Grass_Dirt_Slope = F 0.5000 ;
+      cb_GROUND_Dirt_Rock_Delta = F 0.5000 ;
+      cb_GROUND_Dirt_Rock_Slope = F 0.5000 ;
+      d_Dirt_Height = F 100.0000 ;
+      d_Shore_Height = F 15.0000 ;
+      e_MaskUV_Scale = F 0.5000 ;
+      e_TerrSlope_Scale = F 0.4000 ;
+      e_UV_Scale = F 0.5000 ;
+      eb_UW_TerrSlope_Scale = F 0.7000 ;
+      eb_UW_UV_Scale = F 4.0000 ;
+      f_NmPower_Coral = F 0.3000 ;
+      f_NmPower_Dirt = F 0.3000 ;
+      f_NmPower_Grass = F 0.3000 ;
+      f_NmPower_Rock = F 0.4000 ;
+      f_NmPower_Sand = F 0.3000 ;
+      g_DiffAtlas = S "a_hawaii_fake_terr_atl.dds" ;
+      g_MaskTexture = S "terrain_uw_mask03.tga" ;
+      g_NoiseTexture = S "terrain_uw_mask02.tga" ;
+      g_NormAtlas = S "a_hawaii_fake_terr_atl.dds" ;
+      g_StaticShadowTexture = S "s_ijn14.dds" ;
+      ga_StaticShadowShotOffsetX = F 0.0000 ;
+      ga_StaticShadowShotOffsetZ = F 0.0000 ;
+      ga_StaticShadowShotSize = F 10000.0000 ;
+      "h_UW_Color0" {
+        B = F 0.4000 ;
+        G = F 1.0000 ;
+        R = F 0.4000 ;
+      }
+      "h_UW_Color1" {
+        B = F 0.2000 ;
+        G = F 1.0000 ;
+        R = F 0.2000 ;
+      }
+      "h_UW_Color2" {
+        B = F 1.0000 ;
+        G = F 1.0000 ;
+        R = F 0.3000 ;
+      }
+      "i_GROUND_subtypes" {
+        "dirt_subtypes" {
+          d0_width = F 20.0000 ;
+          d0d1_delta = F 20.0000 ;
+          d1_width = F 20.0000 ;
+          d1d2_delta = F 20.0000 ;
+          d2_width = F 20.0000 ;
+        }
+        "grass_subtypes" {
+          g0_width = F 20.0000 ;
+          g0g1_delta = F 20.0000 ;
+          g1_width = F 20.0000 ;
+          g1g2_delta = F 20.0000 ;
+          g2_width = F 20.0000 ;
+        }
+        "rock_subtypes" {
+          r0_width = F 20.0000 ;
+          r0r1_delta = F 20.0000 ;
+          r1_width = F 20.0000 ;
+          r1r2_delta = F 20.0000 ;
+          r2_width = F 20.0000 ;
+        }
+      }
+      "i_SHORE_subtypes" {
+        "rock_subtypes" {
+          r0_width = F 20.0000 ;
+          r0r1_delta = F 25.0000 ;
+          r1_width = F 25.0000 ;
+          r1r2_delta = F 25.0000 ;
+          r2_width = F 25.0000 ;
+        }
+      }
+      "i_UW_subtypes" {
+        "coral_subtypes" {
+          c0_width = F 5.0000 ;
+          c0c1_delta = F 5.0000 ;
+          c1_width = F 5.0000 ;
+          c1c2_delta = F 5.0000 ;
+          c2_width = F 5.0000 ;
+        }
+        "rock_subtypes" {
+          r0_width = F 50.0000 ;
+          r0r1_delta = F 50.0000 ;
+          r1_width = F 0.0000 ;
+          r1r2_delta = F 0.0000 ;
+          r2_width = F 0.0000 ;
+        }
+      }
+      x_Height_Noise_Divisor = F 3.5000 ;
+      x_Height_Noise_Scaler = F 1.0000 ;
+      x_Noise_UVmul = F 0.1000 ;
+      x_Slope_Noise_Divisor = F 12.0000 ;
+      x_Slope_Noise_Scaler = F 0.5000 ;
+    }
+    "g_Weather" {
+      "CloudLights" {
+        "Ambient" {
+          B = F 0.6000 ;
+          G = F 0.5686 ;
+          R = F 0.5725 ;
+        }
+        "Bottom" {
+          B = F 0.0784 ;
+          G = F 0.0196 ;
+          R = F 0.0431 ;
+        }
+        "Sun" {
+          B = F 0.6902 ;
+          G = F 0.6039 ;
+          R = F 0.6000 ;
+        }
+      }
+      CloudsAffectedByWind = B true ;
+      "Fog" {
+        "DirFogColor" {
+          "Back" {
+            B = F 0.3412 ;
+            G = F 0.2549 ;
+            L = F 1.0000 ;
+            R = F 0.2000 ;
+          }
+          "Front" {
+            B = F 0.3412 ;
+            G = F 0.2549 ;
+            L = F 1.0000 ;
+            R = F 0.2000 ;
+          }
+          "Left" {
+            B = F 0.3686 ;
+            G = F 0.2588 ;
+            L = F 1.0000 ;
+            R = F 0.1686 ;
+          }
+          "Right" {
+            B = F 0.3686 ;
+            G = F 0.2471 ;
+            L = F 1.0000 ;
+            R = F 0.1765 ;
+          }
+        }
+        "FogColor" {
+          B = F 0.2941 ;
+          G = F 0.2078 ;
+          L = F 1.0000 ;
+          R = F 0.1373 ;
+        }
+        LinFogDistDensity = F 1.0000 ;
+        LinFogDistEnd = F 20000.0000 ;
+        LinFogDistStart = F 0.0000 ;
+        LinFogHeightDensity = F 0.0000 ;
+        LinFogHeightEnd = F 1.0000 ;
+        LinFogUWHeightEnd = F -120.0000 ;
+        ObjectRenderClip = F 6000.0000 ;
+        ReflectRenderClip = F 3000.0000 ;
+        RefractRenderClip = F 3000.0000 ;
+        ShadowRenderClip = F 3000.0000 ;
+        xFoliageLowResDist = F 30000.0000 ;
+        xFoliageRenderClip = F 3000.0000 ;
+      }
+      "Rain" {
+        IsRain = B false ;
+        "RainColor" {
+          A = I 128 ;
+          B = I 255 ;
+          G = I 208 ;
+          R = I 208 ;
+        }
+        RainDropLengthMax = F 1.0500 ;
+        RainDropLengthMin = F 0.1500 ;
+        RainDropNum = I 1400 ;
+        "RainSpeed" {
+          X = F 6.0000 ;
+          Y = F -12.0000 ;
+          Z = F 3.0000 ;
+        }
+      }
+    }
+  }
+}
+entity "Akagi-class 01" (MotherShipGen) {
+  localframe 0.9998 0.0000 -0.0174 0.0000 0.0000 1.0000 0.0000 0.0000 0.0174 0.0000 0.9998 0.0000 -665.2023 0.0032 -8152.8667 1.0000 ;
+  template "Japan\SEA\Akagi-class" ;
+
+  properties (Common, GameUnit, Ship, Command, MotherShipPlanes)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    "PlaneStock 1" {
+      Count = E PlaneCount : 30  ;
+      SquadLimit = E MaxSquadSize : 3  ;
+      Type = E PlaneClasses : Raiden  ;
+    }
+    "PlaneStock 2" {
+      Count = E PlaneCount : 30  ;
+      SquadLimit = E MaxSquadSize : 3  ;
+      Type = E PlaneClasses : Jill  ;
+    }
+    "PlaneStock 3" {
+      Count = E PlaneCount : 30  ;
+      SquadLimit = E MaxSquadSize : 3  ;
+      Type = E PlaneClasses : Judy  ;
+    }
+    "PlaneStock 4" {
+      Count = E PlaneCount :" 0" ;
+      SquadLimit = E MaxSquadSize : 3  ;
+      Type = E PlaneClasses : Jill  ;
+    }
+    Race = E Races : Japan  ;
+    RepairZoneArea = R "" ;
+    SceneGroupNum = I 3 ;
+    "Slot 1" {
+      Count = E PlaneCount :" 3" ;
+      Type = E PlaneClasses : Raiden  ;
+    }
+    "Slot 2" {
+      Arm = E EquipmentIndex : 1  ;
+      Count = E PlaneCount :" 3" ;
+      Type = E PlaneClasses : Jill  ;
+    }
+    "Slot 3" {
+      Arm = E EquipmentIndex : 1  ;
+      Count = E PlaneCount :" 3" ;
+      Type = E PlaneClasses : Judy  ;
+    }
+    "Slot 4" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 5" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 6" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 7" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 8" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    Type = E ShipClasses : Akagi  ;
+  }
+}
+entity "Yamato-class 01" (DestroyerGen) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 -427.1263 -0.0067 -7591.4463 1.0000 ;
+  template "Japan\SEA\Yamato-class" ;
+
+  properties (Common, GameUnit, Ship, Command)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    RepairZoneArea = R "" ;
+    SceneGroupNum = I 3 ;
+    Type = E ShipClasses : Yamato  ;
+  }
+}
+entity "Tone-class 01" (DestroyerGen) {
+  localframe 1.0000 0.0000 -0.0087 0.0000 0.0000 1.0000 0.0000 0.0000 0.0087 0.0000 1.0000 0.0000 -1641.7526 0.0036 -3154.5320 1.0000 ;
+  template "Japan\SEA\Tone-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    Hidden = B true ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    RepairZoneArea = R "" ;
+    SceneGroupNum = I 3 ;
+    Type = E ShipClasses : Tone  ;
+  }
+}
+entity "CameraPosition 01" (MovieCamPos) {
+  localframe 0.7071 0.0000 -0.7071 0.0000 0.0000 1.0000 0.0000 0.0000 0.7071 0.0000 0.7071 0.0000 0.0000 150.0000 100.0000 1.0000 ;
+  template "MovieCamPos" ;
+
+  properties (Common)  {
+    Party = E Party : Neutral  ;
+  }
+}
+entity "CameraLookat 01" (MovieCamLookat) {
+  localframe 0.7071 0.0000 -0.7071 0.0000 0.0000 1.0000 0.0000 0.0000 0.7071 0.0000 0.7071 0.0000 0.0000 150.0000 100.0000 1.0000 ;
+  template "MovieCamLookat" ;
+
+  properties (Common)  {
+    Party = E Party : Neutral  ;
+  }
+}
+entity "16" (PlaneSquadronGen) {
+  localframe -0.9990 0.0000 -0.0436 0.0000 0.0000 1.0000 0.0000 0.0000 0.0436 0.0000 -0.9990 0.0000 4056.7021 100.9999 8944.6992 1.0000 ;
+  template "USA\AIR\TBM-3 Avenger (Tiny Tim)" ;
+
+  properties (Common, GameUnit, PlaneSquadronWNavpoint, Command)  {
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    Equipment = E EquipmentIndex : 1  ;
+    Hidden = B true ;
+    HomeBase = RFort "" ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    SceneGroupNum = I 8 ;
+    SubType = E UnitCategories : Torpedobomber  ;
+    Type = E PlaneClasses : AvengerTinyTim  ;
+    Velocity = F 400.0000 ;
+    WingCount = E PlaneWingCount :" 3" ;
+  }
+}
+entity "117" (PlaneSquadronGen) {
+  localframe -0.9986 0.0000 -0.0523 0.0000 0.0000 1.0000 0.0000 0.0000 0.0523 0.0000 -0.9986 0.0000 1084.3503 150.0000 9415.3369 1.0000 ;
+  template "USA\AIR\B-29 Superfortress" ;
+
+  properties (Common, GameUnit, PlaneSquadronWNavpoint, Command)  {
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    Equipment = E EquipmentIndex : 1  ;
+    Hidden = B true ;
+    HomeBase = RFort "" ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    SceneGroupNum = I 8 ;
+    SubType = E UnitCategories : Levelbomber  ;
+    Type = E PlaneClasses : Superfortress  ;
+    Velocity = F 400.0000 ;
+    WingCount = E PlaneWingCount :" 5" ;
+  }
+}
+entity "38" (PlaneSquadronGen) {
+  localframe -0.9990 0.0000 -0.0436 0.0000 0.0000 1.0000 0.0000 0.0000 0.0436 0.0000 -0.9990 0.0000 1437.1086 149.9958 9541.7207 1.0000 ;
+  template "USA\AIR\SB2C Helldiver" ;
+
+  properties (Common, GameUnit, PlaneSquadronWNavpoint, Command)  {
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    Equipment = E EquipmentIndex : 1  ;
+    Hidden = B true ;
+    HomeBase = RFort "" ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    SceneGroupNum = I 8 ;
+    SubType = E UnitCategories : Divebomber  ;
+    Type = E PlaneClasses : Helldiver  ;
+    Velocity = F 400.0000 ;
+    WingCount = E PlaneWingCount :" 3" ;
+  }
+}
+entity "118" (PlaneSquadronGen) {
+  localframe -0.9969 0.0000 -0.0785 0.0000 0.0000 1.0000 0.0000 0.0000 0.0785 0.0000 -0.9969 0.0000 7050.5850 150.0009 8304.7510 1.0000 ;
+  template "USA\AIR\B-25 Mitchell" ;
+
+  properties (Common, GameUnit, PlaneSquadronWNavpoint, Command)  {
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    Equipment = E EquipmentIndex : 2  ;
+    Hidden = B true ;
+    HomeBase = RFort "" ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    SceneGroupNum = I 8 ;
+    SubType = E UnitCategories : Levelbomber  ;
+    Type = E PlaneClasses : Mitchell  ;
+    Velocity = F 400.0000 ;
+    WingCount = E PlaneWingCount :" 3" ;
+  }
+}
+entity "Atlanta-class 01" (DestroyerGen) {
+  localframe -0.3007 0.0000 -0.9537 0.0000 0.0000 1.0000 0.0000 0.0000 0.9537 0.0000 -0.3007 0.0000 198.8265 -0.0005 4370.3828 1.0000 ;
+  template "USA\SEA\Atlanta-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInEngineMovie = B false ;
+    "MultiType" {
+    }
+    Numbering = I 96 ;
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 5 ;
+    Type = E ShipClasses : Atlanta  ;
+  }
+}
+entity "Atlanta-class 02" (DestroyerGen) {
+  localframe -0.6626 0.0000 -0.7489 0.0000 0.0000 1.0000 0.0000 0.0000 0.7489 0.0000 -0.6626 0.0000 -1358.5698 0.0134 5343.9438 1.0000 ;
+  template "USA\SEA\Atlanta-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInEngineMovie = B false ;
+    "MultiType" {
+    }
+    Numbering = I 97 ;
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 5 ;
+    Type = E ShipClasses : Atlanta  ;
+  }
+}
+entity "South Dakota Class 01" (DestroyerGen) {
+  localframe -0.5000 0.0000 -0.8660 0.0000 0.0000 1.0000 0.0000 0.0000 0.8660 0.0000 -0.5000 0.0000 -688.6235 -0.0049 4799.1196 1.0000 ;
+  template "USA\SEA\South Dakota Class" ;
+
+  properties (Common, GameUnit, Ship, Command)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInEngineMovie = B false ;
+    "MultiType" {
+    }
+    Numbering = I 60 ;
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 5 ;
+    Type = E ShipClasses : SouthDakota  ;
+  }
+}
+entity "South Dakota Class 02" (DestroyerGen) {
+  localframe 0.1909 0.0000 -0.9816 0.0000 0.0000 1.0000 0.0000 0.0000 0.9816 0.0000 0.1909 0.0000 1299.8590 0.0002 4385.6372 1.0000 ;
+  template "USA\SEA\South Dakota Class" ;
+
+  properties (Common, GameUnit, Ship, Command)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInEngineMovie = B false ;
+    "MultiType" {
+    }
+    Numbering = I 49 ;
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 5 ;
+    Type = E ShipClasses : SouthDakota  ;
+  }
+}
+entity "Atlanta-class 03" (DestroyerGen) {
+  localframe 0.3090 0.0000 -0.9511 0.0000 0.0000 1.0000 0.0000 0.0000 0.9511 0.0000 0.3090 0.0000 2212.1062 -0.0001 4605.7383 1.0000 ;
+  template "USA\SEA\Atlanta-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInEngineMovie = B false ;
+    Hidden = B true ;
+    "MultiType" {
+    }
+    Numbering = I 120 ;
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 5 ;
+    Type = E ShipClasses : Atlanta  ;
+  }
+}
+entity "Takao-class 01" (DestroyerGen) {
+  localframe 1.0000 0.0000 -0.0087 0.0000 0.0000 1.0000 0.0000 0.0000 0.0087 0.0000 1.0000 0.0000 -631.7854 0.0043 -7369.5684 1.0000 ;
+  template "Japan\SEA\Takao-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 3 ;
+    Type = E ShipClasses : Takao  ;
+  }
+}
+entity "J2M Raiden 01" (PlaneSquadronGen) {
+  localframe 1.0000 0.0000 -0.0087 0.0000 0.0000 1.0000 0.0000 0.0000 0.0087 0.0000 1.0000 0.0000 545.1085 150.0159 -7305.3926 1.0000 ;
+  template "Japan\AIR\J2M Raiden" ;
+
+  properties (Common, GameUnit, PlaneSquadronWNavpoint, Command)  {
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    GenerateInGame = B false ;
+    HomeBase = RFort "" ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    Type = E PlaneClasses : Raiden  ;
+    Velocity = F 400.0000 ;
+    WingCount = E PlaneWingCount :" 3" ;
+  }
+}
+entity "J2M Raiden 02" (PlaneSquadronGen) {
+  localframe 1.0000 0.0000 -0.0087 0.0000 0.0000 1.0000 0.0000 0.0000 0.0087 0.0000 1.0000 0.0000 385.4091 150.0159 -7407.6372 1.0000 ;
+  template "Japan\AIR\J2M Raiden" ;
+
+  properties (Common, GameUnit, PlaneSquadronWNavpoint, Command)  {
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    GenerateInGame = B false ;
+    HomeBase = RFort "" ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    Type = E PlaneClasses : Raiden  ;
+    Velocity = F 400.0000 ;
+    WingCount = E PlaneWingCount :" 3" ;
+  }
+}
+entity "Takao-class 02" (DestroyerGen) {
+  localframe 0.9998 0.0000 0.0175 0.0000 0.0000 1.0000 0.0000 0.0000 -0.0175 0.0000 0.9998 0.0000 150.8462 0.0156 -7292.0347 1.0000 ;
+  template "Japan\SEA\Takao-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    Hidden = B true ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 3 ;
+    Type = E ShipClasses : Takao  ;
+  }
+}
+entity "Fubuki-class 02" (DestroyerGen) {
+  localframe 1.0000 0.0000 -0.0087 0.0000 0.0000 1.0000 0.0000 0.0000 0.0087 0.0000 1.0000 0.0000 -315.7017 0.0161 -7837.5493 1.0000 ;
+  template "Japan\SEA\Fubuki-class" ;
+
+  properties (Common, GameUnit, Ship, Command)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 3 ;
+    Type = E ShipClasses : Fubuki  ;
+  }
+}
+entity "Fubuki-class 03" (DestroyerGen) {
+  localframe 1.0000 0.0000 -0.0087 0.0000 0.0000 1.0000 0.0000 0.0000 0.0087 0.0000 1.0000 0.0000 -545.3000 0.0172 -7832.6138 1.0000 ;
+  template "Japan\SEA\Fubuki-class" ;
+
+  properties (Common, GameUnit, Ship, Command)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 3 ;
+    Type = E ShipClasses : Fubuki  ;
+  }
+}
+entity "Fubuki-class 04" (DestroyerGen) {
+  localframe 1.0000 0.0000 -0.0087 0.0000 0.0000 1.0000 0.0000 0.0000 0.0087 0.0000 1.0000 0.0000 -789.2538 0.0158 -7848.2388 1.0000 ;
+  template "Japan\SEA\Fubuki-class" ;
+
+  properties (Common, GameUnit, Ship, Command)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInGame = B false ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 3 ;
+    Type = E ShipClasses : Fubuki  ;
+  }
+}
+entity "South Dakota Class 03" (DestroyerGen) {
+  localframe 0.5226 0.0000 -0.8526 0.0000 0.0000 1.0000 0.0000 0.0000 0.8526 0.0000 0.5226 0.0000 3037.1067 0.0009 5010.9819 1.0000 ;
+  template "USA\SEA\South Dakota Class" ;
+
+  properties (Common, GameUnit, Ship, Command)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInEngineMovie = B false ;
+    Hidden = B true ;
+    "MultiType" {
+    }
+    Numbering = I 50 ;
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 5 ;
+    Type = E ShipClasses : SouthDakota  ;
+  }
+}
+entity "Fletcher-class 01" (DestroyerGen) {
+  localframe -0.0523 0.0000 0.9986 0.0000 0.0000 1.0000 0.0000 0.0000 -0.9986 0.0000 -0.0523 0.0000 632.2572 0.0000 3990.9634 1.0000 ;
+  template "USA\SEA\Fletcher-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInEngineMovie = B false ;
+    "MultiType" {
+    }
+    Numbering = I 573 ;
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 5 ;
+    Type = E ShipClasses : Fletcher  ;
+  }
+}
+entity "Fletcher-class 02" (DestroyerGen) {
+  localframe 0.4305 0.0000 0.9026 0.0000 0.0000 1.0000 0.0000 0.0000 -0.9026 0.0000 0.4305 0.0000 -394.8094 -0.0015 4237.9282 1.0000 ;
+  template "USA\SEA\Fletcher-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInEngineMovie = B false ;
+    "MultiType" {
+    }
+    Numbering = I 531 ;
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 5 ;
+    Type = E ShipClasses : Fletcher  ;
+  }
+}
+entity "Fletcher-class 03" (DestroyerGen) {
+  localframe -0.1908 0.0000 0.9816 0.0000 0.0000 1.0000 0.0000 0.0000 -0.9816 0.0000 -0.1908 0.0000 1918.8130 0.0002 4134.4077 1.0000 ;
+  template "USA\SEA\Fletcher-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInEngineMovie = B false ;
+    Hidden = B true ;
+    "MultiType" {
+    }
+    Numbering = I 502 ;
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 5 ;
+    Type = E ShipClasses : Fletcher  ;
+  }
+}
+entity "Allen M. Sumner-class 01" (DestroyerGen) {
+  localframe -0.5807 0.0000 0.8141 0.0000 0.0000 1.0000 0.0000 0.0000 -0.8141 0.0000 -0.5807 0.0000 2955.0635 0.0001 4464.5688 1.0000 ;
+  template "USA\SEA\Allen M. Sumner-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInEngineMovie = B false ;
+    "MultiType" {
+    }
+    Numbering = I 720 ;
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 5 ;
+    Type = E ShipClasses : AllenMSumner  ;
+  }
+}
+entity "Allen M. Sumner-class 02" (DestroyerGen) {
+  localframe 0.6756 0.0000 0.7373 0.0000 0.0000 1.0000 0.0000 0.0000 -0.7373 0.0000 0.6756 0.0000 -1387.9247 0.0015 4734.6079 1.0000 ;
+  template "USA\SEA\Allen M. Sumner-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInEngineMovie = B false ;
+    "MultiType" {
+    }
+    Numbering = I 721 ;
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 5 ;
+    Type = E ShipClasses : AllenMSumner  ;
+  }
+}
+entity "Patrol 01" (SubmarineGen) {
+  localframe 0.3665 0.0000 0.9304 0.0000 0.0000 1.0000 0.0000 0.0000 -0.9304 0.0000 0.3665 0.0000 -3378.8184 -0.0031 5650.9766 1.0000 ;
+  template "USA\SEA\Gato-class Submarine" ;
+
+  properties (Common, Sub, Command, MultiEntity)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInEngineMovie = B false ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 12 ;
+    Type = E ShipClasses : Gato  ;
+  }
+}
+entity "Patrol 02" (SubmarineGen) {
+  localframe 0.4540 0.0000 0.8910 0.0000 0.0000 1.0000 0.0000 0.0000 -0.8910 0.0000 0.4540 0.0000 3698.4253 -0.0213 5572.8657 1.0000 ;
+  template "USA\SEA\Gato-class Submarine" ;
+
+  properties (Common, Sub, Command, MultiEntity)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInEngineMovie = B false ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 12 ;
+    Type = E ShipClasses : Gato  ;
+  }
+}
+entity "23" (DestroyerGen) {
+  localframe -0.9981 0.0000 -0.0610 0.0000 0.0000 1.0000 0.0000 0.0000 0.0610 0.0000 -0.9981 0.0000 205.8976 0.0000 8180.3667 1.0000 ;
+  template "USA\SEA\Fletcher-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    Hidden = B true ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 8 ;
+    Type = E ShipClasses : Fletcher  ;
+  }
+}
+entity "11" (DestroyerGen) {
+  localframe -0.0174 0.0000 0.9998 0.0000 0.0000 1.0000 0.0000 0.0000 -0.9998 0.0000 -0.0174 0.0000 5309.1802 -0.0019 6422.8320 1.0000 ;
+  template "USA\SEA\Allen M. Sumner-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInEngineMovie = B false ;
+    Hidden = B true ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 8 ;
+    Type = E ShipClasses : AllenMSumner  ;
+  }
+}
+entity "EMRaiden 03" (PlaneSquadronGen) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 3389.4993 150.0021 -4751.1997 1.0000 ;
+  template "Japan\AIR\J2M Raiden" ;
+
+  properties (Common, GameUnit, PlaneSquadronWNavpoint, Command)  {
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    GenerateInGame = B false ;
+    HomeBase = RFort "" ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    Type = E PlaneClasses : Raiden  ;
+    Velocity = F 400.0000 ;
+    WingCount = E PlaneWingCount :" 3" ;
+  }
+}
+entity "EMRaiden 04" (PlaneSquadronGen) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 3381.0142 150.0020 -4849.2900 1.0000 ;
+  template "Japan\AIR\J2M Raiden" ;
+
+  properties (Common, GameUnit, PlaneSquadronWNavpoint, Command)  {
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    GenerateInGame = B false ;
+    HomeBase = RFort "" ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    Type = E PlaneClasses : Raiden  ;
+    Velocity = F 400.0000 ;
+    WingCount = E PlaneWingCount :" 3" ;
+  }
+}
+entity "EMRaiden 05" (PlaneSquadronGen) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 3374.4795 150.0022 -4963.8057 1.0000 ;
+  template "Japan\AIR\J2M Raiden" ;
+
+  properties (Common, GameUnit, PlaneSquadronWNavpoint, Command)  {
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    GenerateInGame = B false ;
+    HomeBase = RFort "" ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    Type = E PlaneClasses : Raiden  ;
+    Velocity = F 400.0000 ;
+    WingCount = E PlaneWingCount :" 3" ;
+  }
+}
+entity "EMRaiden 06" (PlaneSquadronGen) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 3374.9104 150.0021 -5062.6260 1.0000 ;
+  template "Japan\AIR\J2M Raiden" ;
+
+  properties (Common, GameUnit, PlaneSquadronWNavpoint, Command)  {
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    GenerateInGame = B false ;
+    HomeBase = RFort "" ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    Type = E PlaneClasses : Raiden  ;
+    Velocity = F 400.0000 ;
+    WingCount = E PlaneWingCount :" 3" ;
+  }
+}
+entity "BayEntrance" (NavPoint) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 1228.9204 0.0005 7576.2871 1.0000 ;
+  template "Navpoint" ;
+
+  properties (Common)  {
+    Party = E Party : Neutral  ;
+  }
+}
+entity "FordIsland" (NavPoint) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 1382.2944 150.0007 17428.8203 1.0000 ;
+  template "Navpoint" ;
+
+  properties (Common)  {
+    Party = E Party : Neutral  ;
+  }
+}
+entity "Akizuki-class 01" (DestroyerGen) {
+  localframe 1.0000 0.0000 -0.0087 0.0000 0.0000 1.0000 0.0000 0.0000 0.0087 0.0000 1.0000 0.0000 -575.7507 0.0127 -6997.4175 1.0000 ;
+  template "Japan\SEA\Akizuki-class" ;
+
+  properties (Common, GameUnit, Ship, Command)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    Hidden = B true ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 10 ;
+    Type = E ShipClasses : Akizuki  ;
+  }
+}
+entity "Akizuki-class 02" (DestroyerGen) {
+  localframe 1.0000 0.0000 -0.0087 0.0000 0.0000 1.0000 0.0000 0.0000 0.0087 0.0000 1.0000 0.0000 -275.3243 0.0126 -6983.9224 1.0000 ;
+  template "Japan\SEA\Akizuki-class" ;
+
+  properties (Common, GameUnit, Ship, Command)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    Hidden = B true ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 10 ;
+    Type = E ShipClasses : Akizuki  ;
+  }
+}
+entity "Shimakaze 01" (DestroyerGen) {
+  localframe 1.0000 0.0000 -0.0087 0.0000 0.0000 1.0000 0.0000 0.0000 0.0087 0.0000 1.0000 0.0000 8.0447 0.0140 -7132.6304 1.0000 ;
+  template "Japan\SEA\Shimakaze" ;
+
+  properties (Common, GameUnit, Ship, Command)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    Hidden = B true ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 10 ;
+    Type = E ShipClasses : Shimakaze  ;
+  }
+}
+entity "Shimakaze 02" (DestroyerGen) {
+  localframe 1.0000 0.0000 -0.0087 0.0000 0.0000 1.0000 0.0000 0.0000 0.0087 0.0000 1.0000 0.0000 -847.2512 0.0017 -7125.3027 1.0000 ;
+  template "Japan\SEA\Shimakaze" ;
+
+  properties (Common, GameUnit, Ship, Command)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    Hidden = B true ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 10 ;
+    Type = E ShipClasses : Shimakaze  ;
+  }
+}
+entity "PatrolPathEast" (Path) {
+  localframe 1.0000 0.0000 -0.0087 0.0000 0.0000 1.0000 0.0000 0.0000 0.0087 0.0000 1.0000 0.0000 -1515.2030 -0.0005 5642.0156 1.0000 ;
+  template "Path" ;
+
+  properties (Common, Path, MultiEntity)  {
+    "MultiType" {
+    }
+    Party = E Party : Neutral  ;
+    "PathPoints" {
+      "Point00" {
+        Pos = V3 -1399.6725 -0.0005 -106.8457 ;
+      }
+      "Point01" {
+        Pos = V3 -63.6953 0.0000 -209.2866 ;
+      }
+      "Point02" {
+        Pos = V3 1079.2603 0.0000 -5.1392 ;
+      }
+      "Point03" {
+        Pos = V3 1628.0621 0.0000 283.1328 ;
+      }
+      "Point04" {
+        Pos = V3 2003.0359 0.0000 1021.7021 ;
+      }
+      "Point05" {
+        Pos = V3 2003.8488 0.0000 1497.6299 ;
+      }
+      "Point06" {
+        Pos = V3 1451.9373 0.0000 1991.7964 ;
+      }
+      "Point07" {
+        Pos = V3 1081.2853 0.0000 2072.2158 ;
+      }
+      "Point08" {
+        Pos = V3 384.7235 0.0000 1893.7817 ;
+      }
+      "Point09" {
+        Pos = V3 -308.5560 0.0000 1710.6240 ;
+      }
+      "Point10" {
+        Pos = V3 -763.5441 0.0000 1396.5981 ;
+      }
+      "Point11" {
+        Pos = V3 -1639.1075 0.0005 1023.2593 ;
+      }
+      "Point12" {
+        Pos = V3 -2013.0638 0.0005 326.6455 ;
+      }
+      "Point13" {
+        Pos = V3 -1934.8551 -0.0005 29.5034 ;
+      }
+    }
+  }
+}
+entity "PatrolPathWest" (Path) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 3481.6504 0.0000 5688.1465 1.0000 ;
+  template "Path" ;
+
+  properties (Common, Path, MultiEntity)  {
+    "MultiType" {
+    }
+    Party = E Party : Neutral  ;
+    "PathPoints" {
+      "Point00" {
+        Pos = V3 0.0000 0.0000 0.0000 ;
+      }
+      "Point01" {
+        Pos = V3 0.0000 0.0000 0.0000 ;
+      }
+      "Point02" {
+        Pos = V3 -870.4128 0.0000 391.5801 ;
+      }
+      "Point03" {
+        Pos = V3 -1239.5461 0.0000 816.3315 ;
+      }
+      "Point04" {
+        Pos = V3 -1139.7908 0.0000 1151.0557 ;
+      }
+      "Point05" {
+        Pos = V3 -874.1150 0.0000 1315.3555 ;
+      }
+      "Point06" {
+        Pos = V3 -339.7927 -0.0002 1397.3892 ;
+      }
+      "Point07" {
+        Pos = V3 401.3677 0.0002 1539.6753 ;
+      }
+      "Point08" {
+        Pos = V3 1095.7681 0.0000 1653.7495 ;
+      }
+      "Point09" {
+        Pos = V3 1733.3193 0.0000 1705.4307 ;
+      }
+      "Point10" {
+        Pos = V3 2786.2900 0.0000 1513.3477 ;
+      }
+      "Point11" {
+        Pos = V3 3276.7339 0.0000 945.6826 ;
+      }
+      "Point12" {
+        Pos = V3 3371.4302 0.0000 256.2061 ;
+      }
+      "Point13" {
+        Pos = V3 2945.1802 0.0000 -302.4360 ;
+      }
+      "Point14" {
+        Pos = V3 1858.2920 0.0000 -502.8096 ;
+      }
+      "Point15" {
+        Pos = V3 963.8535 0.0000 -428.4131 ;
+      }
+      "Point16" {
+        Pos = V3 292.6206 0.0000 -134.0728 ;
+      }
+    }
+  }
+}
+entity "DZ01" (NavPoint) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 -10206.9160 150.0000 9009.0313 1.0000 ;
+  template "Navpoint" ;
+
+  properties (Common)  {
+    Party = E Party : Neutral  ;
+  }
+}
+entity "DZ02" (NavPoint) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 10299.9463 150.0000 6847.4673 1.0000 ;
+  template "Navpoint" ;
+
+  properties (Common)  {
+    Party = E Party : Neutral  ;
+  }
+}
+entity "Fubuki-class 01" (DestroyerGen) {
+  localframe 1.0000 0.0000 -0.0087 0.0000 0.0000 1.0000 0.0000 0.0000 0.0087 0.0000 1.0000 0.0000 -104.1879 0.0156 -7845.7021 1.0000 ;
+  template "Japan\SEA\Fubuki-class" ;
+
+  properties (Common, GameUnit, Ship, Command)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInGame = B false ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 3 ;
+    Type = E ShipClasses : Fubuki  ;
+  }
+}
+entity "11701" (PlaneSquadronGen) {
+  localframe -0.9986 0.0000 -0.0523 0.0000 0.0000 1.0000 0.0000 0.0000 0.0523 0.0000 -0.9986 0.0000 587.1002 150.0000 9395.8848 1.0000 ;
+  template "USA\AIR\B-29 Superfortress" ;
+
+  properties (Common, GameUnit, PlaneSquadronWNavpoint, Command)  {
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    Equipment = E EquipmentIndex : 1  ;
+    Hidden = B true ;
+    HomeBase = RFort "" ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    SceneGroupNum = I 8 ;
+    SubType = E UnitCategories : Levelbomber  ;
+    Type = E PlaneClasses : Superfortress  ;
+    Velocity = F 400.0000 ;
+    WingCount = E PlaneWingCount :" 5" ;
+  }
+}
+entity "NEW_Cloud 01" (Cloud) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 304.3100 500.0000 11348.2197 1.0000 ;
+  template "NEW_Cloud" ;
+
+  properties (Common, MultiEntity)  {
+    CloudType = E CloudTypes : Cloud010  ;
+    "MultiType" {
+    }
+    Party = E Party : Neutral  ;
+    xBackPower = F 0.1000 ;
+    "xBaseCol" {
+      A = F 1.0000 ;
+      B = F 1.0000 ;
+      G = F 1.0000 ;
+      R = F 1.0000 ;
+    }
+    xRimPower = F 5.0000 ;
+    xScale = F 10.0000 ;
+    "xSkyCol" {
+      B = F 0.7294 ;
+      G = F 0.4745 ;
+      R = F 0.3373 ;
+    }
+    "xSunCol" {
+      B = F 2.0000 ;
+      G = F 2.0000 ;
+      R = F 2.0000 ;
+    }
+  }
+}
+entity "NEW_Cloud 02" (Cloud) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 3521.2600 500.0000 11411.3203 1.0000 ;
+  template "NEW_Cloud" ;
+
+  properties (Common, MultiEntity)  {
+    CloudType = E CloudTypes : Cloud002  ;
+    "MultiType" {
+    }
+    Party = E Party : Neutral  ;
+    xBackPower = F 0.1000 ;
+    "xBaseCol" {
+      A = F 1.0000 ;
+      B = F 1.0000 ;
+      G = F 1.0000 ;
+      R = F 1.0000 ;
+    }
+    xRimPower = F 5.0000 ;
+    xScale = F 10.0000 ;
+    "xSkyCol" {
+      B = F 0.7294 ;
+      G = F 0.4745 ;
+      R = F 0.3373 ;
+    }
+    "xSunCol" {
+      B = F 2.0000 ;
+      G = F 2.0000 ;
+      R = F 2.0000 ;
+    }
+  }
+}
+entity "NEW_Cloud 03" (Cloud) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 5749.1001 500.0000 13755.9004 1.0000 ;
+  template "NEW_Cloud" ;
+
+  properties (Common, MultiEntity)  {
+    CloudType = E CloudTypes : Cloud000  ;
+    "MultiType" {
+    }
+    Party = E Party : Neutral  ;
+    xBackPower = F 0.1000 ;
+    "xBaseCol" {
+      A = F 1.0000 ;
+      B = F 1.0000 ;
+      G = F 1.0000 ;
+      R = F 1.0000 ;
+    }
+    xRimPower = F 5.0000 ;
+    xScale = F 10.0000 ;
+    "xSkyCol" {
+      B = F 0.7294 ;
+      G = F 0.4745 ;
+      R = F 0.3373 ;
+    }
+    "xSunCol" {
+      B = F 2.0000 ;
+      G = F 2.0000 ;
+      R = F 2.0000 ;
+    }
+  }
+}
+entity "NEW_Cloud 04" (Cloud) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 3550.5801 800.0000 15115.7900 1.0000 ;
+  template "NEW_Cloud" ;
+
+  properties (Common, MultiEntity)  {
+    CloudType = E CloudTypes : Cloud001  ;
+    "MultiType" {
+    }
+    Party = E Party : Neutral  ;
+    xBackPower = F 0.1000 ;
+    "xBaseCol" {
+      A = F 1.0000 ;
+      B = F 1.0000 ;
+      G = F 1.0000 ;
+      R = F 1.0000 ;
+    }
+    xRimPower = F 5.0000 ;
+    xScale = F 15.0000 ;
+    "xSkyCol" {
+      B = F 0.7294 ;
+      G = F 0.4745 ;
+      R = F 0.3373 ;
+    }
+    "xSunCol" {
+      B = F 1.5000 ;
+      G = F 1.5000 ;
+      R = F 1.5000 ;
+    }
+  }
+}
+entity "NEW_Cloud 05" (Cloud) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 79.3300 800.0000 14753.5303 1.0000 ;
+  template "NEW_Cloud" ;
+
+  properties (Common, MultiEntity)  {
+    CloudType = E CloudTypes : Cloud004  ;
+    "MultiType" {
+    }
+    Party = E Party : Neutral  ;
+    xBackPower = F 0.1000 ;
+    "xBaseCol" {
+      A = F 1.0000 ;
+      B = F 1.0000 ;
+      G = F 1.0000 ;
+      R = F 1.0000 ;
+    }
+    xRimPower = F 5.0000 ;
+    xScale = F 15.0000 ;
+    "xSkyCol" {
+      B = F 0.7294 ;
+      G = F 0.4745 ;
+      R = F 0.3373 ;
+    }
+    "xSunCol" {
+      B = F 2.0000 ;
+      G = F 2.0000 ;
+      R = F 2.0000 ;
+    }
+  }
+}
+entity "NEW_Cloud 06" (Cloud) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 -2647.4900 800.0000 12777.3398 1.0000 ;
+  template "NEW_Cloud" ;
+
+  properties (Common, MultiEntity)  {
+    CloudType = E CloudTypes : Cloud005  ;
+    "MultiType" {
+    }
+    Party = E Party : Neutral  ;
+    xBackPower = F 0.1000 ;
+    "xBaseCol" {
+      A = F 1.0000 ;
+      B = F 1.0000 ;
+      G = F 1.0000 ;
+      R = F 1.0000 ;
+    }
+    xRimPower = F 5.0000 ;
+    xScale = F 15.0000 ;
+    "xSkyCol" {
+      B = F 0.7294 ;
+      G = F 0.4745 ;
+      R = F 0.3373 ;
+    }
+    "xSunCol" {
+      B = F 2.0000 ;
+      G = F 2.0000 ;
+      R = F 2.0000 ;
+    }
+  }
+}
+entity "NEW_Cloud 07" (Cloud) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 -5119.2900 500.0000 10851.0801 1.0000 ;
+  template "NEW_Cloud" ;
+
+  properties (Common, MultiEntity)  {
+    CloudType = E CloudTypes : Cloud006  ;
+    "MultiType" {
+    }
+    Party = E Party : Neutral  ;
+    xBackPower = F 0.1000 ;
+    "xBaseCol" {
+      A = F 1.0000 ;
+      B = F 1.0000 ;
+      G = F 1.0000 ;
+      R = F 1.0000 ;
+    }
+    xRimPower = F 5.0000 ;
+    xScale = F 10.0000 ;
+    "xSkyCol" {
+      B = F 0.7294 ;
+      G = F 0.4745 ;
+      R = F 0.3373 ;
+    }
+    "xSunCol" {
+      B = F 2.0000 ;
+      G = F 2.0000 ;
+      R = F 2.0000 ;
+    }
+  }
+}
+entity "NEW_Cloud 08" (Cloud) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 -2191.3000 500.0000 7780.6001 1.0000 ;
+  template "NEW_Cloud" ;
+
+  properties (Common, MultiEntity)  {
+    CloudType = E CloudTypes : Cloud007  ;
+    "MultiType" {
+    }
+    Party = E Party : Neutral  ;
+    xBackPower = F 0.1000 ;
+    "xBaseCol" {
+      A = F 1.0000 ;
+      B = F 1.0000 ;
+      G = F 1.0000 ;
+      R = F 1.0000 ;
+    }
+    xRimPower = F 5.0000 ;
+    xScale = F 10.0000 ;
+    "xSkyCol" {
+      B = F 0.7294 ;
+      G = F 0.4745 ;
+      R = F 0.3373 ;
+    }
+    "xSunCol" {
+      B = F 2.0000 ;
+      G = F 2.0000 ;
+      R = F 2.0000 ;
+    }
+  }
+}
+entity "NEW_Cloud 09" (Cloud) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 -1125.6000 500.0000 3146.7600 1.0000 ;
+  template "NEW_Cloud" ;
+
+  properties (Common, MultiEntity)  {
+    CloudType = E CloudTypes : Cloud008  ;
+    "MultiType" {
+    }
+    Party = E Party : Neutral  ;
+    xBackPower = F 0.1000 ;
+    "xBaseCol" {
+      A = F 1.0000 ;
+      B = F 1.0000 ;
+      G = F 1.0000 ;
+      R = F 1.0000 ;
+    }
+    xRimPower = F 5.0000 ;
+    xScale = F 10.0000 ;
+    "xSkyCol" {
+      B = F 0.7294 ;
+      G = F 0.4745 ;
+      R = F 0.3373 ;
+    }
+    "xSunCol" {
+      B = F 2.0000 ;
+      G = F 2.0000 ;
+      R = F 2.0000 ;
+    }
+  }
+}
+entity "NEW_Cloud 10" (Cloud) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 2800.1699 700.0000 1296.4399 1.0000 ;
+  template "NEW_Cloud" ;
+
+  properties (Common, MultiEntity)  {
+    CloudType = E CloudTypes : Cloud009  ;
+    "MultiType" {
+    }
+    Party = E Party : Neutral  ;
+    xBackPower = F 0.1000 ;
+    "xBaseCol" {
+      A = F 1.0000 ;
+      B = F 1.0000 ;
+      G = F 1.0000 ;
+      R = F 1.0000 ;
+    }
+    xRimPower = F 5.0000 ;
+    xScale = F 10.0000 ;
+    "xSkyCol" {
+      B = F 0.7294 ;
+      G = F 0.4745 ;
+      R = F 0.3373 ;
+    }
+    "xSunCol" {
+      B = F 2.0000 ;
+      G = F 2.0000 ;
+      R = F 2.0000 ;
+    }
+  }
+}
+entity "NEW_Cloud 11" (Cloud) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 5886.0698 500.0000 3957.4199 1.0000 ;
+  template "NEW_Cloud" ;
+
+  properties (Common, MultiEntity)  {
+    CloudType = E CloudTypes : Cloud010  ;
+    "MultiType" {
+    }
+    Party = E Party : Neutral  ;
+    xBackPower = F 0.1000 ;
+    "xBaseCol" {
+      A = F 1.0000 ;
+      B = F 1.0000 ;
+      G = F 1.0000 ;
+      R = F 1.0000 ;
+    }
+    xRimPower = F 5.0000 ;
+    xScale = F 10.0000 ;
+    "xSkyCol" {
+      B = F 0.7294 ;
+      G = F 0.4745 ;
+      R = F 0.3373 ;
+    }
+    "xSunCol" {
+      B = F 2.0000 ;
+      G = F 2.0000 ;
+      R = F 2.0000 ;
+    }
+  }
+}
+entity "NEW_Cloud 12" (Cloud) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 7116.4902 500.0000 7311.0098 1.0000 ;
+  template "NEW_Cloud" ;
+
+  properties (Common, MultiEntity)  {
+    CloudType = E CloudTypes : Cloud011  ;
+    "MultiType" {
+    }
+    Party = E Party : Neutral  ;
+    xBackPower = F 0.1000 ;
+    "xBaseCol" {
+      A = F 1.0000 ;
+      B = F 1.0000 ;
+      G = F 1.0000 ;
+      R = F 1.0000 ;
+    }
+    xRimPower = F 5.0000 ;
+    xScale = F 10.0000 ;
+    "xSkyCol" {
+      B = F 0.7294 ;
+      G = F 0.4745 ;
+      R = F 0.3373 ;
+    }
+    "xSunCol" {
+      B = F 2.0000 ;
+      G = F 2.0000 ;
+      R = F 2.0000 ;
+    }
+  }
+}
+entity "NEW_Cloud 13" (Cloud) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 6639.7900 500.0000 10320.1904 1.0000 ;
+  template "NEW_Cloud" ;
+
+  properties (Common, MultiEntity)  {
+    CloudType = E CloudTypes : Cloud012  ;
+    "MultiType" {
+    }
+    Party = E Party : Neutral  ;
+    xBackPower = F 0.1000 ;
+    "xBaseCol" {
+      A = F 1.0000 ;
+      B = F 1.0000 ;
+      G = F 1.0000 ;
+      R = F 1.0000 ;
+    }
+    xRimPower = F 5.0000 ;
+    xScale = F 10.0000 ;
+    "xSkyCol" {
+      B = F 0.7294 ;
+      G = F 0.4745 ;
+      R = F 0.3373 ;
+    }
+    "xSunCol" {
+      B = F 2.0000 ;
+      G = F 2.0000 ;
+      R = F 2.0000 ;
+    }
+  }
+}
+entity "NEW_Cloud 14" (Cloud) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 8784.0303 500.0000 9502.9697 1.0000 ;
+  template "NEW_Cloud" ;
+
+  properties (Common, MultiEntity)  {
+    CloudType = E CloudTypes : Cloud013  ;
+    "MultiType" {
+    }
+    Party = E Party : Neutral  ;
+    xBackPower = F 0.1000 ;
+    "xBaseCol" {
+      A = F 1.0000 ;
+      B = F 1.0000 ;
+      G = F 1.0000 ;
+      R = F 1.0000 ;
+    }
+    xRimPower = F 5.0000 ;
+    xScale = F 10.0000 ;
+    "xSkyCol" {
+      B = F 0.7294 ;
+      G = F 0.4745 ;
+      R = F 0.3373 ;
+    }
+    "xSunCol" {
+      B = F 2.0000 ;
+      G = F 2.0000 ;
+      R = F 2.0000 ;
+    }
+  }
+}
+entity "NEW_Cloud 15" (Cloud) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 5928.7998 500.0000 11764.6504 1.0000 ;
+  template "NEW_Cloud" ;
+
+  properties (Common, MultiEntity)  {
+    CloudType = E CloudTypes : Cloud014  ;
+    "MultiType" {
+    }
+    Party = E Party : Neutral  ;
+    xBackPower = F 0.1000 ;
+    "xBaseCol" {
+      A = F 1.0000 ;
+      B = F 1.0000 ;
+      G = F 1.0000 ;
+      R = F 1.0000 ;
+    }
+    xRimPower = F 5.0000 ;
+    xScale = F 10.0000 ;
+    "xSkyCol" {
+      B = F 0.7294 ;
+      G = F 0.4745 ;
+      R = F 0.3373 ;
+    }
+    "xSunCol" {
+      B = F 2.0000 ;
+      G = F 2.0000 ;
+      R = F 2.0000 ;
+    }
+  }
+}
+entity "Kaga-class 01" (MotherShipGen) {
+  localframe 1.0000 0.0000 -0.0087 0.0000 0.0000 1.0000 0.0000 0.0000 0.0087 0.0000 1.0000 0.0000 -202.4652 -0.0005 -8145.8970 1.0000 ;
+  template "Japan\SEA\Kaga-class" ;
+
+  properties (Common, GameUnit, Ship, Command, MotherShipPlanes)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    "PlaneStock 1" {
+      Count = E PlaneCount : 30  ;
+      SquadLimit = E MaxSquadSize : 3  ;
+      Type = E PlaneClasses : KamikazeZero  ;
+    }
+    "PlaneStock 2" {
+      Count = E PlaneCount : 30  ;
+      SquadLimit = E MaxSquadSize : 3  ;
+      Type = E PlaneClasses : KamikazeVal  ;
+    }
+    "PlaneStock 3" {
+      Count = E PlaneCount : 30  ;
+      SquadLimit = E MaxSquadSize : 3  ;
+      Type = E PlaneClasses : KamikazeOscar  ;
+    }
+    "PlaneStock 4" {
+      Count = E PlaneCount : 30  ;
+      SquadLimit = E MaxSquadSize : 3  ;
+      Type = E PlaneClasses : KamikazeJudy  ;
+    }
+    Race = E Races : Japan  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 3 ;
+    "Slot 1" {
+      Count = E PlaneCount :" 3" ;
+      Type = E PlaneClasses : KamikazeZero  ;
+    }
+    "Slot 2" {
+      Count = E PlaneCount :" 3" ;
+      Type = E PlaneClasses : KamikazeVal  ;
+    }
+    "Slot 3" {
+      Count = E PlaneCount :" 3" ;
+      Type = E PlaneClasses : KamikazeOscar  ;
+    }
+    "Slot 4" {
+      Count = E PlaneCount :" 3" ;
+      Type = E PlaneClasses : KamikazeJudy  ;
+    }
+    "Slot 5" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 6" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 7" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 8" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    Type = E ShipClasses : Kaga  ;
+  }
+}
+entity "Yorktown-class 01" (MotherShipGen) {
+  localframe -0.0436 0.0000 -0.9990 0.0000 0.0000 1.0000 0.0000 0.0000 0.9990 0.0000 -0.0436 0.0000 -6658.8145 0.0079 -5417.0088 1.0000 ;
+  template "USA\SEA\Yorktown-class" ;
+
+  properties (Common, GameUnit, Ship, Command, MotherShipPlanes)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInGame = B false ;
+    "MultiType" {
+    }
+    "PlaneStock 1" {
+      Count = E PlaneCount : 10  ;
+      SquadLimit = E MaxSquadSize : 5  ;
+    }
+    "PlaneStock 2" {
+      Count = E PlaneCount : 10  ;
+      SquadLimit = E MaxSquadSize : 5  ;
+      Type = E PlaneClasses : Avenger  ;
+    }
+    "PlaneStock 3" {
+      Count = E PlaneCount : 10  ;
+      SquadLimit = E MaxSquadSize : 5  ;
+      Type = E PlaneClasses : Dauntless  ;
+    }
+    "PlaneStock 4" {
+      Count = E PlaneCount : 10  ;
+      SquadLimit = E MaxSquadSize : 5  ;
+    }
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 14 ;
+    "Slot 1" {
+      Count = E PlaneCount :" 3" ;
+    }
+    "Slot 2" {
+      Arm = E EquipmentIndex : 1  ;
+      Count = E PlaneCount :" 3" ;
+      Type = E PlaneClasses : Avenger  ;
+    }
+    "Slot 3" {
+      Arm = E EquipmentIndex : 1  ;
+      Count = E PlaneCount :" 3" ;
+      Type = E PlaneClasses : Dauntless  ;
+    }
+    "Slot 4" {
+      Count = E PlaneCount :" 0" ;
+    }
+    "Slot 5" {
+      Count = E PlaneCount :" 0" ;
+    }
+    "Slot 6" {
+      Count = E PlaneCount :" 0" ;
+    }
+    "Slot 7" {
+      Count = E PlaneCount :" 0" ;
+    }
+    "Slot 8" {
+      Count = E PlaneCount :" 0" ;
+    }
+    Type = E ShipClasses : Yorktown  ;
+  }
+}
+entity "Atlanta-class 04" (DestroyerGen) {
+  localframe -0.0436 0.0000 -0.9990 0.0000 0.0000 1.0000 0.0000 0.0000 0.9990 0.0000 -0.0436 0.0000 -5517.1123 0.0081 -5622.6167 1.0000 ;
+  template "USA\SEA\Atlanta-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 14 ;
+    Type = E ShipClasses : Atlanta  ;
+  }
+}
+entity "Allen M. Sumner-class 03" (DestroyerGen) {
+  localframe -0.0262 0.0000 -0.9997 0.0000 0.0000 1.0000 0.0000 0.0000 0.9997 0.0000 -0.0262 0.0000 -5470.4360 0.0084 -5273.4497 1.0000 ;
+  template "USA\SEA\Allen M. Sumner-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 14 ;
+    Type = E ShipClasses : AllenMSumner  ;
+  }
+}
+entity "South Dakota Class 04" (DestroyerGen) {
+  localframe -0.0523 0.0000 -0.9986 0.0000 0.0000 1.0000 0.0000 0.0000 0.9986 0.0000 -0.0523 0.0000 -5363.3569 0.0004 -5455.8169 1.0000 ;
+  template "USA\SEA\South Dakota Class" ;
+
+  properties (Common, GameUnit, Ship, Command)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 14 ;
+    Type = E ShipClasses : SouthDakota  ;
+  }
+}
+entity "Allen M. Sumner-class 04" (DestroyerGen) {
+  localframe -0.0262 0.0000 -0.9997 0.0000 0.0000 1.0000 0.0000 0.0000 0.9997 0.0000 -0.0262 0.0000 -6668.3281 0.0079 -5298.9585 1.0000 ;
+  template "USA\SEA\Allen M. Sumner-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInGame = B false ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 14 ;
+    Type = E ShipClasses : AllenMSumner  ;
+  }
+}
+entity "Allen M. Sumner-class 05" (DestroyerGen) {
+  localframe -0.0262 0.0000 -0.9997 0.0000 0.0000 1.0000 0.0000 0.0000 0.9997 0.0000 -0.0262 0.0000 -6682.3911 0.0079 -5513.7251 1.0000 ;
+  template "USA\SEA\Allen M. Sumner-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInGame = B false ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 14 ;
+    Type = E ShipClasses : AllenMSumner  ;
+  }
+}
+entity "Allen M. Sumner-class 06" (DestroyerGen) {
+  localframe -0.0262 0.0000 -0.9997 0.0000 0.0000 1.0000 0.0000 0.0000 0.9997 0.0000 -0.0262 0.0000 -5044.2148 0.0079 -5353.1997 1.0000 ;
+  template "USA\SEA\Allen M. Sumner-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 14 ;
+    Type = E ShipClasses : AllenMSumner  ;
+  }
+}
+entity "Allen M. Sumner-class 07" (DestroyerGen) {
+  localframe -0.0262 0.0000 -0.9997 0.0000 0.0000 1.0000 0.0000 0.0000 0.9997 0.0000 -0.0262 0.0000 -4947.2407 0.0069 -5466.8906 1.0000 ;
+  template "USA\SEA\Allen M. Sumner-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 14 ;
+    Type = E ShipClasses : AllenMSumner  ;
+  }
+}
+entity "Allen M. Sumner-class 08" (DestroyerGen) {
+  localframe -0.0262 0.0000 -0.9997 0.0000 0.0000 1.0000 0.0000 0.0000 0.9997 0.0000 -0.0262 0.0000 -5053.6187 0.0079 -5572.1826 1.0000 ;
+  template "USA\SEA\Allen M. Sumner-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 14 ;
+    Type = E ShipClasses : AllenMSumner  ;
+  }
+}
+entity "Allen M. Sumner-class 09" (DestroyerGen) {
+  localframe -0.0262 0.0000 -0.9997 0.0000 0.0000 1.0000 0.0000 0.0000 0.9997 0.0000 -0.0262 0.0000 -5161.2119 0.0079 -5680.4624 1.0000 ;
+  template "USA\SEA\Allen M. Sumner-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 14 ;
+    Type = E ShipClasses : AllenMSumner  ;
+  }
+}
+entity "Allen M. Sumner-class 10" (DestroyerGen) {
+  localframe -0.0262 0.0000 -0.9997 0.0000 0.0000 1.0000 0.0000 0.0000 0.9997 0.0000 -0.0262 0.0000 -5159.6050 0.0079 -5247.6201 1.0000 ;
+  template "USA\SEA\Allen M. Sumner-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 14 ;
+    Type = E ShipClasses : AllenMSumner  ;
+  }
+}
+entity "1101" (DestroyerGen) {
+  localframe -0.0174 0.0000 0.9998 0.0000 0.0000 1.0000 0.0000 0.0000 -0.9998 0.0000 -0.0174 0.0000 5301.1528 -0.0019 6242.4092 1.0000 ;
+  template "USA\SEA\Allen M. Sumner-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInEngineMovie = B false ;
+    Hidden = B true ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 8 ;
+    Type = E ShipClasses : AllenMSumner  ;
+  }
+}
+entity "1102" (DestroyerGen) {
+  localframe -0.0174 0.0000 0.9998 0.0000 0.0000 1.0000 0.0000 0.0000 -0.9998 0.0000 -0.0174 0.0000 5530.6714 -0.0014 6347.2813 1.0000 ;
+  template "USA\SEA\Allen M. Sumner-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    GenerateInEngineMovie = B false ;
+    Hidden = B true ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 8 ;
+    Type = E ShipClasses : AllenMSumner  ;
+  }
+}
+entity "Landscape 01" (Landscape) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 1301.4858 -0.1308 14273.5391 1.0000 ;
+  template "Landscape" ;
+  uid 4;
+
+  properties (Common, Landscape)  {
+    "Coast" {
+      AlphaTextureFile = S "coast_alpha_line_01.tga" ;
+      BackExtrude = F 6.0000 ;
+      "CoastTextureColor" {
+        A = F 0.8000 ;
+        B = F 0.9020 ;
+        G = F 0.2353 ;
+        R = F 0.8824 ;
+      }
+      FrontExtrude = F 6.0000 ;
+      MaximalSegmentSize = I 50 ;
+      MinimalEdgeLength = F 5.0000 ;
+      Tex00 = F 0.6000 ;
+      Tex01 = F 0.0141 ;
+      Tex02 = F 132.0000 ;
+      Tex03 = F 0.0100 ;
+      Tex04 = F 0.0123 ;
+      Tex05 = F 113.0000 ;
+      Tex06 = F 0.0100 ;
+      Tex07 = F 0.0000 ;
+      Tex08 = F 0.6000 ;
+      Tex09 = F 1.2000 ;
+      Tex10 = F 2.3000 ;
+      Tex11 = F 0.2000 ;
+      Tex12 = F 0.4000 ;
+      Tex13 = F 0.4000 ;
+      Tex14 = F 0.6000 ;
+      "WaveTextureColor" {
+      }
+    }
+    FilePath = S "jm_14_ph/ijn_14_pearl_harbor" ;
+    ModelPath = S "" ;
+    "MultiType" {
+    }
+    "ShallowWater" {
+    }
+  }
+}
+entity "Agano-class 01" (DestroyerGen) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 -193.6700 0.0001 -7338.9063 1.0000 ;
+  template "Japan\SEA\Agano-class" ;
+
+  properties (Common, Command, GameUnit, Ship)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    RepairZoneArea = RPath "" ;
+    SceneGroupNum = I 3 ;
+    Type = E ShipClasses : Agano  ;
+  }
+}
+entity "15" (DestroyerGen) {
+  localframe 0.0000 0.0000 1.0000 0.0000 0.0000 1.0000 0.0000 0.0000 -1.0000 0.0000 0.0000 0.0000 5245.3633 0.0000 6344.6802 1.0000 ;
+  template "USA\SEA\BOSS Iowa Class" ;
+
+  properties (Common, GameUnit, Ship, Command)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    Hidden = B true ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    RepairZoneArea = RPath "" ;
+    Type = E ShipClasses : BossIowa  ;
+  }
+}
+traffic {
+}
+groups {
+}
+SceneBrowserGroups {
+  BrowserGroup {
+    GroupName = "PlayerFleet"
+    GroupID = 3
+    Parent = "$SceneRoot"
+  }
+  BrowserGroup {
+    GroupName = "Blocade"
+    GroupID = 5
+    Parent = "$SceneRoot"
+  }
+  BrowserGroup {
+    GroupName = "WolfPack01"
+    GroupID = 6
+    Parent = "$SceneRoot"
+  }
+  BrowserGroup {
+    GroupName = "WolfPack02"
+    GroupID = 7
+    Parent = "$SceneRoot"
+  }
+  BrowserGroup {
+    GroupName = "USNSpawns"
+    GroupID = 8
+    Parent = "$SceneRoot"
+  }
+  BrowserGroup {
+    GroupName = "Unlocks"
+    GroupID = 10
+    Parent = "$SceneRoot"
+  }
+  BrowserGroup {
+    GroupName = "SubPatrol"
+    GroupID = 12
+    Parent = "$SceneRoot"
+  }
+  BrowserGroup {
+    GroupName = "USNFleet"
+    GroupID = 14
+    Parent = "$SceneRoot"
+  }
+}
