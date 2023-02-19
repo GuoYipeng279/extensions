@@ -365,8 +365,8 @@ header {
     }
     LocKitPaths = S "missionglobals" ;
     "Map" {
-      BorderSizeX = F 20000.0000 ;
-      BorderSizeY = F 20000.0000 ;
+      BorderSizeX = F 40000.0000 ;
+      BorderSizeY = F 40000.0000 ;
       BorderZoneEC = E Party : Neutral  ;
       BorderZoneEN = E Party : Neutral  ;
       BorderZoneES = E Party : Neutral  ;
@@ -28082,7 +28082,7 @@ entity "USNReinforcement" (NavPoint) {
 }
 entity "Fuso-class Battleship 01" (DestroyerGen) {
   localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -4796.2192 -0.0001 4907.4604 1.0000 ;
-  template "Japan\SEA\Fuso-class Battleship" ;
+  template "Japan\SEA\Kongo-class Battleship" ;
 
   properties (Common, GameUnit, Ship, Command)  {
     "CamoColorGun" {
@@ -28099,7 +28099,29 @@ entity "Fuso-class Battleship 01" (DestroyerGen) {
     Race = E Races : Japan  ;
     RepairZoneArea = R "" ;
     SceneGroupNum = I 7 ;
-    Type = E ShipClasses : Fuso  ;
+    Type = E ShipClasses : Kongo  ;
+  }
+}
+entity "Fuso-class Battleship 02" (DestroyerGen) {
+  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -3796.2192 -0.0001 4907.4604 1.0000 ;
+  template "Japan\SEA\Kongo-class Battleship" ;
+
+  properties (Common, GameUnit, Ship, Command)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    LaunchClassID = I 171 ;
+    LaunchEquipment = E EquipmentIndex : 1  ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    RepairZoneArea = R "" ;
+    SceneGroupNum = I 7 ;
+    Type = E ShipClasses : Kongo  ;
   }
 }
 entity "Yamato-class 01" (DestroyerGen) {
@@ -28165,7 +28187,7 @@ entity "Takao-class 02" (DestroyerGen) {
   }
 }
 entity "Hiryu-class 01" (MotherShipGen) {
-  localframe -0.6820 0.0000 -0.7314 0.0000 0.0000 1.0000 0.0000 0.0000 0.7314 0.0000 -0.6820 0.0000 -4653.4805 0.0002 5091.9131 1.0000 ;
+  localframe -0.6820 0.0000 -0.7314 0.0000 0.0000 1.0000 0.0000 0.0000 0.7314 0.0000 -0.6820 0.0000 -3653.4805 0.0002 5091.9131 1.0000 ;
   template "Japan\SEA\Hiryu-class" ;
 
   properties (Common, GameUnit, Ship, Command, MotherShipPlanes)  {
@@ -28236,6 +28258,154 @@ entity "Hiryu-class 01" (MotherShipGen) {
       Type = E PlaneClasses : Zero  ;
     }
     Type = E ShipClasses : Hiryu  ;
+  }
+}
+entity "Soryu-class 01" (MotherShipGen) {
+  localframe -0.6820 0.0000 -0.7314 0.0000 0.0000 1.0000 0.0000 0.0000 0.7314 0.0000 -0.6820 0.0000 -2653.4805 0.0002 5091.9131 1.0000 ;
+  template "Japan\SEA\Soryu-class" ;
+
+  properties (Common, GameUnit, Ship, Command, MotherShipPlanes)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    "PlaneStock 1" {
+      Count = E PlaneCount : 20  ;
+      SquadLimit = E MaxSquadSize : 5  ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "PlaneStock 2" {
+      Count = E PlaneCount : 30  ;
+      SquadLimit = E MaxSquadSize : 5  ;
+      Type = E PlaneClasses : Kate  ;
+    }
+    "PlaneStock 3" {
+      Count = E PlaneCount : 30  ;
+      SquadLimit = E MaxSquadSize : 5  ;
+      Type = E PlaneClasses : Val  ;
+    }
+    "PlaneStock 4" {
+      Count = E PlaneCount : 20  ;
+      SquadLimit = E MaxSquadSize : 5  ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    Race = E Races : Japan  ;
+    RepairZoneArea = R "" ;
+    SceneGroupNum = I 7 ;
+    "Slot 1" {
+      Count = E PlaneCount :" 3" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 2" {
+      Arm = E EquipmentIndex : 1  ;
+      Count = E PlaneCount :" 3" ;
+      Type = E PlaneClasses : Kate  ;
+    }
+    "Slot 3" {
+      Arm = E EquipmentIndex : 1  ;
+      Count = E PlaneCount :" 3" ;
+      Type = E PlaneClasses : Val  ;
+    }
+    "Slot 4" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 5" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 6" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 7" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 8" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    Type = E ShipClasses : Soryu  ;
+  }
+}
+entity "Akagi-class 01" (MotherShipGen) {
+  localframe -0.6820 0.0000 -0.7314 0.0000 0.0000 1.0000 0.0000 0.0000 0.7314 0.0000 -0.6820 0.0000 -4653.4805 0.0002 5091.9131 1.0000 ;
+  template "Japan\SEA\Akagi-class" ;
+
+  properties (Common, GameUnit, Ship, Command, MotherShipPlanes)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    "PlaneStock 1" {
+      Count = E PlaneCount : 20  ;
+      SquadLimit = E MaxSquadSize : 5  ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "PlaneStock 2" {
+      Count = E PlaneCount : 30  ;
+      SquadLimit = E MaxSquadSize : 5  ;
+      Type = E PlaneClasses : Kate  ;
+    }
+    "PlaneStock 3" {
+      Count = E PlaneCount : 30  ;
+      SquadLimit = E MaxSquadSize : 5  ;
+      Type = E PlaneClasses : Val  ;
+    }
+    "PlaneStock 4" {
+      Count = E PlaneCount : 20  ;
+      SquadLimit = E MaxSquadSize : 5  ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    Race = E Races : Japan  ;
+    RepairZoneArea = R "" ;
+    SceneGroupNum = I 7 ;
+    "Slot 1" {
+      Count = E PlaneCount :" 3" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 2" {
+      Arm = E EquipmentIndex : 1  ;
+      Count = E PlaneCount :" 3" ;
+      Type = E PlaneClasses : Kate  ;
+    }
+    "Slot 3" {
+      Arm = E EquipmentIndex : 1  ;
+      Count = E PlaneCount :" 3" ;
+      Type = E PlaneClasses : Val  ;
+    }
+    "Slot 4" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 5" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 6" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 7" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 8" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    Type = E ShipClasses : Akagi  ;
   }
 }
 entity "Kaga-class 01" (MotherShipGen) {
