@@ -2751,6 +2751,22 @@ Effects =
 		["Name"] = "TracerJetEngine",
 		["Type"] = "Particle",
 	},
+	-- [87] = -- Stuka Siren Sound
+	-- {
+	-- 	["Comment"] = "Stuka Siren",
+	-- 	["Name"] = "StukaSiren",
+	-- 	["Sound"] = 
+	-- 	{
+	-- 		["Autostart"] = true,
+	-- 		["Category"] = "3DEffect",
+	-- 		["Persistent"] = true,
+	-- 		["PitchRnd"] = 0.1,
+	-- 		["Sample"] = "environment_stuka_siren.fsb",
+	-- 		["SoundType"] = "Air",
+	-- 		["Type"] = "Sound",
+	-- 	},
+	-- 	["Type"] = "Sound",
+	-- },
 	[97] = 
 	{
 		["Comment"] = "event repcsi hang",

@@ -1,0 +1,533 @@
+--Model Types: 0 - TREE, 1 - CORAL, 2 - SEAWEED
+
+Foliages =
+{
+	{ 
+		["name"] = "3D Coconut", 
+		["model1"] = "CoconutTree001.MMOD", 
+		["modeltype1"] = 0,
+		["percent1"] = 100, 
+	},
+	{ 
+		["name"] = "3D Korall", 
+		["model1"] = "korall_stone_002.MMOD", 
+		["modeltype1"] = 1, 
+		["percent1"] = 25,
+		["model2"] = "korall_stone_006.MMOD", 
+		["modeltype2"] = 1, 
+		["percent2"] = 25,
+		["model3"] = "korall_stone_009.MMOD", 
+		["modeltype3"] = 1, 
+		["percent3"] = 25,
+		["model4"] = "korall_stone_010.MMOD", 
+		["modeltype4"] = 1, 
+		["percent4"] = 25,
+	},
+	{ 
+		["name"] = "3D Hinar", 
+		["model1"] = "hinar_001.MMOD", 
+		["modeltype1"] = 2, 
+		["percent1"] = 100, 
+	},
+	{ 
+		["name"] = "Mix - Lombos", 
+		["uptexture1"] = "effects/foliage/Baobab0001.tga", 
+		["sidetexture1"] = "effects/foliage/Baobab0000.tga", 
+		["scale1"] = 1;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 5, 
+		["uptexture2"] = "effects/foliage/Baobab0003.tga", 
+		["sidetexture2"] = "effects/foliage/Baobab0002.tga", 
+		["scale2"] = 1;
+		["height2"] = 1;
+		["topheight2"] = 0.5;
+		["percent2"] = 5,
+		["uptexture3"] = "effects/foliage/Baobab0005.tga", 
+		["sidetexture3"] = "effects/foliage/Baobab0004.tga", 
+		["scale3"] = 1;
+		["height3"] = 1;
+		["topheight3"] = 0.5;
+		["percent3"] = 5,
+		["uptexture4"] = "effects/foliage/CherryTree0001.tga", 
+		["sidetexture4"] = "effects/foliage/CherryTree0000.tga", 
+		["scale4"] = 1;
+		["height4"] = 1;
+		["topheight4"] = 0.5;
+		["percent4"] = 5, 
+		["uptexture5"] = "effects/foliage/CherryTree0003.tga", 
+		["sidetexture5"] = "effects/foliage/CherryTree0002.tga", 
+		["scale5"] = 1;
+		["height5"] = 1;
+		["topheight5"] = 0.5;
+		["percent5"] = 5,
+		["uptexture6"] = "effects/foliage/CherryTree0005.tga", 
+		["sidetexture6"] = "effects/foliage/CherryTree0004.tga", 
+		["scale6"] = 1;
+		["height6"] = 1;
+		["topheight6"] = 0.5;
+		["percent6"] = 5,
+		["uptexture7"] = "effects/foliage/EucalyptusTree0001.tga", 
+		["sidetexture7"] = "effects/foliage/EucalyptusTree0000.tga", 
+		["scale7"] = 1;
+		["height7"] = 1;
+		["topheight7"] = 0.5;
+		["percent7"] = 5, 
+		["uptexture8"] = "effects/foliage/EucalyptusTree0003.tga", 
+		["sidetexture8"] = "effects/foliage/EucalyptusTree0002.tga", 
+		["scale8"] = 1;
+		["height8"] = 1;
+		["topheight8"] = 0.5;
+		["percent8"] = 5,
+		["uptexture9"] = "effects/foliage/EucalyptusTree0005.tga", 
+		["sidetexture9"] = "effects/foliage/EucalyptusTree0004.tga", 
+		["scale9"] = 1;
+		["height9"] = 1;
+		["topheight9"] = 0.5;
+		["percent9"] = 5,
+		["uptexture10"] = "effects/foliage/PlumTree00001.tga", 
+		["sidetexture10"] = "effects/foliage/PlumTree00000.tga", 
+		["scale10"] = 0.65;
+		["height10"] = 1;
+		["topheight10"] = 0.5;
+		["percent10"] = 5, 
+		["uptexture11"] = "effects/foliage/PlumTree00003.tga", 
+		["sidetexture11"] = "effects/foliage/PlumTree00002.tga", 
+		["scale11"] = 0.65;
+		["height11"] = 1;
+		["topheight11"] = 0.5;
+		["percent11"] = 5,
+		["uptexture12"] = "effects/foliage/PlumTree00005.tga", 
+		["sidetexture12"] = "effects/foliage/PlumTree00004.tga", 
+		["scale12"] = 0.65;
+		["height12"] = 1;
+		["topheight12"] = 0.5;
+		["percent12"] = 5,
+		["uptexture13"] = "effects/foliage/RuralMapleTree0001.tga", 
+		["sidetexture13"] = "effects/foliage/RuralMapleTree0000.tga", 
+		["scale13"] = 1;
+		["height13"] = 1;
+		["topheight13"] = 0.5;
+		["percent13"] = 5, 
+		["uptexture14"] = "effects/foliage/RuralMapleTree0003.tga", 
+		["sidetexture14"] = "effects/foliage/RuralMapleTree0002.tga", 
+		["scale14"] = 1;
+		["height14"] = 1;
+		["topheight14"] = 0.5;
+		["percent14"] = 5,
+		["uptexture15"] = "effects/foliage/RuralMapleTree0005.tga", 
+		["sidetexture15"] = "effects/foliage/RuralMapleTree0004.tga", 
+		["scale15"] = 1;
+		["height15"] = 1;
+		["topheight15"] = 0.5;
+		["percent15"] = 5,
+		["uptexture16"] = "effects/foliage/SpringtimeWhiteBirch0001.tga", 
+		["sidetexture16"] = "effects/foliage/SpringtimeWhiteBirch0000.tga", 
+		["scale16"] = 1;
+		["height16"] = 1;
+		["topheight16"] = 0.5;
+		["percent16"] = 5, 
+		["uptexture17"] = "effects/foliage/SpringtimeWhiteBirch0003.tga", 
+		["sidetexture17"] = "effects/foliage/SpringtimeWhiteBirch0002.tga", 
+		["scale17"] = 1;
+		["height17"] = 1;
+		["topheight17"] = 0.5;
+		["percent17"] = 5,
+		["uptexture18"] = "effects/foliage/SpringtimeWhiteBirch0005.tga", 
+		["sidetexture18"] = "effects/foliage/SpringtimeWhiteBirch0004.tga", 
+		["scale18"] = 1;
+		["height18"] = 1;
+		["topheight18"] = 0.5;
+		["percent18"] = 5, 
+		["uptexture19"] = "effects/foliage/SpringtimeWhiteBirch0007.tga", 
+		["sidetexture19"] = "effects/foliage/SpringtimeWhiteBirch0006.tga", 
+		["scale19"] = 1;
+		["height19"] = 1;
+		["topheight19"] = 0.5;
+		["percent19"] = 5,
+		["uptexture20"] = "effects/foliage/SpringtimeWhiteBirch0009.tga", 
+		["sidetexture20"] = "effects/foliage/SpringtimeWhiteBirch0008.tga", 
+		["scale20"] = 1;
+		["height20"] = 1;
+		["topheight20"] = 0.5;
+		["percent20"] = 5,                 
+	},
+	{ 
+		["name"] = "Mix - Deadtree", 
+		["uptexture1"] = "effects/foliage/DeadTree0001.tga", 
+		["sidetexture1"] = "effects/foliage/DeadTree0000.tga", 
+		["scale1"] = 1;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 35, 
+		["uptexture2"] = "effects/foliage/DeadTree0003.tga", 
+		["sidetexture2"] = "effects/foliage/DeadTree0002.tga", 
+		["scale2"] = 1;
+		["height2"] = 1;
+		["topheight2"] = 0.5;
+		["percent2"] = 35,
+		["uptexture3"] = "effects/foliage/DeadTree0005.tga", 
+		["sidetexture3"] = "effects/foliage/DeadTree0004.tga", 
+		["scale3"] = 1;
+		["height3"] = 1;
+		["topheight3"] = 0.5;
+		["percent3"] = 30,
+	},
+	{ 
+		["name"] = "Banana", 
+		["uptexture1"] = "effects/foliage/Banana0001.tga", 
+		["sidetexture1"] = "effects/foliage/Banana0000.tga", 
+		["scale1"] = 1;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 35, 
+		["uptexture2"] = "effects/foliage/Banana0003.tga", 
+		["sidetexture2"] = "effects/foliage/Banana0002.tga", 
+		["scale2"] = 1;
+		["height2"] = 1;
+		["topheight2"] = 0.5;
+		["percent2"] = 35,
+		["uptexture3"] = "effects/foliage/Banana0005.tga", 
+		["sidetexture3"] = "effects/foliage/Banana0004.tga", 
+		["scale3"] = 1;
+		["height3"] = 1;
+		["topheight3"] = 0.5;
+		["percent3"] = 30,  
+	},
+	{ 
+		["name"] = "Baobab", 
+		["uptexture1"] = "effects/foliage/Baobab0001.tga", 
+		["sidetexture1"] = "effects/foliage/Baobab0000.tga", 
+		["scale1"] = 1;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 40, 
+		["uptexture2"] = "effects/foliage/Baobab0003.tga", 
+		["sidetexture2"] = "effects/foliage/Baobab0002.tga", 
+		["scale2"] = 1;
+		["height2"] = 1;
+		["topheight2"] = 0.5;
+		["percent2"] = 40,
+		["uptexture3"] = "effects/foliage/Baobab0005.tga", 
+		["sidetexture3"] = "effects/foliage/Baobab0004.tga", 
+		["scale3"] = 1;
+		["height3"] = 1;
+		["topheight3"] = 0.5;
+		["percent3"] = 20,  
+	},
+	{ 
+		["name"] = "CherryTree", 
+		["uptexture1"] = "effects/foliage/CherryTree0001.tga", 
+		["sidetexture1"] = "effects/foliage/CherryTree0000.tga", 
+		["scale1"] = 1;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 35, 
+		["uptexture2"] = "effects/foliage/CherryTree0003.tga", 
+		["sidetexture2"] = "effects/foliage/CherryTree0002.tga", 
+		["scale2"] = 1;
+		["height2"] = 1;
+		["topheight2"] = 0.5;
+		["percent2"] = 35,
+		["uptexture3"] = "effects/foliage/CherryTree0005.tga", 
+		["sidetexture3"] = "effects/foliage/CherryTree0004.tga", 
+		["scale3"] = 1;
+		["height3"] = 1;
+		["topheight3"] = 0.5;
+		["percent3"] = 30,  
+	},
+	{ 
+		["name"] = "CoconutTree", 
+		["uptexture1"] = "effects/foliage/CoconutTree0001.tga", 
+		["sidetexture1"] = "effects/foliage/CoconutTree0000.tga", 
+		["scale1"] = 0.8;
+		["height1"] = 2;
+		["topheight1"] = 0.8;
+		["percent1"] = 20, 
+		["uptexture2"] = "effects/foliage/CoconutTree0003.tga", 
+		["sidetexture2"] = "effects/foliage/CoconutTree0002.tga", 
+		["scale2"] = 0.8;
+		["height2"] = 2;
+		["topheight2"] = 0.8;
+		["percent2"] = 20,
+		["uptexture3"] = "effects/foliage/CoconutTree0005.tga", 
+		["sidetexture3"] = "effects/foliage/CoconutTree0004.tga", 
+		["scale3"] = 0.8;
+		["height3"] = 2;
+		["topheight3"] = 0.8;
+		["percent3"] = 20,
+		["uptexture4"] = "effects/foliage/CoconutTree0007.tga", 
+		["sidetexture4"] = "effects/foliage/CoconutTree0006.tga", 
+		["scale4"] = 0.8;
+		["height4"] = 2;
+		["topheight4"] = 0.8;
+		["percent4"] = 20,
+		["uptexture5"] = "effects/foliage/CoconutTree0007.tga", 
+		["sidetexture5"] = "effects/foliage/CoconutTree0010.tga", 
+		["scale5"] = 0.8;
+		["height5"] = 2;
+		["topheight5"] = 0.8;
+		["percent5"] = 20,
+	},
+	{ 
+		["name"] = "DeadTree_01", 
+		["uptexture1"] = "effects/foliage/DeadTree0001.tga", 
+		["sidetexture1"] = "effects/foliage/DeadTree0000.tga", 
+		["scale1"] = 1;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 100, 
+	},
+	{ 
+		["name"] = "DeadTree_02", 
+		["uptexture1"] = "effects/foliage/DeadTree0003.tga", 
+		["sidetexture1"] = "effects/foliage/DeadTree0002.tga", 
+		["scale1"] = 1;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 100, 
+	},
+	{ 
+		["name"] = "DeadTree_03", 
+		["uptexture1"] = "effects/foliage/DeadTree0005.tga", 
+		["sidetexture1"] = "effects/foliage/DeadTree0004.tga", 
+		["scale1"] = 1;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 100, 
+	},
+	{ 
+		["name"] = "EucalyptusTree", 
+		["uptexture1"] = "effects/foliage/EucalyptusTree0001.tga", 
+		["sidetexture1"] = "effects/foliage/EucalyptusTree0000.tga", 
+		["scale1"] = 1;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 35, 
+		["uptexture2"] = "effects/foliage/EucalyptusTree0003.tga", 
+		["sidetexture2"] = "effects/foliage/EucalyptusTree0002.tga", 
+		["scale2"] = 1;
+		["height2"] = 1;
+		["topheight2"] = 0.5;
+		["percent2"] = 35,
+		["uptexture3"] = "effects/foliage/EucalyptusTree0005.tga", 
+		["sidetexture3"] = "effects/foliage/EucalyptusTree0004.tga", 
+		["scale3"] = 1;
+		["height3"] = 1;
+		["topheight3"] = 0.5;
+		["percent3"] = 30,  
+	},
+	{ 
+		["name"] = "MiddlePalm", 
+		["uptexture1"] = "effects/foliage/MiddlePalm0001.tga", 
+		["sidetexture1"] = "effects/foliage/MiddlePalm0000.tga", 
+		["scale1"] = 0.4;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 35, 
+		["uptexture2"] = "effects/foliage/MiddlePalm0003.tga", 
+		["sidetexture2"] = "effects/foliage/MiddlePalm0002.tga", 
+		["scale2"] = 0.4;
+		["height2"] = 1;
+		["topheight2"] = 0.5;
+		["percent2"] = 35,
+		["uptexture3"] = "effects/foliage/MiddlePalm0005.tga", 
+		["sidetexture3"] = "effects/foliage/MiddlePalm0004.tga", 
+		["scale3"] = 0.4;
+		["height3"] = 1;
+		["topheight3"] = 0.5;
+		["percent3"] = 30,  
+	},
+	{ 
+		["name"] = "PlumTree", 
+		["uptexture1"] = "effects/foliage/PlumTree00001.tga", 
+		["sidetexture1"] = "effects/foliage/PlumTree00000.tga", 
+		["scale1"] = 0.65;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 35, 
+		["uptexture2"] = "effects/foliage/PlumTree00003.tga", 
+		["sidetexture2"] = "effects/foliage/PlumTree00002.tga", 
+		["scale2"] = 0.65;
+		["height2"] = 1;
+		["topheight2"] = 0.5;
+		["percent2"] = 35,
+		["uptexture3"] = "effects/foliage/PlumTree00005.tga", 
+		["sidetexture3"] = "effects/foliage/PlumTree00004.tga", 
+		["scale3"] = 0.65;
+		["height3"] = 1;
+		["topheight3"] = 0.5;
+		["percent3"] = 30,  
+	},
+	{ 
+		["name"] = "RuralMapleTree", 
+		["uptexture1"] = "effects/foliage/RuralMapleTree0001.tga", 
+		["sidetexture1"] = "effects/foliage/RuralMapleTree0000.tga", 
+		["scale1"] = 1;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 35, 
+		["uptexture2"] = "effects/foliage/RuralMapleTree0003.tga", 
+		["sidetexture2"] = "effects/foliage/RuralMapleTree0002.tga", 
+		["scale2"] = 1;
+		["height2"] = 1;
+		["topheight2"] = 0.5;
+		["percent2"] = 35,
+		["uptexture3"] = "effects/foliage/RuralMapleTree0005.tga", 
+		["sidetexture3"] = "effects/foliage/RuralMapleTree0004.tga", 
+		["scale3"] = 1;
+		["height3"] = 1;
+		["topheight3"] = 0.5;
+		["percent3"] = 30,  
+	},
+	{ 
+		["name"] = "SpringtimeWhiteBirch", 
+		["uptexture1"] = "effects/foliage/SpringtimeWhiteBirch0001.tga", 
+		["sidetexture1"] = "effects/foliage/SpringtimeWhiteBirch0000.tga", 
+		["scale1"] = 0.8;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 20, 
+		["uptexture2"] = "effects/foliage/SpringtimeWhiteBirch0003.tga", 
+		["sidetexture2"] = "effects/foliage/SpringtimeWhiteBirch0002.tga", 
+		["scale2"] = 0.8;
+		["height2"] = 1;
+		["topheight2"] = 0.5;
+		["percent2"] = 20,
+		["uptexture3"] = "effects/foliage/SpringtimeWhiteBirch0005.tga", 
+		["sidetexture3"] = "effects/foliage/SpringtimeWhiteBirch0004.tga", 
+		["scale3"] = 0.8;
+		["height3"] = 1;
+		["topheight3"] = 0.5;
+		["percent3"] = 20,
+		["uptexture4"] = "effects/foliage/SpringtimeWhiteBirch0007.tga", 
+		["sidetexture4"] = "effects/foliage/SpringtimeWhiteBirch0006.tga", 
+		["scale4"] = 0.8;
+		["height4"] = 1;
+		["topheight4"] = 0.5;
+		["percent4"] = 20,
+		["uptexture5"] = "effects/foliage/SpringtimeWhiteBirch0009.tga", 
+		["sidetexture5"] = "effects/foliage/SpringtimeWhiteBirch0008.tga", 
+		["scale5"] = 0.8;
+		["height5"] = 1;
+		["topheight5"] = 0.5;
+		["percent5"] = 20,    
+	},
+	{ 
+		["name"] = "bokor_alocasia", 
+		["uptexture1"] = "effects/foliage/alocasia0001.tga", 
+		["sidetexture1"] = "effects/foliage/alocasia0000.tga", 
+		["scale1"] = 0.3;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 50, 
+		["uptexture2"] = "effects/foliage/alocasia0003.tga", 
+		["sidetexture2"] = "effects/foliage/alocasia0002.tga", 
+		["scale2"] = 0.3;
+		["height2"] = 1;
+		["topheight2"] = 0.5;
+		["percent2"] = 50,
+	},
+	{ 
+		["name"] = "bokor_Bamboo", 
+		["uptexture1"] = "effects/foliage/Bamboo0001.tga", 
+		["sidetexture1"] = "effects/foliage/Bamboo0000.tga", 
+		["scale1"] = 0.5;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 50, 
+		["uptexture2"] = "effects/foliage/Bamboo0003.tga", 
+		["sidetexture2"] = "effects/foliage/Bamboo0002.tga", 
+		["scale2"] = 0.5;
+		["height2"] = 1;
+		["topheight2"] = 0.5;
+		["percent2"] = 50,
+	},
+	{ 
+		["name"] = "bokor_Clivia", 
+		["uptexture1"] = "effects/foliage/Clivia0001.tga", 
+		["sidetexture1"] = "effects/foliage/Clivia0000.tga", 
+		["scale1"] = 0.15;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 50, 
+		["uptexture2"] = "effects/foliage/Clivia0003.tga", 
+		["sidetexture2"] = "effects/foliage/Clivia0002.tga", 
+		["scale2"] = 0.15;
+		["height2"] = 1;
+		["topheight2"] = 0.5;
+		["percent2"] = 50,
+	},
+	{ 
+		["name"] = "bokor_SmallPalm", 
+		["uptexture1"] = "effects/foliage/SmallPalm0001.tga", 
+		["sidetexture1"] = "effects/foliage/SmallPalm0000.tga", 
+		["scale1"] = 0.5;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 50, 
+		["uptexture2"] = "effects/foliage/SmallPalm0003.tga", 
+		["sidetexture2"] = "effects/foliage/SmallPalm0002.tga", 
+		["scale2"] = 0.5;
+		["height2"] = 1;
+		["topheight2"] = 0.5;
+		["percent2"] = 50,
+	},
+	{ 
+		["name"] = "bokor_Reeds", 
+		["uptexture1"] = "effects/foliage/Reeds0001.tga", 
+		["sidetexture1"] = "effects/foliage/Reeds0000.tga", 
+		["scale1"] = 0.4;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 50, 
+		["uptexture2"] = "effects/foliage/Reeds0003.tga", 
+		["sidetexture2"] = "effects/foliage/Reeds0002.tga", 
+		["scale2"] = 0.4;
+		["height2"] = 1;
+		["topheight2"] = 0.5;
+		["percent2"] = 50,
+	},
+	{ 
+		["name"] = "bokor_SpringtimeWhiteBirch", 
+		["uptexture1"] = "effects/foliage/SpringtimeWhiteBirch0001.tga", 
+		["sidetexture1"] = "effects/foliage/SpringtimeWhiteBirch0001.tga", 
+		["scale1"] = 0.8;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 35, 
+		["uptexture2"] = "effects/foliage/CherryTree0003.tga", 
+		["sidetexture2"] = "effects/foliage/CherryTree0003.tga", 
+		["scale2"] = 0.8;
+		["height2"] = 1;
+		["topheight2"] = 0.5;
+		["percent2"] = 35,
+		["uptexture3"] = "effects/foliage/SpringtimeWhiteBirch0005.tga", 
+		["sidetexture3"] = "effects/foliage/SpringtimeWhiteBirch0005.tga", 
+		["scale3"] = 0.8;
+		["height3"] = 1;
+		["topheight3"] = 0.5;
+		["percent3"] = 30,
+		["uptexture3"] = "effects/foliage/SpringtimeWhiteBirch0007.tga", 
+		["sidetexture3"] = "effects/foliage/SpringtimeWhiteBirch0007.tga", 
+		["scale3"] = 0.8;
+		["height3"] = 1;
+		["topheight3"] = 0.5;
+		["percent3"] = 30,
+		["uptexture3"] = "effects/foliage/SpringtimeWhiteBirch0009.tga", 
+		["sidetexture3"] = "effects/foliage/SpringtimeWhiteBirch0009.tga", 
+		["scale3"] = 0.8;
+		["height3"] = 1;
+		["topheight3"] = 0.5;
+		["percent3"] = 30,   
+	},
+	{ 
+		["name"] = "bokor_coconut", 
+		["uptexture1"] = "effects/foliage/CoconutTree0001.tga", 
+		["sidetexture1"] = "effects/foliage/Coconutbush0000.tga", 
+		["scale1"] = 0.4;
+		["height1"] = 1;
+		["topheight1"] = 0.5;
+		["percent1"] = 100, 
+	},
+}

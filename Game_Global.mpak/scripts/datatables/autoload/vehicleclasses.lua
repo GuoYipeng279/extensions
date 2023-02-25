@@ -501,7 +501,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 10.2888,
+		["MaxSpeed"] = 0.51444*33, --["MaxSpeed"] = 10.2888,
 		["Mesh"] = "models/ships/US/saratoga.MMOD",
 		["Name"] = "globals.unitclass_lexington",
 		["PlatformDirections"] = 
@@ -1667,7 +1667,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 10.2888,
+		["MaxSpeed"] = 0.51444*31, --["MaxSpeed"] = 10.2888,
 		["Mesh"] = "models/ships/us/yorktown.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -2797,7 +2797,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 10.2888,
+		["MaxSpeed"] = 0.51444*23, --["MaxSpeed"] = 10.2888,
 		["Mesh"] = "models/ships/us/Hermes.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -3485,7 +3485,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 36,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 337,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -3938,7 +3938,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 10.2888,
+		["MaxSpeed"] = 0.51444*27, --["MaxSpeed"] = 10.2888,
 		["Mesh"] = "models/ships/us/uss_south_dakota.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -5599,7 +5599,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 10.2888,
+		["MaxSpeed"] = 0.51444*28, --["MaxSpeed"] = 10.2888,
 		["Mesh"] = "models/ships/us/king_george.mmod",
 		["MovieCameraPositions"] = 
 		{
@@ -6812,7 +6812,7 @@ VehicleClass =
 		["MaxAccel"] = 2,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 15.4332,
+		["MaxSpeed"] = 0.51444*31, --["MaxSpeed"] = 15.4332,
 		["Mesh"] = "models/ships/us/renown.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -10237,7 +10237,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 10.2888,
+		["MaxSpeed"] = 0.51444*20, --["MaxSpeed"] = 10.2888,
 		["Mesh"] = "models/ships/us/Texas.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -12077,7 +12077,7 @@ VehicleClass =
 		["MaxAccel"] = 1.5,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.20944,
-		["MaxSpeed"] = 14.40432,
+		["MaxSpeed"] = 0.51444*33, --["MaxSpeed"] = 14.40432,
 		["Mesh"] = "models/ships/us/iowa.mmod",
 		["MovieCameraPositions"] = 
 		{
@@ -13670,7 +13670,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 35,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 328,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -13995,7 +13995,7 @@ VehicleClass =
 		["MaxAccel"] = 3,
 		["MaxRotAngle"] = 0.122173,
 		["MaxRotAngleChangeRatio"] = 0.610865,
-		["MaxSpeed"] = 15.4332,
+		["MaxSpeed"] = 0.51444*33, --["MaxSpeed"] = 15.4332,
 		["Mesh"] = "models/ships/us/atlanta.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -14966,7 +14966,7 @@ VehicleClass =
 		["MaxAccel"] = 3,
 		["MaxRotAngle"] = 0.122173,
 		["MaxRotAngleChangeRatio"] = 0.610865,
-		["MaxSpeed"] = 15.4332,
+		["MaxSpeed"] = 0.51444*33, --["MaxSpeed"] = 15.4332,
 		["Mesh"] = "models/ships/us/Cleveland.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -16082,7 +16082,7 @@ VehicleClass =
 		["MaxAccel"] = 2,
 		["MaxRotAngle"] = 0.10472,
 		["MaxRotAngleChangeRatio"] = 0.523599,
-		["MaxSpeed"] = 14.40432,
+		["MaxSpeed"] = 0.51444*30, --["MaxSpeed"] = 14.40432,
 		["Mesh"] = "models/ships/us/Northampton.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -20049,7 +20049,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 12.34656,
+		["MaxSpeed"] = 0.51444*18, --["MaxSpeed"] = 12.34656,
 		["Mesh"] = "models/ships/us/bogue.mmod",
 		["MovieCameraPositions"] = 
 		{
@@ -21654,7 +21654,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 36,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 325,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -24361,7 +24361,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 37,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 303,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -25342,7 +25342,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.087266,
 		["MaxRotAngleChangeRatio"] = 0.523599,
-		["MaxSpeed"] = 15.4332,
+		["MaxSpeed"] = 0.51444*20, --["MaxSpeed"] = 15.4332,
 		["Mesh"] = "models/ships/us/US_Troop_Transporter.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -26560,7 +26560,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 39,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 381,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -28585,7 +28585,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 38,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 312,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -28834,7 +28834,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 37,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 312,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -30433,7 +30433,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 10.2888,
+		["MaxSpeed"] = 0.51444*31, --["MaxSpeed"] = 10.2888,
 		["Mesh"] = "models/ships/japan/akagi.mmod",
 		["MovieCameraPositions"] = 
 		{
@@ -31283,7 +31283,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 10.2888,
+		["MaxSpeed"] = 0.51444*27, --["MaxSpeed"] = 10.2888,
 		["Mesh"] = "models/ships/japan/Kaga.mmod",
 		["MovieCameraPositions"] = 
 		{
@@ -32069,7 +32069,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 10.2888,
+		["MaxSpeed"] = 0.51444*33, --["MaxSpeed"] = 10.2888,
 		["Mesh"] = "models/ships/japan/hiryu.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -32886,7 +32886,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 10.2888,
+		["MaxSpeed"] = 0.51444*33, --["MaxSpeed"] = 10.2888,
 		["Mesh"] = "models/ships/japan/soryu.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -33803,7 +33803,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 12.34656,
+		["MaxSpeed"] = 0.51444*28, --["MaxSpeed"] = 12.34656,
 		["Mesh"] = "models/ships/japan/zuiho.mmod",
 		["MovieCameraPositions"] = 
 		{
@@ -37824,7 +37824,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 10.2888,
+		["MaxSpeed"] = 0.51444*24, --["MaxSpeed"] = 10.2888,
 		["Mesh"] = "models/ships/japan/fuso.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -49168,7 +49168,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.087266,
 		["MaxRotAngleChangeRatio"] = 0.523599,
-		["MaxSpeed"] = 15.4332,
+		["MaxSpeed"] = 0.51444*20, --["MaxSpeed"] = 15.4332,
 		["Mesh"] = "models/ships/japan/Jap_Troop_Transporter.mmod",
 		["MovieCameraPositions"] = 
 		{
@@ -50578,7 +50578,7 @@ VehicleClass =
 		["MaxAccel"] = 4,
 		["MaxRotAngle"] = 0.698132,
 		["MaxRotAngleChangeRatio"] = 2.094395,
-		["MaxSpeed"] = 15.4332,
+		["MaxSpeed"] = 0.51444*20, --["MaxSpeed"] = 15.4332,
 		["Mesh"] = "models/ships/japan/daihatsu.mmod",
 		["MovieCameraPositions"] = 
 		{
@@ -52515,7 +52515,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 37,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 303,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -52890,7 +52890,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 36,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 334,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -53357,7 +53357,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 36,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 322,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -53626,7 +53626,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 37,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 309,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -53976,7 +53976,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 39,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 376,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -54469,7 +54469,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 35,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 331,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -54806,7 +54806,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 35,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 325,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -55034,7 +55034,7 @@ VehicleClass =
 		["SlideRatio"] = 0.2,
 		["SoundEfx"] = 
 		{
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 97,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -55347,7 +55347,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 35,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 331,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -55673,7 +55673,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 35,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 328,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -57482,7 +57482,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 35,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 319,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -58846,7 +58846,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 35,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 319,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -59170,7 +59170,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 36,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 328,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -59505,7 +59505,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 36,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 331,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -60726,7 +60726,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 38,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 312,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -61154,7 +61154,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 40,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 306,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -61445,7 +61445,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 37,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 373,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -61754,7 +61754,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 37,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 303,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -61972,7 +61972,7 @@ VehicleClass =
 		["SMIcon"] = "gui/units/ohka_sm.tga",
 		["SoundEfx"] = 
 		{
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 315,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -62276,7 +62276,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 37,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 303,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -62629,7 +62629,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 37,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 309,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -62795,7 +62795,7 @@ VehicleClass =
 				{
 					["Ammo"] = 1,
 					["Platform"] = 85,
-					["ReloadTime"] = 80,
+					["ReloadTime"] = 999999,
 				},
 			},
 		},
@@ -62981,7 +62981,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 37,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 380,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -63304,7 +63304,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 37,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 312,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -64631,7 +64631,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 37,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 309,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -64988,7 +64988,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 37,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 306,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -66747,7 +66747,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 40,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 317,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -67539,7 +67539,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 40,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 309,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -68205,7 +68205,7 @@ VehicleClass =
 		["MaxAccel"] = 3,
 		["MaxRotAngle"] = 0.122173,
 		["MaxRotAngleChangeRatio"] = 0.610865,
-		["MaxSpeed"] = 15.4332,
+		["MaxSpeed"] = 0.51444*33, --["MaxSpeed"] = 15.4332,
 		["Mesh"] = "models/ships/us/atlanta_kikotobe.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -68675,7 +68675,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 10.2888,
+		["MaxSpeed"] = 0.51444*28, --["MaxSpeed"] = 10.2888,
 		["Mesh"] = "models/ships/us/king_george.mmod",
 		["MovieCameraPositions"] = 
 		{
@@ -69887,7 +69887,7 @@ VehicleClass =
 		["MaxAccel"] = 2,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 15.4332,
+		["MaxSpeed"] = 0.51444*31, --["MaxSpeed"] = 15.4332,
 		["Mesh"] = "models/ships/us/renown.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -71969,7 +71969,7 @@ VehicleClass =
 		["MaxAccel"] = 2,
 		["MaxRotAngle"] = 0.10472,
 		["MaxRotAngleChangeRatio"] = 0.523599,
-		["MaxSpeed"] = 16.46208,
+		["MaxSpeed"] = 0.51444*30, --["MaxSpeed"] = 16.46208,
 		["Mesh"] = "models/ships/us/Northampton.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -73824,7 +73824,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 38,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 312,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -74072,7 +74072,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 37,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 312,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -75202,7 +75202,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.087266,
 		["MaxRotAngleChangeRatio"] = 0.523599,
-		["MaxSpeed"] = 15.4332,
+		["MaxSpeed"] = 0.51444*20, --["MaxSpeed"] = 15.4332,
 		["Mesh"] = "models/ships/japan/Jap_Troop_Transporter.mmod",
 		["MovieCameraPositions"] = 
 		{
@@ -76866,7 +76866,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.087266,
 		["MaxRotAngleChangeRatio"] = 0.523599,
-		["MaxSpeed"] = 15.4332,
+		["MaxSpeed"] = 0.51444*20, --["MaxSpeed"] = 15.4332,
 		["Mesh"] = "models/ships/us/US_Troop_Transporter.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -80757,7 +80757,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 10.2888,
+		["MaxSpeed"] = 0.51444*21, --["MaxSpeed"] = 10.2888,
 		["Mesh"] = "models/ships/us/arizona.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -85088,7 +85088,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 10.2888,
+		["MaxSpeed"] = 0.51444*20, --["MaxSpeed"] = 10.2888,
 		["Mesh"] = "models/ships/us/california_kikotobe.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -86252,7 +86252,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 36,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 331,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -86557,7 +86557,7 @@ VehicleClass =
 		["SlideRatio"] = 0.2,
 		["SoundEfx"] = 
 		{
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 97,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -89597,7 +89597,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 35,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 331,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -89859,7 +89859,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 35,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 331,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -90894,7 +90894,7 @@ VehicleClass =
 		["MaxAccel"] = 3,
 		["MaxRotAngle"] = 0.122173,
 		["MaxRotAngleChangeRatio"] = 0.610865,
-		["MaxSpeed"] = 15.4332,
+		["MaxSpeed"] = 0.51444*30, --["MaxSpeed"] = 15.4332,
 		["Mesh"] = "models/ships/US/Cleveland_kikotobe.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -91347,7 +91347,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 38,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 312,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -91626,7 +91626,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 37,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 303,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -91920,7 +91920,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 37,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 380,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -96554,7 +96554,7 @@ VehicleClass =
 		["MaxAccel"] = 1.5,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.20944,
-		["MaxSpeed"] = 14.40432,
+		["MaxSpeed"] = 0.51444*33, --["MaxSpeed"] = 14.40432,
 		["Mesh"] = "models/ships/us/iowa.mmod",
 		["MovieCameraPositions"] = 
 		{
@@ -98111,7 +98111,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 10.2888,
+		["MaxSpeed"] = 0.51444*33, --["MaxSpeed"] = 14.40432,
 		["Mesh"] = "models/ships/us/yorktown.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -107162,7 +107162,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 38,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 380,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -107733,7 +107733,7 @@ VehicleClass =
 		["MaxAccel"] = 1.0,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.20944,
-		["MaxSpeed"] = 14.41,
+		["MaxSpeed"] = 0.51444*28, --["MaxSpeed"] = 14.41,
 		["MaxTorpedoStock"] = 9999,
 		["Mesh"] = "models/ships/us/montana.mmod",
 		["MovieCameraPositions"] = 
@@ -114565,7 +114565,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 36,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 325,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -117876,7 +117876,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 40,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 337,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -121616,7 +121616,7 @@ VehicleClass =
 		["MaxAccel"] = 2,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 15.4332,
+		["MaxSpeed"] = 0.51444*26, --["MaxSpeed"] = 15.4332,
 		["Mesh"] = "models/ships/japan/Nagato.mmod",
 		["MovieCameraPositions"] = 
 		{
@@ -127991,7 +127991,7 @@ VehicleClass =
 		["MaxAccel"] = 1,
 		["MaxRotAngle"] = 0.05236,
 		["MaxRotAngleChangeRatio"] = 0.174533,
-		["MaxSpeed"] = 15.2888,
+		["MaxSpeed"] = 0.51444*34, --["MaxSpeed"] = 15.2888,
 		["Mesh"] = "models/ships/japan/Zuikaku.MMOD",
 		["MovieCameraPositions"] = 
 		{
@@ -132459,7 +132459,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 40,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 337,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,
@@ -132742,7 +132742,7 @@ VehicleClass =
 		["SoundEfx"] = 
 		{
 			["ContFireEfx"] = 40,
-			["DeadMeatEfx"] = 116,
+			["DeadMeatEfx"] = 118,
 			["EngineSoundEfx"] = 337,
 			["TooFastEfx"] = 118,
 			["WindEfx"] = 120,

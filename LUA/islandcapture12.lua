@@ -1,0 +1,1117 @@
+-------------------------------------------------------------------
+---				INIT				---
+-------------------------------------------------------------------
+
+--todo:
+-- idojaras, recon beallitasa, kod lesz e vajh?
+--missiontree unlockok
+--template frissites m02
+--shipyard hangar csere, osszeset, ne betonosat
+--cvk halala Mission failed vagy sem
+--cv3 nem lesz largeban
+Inputs = nil
+function luaPrecacheUnits()
+end
+
+function luaStageInitMulti()
+	luaLoadControlFunctionNames()
+end
+
+function luaStageInit()
+	CreateScript("luaInitIslandCapture12")
+end
+
+function luaInitIslandCapture12(this)
+	Mission = this
+	Mission.Name = "IslandCapture12"
+
+	------
+	--Log
+	------
+	--DamageLog = true
+	--Mission.HelperLog = true
+	Mission.CustomLog = true
+	SETLOG(this, true)
+-- RELEASE_LOGOFF  	Log("Initiating IslandCapture12")
+
+	Music_Control_SetLevel(MUSIC_TENSION)
+	Mission.Multiplayer = true
+	AddListener("surrender", "surrender", {
+		["callback"] = "luaSurrender",
+		["party"] = {},
+	})
+	DoFile("scripts/datatables/Scoring.lua")
+
+	-----------
+	---Lobby---
+	-----------
+-- RELEASE_LOGOFF  	luaLog("----------")
+-- RELEASE_LOGOFF  	luaLog(LobbySettings)
+-- RELEASE_LOGOFF  	luaLog("----------")
+
+	Mission.Players = GetPlayerDetails()
+-- RELEASE_LOGOFF  	luaLog(Mission.Players)
+
+	Mission.IJNAI = false
+	Mission.USNAI = false
+
+	if Mission.Players[0] ~= nil then
+		if Mission.Players[0]["ai"] == true then
+			Mission.USNAI = true
+-- RELEASE_LOGOFF  			luaLog("US is AI")
+		end
+	end
+
+	if Mission.Players[4] ~= nil then
+		if Mission.Players[4]["ai"] == true then
+			Mission.IJNAI = true
+-- RELEASE_LOGOFF  			luaLog("JP is AI")
+		end
+	end
+
+	if LobbySettings.MapSize == "FE.multi_small" then
+		Mission.IC1v1 = true
+		Mission.IC2v2 = false
+		Mission.IC3v3 = false
+	elseif LobbySettings.MapSize == "FE.multi_medium" then
+		Mission.IC1v1 = false
+		Mission.IC2v2 = true
+		Mission.IC3v3 = false
+	elseif LobbySettings.MapSize == "FE.multi_large" then
+		Mission.IC1v1 = false
+		Mission.IC2v2 = false
+		Mission.IC3v3 = true
+	end
+
+	Mission.ObjScores = {}
+		Mission.ObjScores["FE.multi_small"] = 500
+		Mission.ObjScores["FE.multi_medium"] = 1000
+		Mission.ObjScores["FE.multi_large"] = 2500
+
+	if LobbySettings.GameMode == "globals.gamemode_islandcapture" then
+-- RELEASE_LOGOFF  		luaLog(LobbySettings.GameMode)
+			this.Objectives =
+			{
+				["primary"] =
+				{
+					[1] =
+					{
+						["Party"] = PARTY_ALLIED,
+						["ID"] = "us_obj1",
+						["Text"] = "mp12.obj_ic_pri",
+						["TextCompleted"] = "mp.obj_ic_uswon",
+						["TextFailed"] = "mp.obj_ic_jpwon",
+						["Active"] = false,
+						["Success"] = nil,
+						["Target"] = {},
+						["ScoreCompleted"] = Mission.ObjScores[tostring(LobbySettings.MapSize)],
+						["ScoreFailed"] = 0,
+					},
+					[2] =
+					{
+						["Party"] = PARTY_JAPANESE,
+						["ID"] = "jap_obj1",
+						["Text"] = "mp12.obj_ic_pri",
+						["TextCompleted"] = "mp.obj_ic_jpwon",
+						["TextFailed"] = "mp.obj_ic_uswon",
+						["Active"] = false,
+						["Success"] = nil,
+						["Target"] = {},
+						["ScoreCompleted"] = Mission.ObjScores[tostring(LobbySettings.MapSize)],
+						["ScoreFailed"] = 0,
+					},
+				--[[
+					[3] =
+						{
+							["Party"] = PARTY_ALLIED,
+							["ID"] = "us_obj2",
+							["Text"] = "mp.obj_ic_pri",
+							["TextCompleted"] = "mp.obj_ic_uswon",
+							["TextFailed"] = "mp.obj_ic_jpwon",
+							["Active"] = false,
+							["Success"] = nil,
+							["Target"] = {},
+							["ScoreCompleted"] = Mission.ObjScores[tostring(LobbySettings.MapSize)],
+							["ScoreFailed"] = 0,
+						},
+						[4] =
+						{
+							["Party"] = PARTY_JAPANESE,
+							["ID"] = "jap_obj2",
+							["Text"] = "mp.obj_ic_pri",
+							["TextCompleted"] = "mp.obj_ic_jpwon",
+							["TextFailed"] = "mp.obj_ic_uswon",
+							["Active"] = false,
+							["Success"] = nil,
+							["Target"] = {},
+							["ScoreCompleted"] = Mission.ObjScores[tostring(LobbySettings.MapSize)],
+							["ScoreFailed"] = 0,
+						},
+						]]
+					},
+				}
+	end
+
+-- RELEASE_LOGOFF  	luaLog("----------------")
+-- RELEASE_LOGOFF  	luaLog("Time Limit")
+-- RELEASE_LOGOFF  	luaLog("----------------")
+	if LobbySettings.TimeLimit_IC == "globals.none" then
+-- RELEASE_LOGOFF  		luaLog("Setting Mission TimeLimit: no time limit")
+	elseif LobbySettings.TimeLimit_IC == "globals.30m" then
+		Mission.TimeLimit = 30 * 60
+-- RELEASE_LOGOFF  		luaLog("Setting Mission TimeLimit: "..tostring(Mission.TimeLimit))
+	elseif LobbySettings.TimeLimit_IC == "globals.1h" then
+		Mission.TimeLimit = 60 * 60
+-- RELEASE_LOGOFF  		luaLog("Setting Mission TimeLimit: "..tostring(Mission.TimeLimit))
+	elseif LobbySettings.TimeLimit_IC == "globals.2h" then
+		Mission.TimeLimit = 120 * 60
+-- RELEASE_LOGOFF  		luaLog("Setting Mission TimeLimit:"..tostring(Mission.TimeLimit))
+	elseif LobbySettings.TimeLimit_IC == "globals.4h" then
+		Mission.TimeLimit = 240 * 60
+-- RELEASE_LOGOFF  		luaLog("Setting Mission TimeLimit"..tostring(Mission.TimeLimit))
+	end
+
+-- RELEASE_LOGOFF  	luaLog("----------------")
+-- RELEASE_LOGOFF  	luaLog("Point Limit")
+-- RELEASE_LOGOFF  	luaLog("----------------")
+	if LobbySettings.PointLimit == "globals.none" then
+-- RELEASE_LOGOFF  		luaLog(LobbySettings.PointLimit)
+		Mission.CapturePointLimit = 0
+-- RELEASE_LOGOFF  		luaLog("Setting Mission CapturePointLimit"..tostring(Mission.CapturePointLimit))
+	elseif LobbySettings.PointLimit == "500" then
+-- RELEASE_LOGOFF  		luaLog(LobbySettings.PointLimit)
+		Mission.CapturePointLimit = 500
+-- RELEASE_LOGOFF  		luaLog("Setting Mission CapturePointLimit"..tostring(Mission.CapturePointLimit))
+	elseif LobbySettings.PointLimit == "1000" then
+-- RELEASE_LOGOFF  		luaLog(LobbySettings.PointLimit)
+		Mission.CapturePointLimit = 1000
+-- RELEASE_LOGOFF  		luaLog("Setting Mission CapturePointLimit"..tostring(Mission.CapturePointLimit))
+	elseif LobbySettings.PointLimit == "2000" then
+-- RELEASE_LOGOFF  		luaLog(LobbySettings.PointLimit)
+		Mission.CapturePointLimit = 2000
+-- RELEASE_LOGOFF  		luaLog("Setting Mission CapturePointLimit"..tostring(Mission.CapturePointLimit))
+	elseif LobbySettings.PointLimit == "3000" then
+-- RELEASE_LOGOFF  		luaLog(LobbySettings.PointLimit)
+		Mission.CapturePointLimit = 3000
+-- RELEASE_LOGOFF  		luaLog("Setting Mission CapturePointLimit"..tostring(Mission.CapturePointLimit))
+	elseif LobbySettings.PointLimit == "4000" then
+-- RELEASE_LOGOFF  		luaLog(LobbySettings.PointLimit)
+		Mission.CapturePointLimit = 4000
+-- RELEASE_LOGOFF  		luaLog("Setting Mission CapturePointLimit"..tostring(Mission.CapturePointLimit))
+	elseif LobbySettings.PointLimit == "5000" then
+-- RELEASE_LOGOFF  		luaLog(LobbySettings.PointLimit)
+		Mission.CapturePointLimit = 5000
+-- RELEASE_LOGOFF  		luaLog("Setting Mission CapturePointLimit"..tostring(Mission.CapturePointLimit))
+	end
+
+	Mission.AlliedCapturePoints = 0000
+	Mission.JapaneseCapturePoints = 0000
+	Mission.AlliedCBCounter = 0000
+	Mission.JapaneseCBCounter = 0000
+	Mission.TimeLimitReached = false
+	Mission.MissionInit = true
+	Mission.MissionEnd = false
+	Mission.MissionTime = 0				-- mennyi ido telt el a jatekidobol
+	Mission.CaptureCounters = false
+	Mission.MissionStart = true
+	Mission.HintDisplayed = false
+
+
+-- RELEASE_LOGOFF  	luaLog("----------------")
+-- RELEASE_LOGOFF  	luaLog("Units init")
+-- RELEASE_LOGOFF  	luaLog("----------------")
+
+	if Mission.IC3v3 == true then
+-- RELEASE_LOGOFF  		luaLog("Initiating Island Capture Mode 3v3")
+
+		Mission.Shipyards = {}
+			table.insert(Mission.Shipyards, FindEntity("CB1_SY"))
+			table.insert(Mission.Shipyards, FindEntity("CB2_SY"))
+			table.insert(Mission.Shipyards, FindEntity("CB3_SY"))
+			table.insert(Mission.Shipyards, FindEntity("CB4_SY"))
+
+		Mission.CP1 = FindEntity("CP1")
+		SetGuiName(Mission.CP1, "globals.unitclass_commandpost|".." - |03")
+		Mission.CP2 = FindEntity("CP2")
+		SetGuiName(Mission.CP2, "globals.unitclass_commandpost|".." - |04")
+		Mission.CP3 = FindEntity("CP3")
+		SetGuiName(Mission.CP3, "globals.unitclass_commandpost|".." - |05")
+
+		Mission.CommandPosts = {}
+			table.insert(Mission.CommandPosts, Mission.CP1)
+			table.insert(Mission.CommandPosts, Mission.CP2)
+			table.insert(Mission.CommandPosts, Mission.CP3)
+
+		Mission.CB1 = FindEntity("CB1")
+		SetGuiName(Mission.CB1, "globals.unitclass_headquarter|".." - |01")
+-- RELEASE_LOGOFF  		luaLog("Setting Command Building 1 Params")
+		SetCommandBuildingOwnerPlayer(Mission.CB1, PLAYER_1)
+		Mission.CB2 = FindEntity("CB2")
+		SetGuiName(Mission.CB2, "globals.unitclass_headquarter|".." - |02")
+-- RELEASE_LOGOFF  		luaLog("Setting Command Building 2 Params")
+		Mission.CB3 = FindEntity("CB3")
+		SetGuiName(Mission.CB3, "globals.unitclass_headquarter|".." - |06")
+-- RELEASE_LOGOFF  		luaLog("Setting Command Building 3 Params")
+		Mission.CB4 = FindEntity("CB4")
+		SetCommandBuildingOwnerPlayer(Mission.CB4, PLAYER_5)
+		SetGuiName(Mission.CB4, "globals.unitclass_headquarter|".." - |07")
+-- RELEASE_LOGOFF  		luaLog("Setting Command Building 4 Params")
+
+		Mission.CommandBuildings = {}
+			table.insert(Mission.CommandBuildings, FindEntity("CB1"))
+			table.insert(Mission.CommandBuildings, FindEntity("CB2"))
+			table.insert(Mission.CommandBuildings, FindEntity("CB3"))
+			table.insert(Mission.CommandBuildings, FindEntity("CB4"))
+
+		--Carriers
+		Mission.USNCV1 = FindEntity("CV_USN 01")
+		SetParty(Mission.USNCV1, PARTY_ALLIED)
+		SetRoleAvailable(Mission.USNCV1, EROLF_ALL,PLAYER_1)
+		Mission.USNCV2 = FindEntity("CV_USN 02")
+		SetParty(Mission.USNCV2, PARTY_ALLIED)
+		SetRoleAvailable(Mission.USNCV2, EROLF_ALL,PLAYER_1)
+		--Mission.USNCV3 = FindEntity("CV_USN 03")
+		--SetParty(Mission.USNCV3, PARTY_ALLIED)
+		--SetRoleAvailable(Mission.USNCV3, EROLF_ALL,PLAYER_1)
+		Mission.USNCV4 = FindEntity("CV_USN 04") --escort cv
+		SetParty(Mission.USNCV4, PARTY_ALLIED)
+		SetRoleAvailable(Mission.USNCV4, EROLF_ALL,PLAYER_1)
+
+		Mission.IJNCV1 = FindEntity("CV_IJN 01")
+		SetParty(Mission.IJNCV1, PARTY_JAPANESE)
+		SetRoleAvailable(Mission.IJNCV1, EROLF_ALL,PLAYER_5)
+		Mission.IJNCV2 = FindEntity("CV_IJN 02")
+		SetParty(Mission.IJNCV2, PARTY_JAPANESE)
+		SetRoleAvailable(Mission.IJNCV2, EROLF_ALL,PLAYER_5)
+		--Mission.IJNCV3 = FindEntity("CV_IJN 03")
+		--SetParty(Mission.IJNCV3, PARTY_JAPANESE)
+		--SetRoleAvailable(Mission.IJNCV3, EROLF_ALL,PLAYER_5)
+		Mission.IJNCV4 = FindEntity("CV_IJN 04") --escort cv
+		SetParty(Mission.IJNCV4, PARTY_JAPANESE)
+		SetRoleAvailable(Mission.IJNCV4, EROLF_ALL,PLAYER_5)
+
+
+		Mission.USCB = {}
+			table.insert(Mission.USCB, Mission.CB1)
+			table.insert(Mission.USCB, Mission.USNCV1)
+			table.insert(Mission.USCB, Mission.USNCV2)
+			--table.insert(Mission.USCB, Mission.USNCV3)
+			table.insert(Mission.USCB, Mission.USNCV4)
+		Mission.JPCB = {}
+			table.insert(Mission.JPCB, Mission.CB4)
+			table.insert(Mission.JPCB, Mission.IJNCV1)
+			table.insert(Mission.JPCB, Mission.IJNCV2)
+			--table.insert(Mission.JPCB, Mission.IJNCV3)
+			table.insert(Mission.JPCB, Mission.IJNCV4)
+		Mission.USCVs = {}
+			table.insert(Mission.USCVs, Mission.USNCV1)
+			table.insert(Mission.USCVs, Mission.USNCV2)
+			--table.insert(Mission.USCVs, Mission.USNCV3)
+			table.insert(Mission.USCVs, Mission.USNCV4)
+		Mission.JPCVs = {}
+			table.insert(Mission.JPCVs, Mission.IJNCV1)
+			table.insert(Mission.JPCVs, Mission.IJNCV2)
+			--table.insert(Mission.JPCVs, Mission.IJNCV3)
+			table.insert(Mission.JPCVs, Mission.IJNCV4)
+
+		-- Skirmish AI CVs MoveOnPath
+		if Mission.IJNAI == true then
+			Mission.CV_IJN_01MovePath = FindEntity("IC - CV_IJN_01MovePath")
+			NavigatorMoveOnPath(Mission.IJNCV1, Mission.CV_IJN_01MovePath, PATH_FM_SIMPLE, PATH_SM_BEGIN)
+			Mission.CV_IJN_02MovePath = FindEntity("IC - CV_IJN_02MovePath")
+			NavigatorMoveOnPath(Mission.IJNCV2, Mission.CV_IJN_02MovePath, PATH_FM_SIMPLE, PATH_SM_BEGIN)
+			Mission.CV_IJN_04MovePath = FindEntity("IC - CV_IJN_04MovePath")
+			NavigatorMoveOnPath(Mission.IJNCV4, Mission.CV_IJN_04MovePath, PATH_FM_SIMPLE, PATH_SM_BEGIN)
+		elseif Mission.USNAI == true then
+			Mission.CV_USN_01MovePath = FindEntity("IC - CV_USN_01MovePath")
+			NavigatorMoveOnPath(Mission.USNCV1, Mission.CV_USN_01MovePath, PATH_FM_SIMPLE, PATH_SM_BEGIN)
+-- RELEASE_LOGOFF  			luaLog("USNCV1 Moving!")
+			Mission.CV_USN_02MovePath = FindEntity("IC - CV_USN_02MovePath")
+			NavigatorMoveOnPath(Mission.USNCV2, Mission.CV_USN_02MovePath, PATH_FM_SIMPLE, PATH_SM_BEGIN)
+-- RELEASE_LOGOFF  			luaLog("USNCV2 Moving!")
+			Mission.CV_USN_04MovePath = FindEntity("IC - CV_USN_04MovePath")
+			NavigatorMoveOnPath(Mission.USNCV4, Mission.CV_USN_04MovePath, PATH_FM_SIMPLE, PATH_SM_BEGIN)
+-- RELEASE_LOGOFF  			luaLog("USNCV4 Moving!")
+		end
+
+		--capture weights etc.
+		Mission.CB1.CaptureWeight = 1
+		Mission.CB1.StrategicGain = 2
+		Mission.CB2.CaptureWeight = 1
+		Mission.CB2.StrategicGain = 2
+		Mission.CB3.CaptureWeight = 1
+		Mission.CB3.StrategicGain = 2
+		Mission.CB4.CaptureWeight = 1
+		Mission.CB4.StrategicGain = 2
+		Mission.CP1.CaptureWeight = 2
+		Mission.CP1.StrategicGain = 1
+		Mission.CP2.CaptureWeight = 2
+		Mission.CP2.StrategicGain = 1
+		Mission.CP3.CaptureWeight = 2
+		Mission.CP3.StrategicGain = 1
+
+	end
+
+	if Mission.IC2v2 == true then
+-- RELEASE_LOGOFF  		luaLog("Initiating Island Capture Mode 2v2")
+
+		Mission.Shipyards = {}
+			table.insert(Mission.Shipyards, FindEntity("CB2_SY"))
+			table.insert(Mission.Shipyards, FindEntity("CB3_SY"))
+
+		Mission.CP1 = FindEntity("CP1")
+		SetGuiName(Mission.CP1, "globals.unitclass_commandpost|".." - |02")
+		Mission.CP2 = FindEntity("CP2")
+		SetGuiName(Mission.CP2, "globals.unitclass_commandpost|".." - |03")
+		Mission.CP3 = FindEntity("CP3")
+		SetGuiName(Mission.CP3, "globals.unitclass_commandpost|".." - |04")
+
+		Mission.CommandPosts = {}
+			table.insert(Mission.CommandPosts, Mission.CP1)
+			table.insert(Mission.CommandPosts, Mission.CP2)
+			table.insert(Mission.CommandPosts, Mission.CP3)
+
+		Mission.CB2 = FindEntity("CB2")
+		SetGuiName(Mission.CB2, "globals.unitclass_headquarter|".." - |01")
+		SetCommandBuildingOwnerPlayer(Mission.CB2, PLAYER_1)
+-- RELEASE_LOGOFF  		luaLog("Setting Command Building 2 Params")
+		Mission.CB3 = FindEntity("CB3")
+		SetGuiName(Mission.CB3, "globals.unitclass_headquarter|".." - |05")
+		SetCommandBuildingOwnerPlayer(Mission.CB3, PLAYER_5)
+-- RELEASE_LOGOFF  		luaLog("Setting Command Building 3 Params")
+
+		Mission.CommandBuildings = {}
+			table.insert(Mission.CommandBuildings, FindEntity("CB2"))
+			table.insert(Mission.CommandBuildings, FindEntity("CB3"))
+
+		--Carriers
+		--Mission.USNCV1 = FindEntity("CV_USN 01")
+		--SetParty(Mission.USNCV1, PARTY_ALLIED)
+		--SetRoleAvailable(Mission.USNCV1, EROLF_ALL,PLAYER_1)
+		Mission.USNCV2 = FindEntity("CV_USN 02")
+		SetParty(Mission.USNCV2, PARTY_ALLIED)
+		SetRoleAvailable(Mission.USNCV2, EROLF_ALL,PLAYER_1)
+		Mission.USNCV3 = FindEntity("CV_USN 03")
+		SetParty(Mission.USNCV3, PARTY_ALLIED)
+		SetRoleAvailable(Mission.USNCV3, EROLF_ALL,PLAYER_1)
+
+		Mission.IJNCV1 = FindEntity("CV_IJN 01")
+		SetParty(Mission.IJNCV1, PARTY_JAPANESE)
+		SetRoleAvailable(Mission.IJNCV1, EROLF_ALL,PLAYER_5)
+		--Mission.IJNCV2 = FindEntity("CV_IJN 02")
+		--SetParty(Mission.IJNCV2, PARTY_JAPANESE)
+		--SetRoleAvailable(Mission.IJNCV2, EROLF_ALL,PLAYER_5)
+		Mission.IJNCV3 = FindEntity("CV_IJN 03")
+		SetParty(Mission.IJNCV3, PARTY_JAPANESE)
+		SetRoleAvailable(Mission.IJNCV3, EROLF_ALL,PLAYER_5)
+
+		Mission.USCB = {}
+			table.insert(Mission.USCB, Mission.CB2)
+			table.insert(Mission.USCB, Mission.USNCV1)
+			table.insert(Mission.USCB, Mission.USNCV2)
+			table.insert(Mission.USCB, Mission.USNCV3)
+		Mission.JPCB = {}
+			table.insert(Mission.JPCB, Mission.CB3)
+			table.insert(Mission.JPCB, Mission.IJNCV1)
+			table.insert(Mission.JPCB, Mission.IJNCV2)
+			table.insert(Mission.JPCB, Mission.IJNCV3)
+		Mission.USCVs = {}
+			table.insert(Mission.USCVs, Mission.USNCV1)
+			table.insert(Mission.USCVs, Mission.USNCV2)
+			table.insert(Mission.USCVs, Mission.USNCV3)
+		Mission.JPCVs = {}
+			table.insert(Mission.JPCVs, Mission.IJNCV1)
+			table.insert(Mission.JPCVs, Mission.IJNCV2)
+			table.insert(Mission.JPCVs, Mission.IJNCV3)
+
+		-- Skirmish AI CVs MoveOnPath
+		if Mission.IJNAI == true then
+			Mission.CV_IJN_01MovePath = FindEntity("IC - CV_IJN_01MovePath")
+			NavigatorMoveOnPath(Mission.IJNCV1, Mission.CV_IJN_01MovePath, PATH_FM_SIMPLE, PATH_SM_BEGIN)
+			Mission.CV_IJN_03MovePath = FindEntity("IC - CV_IJN_03MovePath")
+			NavigatorMoveOnPath(Mission.IJNCV3, Mission.CV_IJN_03MovePath, PATH_FM_SIMPLE, PATH_SM_BEGIN)
+		elseif Mission.USNAI == true then
+			Mission.CV_USN_02MovePath = FindEntity("IC - CV_USN_02MovePath")
+			NavigatorMoveOnPath(Mission.USNCV2, Mission.CV_USN_02MovePath, PATH_FM_SIMPLE, PATH_SM_BEGIN)
+			Mission.CV_USN_03MovePath = FindEntity("IC - CV_USN_03MovePath")
+			NavigatorMoveOnPath(Mission.USNCV3, Mission.CV_USN_03MovePath, PATH_FM_SIMPLE, PATH_SM_BEGIN)
+		end
+
+		--capture weights etc.
+		Mission.CB2.CaptureWeight = 1
+		Mission.CB2.StrategicGain = 2
+		Mission.CB3.CaptureWeight = 1
+		Mission.CB3.StrategicGain = 2
+		Mission.CP1.CaptureWeight = 2
+		Mission.CP1.StrategicGain = 1
+		Mission.CP2.CaptureWeight = 2
+		Mission.CP2.StrategicGain = 1
+		Mission.CP3.CaptureWeight = 2
+		Mission.CP3.StrategicGain = 1
+
+	end
+
+	if Mission.IC1v1 == true then
+-- RELEASE_LOGOFF  		luaLog("Initiating Island Capture Mode 1v1")
+
+		Mission.Shipyards = {}
+			table.insert(Mission.Shipyards, FindEntity("CB2_SY"))
+			table.insert(Mission.Shipyards, FindEntity("CB3_SY"))
+
+		Mission.CP2 = FindEntity("CP2")
+		SetGuiName(Mission.CP2, "globals.unitclass_commandpost|".." - |02")
+
+		Mission.CommandPosts = {}
+			table.insert(Mission.CommandPosts, Mission.CP2)
+
+		Mission.CB2 = FindEntity("CB2")
+		SetGuiName(Mission.CB2, "globals.unitclass_headquarter|".." - |01")
+		SetCommandBuildingOwnerPlayer(Mission.CB2, PLAYER_1)
+-- RELEASE_LOGOFF  		luaLog("Setting Command Building 2 Params")
+		Mission.CB3 = FindEntity("CB3")
+		SetGuiName(Mission.CB3, "globals.unitclass_headquarter|".." - |03")
+		SetCommandBuildingOwnerPlayer(Mission.CB3, PLAYER_5)
+-- RELEASE_LOGOFF  		luaLog("Setting Command Building 3 Params")
+
+		Mission.CommandBuildings = {}
+			table.insert(Mission.CommandBuildings, FindEntity("CB2"))
+			table.insert(Mission.CommandBuildings, FindEntity("CB3"))
+
+		--Carriers
+		--Mission.USNCV1 = FindEntity("CV_USN 01")
+		--SetParty(Mission.USNCV1, PARTY_ALLIED)
+		--SetRoleAvailable(Mission.USNCV1, EROLF_ALL,PLAYER_1)
+		Mission.USNCV2 = FindEntity("CV_USN 02")
+		SetParty(Mission.USNCV2, PARTY_ALLIED)
+		SetRoleAvailable(Mission.USNCV2, EROLF_ALL,PLAYER_1)
+
+		Mission.IJNCV1 = FindEntity("CV_IJN 01")
+		SetParty(Mission.IJNCV1, PARTY_JAPANESE)
+		SetRoleAvailable(Mission.IJNCV1, EROLF_ALL,PLAYER_5)
+		--Mission.IJNCV2 = FindEntity("CV_IJN 02")
+		--SetParty(Mission.IJNCV2, PARTY_JAPANESE)
+		--SetRoleAvailable(Mission.IJNCV2, EROLF_ALL,PLAYER_5)
+
+		Mission.USCB = {}
+			table.insert(Mission.USCB, Mission.CB2)
+			table.insert(Mission.USCB, Mission.USNCV2)
+		Mission.JPCB = {}
+			table.insert(Mission.JPCB, Mission.CB3)
+			table.insert(Mission.JPCB, Mission.IJNCV1)
+		Mission.USCVs = {}
+			--table.insert(Mission.USCVs, Mission.USNCV1)
+			table.insert(Mission.USCVs, Mission.USNCV2)
+		Mission.JPCVs = {}
+			table.insert(Mission.JPCVs, Mission.IJNCV1)
+			--table.insert(Mission.JPCVs, Mission.IJNCV2)
+
+		-- Skirmish AI CVs MoveOnPath
+		if Mission.IJNAI == true then
+			Mission.CV_IJN_01MovePath = FindEntity("IC - CV_IJN_01MovePath")
+			NavigatorMoveOnPath(Mission.IJNCV1, Mission.CV_IJN_01MovePath, PATH_FM_SIMPLE, PATH_SM_BEGIN)
+		elseif Mission.USNAI == true then
+			Mission.CV_USN_02MovePath = FindEntity("IC - CV_USN_02MovePath")
+			NavigatorMoveOnPath(Mission.USNCV2, Mission.CV_USN_02MovePath, PATH_FM_SIMPLE, PATH_SM_BEGIN)
+		end
+
+		--capture weights etc.
+		Mission.CB2.CaptureWeight = 1
+		Mission.CB2.StrategicGain = 2
+		Mission.CB3.CaptureWeight = 1
+		Mission.CB3.StrategicGain = 2
+		Mission.CP2.CaptureWeight = 2
+		Mission.CP2.StrategicGain = 1
+
+	end
+
+	---- unit tablak es ertekek atmenetileg a scriptben
+	Mission.USTable = {}
+	Mission.JapTable = {}
+	Mission.UnitValue = {}
+	Mission.UnitValue.BattleShip = 24
+	Mission.UnitValue.Cruiser = 12
+	Mission.UnitValue.Destroyer = 6
+	Mission.UnitValue.MotherShip = 150
+	Mission.UnitValue.TorpedoBoat = 2
+	Mission.UnitValue.Submarine = 8
+	Mission.UnitValue.LandingShip = 2
+	Mission.UnitValue.Cargo = 2
+	Mission.UnitValue.Fighter = 3
+	Mission.UnitValue.DiveBomber = 3
+	Mission.UnitValue.TorpedoBomber = 3
+	Mission.UnitValue.LevelBomber = 6
+	Mission.UnitValue.LargeReconPlane = 6
+	Mission.UnitValue.SmallReconPlane = 3
+	Mission.UnitValue.Kamikaze = 3
+
+	Mission.CBMultiplier = 1.0
+	----
+
+	luaShipyardManagerInit(Mission.Shipyards)
+
+	luaUnitRedistribution()
+
+-- korulmenyek beallitasa
+	SetDayTime(10)							-- de 10-kor kezdodik
+	SetWeather("Clear")						-- tiszta idoben
+	Scoring_SetFinalScoringFunctionName("luaObj_DoScoring")
+	luaInitNewSystems()
+
+    SetThink(this, "luaIslandCapture12_think")
+
+	luaMultiVoiceOverHandler()
+
+	Scoring_RealPlayTimeRunning(true)
+end
+-----------------------------------------------------------------------------------------
+-------------------------				THINK				---------------------------------------------
+-----------------------------------------------------------------------------------------
+function luaIslandCapture12_think(this, msg)
+
+	if luaMessageHandler(this, msg) == "killed" then
+		return
+	end
+
+	if Mission.MissionEnd then
+		return
+	end
+
+	if Mission.MissionStart then
+-- RELEASE_LOGOFF  			luaLog("")
+-- RELEASE_LOGOFF  			luaLog("!!!MissionStart!!!")
+-- RELEASE_LOGOFF  			luaLog("")
+		if LobbySettings.TimeLimit_IC == "globals.none" then
+-- RELEASE_LOGOFF  			luaLog("Timelimit: none")
+		else
+			Countdown("mp.nar_timeleft", 0, Mission.TimeLimit, "luaSetTimeLimit")
+-- RELEASE_LOGOFF  			luaLog("Timelimit: Countdown started")
+		end
+		Mission.MissionStart = false
+	end
+
+	luaSetObjectives()
+	luaCheckCBParty()
+	luaCheckTimelimit()
+	luaCheckCapturePointlimit()
+	luaCaptureCounters()
+	luaCheckPlayerUnits()
+	luaDelay(luaShowMissionHint,2)
+
+	local selUnit = GetSelectedUnit()
+	if selUnit then
+		luaCheckMusic(selUnit)
+	end
+
+end
+---------------------------------------------------------------------------------------------
+------------------------------- Functions ---------------------------------------------------
+---------------------------------------------------------------------------------------------
+function luaCaptureCounters()
+-- RELEASE_LOGOFF  --	luaLog(" Updating counters...")
+	if not Mission.CaptureCounters == true then
+		Mission.CaptureCounters = true
+-- RELEASE_LOGOFF  --		luaLog(" Initializing counters...")
+		MultiScore=	{
+			[0]= {
+				[1] = Mission.AlliedCapturePoints,
+				[2] = Mission.CapturePointLimit,
+				[3] = Mission.AlliedCBCounter,
+				[4] = Mission.JapaneseCapturePoints,
+				[5] = Mission.JapaneseCBCounter,
+			},
+			[1]= {
+				[1] = Mission.AlliedCapturePoints,
+				[2] = Mission.CapturePointLimit,
+				[3] = Mission.AlliedCBCounter,
+				[4] = Mission.JapaneseCapturePoints,
+				[5] = Mission.JapaneseCBCounter,
+			},
+			[2]= {
+				[1] = Mission.AlliedCapturePoints,
+				[2] = Mission.CapturePointLimit,
+				[3] = Mission.AlliedCBCounter,
+				[4] = Mission.JapaneseCapturePoints,
+				[5] = Mission.JapaneseCBCounter,
+			},
+			[3]= {
+				[1] = Mission.AlliedCapturePoints,
+				[2] = Mission.CapturePointLimit,
+				[3] = Mission.AlliedCBCounter,
+				[4] = Mission.JapaneseCapturePoints,
+				[5] = Mission.JapaneseCBCounter,
+			},
+			[4]= {
+				[1] = Mission.AlliedCapturePoints,
+				[2] = Mission.CapturePointLimit,
+				[3] = Mission.AlliedCBCounter,
+				[4] = Mission.JapaneseCapturePoints,
+				[5] = Mission.JapaneseCBCounter,
+			},
+			[5]= {
+				[1] = Mission.AlliedCapturePoints,
+				[2] = Mission.CapturePointLimit,
+				[3] = Mission.AlliedCBCounter,
+				[4] = Mission.JapaneseCapturePoints,
+				[5] = Mission.JapaneseCBCounter,
+			},
+			[6]= {
+				[1] = Mission.AlliedCapturePoints,
+				[2] = Mission.CapturePointLimit,
+				[3] = Mission.AlliedCBCounter,
+				[4] = Mission.JapaneseCapturePoints,
+				[5] = Mission.JapaneseCBCounter,
+			},
+			[7]= {
+				[1] = Mission.AlliedCapturePoints,
+				[2] = Mission.CapturePointLimit,
+				[3] = Mission.AlliedCBCounter,
+				[4] = Mission.JapaneseCapturePoints,
+				[5] = Mission.JapaneseCBCounter,
+			},
+		}
+
+		if LobbySettings.PointLimit == "globals.none" then
+			DisplayScores(1, 0, "mp.score_ic_points|".." #MultiScore.0.1#".." |mp.score_ic_bases|".." #MultiScore.0.3#", "mp.score_ic_points|".." #MultiScore.0.4#".." |mp.score_ic_bases|".." #MultiScore.0.5#",2,1)
+			DisplayScores(1, 1, "mp.score_ic_points|".." #MultiScore.1.1#".." |mp.score_ic_bases|".." #MultiScore.1.3#", "mp.score_ic_points|".." #MultiScore.1.4#".." |mp.score_ic_bases|".." #MultiScore.1.5#",2,1)
+			DisplayScores(1, 2, "mp.score_ic_points|".." #MultiScore.2.1#".." |mp.score_ic_bases|".." #MultiScore.2.3#", "mp.score_ic_points|".." #MultiScore.2.4#".." |mp.score_ic_bases|".." #MultiScore.2.5#",2,1)
+			DisplayScores(1, 3, "mp.score_ic_points|".." #MultiScore.3.1#".." |mp.score_ic_bases|".." #MultiScore.3.3#", "mp.score_ic_points|".." #MultiScore.3.4#".." |mp.score_ic_bases|".." #MultiScore.3.5#",2,1)
+			DisplayScores(1, 4, "mp.score_ic_points|".." #MultiScore.4.1#".." |mp.score_ic_bases|".." #MultiScore.4.3#", "mp.score_ic_points|".." #MultiScore.4.4#".." |mp.score_ic_bases|".." #MultiScore.4.5#",2,1)
+			DisplayScores(1, 5, "mp.score_ic_points|".." #MultiScore.5.1#".." |mp.score_ic_bases|".." #MultiScore.5.3#", "mp.score_ic_points|".." #MultiScore.5.4#".." |mp.score_ic_bases|".." #MultiScore.5.5#",2,1)
+			DisplayScores(1, 6, "mp.score_ic_points|".." #MultiScore.6.1#".." |mp.score_ic_bases|".." #MultiScore.6.3#", "mp.score_ic_points|".." #MultiScore.6.4#".." |mp.score_ic_bases|".." #MultiScore.6.5#",2,1)
+			DisplayScores(1, 7, "mp.score_ic_points|".." #MultiScore.7.1#".." |mp.score_ic_bases|".." #MultiScore.7.3#", "mp.score_ic_points|".." #MultiScore.7.4#".." |mp.score_ic_bases|".." #MultiScore.7.5#",2,1)
+		else
+			DisplayScores(1, 0, "mp.score_ic_points|".." #MultiScore.0.1# / #MultiScore.0.2#".." |mp.score_ic_bases|".." #MultiScore.0.3#", "mp.score_ic_points|".." #MultiScore.0.4# / #MultiScore.0.2#".." |mp.score_ic_bases|".." #MultiScore.0.5#",2,1)
+			DisplayScores(1, 1, "mp.score_ic_points|".." #MultiScore.1.1# / #MultiScore.1.2#".." |mp.score_ic_bases|".." #MultiScore.1.3#", "mp.score_ic_points|".." #MultiScore.1.4# / #MultiScore.1.2#".." |mp.score_ic_bases|".." #MultiScore.1.5#",2,1)
+			DisplayScores(1, 2, "mp.score_ic_points|".." #MultiScore.2.1# / #MultiScore.2.2#".." |mp.score_ic_bases|".." #MultiScore.2.3#", "mp.score_ic_points|".." #MultiScore.2.4# / #MultiScore.2.2#".." |mp.score_ic_bases|".." #MultiScore.2.5#",2,1)
+			DisplayScores(1, 3, "mp.score_ic_points|".." #MultiScore.3.1# / #MultiScore.3.2#".." |mp.score_ic_bases|".." #MultiScore.3.3#", "mp.score_ic_points|".." #MultiScore.3.4# / #MultiScore.3.2#".." |mp.score_ic_bases|".." #MultiScore.3.5#",2,1)
+			DisplayScores(1, 4, "mp.score_ic_points|".." #MultiScore.4.1# / #MultiScore.4.2#".." |mp.score_ic_bases|".." #MultiScore.4.3#", "mp.score_ic_points|".." #MultiScore.4.4# / #MultiScore.4.2#".." |mp.score_ic_bases|".." #MultiScore.4.5#",2,1)
+			DisplayScores(1, 5, "mp.score_ic_points|".." #MultiScore.5.1# / #MultiScore.5.2#".." |mp.score_ic_bases|".." #MultiScore.5.3#", "mp.score_ic_points|".." #MultiScore.5.4# / #MultiScore.5.2#".." |mp.score_ic_bases|".." #MultiScore.5.5#",2,1)
+			DisplayScores(1, 6, "mp.score_ic_points|".." #MultiScore.6.1# / #MultiScore.6.2#".." |mp.score_ic_bases|".." #MultiScore.6.3#", "mp.score_ic_points|".." #MultiScore.6.4# / #MultiScore.6.2#".." |mp.score_ic_bases|".." #MultiScore.6.5#",2,1)
+			DisplayScores(1, 7, "mp.score_ic_points|".." #MultiScore.7.1# / #MultiScore.7.2#".." |mp.score_ic_bases|".." #MultiScore.7.3#", "mp.score_ic_points|".." #MultiScore.7.4# / #MultiScore.7.2#".." |mp.score_ic_bases|".." #MultiScore.7.5#",2,1)
+		end
+	end
+
+	if table.getn(MultiScore) ~= 0 then
+		for i = 0, 3 do
+			MultiScore[i][1] = Mission.AlliedCapturePoints
+			MultiScore[i][2] = Mission.CapturePointLimit
+			MultiScore[i][3] = Mission.AlliedCBCounter
+			MultiScore[i][4] = Mission.JapaneseCapturePoints
+			MultiScore[i][5] = Mission.JapaneseCBCounter
+		end
+
+		for i = 4, 7 do
+			MultiScore[i][1] = Mission.AlliedCapturePoints
+			MultiScore[i][2] = Mission.CapturePointLimit
+			MultiScore[i][3] = Mission.AlliedCBCounter
+			MultiScore[i][4] = Mission.JapaneseCapturePoints
+			MultiScore[i][5] = Mission.JapaneseCBCounter
+		end
+	end
+end
+
+function luaCheckCapturePointlimit()
+-- MissionEnd1
+	--if Mission.CapturePointLimit == 0 and Mission.TimeLimit == 0 then
+	if Mission.CapturePointLimit == 0 then
+-- RELEASE_LOGOFF  		luaLog("CapturePointLimit 0, adjusting victory points...")
+		luaGiveCapturePoints()
+	elseif not Mission.TimeLimitReached then
+		luaGiveCapturePoints()
+		if Mission.CapturePointLimit <= Mission.AlliedCapturePoints or Mission.CapturePointLimit <= Mission.JapaneseCapturePoints then
+			if Mission.AlliedCapturePoints == Mission.JapaneseCapturePoints then
+				luaGiveCapturePoints()
+				elseif Mission.AlliedCapturePoints > Mission.JapaneseCapturePoints then
+					if not Mission.MissionEnd then
+						-- allied wins
+						--todo mas kamera dobas, otletek!!!
+						luaMissionCompletedNew(Mission.CommandBuildings[1], "", nil, nil, nil, PARTY_ALLIED)
+						Scoring_RealPlayTimeRunning(false)
+						luaObj_Completed("primary", 1)
+						--luaObj_Completed("primary", 3)
+
+						luaObj_Failed("primary", 2)
+						--luaObj_Failed("primary", 4)
+						Mission.MissionEnd = true
+					end
+				elseif Mission.JapaneseCapturePoints > Mission.AlliedCapturePoints then
+					if not Mission.MissionEnd then
+						-- japanese wins
+						--todo mas kamera dobas, otletek!!!
+						luaMissionCompletedNew(Mission.CommandBuildings[1], "", nil, nil, nil, PARTY_JAPANESE)
+						Scoring_RealPlayTimeRunning(false)
+						luaObj_Completed("primary", 2)
+						--luaObj_Completed("primary", 4)
+
+						luaObj_Failed("primary", 1)
+						--luaObj_Failed("primary", 3)
+						Mission.MissionEnd = true
+					end
+				end
+			end
+	end
+end
+
+function luaGiveCapturePoints()
+	if not Mission.MissionEnd then
+		local USCB = 0
+		local JapCB = 0
+		for idx, unit in pairs(Mission.CommandBuildings) do
+-- RELEASE_LOGOFF  --			luaLog(" Mission.CommandBuildings idx: "..idx.." | party: "..tostring(unit.Party))
+			if unit.Party == PARTY_ALLIED then
+				if USCB == 0 then
+					USCB = 1
+				else
+					USCB = (USCB + 1)
+				end
+				--Mission.AlliedCapturePoints = Mission.AlliedCapturePoints + 1
+			elseif unit.Party == PARTY_JAPANESE then
+				if JapCB == 0 then
+					JapCB = 1
+				else
+					JapCB = (JapCB + 1)
+				end
+				--Mission.JapaneseCapturePoints = Mission.JapaneseCapturePoints + 1
+			end
+		end
+		for idx, unit in pairs(Mission.CommandPosts) do
+-- RELEASE_LOGOFF  --			luaLog(" Mission.CommandBuildings idx: "..idx.." | party: "..tostring(unit.Party))
+			if unit.Party == PARTY_ALLIED then
+				if USCB == 0 then
+					USCB = 1
+				else
+					USCB = (USCB + 1)
+				end
+				--Mission.AlliedCapturePoints = Mission.AlliedCapturePoints + 1
+			elseif unit.Party == PARTY_JAPANESE then
+				if JapCB == 0 then
+					JapCB = 1
+				else
+					JapCB = (JapCB + 1)
+				end
+				--Mission.JapaneseCapturePoints = Mission.JapaneseCapturePoints + 1
+			end
+		end
+		Mission.USCVs = luaRemoveDeadsFromTable(Mission.USCVs)
+		USCB = USCB + luaCountTable(Mission.USCVs)
+		Mission.JPCVs = luaRemoveDeadsFromTable(Mission.JPCVs)
+		JapCB = JapCB + luaCountTable(Mission.JPCVs)
+
+		USCB = USCB * Mission.CBMultiplier
+		JapCB = JapCB * Mission.CBMultiplier
+
+		Mission.AlliedCapturePoints = Mission.AlliedCapturePoints + luaRound(USCB)
+		Mission.JapaneseCapturePoints = Mission.JapaneseCapturePoints + luaRound(JapCB)
+	end
+end
+
+function luaSetTimeLimit()
+	Mission.TimeLimit = 0
+	luaCaptureCounters()
+end
+
+function luaCheckTimelimit()
+-- RELEASE_LOGOFF  --		luaLog("Checking Timelimit")
+		if Mission.TimeLimit == 0	then
+-- RELEASE_LOGOFF  			luaLog("...")
+-- RELEASE_LOGOFF  			luaLog("!!!!!!! STARTING MISSION END v2!!!!!!")
+-- RELEASE_LOGOFF  			luaLog("...")
+			luaMissionEnd2()
+		end
+end
+
+function luaMissionEnd2()
+	Mission.TimeLimitReached = true
+-- todo camera meghivas objectiva completere allitas stb
+	if Mission.AlliedCapturePoints == Mission.JapaneseCapturePoints then
+-- RELEASE_LOGOFF  		luaLog("Checking until is not equal")
+		luaGiveCapturePoints()
+	elseif Mission.AlliedCapturePoints > Mission.JapaneseCapturePoints then
+		if not Mission.MissionEnd then
+			-- allied wins
+			--todo mas kamera dobas
+			luaMissionCompletedNew(Mission.CommandBuildings[1], "", nil, nil, nil, PARTY_ALLIED)
+			Scoring_RealPlayTimeRunning(false)
+			luaObj_Completed("primary", 1)
+			--luaObj_Completed("primary", 3)
+
+			luaObj_Failed("primary", 2)
+			--luaObj_Failed("primary", 4)
+-- RELEASE_LOGOFF  			luaLog("!!!!!!!MISSION END v2!!!!!!")
+			Mission.MissionEnd = true
+		end
+	elseif Mission.AlliedCapturePoints < Mission.JapaneseCapturePoints then
+		if not Mission.MissionEnd then
+			-- japanese wins
+			--todo mas kamera dobas
+			luaMissionCompletedNew(Mission.CommandBuildings[1], "", nil, nil, nil, PARTY_JAPANESE)
+			Scoring_RealPlayTimeRunning(false)
+			luaObj_Completed("primary", 2)
+			--luaObj_Completed("primary", 4)
+			luaObj_Failed("primary", 1)
+			--luaObj_Failed("primary", 3)
+-- RELEASE_LOGOFF  			luaLog("!!!!!!!MISSION END v2!!!!!!")
+			Mission.MissionEnd = true
+		end
+	end
+end
+
+function luaSetObjectives()
+	if Mission.IC4v4 == true then
+		if Mission.MissionInit then
+
+		-- allied objs
+		luaObj_Add("primary", 1, {Mission.CB1, Mission.CB2, Mission.CB3, Mission.CB4, Mission.USNCV1, Mission.USNCV2, Mission.USNCV4, Mission.JPCV1, Mission.JPCV2, Mission.JPCV4})
+		--luaObj_Add("primary", 3, {Mission.USNCV1, Mission.USNCV2, Mission.USNCV3, Mission.USNCV4, Mission.JPCV1, Mission.JPCV2, Mission.JPCV3, Mission.JPCV4})
+		-- japanese objs
+		luaObj_Add("primary", 2, {Mission.CB1, Mission.CB2, Mission.CB3, Mission.CB4, Mission.USNCV1, Mission.USNCV2, Mission.USNCV4, Mission.JPCV1, Mission.JPCV2, Mission.JPCV4})
+		--luaObj_Add("primary", 4, {Mission.USNCV1, Mission.USNCV2, Mission.USNCV3, Mission.USNCV4, Mission.JPCV1, Mission.JPCV2, Mission.JPCV3, Mission.JPCV4})
+		Mission.MissionInit = false
+		end
+	end
+
+	if Mission.IC3v3 == true then
+		if Mission.MissionInit then
+
+		-- allied objs
+		luaObj_Add("primary", 1, {Mission.CB1, Mission.CB2, Mission.CB3, Mission.CB4, Mission.USNCV1, Mission.USNCV2, Mission.USNCV4, Mission.JPCV1, Mission.JPCV2, Mission.JPCV4})
+		--luaObj_Add("primary", 3, {Mission.USNCV1, Mission.USNCV2, Mission.USNCV3, Mission.USNCV4, Mission.JPCV1, Mission.JPCV2, Mission.JPCV3, Mission.JPCV4})
+		-- japanese objs
+		luaObj_Add("primary", 2, {Mission.CB1, Mission.CB2, Mission.CB3, Mission.CB4, Mission.USNCV1, Mission.USNCV2, Mission.USNCV4, Mission.JPCV1, Mission.JPCV2, Mission.JPCV4})
+		--luaObj_Add("primary", 4, {Mission.USNCV1, Mission.USNCV2, Mission.USNCV3, Mission.USNCV4, Mission.JPCV1, Mission.JPCV2, Mission.JPCV3, Mission.JPCV4})
+		Mission.MissionInit = false
+		end
+	end
+
+	if Mission.IC2v2 == true then
+		if Mission.MissionInit then
+
+		-- allied objs
+		luaObj_Add("primary", 1, {Mission.CB2, Mission.CB3, Mission.USNCV2, Mission.USNCV3, Mission.JPCV1, Mission.JPCV3})
+		--luaObj_Add("primary", 3, {Mission.USNCV1, Mission.USNCV2, Mission.USNCV3, Mission.JPCV1, Mission.JPCV2, Mission.JPCV3})
+		-- japanese objs
+		luaObj_Add("primary", 2, {Mission.CB2, Mission.CB3, Mission.USNCV2, Mission.USNCV3, Mission.JPCV1, Mission.JPCV3})
+		--luaObj_Add("primary", 4, {Mission.USNCV1, Mission.USNCV2, Mission.USNCV3, Mission.JPCV1, Mission.JPCV2, Mission.JPCV3})
+		Mission.MissionInit = false
+		end
+	end
+
+	if Mission.IC1v1 == true then
+		if Mission.MissionInit then
+-- RELEASE_LOGOFF  		luaLog("Hint mejelenites")
+
+		-- allied objs
+		luaObj_Add("primary", 1, {Mission.CB2, Mission.CB3, Mission.USNCV2, Mission.JPCV1})
+		--luaObj_Add("primary", 3, {Mission.USNCV1, Mission.USNCV2, Mission.JPCV1, Mission.JPCV2})
+		-- japanese objs
+		luaObj_Add("primary", 2, {Mission.CB2, Mission.CB3, Mission.USNCV2, Mission.JPCV1})
+		--luaObj_Add("primary", 4, {Mission.USNCV1, Mission.USNCV2, Mission.JPCV1, Mission.JPCV2})
+		Mission.MissionInit = false
+		end
+	end
+end
+
+function luaCheckCBParty()
+
+	Mission.AlliedCBCounter = 0
+	Mission.JapaneseCBCounter = 0
+
+	for idx,unit in pairs(Mission.CommandBuildings) do
+		if unit.Party == PARTY_ALLIED then
+			Mission.AlliedCBCounter = Mission.AlliedCBCounter + 1
+		elseif unit.Party == PARTY_JAPANESE then
+			Mission.JapaneseCBCounter = Mission.JapaneseCBCounter + 1
+		end
+	end
+--[[
+	if table.getn(luaRemoveDeadsFromTable(Mission.USCVs)) == 0 then
+		local endEnt
+		if luaRemoveDeadsFromTable(Mission.JPCVs)[1] then
+			endEnt = luaRemoveDeadsFromTable(Mission.JPCVs)[1]
+		else
+			endEnt = Mission.CommandBuildings[1]
+		end
+	luaMissionCompletedNew(endEnt, "", nil, nil, nil, PARTY_JAPANESE)
+		Scoring_RealPlayTimeRunning(false)
+-- RELEASE_LOGOFF  		luaLog("luaMissionCompleted: ")
+		luaObj_Completed("primary", 2)
+		--luaObj_Completed("primary", 4)
+		luaObj_Failed("primary", 1)
+		--luaObj_Failed("primary", 3)
+		Mission.MissionEnd = true
+	end
+
+	if table.getn(luaRemoveDeadsFromTable(Mission.JPCVs)) == 0 then
+		local endEnt
+		if luaRemoveDeadsFromTable(Mission.USCVs)[1] then
+			endEnt = luaRemoveDeadsFromTable(Mission.USCVs)[1]
+		else
+			endEnt = Mission.CommandBuildings[1]
+		end
+		luaMissionCompletedNew(endEnt, "", nil, nil, nil, PARTY_ALLIED)
+		Scoring_RealPlayTimeRunning(false)
+-- RELEASE_LOGOFF  		luaLog("luaMissionCompleted: ")
+		luaObj_Completed("primary", 1)
+		--luaObj_Completed("primary", 3)
+		luaObj_Failed("primary", 2)
+		--luaObj_Failed("primary", 4)
+		Mission.MissionEnd = true
+	end
+]]
+	if Mission.AlliedCBCounter == 0 then
+		luaMissionCompletedNew(Mission.CommandBuildings[1], "", nil, nil, nil, PARTY_JAPANESE)
+		Scoring_RealPlayTimeRunning(false)
+-- RELEASE_LOGOFF  		luaLog("luaMissionCompleted: ")
+		luaObj_Completed("primary", 2)
+		--luaObj_Completed("primary", 4)
+		luaObj_Failed("primary", 1)
+		--luaObj_Failed("primary", 3)
+		Mission.MissionEnd = true
+	end
+
+	if Mission.JapaneseCBCounter == 0 then
+		luaMissionCompletedNew(Mission.CommandBuildings[1], "", nil, nil, nil, PARTY_ALLIED)
+		Scoring_RealPlayTimeRunning(false)
+-- RELEASE_LOGOFF  		luaLog("luaMissionCompleted: ")
+		luaObj_Completed("primary", 1)
+		--luaObj_Completed("primary", 3)
+		luaObj_Failed("primary", 2)
+		--luaObj_Failed("primary", 4)
+		Mission.MissionEnd = true
+	end
+
+	--cp
+	for idx,unit in pairs(Mission.CommandPosts) do
+		if unit.Party == PARTY_ALLIED then
+			Mission.AlliedCBCounter = Mission.AlliedCBCounter + 1
+		elseif unit.Party == PARTY_JAPANESE then
+			Mission.JapaneseCBCounter = Mission.JapaneseCBCounter + 1
+		end
+	end
+
+	Mission.USCVs = luaRemoveDeadsFromTable(Mission.USCVs)
+	Mission.AlliedCBCounter = Mission.AlliedCBCounter + luaCountTable(Mission.USCVs)
+	Mission.JPCVs = luaRemoveDeadsFromTable(Mission.JPCVs)
+	Mission.JapaneseCBCounter = Mission.JapaneseCBCounter + luaCountTable(Mission.JPCVs)
+
+end
+
+
+function luaShowMissionHint()
+	ShowHint("ID_Hint_IslandCapture01")
+	-- mode description hint overlay
+end
+
+
+function luaCheckPlayerUnits()
+
+	local deadUnits = {}
+-- RELEASE_LOGOFF  --	luaLog(" Checking players units...")
+	if table.getn(luaRemoveDeadsFromTable(Mission.USTable)) ~= 0 then
+		for index, unit in pairs (luaRemoveDeadsFromTable(Mission.USTable)) do
+			if unit.Dead then
+-- RELEASE_LOGOFF  				luaLog("  dead "..tostring(unit.Class.Type).." found in luaRemoveDeadsFromTable(Mission.USTable)")
+				table.insert(deadUnits, unit)
+				--luaManageDeadUnit(unit.Class.Type, unit.Party)
+				table.remove(luaRemoveDeadsFromTable(Mission.USTable), index)
+			end
+		end
+	end
+
+	if table.getn(luaRemoveDeadsFromTable(Mission.JapTable)) ~= 0 then
+		for index, unit in pairs (luaRemoveDeadsFromTable(Mission.JapTable)) do
+			if unit.Dead then
+-- RELEASE_LOGOFF  				luaLog("  dead "..tostring(unit.Class.Type).." found in luaRemoveDeadsFromTable(Mission.JapTable)")
+				--luaManageDeadUnit(unit.Class.Type, unit.Party)
+				table.insert(deadUnits, unit)
+				table.remove(luaRemoveDeadsFromTable(Mission.JapTable), index)
+			end
+		end
+	end
+
+	luaManageDeadUnit(deadUnits)
+
+	local usships = luaGetShipsAroundCoordinate({["x"] = 0, ["y"] = 0, ["z"] = 0}, 30000, PARTY_ALLIED, "own")
+	local japships = luaGetShipsAroundCoordinate({["x"] = 0, ["y"] = 0, ["z"] = 0}, 30000, PARTY_JAPANESE, "own")
+	local japplanes = luaGetPlanesAroundCoordinate({["x"] = 0, ["y"] = 0, ["z"] = 0}, 30000, PARTY_JAPANESE, "own")
+	local usplanes = luaGetPlanesAroundCoordinate({["x"] = 0, ["y"] = 0, ["z"] = 0}, 30000, PARTY_ALLIED, "own")
+
+	if usships ~= nil then
+		for index, unit in pairs (usships) do
+			if not luaIsInside(unit, luaRemoveDeadsFromTable(Mission.USTable)) then
+-- RELEASE_LOGOFF  				luaLog("  new US "..tostring(unit.Class.Type).." found, inserting it to luaRemoveDeadsFromTable(Mission.USTable)")
+				table.insert(luaRemoveDeadsFromTable(Mission.USTable), unit)
+			end
+		end
+	end
+	if japships ~= nil then
+		for index, unit in pairs (japships) do
+			if not luaIsInside(unit, luaRemoveDeadsFromTable(Mission.JapTable)) then
+-- RELEASE_LOGOFF  				luaLog("  new Japanese "..tostring(unit.Class.Type).." found, inserting it to luaRemoveDeadsFromTable(Mission.JapTable)")
+				table.insert(luaRemoveDeadsFromTable(Mission.JapTable), unit)
+			end
+		end
+	end
+	if usplanes ~= nil then
+		for index, unit in pairs (usplanes) do
+			if not luaIsInside(unit, luaRemoveDeadsFromTable(Mission.USTable)) then
+-- RELEASE_LOGOFF  				luaLog("  new US "..tostring(unit.Class.Type).." found, inserting it to luaRemoveDeadsFromTable(Mission.USTable)")
+				table.insert(luaRemoveDeadsFromTable(Mission.USTable), unit)
+			end
+		end
+	end
+	if japplanes ~= nil then
+		for index, unit in pairs (japplanes) do
+			if not luaIsInside(unit, luaRemoveDeadsFromTable(Mission.JapTable)) then
+-- RELEASE_LOGOFF  				luaLog("  new Japanese "..tostring(unit.Class.Type).." found, inserting it to luaRemoveDeadsFromTable(Mission.JapTable)")
+				table.insert(luaRemoveDeadsFromTable(Mission.JapTable), unit)
+			end
+		end
+	end
+end
+
+function luaManageDeadUnit(deadUnits)
+
+	for idx,unit in pairs(deadUnits) do
+
+		local pointsToCalc
+
+		if unit.Party == PARTY_ALLIED then
+			pointsToCalc = Mission.JapaneseCapturePoints
+		elseif unit.Party == PARTY_JAPANESE then
+			pointsToCalc = Mission.AlliedCapturePoints
+		end
+
+		if unit.Class.Type == "BattleShip" then
+			pointsToCalc = pointsToCalc + Mission.UnitValue.BattleShip
+		elseif unit.Class.Type == "Cruiser" then
+			pointsToCalc = pointsToCalc + Mission.UnitValue.Cruiser
+		elseif unit.Class.Type == "Destroyer" then
+			pointsToCalc = pointsToCalc + Mission.UnitValue.Destroyer
+		elseif unit.Class.Type == "MotherShip" then
+			pointsToCalc = pointsToCalc + Mission.UnitValue.MotherShip
+		elseif unit.Class.Type == "TorpedoBoat" then
+			pointsToCalc = pointsToCalc + Mission.UnitValue.TorpedoBoat
+		elseif unit.Class.Type == "Submarine"  then
+			pointsToCalc = pointsToCalc + Mission.UnitValue.Submarine
+		elseif unit.Class.Type == "LandingShip" then
+			pointsToCalc = pointsToCalc + Mission.UnitValue.LandingShip
+		elseif unit.Class.Type == "Cargo" then
+			pointsToCalc = pointsToCalc + Mission.UnitValue.Cargo
+		elseif unit.Class.Type == "Fighter" then
+			pointsToCalc = pointsToCalc + Mission.UnitValue.Fighter
+		elseif unit.Class.Type == "DiveBomber" then
+			pointsToCalc = pointsToCalc + Mission.UnitValue.DiveBomber
+		elseif unit.Class.Type == "TorpedoBomber" then
+			pointsToCalc = pointsToCalc + Mission.UnitValue.TorpedoBomber
+		elseif unit.Class.Type == "LevelBomber" then
+			pointsToCalc = pointsToCalc + Mission.UnitValue.LevelBomber
+		elseif unit.Class.Type == "LargeReconPlane" then
+			pointsToCalc = pointsToCalc + Mission.UnitValue.LargeReconPlane
+		elseif unit.Class.Type == "SmallReconPlane" then
+			pointsToCalc = pointsToCalc + Mission.UnitValue.SmallReconPlane
+		elseif unit.Class.Type == "Kamikaze" then
+			pointsToCalc = pointsToCalc + Mission.UnitValue.Kamikaze
+		end
+	end
+end

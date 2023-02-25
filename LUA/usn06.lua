@@ -1,0 +1,228 @@
+GuiScreen = {}
+
+    GuiScreen["geOrder"] = 0
+    GuiScreen["1_pri_Group"] = {
+        ["Pos"] = { 0.528125, 0.500000, -99.000000 },
+		["Size"] = { 0.500000, 0.500000 },
+		["Pivot"] = { 0.500000, 0.500000 },
+		["Rotate"] = -0.174533,
+		["geOrder"] = 1,
+		["IJN_LST_1_Model"] = {
+            ["Pos"] = { 0.272000, 0.266667, 0.000000 },
+			["Size"] = { 0.001042, 0.001389 },
+			["Pivot"] = { 0.500000, 0.500000 },
+			["Rotate"] = 3.141593,
+			["geOrder"] = 3,
+			["ModelName"] = "models\\gui\\map\\units\\landingmap.MMOD",
+			["ModelTextureOverride"] = "models\\gui\\map\\units\\FE_shipmap_jap.dds",
+			["ScaleVector"] = { 0.000100, 0.000100, 0.000100 },
+			["RotationEuler"] = { 0.000000, -1.570796, 0.000000 },
+		},
+		["IJN_LST_2_Model"] = {
+            ["Pos"] = { 0.243750, 0.041667, 0.000000 },
+			["Size"] = { 0.001042, 0.001389 },
+			["Pivot"] = { 0.500000, 0.500000 },
+			["Rotate"] = 3.263766,
+			["geOrder"] = 1,
+			["ModelName"] = "models\\gui\\map\\units\\landingmap.MMOD",
+			["ModelTextureOverride"] = "models\\gui\\map\\units\\FE_shipmap_jap.dds",
+			["ScaleVector"] = { 0.000100, 0.000100, 0.000100 },
+			["RotationEuler"] = { 0.000000, -1.570796, 0.000000 },
+		},
+		["IJN_LST_3_Model"] = {
+            ["Pos"] = { 0.203250, 0.110417, 0.000000 },
+			["Size"] = { 0.001042, 0.001389 },
+			["Pivot"] = { 0.500000, 0.500000 },
+			["Rotate"] = 3.281219,
+			["geOrder"] = 2,
+			["ModelName"] = "models\\gui\\map\\units\\landingmap.MMOD",
+			["ModelTextureOverride"] = "models\\gui\\map\\units\\FE_shipmap_jap.dds",
+			["ScaleVector"] = { 0.000100, 0.000100, 0.000100 },
+			["RotationEuler"] = { 0.000000, -1.570796, 0.000000 },
+		},
+		["IJN_LST_4_Model"] = {
+            ["Pos"] = { 0.224084, 0.220834, 0.000000 },
+			["Size"] = { 0.001042, 0.001389 },
+			["Pivot"] = { 0.500000, 0.500000 },
+			["Rotate"] = 3.281219,
+			["geOrder"] = 9,
+			["ModelName"] = "models\\gui\\map\\units\\biglandingmap.MMOD",
+			["ModelTextureOverride"] = "models\\gui\\map\\units\\FE_shipmap_jap.dds",
+			["ScaleVector"] = { 0.000100, 0.000100, 0.000100 },
+			["RotationEuler"] = { 0.000000, -1.570796, 0.000000 },
+		},
+		["IJN_LST_5_Model"] = {
+            ["Pos"] = { 0.261583, 0.141667, 0.000000 },
+			["Size"] = { 0.001042, 0.001389 },
+			["Pivot"] = { 0.500000, 0.500000 },
+			["Rotate"] = 3.263766,
+			["geOrder"] = 8,
+			["ModelName"] = "models\\gui\\map\\units\\biglandingmap.MMOD",
+			["ModelTextureOverride"] = "models\\gui\\map\\units\\FE_shipmap_jap.dds",
+			["ScaleVector"] = { 0.000100, 0.000100, 0.000100 },
+			["RotationEuler"] = { 0.000000, -1.570796, 0.000000 },
+		},
+		["IJN_LST_6_Model"] = {
+            ["Pos"] = { 0.184500, 0.004167, 0.000000 },
+			["Size"] = { 0.001042, 0.001389 },
+			["Pivot"] = { 0.500000, 0.500000 },
+			["Rotate"] = 3.351032,
+			["geOrder"] = 7,
+			["ModelName"] = "models\\gui\\map\\units\\biglandingmap.MMOD",
+			["ModelTextureOverride"] = "models\\gui\\map\\units\\FE_shipmap_jap.dds",
+			["ScaleVector"] = { 0.000100, 0.000100, 0.000100 },
+			["RotationEuler"] = { 0.000000, -1.570796, 0.000000 },
+		},
+		["maparrow_7_Icon"] = {
+            ["Pos"] = { 0.258333, 0.380556, 55.000000 },
+			["Size"] = { 0.114583, 0.111111 },
+			["Pivot"] = { 0.640978, 0.466667 },
+			["Rotate"] = 4.712389,
+			["HighColor"] = { 0.713726, 0.231373, 0.258824, 1.000000 },
+			["BlendFactor"] = 1.000000,
+			["geOrder"] = 5,
+			["States"] = {
+				[1] = {
+					["Texture"] = "fe\\map\\arrow2.tga",
+				},
+			},
+		},
+		["maparrow_8_Icon"] = {
+            ["Pos"] = { 0.396961, 0.303241, 55.000000 },
+			["Size"] = { 0.166667, 0.097222 },
+			["Pivot"] = { 0.500000, 0.500000 },
+			["Rotate"] = 2.862340,
+			["HighColor"] = { 0.117647, 0.529412, 1.000000, 1.000000 },
+			["BlendFactor"] = 1.000000,
+			["geOrder"] = 4,
+			["States"] = {
+				[1] = {
+					["Texture"] = "fe\\map\\arrow2.tga",
+				},
+			},
+		},
+		["USN_Sub_01_Model"] = {
+            ["Pos"] = { 0.530281, 0.359120, 0.000000 },
+			["Size"] = { 0.001042, 0.001389 },
+			["Pivot"] = { 0.500000, 0.500000 },
+			["Rotate"] = 1.274090,
+			["geOrder"] = 0,
+			["ModelName"] = "models\\gui\\map\\units\\submarinemap.MMOD",
+			["ModelTextureOverride"] = "models\\gui\\map\\units\\FE_shipmap_us.dds",
+			["ScaleVector"] = { 0.000100, 0.000100, 0.000080 },
+			["RotationEuler"] = { 0.000000, -1.570796, 0.000000 },
+		},
+	}
+    GuiScreen["1_pri_objective_Group"] = {
+        ["Pos"] = { 0.500000, 0.500000, 0.000000 },
+		["Size"] = { 0.500000, 0.500000 },
+		["Pivot"] = { 0.500000, 0.500000 },
+		["geOrder"] = 2,
+		["mapmarker_pri_1_Icon"] = {
+            ["Pos"] = { 0.297917, 0.272222, 0.000000 },
+			["Size"] = { 0.046875, 0.062500 },
+			["Pivot"] = { 0.500000, 0.500000 },
+			["Rotate"] = 24.720875,
+			["geOrder"] = 0,
+			["AutoRotate"] = 1.000000,
+			["States"] = {
+				[1] = {
+					["Texture"] = "interface\\textures\\fe\\map\\map_obj_primary.tga",
+				},
+			},
+		},
+		["mapmarker_pri_2_Icon"] = {
+            ["Pos"] = { 0.256045, 0.215395, 0.000000 },
+			["Size"] = { 0.062500, 0.083333 },
+			["Pivot"] = { 0.500000, 0.500000 },
+			["Rotate"] = 24.720875,
+			["geOrder"] = 1,
+			["AutoRotate"] = 1.000000,
+			["States"] = {
+				[1] = {
+					["Texture"] = "interface\\textures\\fe\\map\\map_obj_primary.tga",
+				},
+			},
+		},
+		["mapmarker_pri_3_Icon"] = {
+            ["Pos"] = { 0.303735, 0.149358, 0.000000 },
+			["Size"] = { 0.062500, 0.083333 },
+			["Pivot"] = { 0.500000, 0.500000 },
+			["Rotate"] = 13.722494,
+			["geOrder"] = 2,
+			["AutoRotate"] = 1.000000,
+			["States"] = {
+				[1] = {
+					["Texture"] = "interface\\textures\\fe\\map\\map_obj_primary.tga",
+				},
+			},
+		},
+		["mapmarker_pri_4_Icon"] = {
+            ["Pos"] = { 0.250000, 0.102778, 0.000000 },
+			["Size"] = { 0.046875, 0.062500 },
+			["Pivot"] = { 0.500000, 0.500000 },
+			["Rotate"] = 13.722494,
+			["geOrder"] = 4,
+			["AutoRotate"] = 1.000000,
+			["States"] = {
+				[1] = {
+					["Texture"] = "interface\\textures\\fe\\map\\map_obj_primary.tga",
+				},
+			},
+		},
+		["mapmarker_pri_5_Icon"] = {
+            ["Pos"] = { 0.299567, 0.044498, 0.000000 },
+			["Size"] = { 0.046875, 0.062500 },
+			["Pivot"] = { 0.500000, 0.500000 },
+			["Rotate"] = 13.722494,
+			["geOrder"] = 5,
+			["AutoRotate"] = 1.000000,
+			["States"] = {
+				[1] = {
+					["Texture"] = "interface\\textures\\fe\\map\\map_obj_primary.tga",
+				},
+			},
+		},
+		["mapmarker_pri_6_Icon"] = {
+            ["Pos"] = { 0.245833, -0.004167, 0.000000 },
+			["Size"] = { 0.062500, 0.083333 },
+			["Pivot"] = { 0.500000, 0.500000 },
+			["Rotate"] = 13.722494,
+			["geOrder"] = 6,
+			["AutoRotate"] = 1.000000,
+			["States"] = {
+				[1] = {
+					["Texture"] = "interface\\textures\\fe\\map\\map_obj_primary.tga",
+				},
+			},
+		},
+	}
+    GuiScreen["BG_01_Group"] = {
+        ["Pos"] = { 0.627083, 0.341666, 0.000000 },
+		["Size"] = { 0.500000, 0.500000 },
+		["Pivot"] = { 0.500000, 0.500000 },
+		["geOrder"] = 0,
+		["bg_04_Icon"] = {
+            ["Pos"] = { 0.268500, 0.333611, 6.000000 },
+			["Size"] = { 1.041667, 1.388889 },
+			["Pivot"] = { 0.500000, 0.500000 },
+			["geOrder"] = 1,
+			["DelayedTextureLoad"] = true,
+			["States"] = {
+				[1] = {
+					["Texture"] = "interface\\textures\\fe\\briefings\\USN06.tga",
+				},
+			},
+		},
+		["IJN_Shipyard_Model"] = {
+            ["Pos"] = { 0.275000, 0.991667, 0.000000 },
+			["Size"] = { 0.500000, 0.500000 },
+			["Pivot"] = { 0.500000, 0.500000 },
+			["Rotate"] = 5.846853,
+			["geOrder"] = 0,
+			["ModelName"] = "models\\gui\\map\\units\\shipyardmap.MMOD",
+			["ModelTextureOverride"] = "models\\gui\\map\\units\\FE_buildingsmap_jap.dds",
+			["ScaleVector"] = { 0.000080, 0.000080, 0.000080 },
+			["RotationEuler"] = { 0.000000, -1.570796, 0.000000 },
+		},
+    }

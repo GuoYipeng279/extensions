@@ -1,0 +1,2 @@
+FailureDebug = false	-- a hajok 100%-ban failuret kapnak szekcio talalattol (ShipGlobals.lua)
+TestMissionTree = false	-- a Training Grounds menupont alatt megtalalhatoak a teszt missionok is (MissionTree.lua, FE_content_02_mission.lua)  

@@ -1,0 +1,283 @@
+ParticleSystem System0
+{
+	Param MaxEmitters 0.0000 Const 2.0000
+	Param FrameRate 0.0000 Const 30.0000
+	Param LocalSpace 0
+	Param UnderWater 0
+	Param PerPixelNormal 1
+	Param SoftParticle 1
+	Param HasReflection 1
+	Param LODInnerDistance 0.0000 Const 3250.0000
+	Param LODOuterDistance 0.0000 Const 7500.0000
+	Param ExtraRadius 0.0000 Const 0.0000
+	Param ColorBurn 0.0000 Const 80.0000
+	Param Ambient:R 0.0000 Const 128.0000
+	Param Ambient:G 0.0000 Const 128.0000
+	Param Ambient:B 0.0000 Const 128.0000
+	Param Diffuse:R 0.0000 Const 128.0000
+	Param Diffuse:G 0.0000 Const 128.0000
+	Param Diffuse:B 0.0000 Const 128.0000
+	Param DiffuseAngle 0.0000 Const 45.0000
+	Param Background:R 0.0000 Const 128.0000
+	Param Background:G 0.0000 Const 128.0000
+	Param Background:B 0.0000 Const 128.0000
+	Param FogDensity 0.0000 Const 0.0000
+	Param MaxParticleSize 20.8355
+	Layer fust
+	{
+		Param MaxParticles 5000.0000 Const 5000.0000
+		Param Sort 0
+		Param RenderPriority 0.0000 Const 12.0000
+		Param LODFadeIn 0.0000 Const 0.0000
+		Param LODFadeInWidth 0.0000 Const 0.0000
+		Param LODFadeOut 1.0000 Const 7000.0000
+		Param LODFadeOutWidth 0.0000 Const 0.0000
+	}
+	Layer add
+	{
+		Param MaxParticles 5000.0000 Const 5000.0000
+		Param Sort 0
+		Param RenderPriority 0.0000 Const 10.0000
+		Param LODFadeIn 0.0000 Const 0.0000
+		Param LODFadeInWidth 0.0000 Const 0.0000
+		Param LODFadeOut 1.0000 Const 4000.0000
+		Param LODFadeOutWidth 0.0000 Const 0.0000
+	}
+	Emitter Emitter1Copy SphereEmitter
+	{
+		Param EmittedSpeed 0.0000 Const 1.0000
+		Param InnerRadius 0.0000 Const 0.0000
+		Param OuterRadius 0.0000 Linear 2 0.0000 0.0000 100.0000 1.0606 
+		Param Looping 0
+		Param FollowDirection 0
+		Param Stops 1
+		Param BornRatio 0.0000 Const 1.0000
+		Param Lifetime 0.0000 Const 0.0200
+		Param PartEmissionType PerSec
+		Param ParticleEmission 0.0000 Const 350.0000
+		Param EmitEmissionType PerSec
+		Param EmitterEmission 0.0000 Const 0.0000
+		Param Speed 0.0000 Const 0.0000
+		Param VerticalSpeed 0.0000 Const 0.0000
+		Param InheritedSpeed 0.0000 Const 0.0000
+		Param WindSensitivity 0.0000 Const 0.0000
+		Particle alpha SpriteParticle
+		{
+			Param Size 20.0000 Hermite 2 0.0000 0.8838 0.0000 0.0000 0.9995 0.0310 100.0000 4.0152 -1.0000 0.0000 0.0000 0.0000 
+			Param InitialRotation 100.0000 Const 180.0000
+			Param RotationSpeed 30.0000 Const 20.0000
+			Param RandomRotationDirection 1
+			Param EmitLight 0
+			Param Distort 0
+			Param Layer add
+			Param Shader Alpha
+			Param Texture p_fireball_a0000.dds
+			Param AnimOnOff 1
+			Param AnimStartFrame 0.0000 Const 13.0000
+			Param AnimEndFrame 0.0000 Const 20.0000
+			Param AnimPlaySpeed 35.0000 Const 15.0000
+			Param AnimRndStartFrame 0
+			Param AnimRandomPlay 0
+			Param AnimLoop 1
+			Param AnimFade 1
+			Param Stops 1
+			Param BornRatio 0.0000 Const 2.0000
+			Param Lifetime 0.0000 Const 0.6000
+			Param TerminateAfter 0.0000 Const 100.0000
+			Param WindSensitivity 0.0000 Const 0.0000
+			Param Speed 20.0000 Const 1.5000
+			Param VerticalSpeed 50.0000 Const 10.0000
+			Param InheritedSpeed 0.0000 Const 0.0000
+			Param Alpha 0.0000 Hermite 3 0.0000 0.0000 0.0000 0.0000 0.9978 0.0661 30.3030 0.9979 -1.0000 0.0000 0.9993 -0.0367 100.0000 0.0000 -1.0000 0.0000 0.0000 0.0000 
+			Param Color_R 0.0000 Const 1.0000
+			Param Color_G 0.0000 Const 0.8000
+			Param Color_B 0.0000 Const 1.0000
+		}
+		Particle muzzle SpriteParticle
+		{
+			Param Size 0.0000 Hermite 2 0.0000 0.5797 0.0000 0.0000 1.0000 0.0000 100.0000 3.9394 -1.0000 0.0000 0.0000 0.0000 
+			Param InitialRotation 0.0000 Const 0.0000
+			Param RotationSpeed 0.0000 Const 0.0000
+			Param RandomRotationDirection 0
+			Param EmitLight 0
+			Param Distort 0
+			Param Layer add
+			Param Shader Additive
+			Param Texture p_muzzle_0002.tga
+			Param AnimOnOff 0
+			Param AnimStartFrame 0.0000 Const 0.0000
+			Param AnimEndFrame 0.0000 Const 0.0000
+			Param AnimPlaySpeed 0.0000 Const 0.0000
+			Param AnimRndStartFrame 0
+			Param AnimRandomPlay 0
+			Param AnimLoop 1
+			Param AnimFade 0
+			Param Stops 0
+			Param BornRatio 0.0000 Const 1.5000
+			Param Lifetime 20.0000 Const 0.3000
+			Param TerminateAfter 0.0000 Const 100.0000
+			Param WindSensitivity 0.0000 Const 0.0000
+			Param Speed 0.0000 Const 0.0000
+			Param VerticalSpeed 50.0000 Const 9.0000
+			Param InheritedSpeed 0.0000 Const 0.0000
+			Param Alpha 0.0000 Hermite 4 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 10.3896 0.5945 -1.0000 0.0000 1.0000 0.0000 38.9610 0.5945 -1.0000 0.0000 1.0000 0.0000 100.0000 0.0000 -1.0000 0.0000 0.0000 0.0000 
+			Param Color_R 0.0000 Const 1.0000
+			Param Color_G 0.0000 Const 1.0000
+			Param Color_B 0.0000 Const 1.0000
+		}
+		Particle glow_Copy SpriteParticle
+		{
+			Param Size 70.0000 Linear 2 0.0000 21.1989 100.0000 58.6353 
+			Param InitialRotation 0.0000 Const 0.0000
+			Param RotationSpeed 0.0000 Const 0.0000
+			Param RandomRotationDirection 0
+			Param EmitLight 1
+			Param Distort 0
+			Param Layer add
+			Param Shader Additive
+			Param Texture p_glow_add.tga
+			Param AnimOnOff 0
+			Param AnimStartFrame 0.0000 Const 0.0000
+			Param AnimEndFrame 0.0000 Const 0.0000
+			Param AnimPlaySpeed 0.0000 Const 0.0000
+			Param AnimRndStartFrame 0
+			Param AnimRandomPlay 0
+			Param AnimLoop 1
+			Param AnimFade 0
+			Param Stops 0
+			Param BornRatio 0.0000 Const 0.5000
+			Param Lifetime 0.0000 Const 0.1500
+			Param TerminateAfter 0.0000 Const 100.0000
+			Param WindSensitivity 0.0000 Const 0.0000
+			Param Speed 0.0000 Const 0.0000
+			Param VerticalSpeed 0.0000 Const 0.0000
+			Param InheritedSpeed 0.0000 Const 0.0000
+			Param Alpha 0.0000 Hermite 2 0.0000 0.0529 0.0000 0.0000 1.0000 -0.0012 100.0000 0.0000 -1.0000 0.0000 0.0000 0.0000 
+			Param Color_R 0.0000 Hermite 2 0.0000 0.2017 0.0000 0.0000 1.0000 0.0000 100.0000 0.0000 -1.0000 0.0000 0.0000 0.0000 
+			Param Color_G 0.0000 Hermite 2 0.0000 0.2066 0.0000 0.0000 1.0000 0.0000 100.0000 0.0000 -1.0000 0.0000 0.0000 0.0000 
+			Param Color_B 0.0000 Hermite 2 0.0000 0.2041 0.0000 0.0000 1.0000 0.0000 100.0000 0.0000 -1.0000 0.0000 0.0000 0.0000 
+		}
+		Particle fireball_Copy SpriteParticle
+		{
+			Param Size 0.0000 Linear 2 0.0000 1.7891 100.0000 4.8926 
+			Param InitialRotation 50.0000 Const 180.0000
+			Param RotationSpeed 30.0000 Const 30.0000
+			Param RandomRotationDirection 0
+			Param EmitLight 0
+			Param Distort 0
+			Param Layer add
+			Param Shader Additive
+			Param Texture p_fireball_a0001.dds
+			Param AnimOnOff 0
+			Param AnimStartFrame 0.0000 Const 0.0000
+			Param AnimEndFrame 0.0000 Const 0.0000
+			Param AnimPlaySpeed 0.0000 Const 0.0000
+			Param AnimRndStartFrame 0
+			Param AnimRandomPlay 0
+			Param AnimLoop 1
+			Param AnimFade 0
+			Param Stops 0
+			Param BornRatio 0.0000 Const 0.5000
+			Param Lifetime 0.0000 Const 0.3000
+			Param TerminateAfter 0.0000 Const 100.0000
+			Param WindSensitivity 0.0000 Const 0.0000
+			Param Speed 0.0000 Const 0.0000
+			Param VerticalSpeed 0.0000 Const 3.0000
+			Param InheritedSpeed 0.0000 Const 0.0000
+			Param Alpha 0.0000 Hermite 2 0.0000 1.0000 0.0000 0.0000 1.0000 0.0000 100.0000 0.0000 -1.0000 0.0000 0.0000 0.0000 
+			Param Color_R 0.0000 Const 0.9000
+			Param Color_G 0.0000 Const 0.9000
+			Param Color_B 0.0000 Const 0.9000
+		}
+	}
+	Emitter E_fust ConeEmitter
+	{
+		Param InnerEmitSpeed 0.0000 Const 10.0000
+		Param OuterEmitSpeed 0.0000 Const 1.0000
+		Param MaxAngle 0.0000 Const 0.0000
+		Param InnerDistance 0.0000 Const 0.1000
+		Param OuterDistance 0.0000 Const 0.1000
+		Param Looping 0
+		Param FollowDirection 0
+		Param Stops 1
+		Param BornRatio 0.0000 Const 1.0000
+		Param Lifetime 0.0000 Const 0.1200
+		Param PartEmissionType PerSec
+		Param ParticleEmission 0.0000 Const 0.0000
+		Param EmitEmissionType PerSec
+		Param EmitterEmission 0.0000 Const 20.0000
+		Param Speed 0.0000 Const 0.0000
+		Param VerticalSpeed 0.0000 Const 0.0000
+		Param InheritedSpeed 0.0000 Const 0.0000
+		Param WindSensitivity 0.0000 Const 0.0000
+		Emitter e_smoke ConeEmitter
+		{
+			Param InnerEmitSpeed 0.0000 Const 10.0000
+			Param OuterEmitSpeed 0.0000 Const 0.0000
+			Param MaxAngle 0.0000 Const 45.0000
+			Param InnerDistance 0.0000 Const 0.0000
+			Param OuterDistance 0.0000 Const 0.0000
+			Param Looping 0
+			Param FollowDirection 0
+			Param Stops 1
+			Param BornRatio 0.0000 Const 1.0000
+			Param Lifetime 0.0000 Const 0.1000
+			Param PartEmissionType PerSec
+			Param ParticleEmission 0.0000 Const 80.0000
+			Param EmitEmissionType PerSec
+			Param EmitterEmission 0.0000 Const 0.0000
+			Param Speed 0.0000 Hermite 2 0.0000 61.3402 0.0000 0.0000 0.5174 -0.8557 100.0000 0.0000 -0.9988 -0.0496 0.0000 0.0000 
+			Param VerticalSpeed 0.0000 Const 0.0000
+			Param InheritedSpeed 0.0000 Const 0.0000
+			Param WindSensitivity 0.0000 Const 0.0000
+			Particle Particle0 SpriteParticle
+			{
+				Param Size 20.0000 Hermite 2 0.0000 0.0606 0.0000 0.0000 0.6821 0.7313 100.0000 2.0000 -0.9529 -0.3032 0.0000 0.0000  
+				Param InitialRotation 50.0000 Const 20.0000
+				Param RotationSpeed 2.0000 Hermite 2 0.0000 20.3540 0.0000 0.0000 1.0000 0.0000 100.0000 24.6549 -1.0000 0.0000 0.0000 0.0000 
+				Param RandomRotationDirection 1
+				Param EmitLight 0
+				Param Distort 0
+				Param Layer fust
+				Param Shader Alpha
+				Param Texture p_animsmoke_0000.tga
+				Param AnimOnOff 1
+				Param AnimStartFrame 0.0000 Const 0.0000
+				Param AnimEndFrame 0.0000 Const 800.0000
+				Param AnimPlaySpeed 0.0000 Const 0.8000
+				Param AnimRndStartFrame 1
+				Param AnimRandomPlay 0
+				Param AnimLoop 1
+				Param AnimFade 1
+				Param Stops 0
+				Param BornRatio 10.0000 Const 4.0000
+				Param Lifetime 800.0000 Const 2.0000
+				Param TerminateAfter 0.0000 Const 800.0000
+				Param WindSensitivity 0.0000 Const 0.0000
+				Param Speed 0.8000 Const 0.8000
+				Param VerticalSpeed 0.8000 Const 0.8000
+				Param InheritedSpeed 0.0000 Const 0.0000
+				Param Alpha 0.0000 Hermite 3 0.0000 0.0000 0.0000 0.0000 0.0003 0.0006 30.2105 0.5435 -0.9999 -0.0162 0.0003 -0.0004 100.0000 0.0000 -1.0000 0.0000 0.0000 0.0000 
+				Param Color_R 0.0000 Const 0.6000
+				Param Color_G 0.0000 Const 0.5700
+				Param Color_B 0.0000 Const 0.4700
+			}
+		}
+	}
+}
+ParticleEditorEnvironment 
+{
+	Param IndexedMeshPath 0 models\devices\Us\Iowa_turret.MMOD
+	Param MeshPos 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
+	Param IndexedMeshPath 1 models\ModelViewer\MVtenger.MMOD
+	Param MeshPos 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
+	Param IndexedMeshPath 2 <no model>
+	Param MeshPos 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
+	Param Camera -0.7241 7.0806 0.0000 2.0000 -11908.0000 85.9127
+	Param System 0.0000 0.0000 0.0000 0.0000 0.0000
+	Param Wind 0.7071 0.0000 0.7071
+}
+BoundSphere 
+{
+	Param Coords -0.3207 7.5431 1.1479 27.4196 0.0000
+}
