@@ -28567,7 +28567,67 @@ entity "Japan Troop Transport 02" (DestroyerGen) {
   }
 }
 entity "Fubuki-class 11" (DestroyerGen) {
-  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -14687.0239 -0.0025 14388.1113 1.0000 ;
+  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -14781.0239 -0.0025 14231.1113 1.0000 ;
+  template "Japan\SEA\Fubuki-class" ;
+
+  properties (Common, GameUnit, Ship, Command)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    RepairZoneArea = R "" ;
+    SceneGroupNum = I 7 ;
+    Type = E ShipClasses : Fubuki  ;
+  }
+}
+entity "Fubuki-class 21" (DestroyerGen) {
+  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -13154.0239 -0.0025 15685.1113 1.0000 ;
+  template "Japan\SEA\Fubuki-class" ;
+
+  properties (Common, GameUnit, Ship, Command)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    RepairZoneArea = R "" ;
+    SceneGroupNum = I 7 ;
+    Type = E ShipClasses : Fubuki  ;
+  }
+}
+entity "Fubuki-class 31" (DestroyerGen) {
+  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -14608.0239 -0.0025 17311.1113 1.0000 ;
+  template "Japan\SEA\Fubuki-class" ;
+
+  properties (Common, GameUnit, Ship, Command)  {
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    RepairZoneArea = R "" ;
+    SceneGroupNum = I 7 ;
+    Type = E ShipClasses : Fubuki  ;
+  }
+}
+entity "Fubuki-class 41" (DestroyerGen) {
+  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -16235.0239 -0.0025 15858.1113 1.0000 ;
   template "Japan\SEA\Fubuki-class" ;
 
   properties (Common, GameUnit, Ship, Command)  {

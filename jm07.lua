@@ -170,19 +170,25 @@ function luaInitJM7(this)
 
 	Mission.PlayerFleet = {}
 		table.insert(Mission.PlayerFleet, FindEntity("Akagi"))
-		table.insert(Mission.PlayerFleet, FindEntity("Soryu"))
-		table.insert(Mission.PlayerFleet, FindEntity("Fuso-class Battleship 01"))
-		table.insert(Mission.PlayerFleet, FindEntity("Haruna"))
-		table.insert(Mission.PlayerFleet, FindEntity("Fubuki-class 11"))
-		--table.insert(Mission.PlayerFleet, FindEntity("Fubuki-class 12"))
-		table.insert(Mission.PlayerFleet, FindEntity("Hiryu-class 01"))
 		table.insert(Mission.PlayerFleet, FindEntity("Kaga-class 01"))
-		table.insert(Mission.PlayerFleet, FindEntity("Takao-class 01"))
+		table.insert(Mission.PlayerFleet, FindEntity("Fuso-class Battleship 01"))
 		table.insert(Mission.PlayerFleet, FindEntity("Tone-class 02"))
+		table.insert(Mission.PlayerFleet, FindEntity("Fubuki-class 11"))
+		table.insert(Mission.PlayerFleet, FindEntity("Fubuki-class 31"))
 		table.insert(Mission.PlayerFleet, FindEntity("Kuma-class 01"))
+		table.insert(Mission.PlayerFleet, FindEntity("Hiryu-class 01"))
+		table.insert(Mission.PlayerFleet, FindEntity("Soryu"))
+		table.insert(Mission.PlayerFleet, FindEntity("Haruna"))
+		--table.insert(Mission.PlayerFleet, FindEntity("Fubuki-class 12"))
+		table.insert(Mission.PlayerFleet, FindEntity("Takao-class 01"))
+		table.insert(Mission.PlayerFleet, FindEntity("Fubuki-class 21"))
+		table.insert(Mission.PlayerFleet, FindEntity("Fubuki-class 41"))
 		for idx,unit in pairs(Mission.PlayerFleet) do
-			if idx > 1 then
+			if idx > 1 and idx < 8 then
 				JoinFormation(unit, Mission.PlayerFleet[1])
+			end
+			if idx >= 8 then
+				JoinFormation(unit, Mission.PlayerFleet[8])
 			end
 		end
 		SetSelectedUnit(Mission.PlayerFleet[1])
@@ -190,23 +196,35 @@ function luaInitJM7(this)
 		Mission.Hiryu = FindEntity("Hiryu-class 01")
 		Mission.Akagi = FindEntity("Akagi")
 		Mission.Soryu = FindEntity("Soryu")
+		Mission.Kaga.AtFire = false
+		Mission.Hiryu.AtFire = false
+		Mission.Akagi.AtFire = false
+		Mission.Soryu.AtFire = false
+		SetGuiName(Mission.Kaga, "Kaga")
+		SetGuiName(Mission.Hiryu, "Hiryu")
+		SetGuiName(Mission.Akagi, "Akagi")
+		SetGuiName(Mission.Soryu, "Soryu")
 		SetShipSpeed(Mission.PlayerFleet[1], 10)
+		SetShipSpeed(Mission.PlayerFleet[8], 10)
 
 	--debug
 	--luaJM7CVsInvincible()
 
 	Mission.PlayerFleetNames = {}
 		table.insert(Mission.PlayerFleetNames, "Akagi")
-		table.insert(Mission.PlayerFleetNames, "Soryu")
+		table.insert(Mission.PlayerFleetNames, "Kaga")
 		table.insert(Mission.PlayerFleetNames, "Kirishima")
-		table.insert(Mission.PlayerFleetNames, "Haruna")
-		table.insert(Mission.PlayerFleetNames, "ingame.shipnames_fubuki")
+		table.insert(Mission.PlayerFleetNames, "Chikuma")
+		table.insert(Mission.PlayerFleetNames, "Nowaki")
+		table.insert(Mission.PlayerFleetNames, "Hagikaze")
+		table.insert(Mission.PlayerFleetNames, "Nagara")
 		--table.insert(Mission.PlayerFleetNames, "ingame.shipnames_shirayuki")
 		table.insert(Mission.PlayerFleetNames, "ingame.shipnames_hiryu")
-		table.insert(Mission.PlayerFleetNames, "Kaga")
+		table.insert(Mission.PlayerFleetNames, "Soryu")
+		table.insert(Mission.PlayerFleetNames, "Haruna")
 		table.insert(Mission.PlayerFleetNames, "ingame.shipnames_tone")
-		table.insert(Mission.PlayerFleetNames, "Chikuma")
-		table.insert(Mission.PlayerFleetNames, "Nagara")
+		table.insert(Mission.PlayerFleetNames, "Arashi")
+		table.insert(Mission.PlayerFleetNames, "Maikaze")
 
 	Mission.IJNInvasionFleetNames = {}
 		table.insert(Mission.IJNInvasionFleetNames, "ingame.shipnames_yamato")
@@ -564,6 +582,11 @@ function luaInitJM7(this)
 	luaJM7AddSubReconListener()
 	luaJM7AddSYListener()
 	luaJM7SetGuiNames()
+	
+	luaAddCVHitListener(Mission.Akagi,"Akagi")
+	luaAddCVHitListener(Mission.Soryu,"Soryu")
+	luaAddCVHitListener(Mission.Kaga,"Kaga")
+	luaAddCVHitListener(Mission.Hiryu,"Hiryu")
 
 	Mission.MissionPhase = 1
 
@@ -991,8 +1014,56 @@ function luaJM7CarrierObj()
 	end
 end
 
+function luaAddCVHitListener(carrier, name)
+
+	AddListener("hit", "CVHitListener"..name, {
+		["callback"] = "luaCVHit"..name,
+		["target"] = {carrier},
+		["targetDevice"] = {},
+		["attacker"] = {},
+		["attackType"] = {"MEDIUMARTILLERY", "HEAVYARTILLERY", "BOMB", "TORPEDO"},
+		["attackerPlayerIndex"] = {},	
+		["damageCaused"] = {}, --{["min"] = 50}, -- ket ertek kozotti sebzes szures
+		["fireCaused"] = {}, -- ket ertek kozotti tuzsebzes szures
+		["leakCaused"] = {}, -- ket ertek kozotti viz damage szures
+	})
+
+end
+
+function luaCVHitAkagi()
+	Mission.Akagi.notgood = true
+end
+function luaCVHitKaga()
+	Mission.Kaga.notgood = true
+end
+function luaCVHitSoryu()
+	Mission.Soryu.notgood = true
+end
+function luaCVHitHiryu()
+	Mission.Hiryu.notgood = true
+end
+
+
 function luaBomberLanding(carrier)
 	if not carrier.Dead then
+		-- SetFailure(carrier, "RunwayFailure", 180)
+		-- SetFailure(carrier, "explosion", DAM_ENGINEROOM, 0, 100, 200, 154)
+		-- SetFailure(carrier, "EngineJam", 10)
+
+		if carrier.notgood then
+			local checkHp = GetHpPercentage(carrier)
+			SetShipMaxSpeed(carrier, checkHp * carrier.Class.MaxSpeed)
+			-- local pos = GetPosition(carrier)
+			-- pos.y = 15
+			POS = ORIGO
+			POS.y = 15
+			if not carrier.AtFire then 
+				Effect("BigFire", POS, carrier)
+				carrier.AtFire = true
+			end
+		end
+
+		-- Effect("ExplosionBigShip", pos)
 		local _, sq = luaGetSlotsAndSquads(carrier)
 		if sq then
 			-- PilotRetreat(sq)
@@ -1057,7 +1128,7 @@ end
 
 --- PHASE1 Bombers
 function luaJM7CheckIJNBombers()
-	if Mission.IJNBombersSpawned >= 6 then
+	if Mission.IJNBombersSpawned >= 0 then  -- do not spawn land-based bombers
 		return
 	end
 	Mission.IJNBombers = luaRemoveDeadsFromTable(Mission.IJNBombers)
