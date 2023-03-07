@@ -241,7 +241,8 @@ function luaInitJM7(this)
 	--Mission.InvasionSpawnTime = 900
 
 	Mission.USNReinfFleetNames = {}
-		table.insert(Mission.USNReinfFleetNames, {"ingame.shipnames_enterprise", 8})				--CV8
+		table.insert(Mission.USNReinfFleetNames, {"ingame.shipnames_enterprise", 6})	
+		table.insert(Mission.USNReinfFleetNames, {"ingame.shipnames_hornet", 8})			--CV8
 		table.insert(Mission.USNReinfFleetNames, {"ingame.shipnames_northampton", 26})	--CA26
 		table.insert(Mission.USNReinfFleetNames, {"ingame.shipnames_vincennes", 44})		--CA44
 		table.insert(Mission.USNReinfFleetNames, {"ingame.shipnames_astoria", 34})			--CA34
@@ -996,9 +997,9 @@ function luaJM7CarrierObj()
 	if Mission.Enterprise and Mission.Enterprise.Dead then
 		deads = deads + 1
 	end
-	--if Mission.Hornet and Mission.Hornet.Dead and (Scoring_IsUnlocked("JM6_BRONZE") or Scoring_IsUnlocked("JM6_SILVER") or Scoring_IsUnlocked("JM6_GOLD")) then
-	--	deads = deads + 1
-	--end
+	if Mission.Hornet and Mission.Hornet.Dead and (Scoring_IsUnlocked("JM6_BRONZE") or Scoring_IsUnlocked("JM6_SILVER") or Scoring_IsUnlocked("JM6_GOLD")) then
+		deads = deads + 1
+	end
 
 	if not Mission.AchievmentAdded and deads == 2 then
 		SetAchievements("MA_TP")
@@ -1015,6 +1016,7 @@ function luaJM7CarrierObj()
 end
 
 function luaAddCVHitListener(carrier, name)
+	carrier.efxList = {}
 
 	AddListener("hit", "CVHitListener"..name, {
 		["callback"] = "luaCVHit"..name,
@@ -1031,36 +1033,65 @@ function luaAddCVHitListener(carrier, name)
 end
 
 function luaCVHitAkagi()
-	Mission.Akagi.notgood = true
+	Mission.Akagi.takeFire = true
 end
 function luaCVHitKaga()
-	Mission.Kaga.notgood = true
+	Mission.Kaga.takeFire = true
 end
 function luaCVHitSoryu()
-	Mission.Soryu.notgood = true
+	Mission.Soryu.takeFire = true
 end
 function luaCVHitHiryu()
-	Mission.Hiryu.notgood = true
+	Mission.Hiryu.takeFire = true
 end
 
+function luaExpl(unit)
+	local efxList = unit.efxList
+	local pos = ORIGO
+	pos.z = random(unit.Class.Length * 0.7) - unit.Class.Length * 0.35
+	pos.x = random(unit.Class.Width * 0.7) - unit.Class.Width * 0.35
+	pos.y = unit.Class.Height * 0.8
+	Effect("ExplosionBigShip", pos, unit)
+	local efx = Effect("BigFire", pos, unit)--, GetPosition(carrier.ParamTable.carrier))
+	table.insert(efxList, efx)
+end
+
+function luaFireControlFail(carrier)
+	local unit = carrier.ParamTable.carrier
+	luaExpl(unit)
+	local luck = random(1,20)
+	if luck > 10 then luaDelay(luaFireControlSuccess,10,"carrier",unit)
+	else luaDelay(luaFireControlFail,luck,"carrier",unit)
+	end
+end
+
+function luaFireControlSuccess(carrier)
+	local unit = carrier.ParamTable.carrier
+	local efxList = unit.efxList
+	local toStop = random(#efxList)
+	StopEffect(efxList[toStop].Pointer)
+	table.remove(efxList, toStop)
+	if #efxList == 0 then unit.atFire = false return end
+	local luck = random(1,20)
+	if luck > 10 then luaDelay(luaFireControlSuccess,10,"carrier",unit)
+	else luaDelay(luaFireControlFail,luck,"carrier",unit)
+	end
+end
 
 function luaBomberLanding(carrier)
 	if not carrier.Dead then
 		-- SetFailure(carrier, "RunwayFailure", 180)
 		-- SetFailure(carrier, "explosion", DAM_ENGINEROOM, 0, 100, 200, 154)
 		-- SetFailure(carrier, "EngineJam", 10)
+		local checkHp = GetHpPercentage(carrier)
+		SetShipMaxSpeed(carrier, checkHp * carrier.Class.MaxSpeed)
 
-		if carrier.notgood then
-			local checkHp = GetHpPercentage(carrier)
-			SetShipMaxSpeed(carrier, checkHp * carrier.Class.MaxSpeed)
-			-- local pos = GetPosition(carrier)
-			-- pos.y = 15
-			POS = ORIGO
-			POS.y = 15
-			if not carrier.AtFire then 
-				Effect("BigFire", POS, carrier)
-				carrier.AtFire = true
+		if carrier.takeFire then
+			carrier.takeFire = false
+			if carrier.atFire then luaExpl(carrier)
+			else luaDelay(luaFireControlFail,1,"carrier",carrier)
 			end
+			carrier.atFire = true
 		end
 
 		-- Effect("ExplosionBigShip", pos)
@@ -1117,11 +1148,11 @@ function luaJM7PowerupCheck()
 			Mission.CVPowerup = true
 			return
 		end
-		--if not Mission.HornetPowerup and Mission.Hornet and Mission.Hornet.Dead and Mission.Hornet.KillReason ~= "exitzone" then
-		--	luaJM7AddPowerup("automatic_reloader")
-		--	Mission.CVPowerup = true
-		--	return
-		--end
+		if not Mission.HornetPowerup and Mission.Hornet and Mission.Hornet.Dead and Mission.Hornet.KillReason ~= "exitzone" then
+			luaJM7AddPowerup("automatic_reloader")
+			Mission.CVPowerup = true
+			return
+		end
 
 	end
 end
@@ -1354,6 +1385,11 @@ end
 function luaJM7ReloadEnterprise()
 	Mission.Enterprise.Maxplanes = 24
 	Mission.Enterprise.Reload = false
+end
+
+function luaJM7ReloadHornet()
+	Mission.Hornet.Maxplanes = 24
+	Mission.Hornet.Reload = false
 end
 
 function luaJM7GetUnits(searchedType,searchedParty)
@@ -1844,6 +1880,24 @@ function luaJM7SpawnUSNReinf()
 				["Count"] = 3,
 			},
 		},
+		{
+			["Type"] = 2,
+			["Name"] = "Yorktown2",
+			["Crew"] = Mission.SkillLevel,
+			["Race"] = USA,
+			["NumSlots"] = 4,
+			["MaxInAirPlanes"] = 12,
+			["PlaneStock 1"] = {
+				["Type"] = 101,
+				["Count"] = 20,
+				["SquadLimit"] = 5,
+			},
+			["Slot 1"] = {
+				["Type"] = 101,
+				["Arm"] = 0,
+				["Count"] = 3,
+			},
+		},
 --		{
 --			["Type"] = 19,
 --			["Name"] = "Northampton2",
@@ -1915,10 +1969,14 @@ function luaJM7USNReinfFleetSpawned(...)
 		end
 
 		if unit.Class.Type == "MotherShip" then
-			if string.find(unit.Name, "Yorktown") then
+			if string.find(unit.Name, "Yorktown1") then
 				if unit.Class.ID == 2 then
-					--Mission.Hornet = unit
 					Mission.Enterprise = unit
+				end
+			end
+			if string.find(unit.Name, "Yorktown2") then
+				if unit.Class.ID == 2 then
+					Mission.Hornet = unit
 				end
 			end
 		end
@@ -1927,7 +1985,7 @@ function luaJM7USNReinfFleetSpawned(...)
 	for idx,unit in pairs(Mission.USNReinforcements) do
 		if unit.ID ~= Mission.Enterprise.ID then
 		--if unit.ID ~= leader.ID then
-			--JoinFormation(unit, Mission.Hornet)
+			JoinFormation(unit, Mission.Hornet)
 			JoinFormation(unit, Mission.Enterprise)
 			--JoinFormation(unit, leader)
 		end
@@ -1990,7 +2048,7 @@ function luaJM7CheckUSNCarrierFleet2()
 	end
 
 	--if Mission.Hornet.Dead then
-	if Mission.Enterprise.Dead then
+	if Mission.Enterprise.Dead and Mission.Hornet.Dead then
 		Mission.Fleet2CarriersDead = true
 		for idx,unit in pairs(Mission.USNReinforcements) do
 			if not unit.Dead and (luaGetScriptTarget(unit) == nil or luaGetScriptTarget(unit).Dead) then
@@ -2030,7 +2088,7 @@ function luaJM7ScreenTargeting(screen,fleetNum)
 		CV1 = Mission.Yorktown
 		--CV2 = Mission.Enterprise
 	elseif fleetNum == 2 then
-		--CV1 = Mission.Hornet
+		CV2 = Mission.Hornet
 		CV1 = Mission.Enterprise
 	end
 
@@ -2040,9 +2098,9 @@ function luaJM7ScreenTargeting(screen,fleetNum)
 	if not CV1.Dead then
 		shipsAroundCV1 = luaGetShipsAround(CV1, 4000, "enemy")
 	end
-	--if CV2 and not CV2.Dead then
-	--	shipsAroundCV2 = luaGetShipsAround(CV2, 3300, "enemy")
-	--end
+	if CV2 and not CV2.Dead then
+		shipsAroundCV2 = luaGetShipsAround(CV2, 3300, "enemy")
+	end
 
 	local enemiesTable = luaJM7SumEnemyTables(shipsAroundCV1,shipsAroundCV2)
 	--luaLog("-------")

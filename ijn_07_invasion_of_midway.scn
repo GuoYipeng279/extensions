@@ -28243,22 +28243,22 @@ entity "Hiryu-class 01" (MotherShipGen) {
     }
     Party = E Party : Japanese  ;
     "PlaneStock 1" {
-      Count = E PlaneCount : 20  ;
+      Count = E PlaneCount : 10  ;
       SquadLimit = E MaxSquadSize : 5  ;
       Type = E PlaneClasses : Zero  ;
     }
     "PlaneStock 2" {
-      Count = E PlaneCount : 30  ;
+      Count = E PlaneCount : 18  ;
       SquadLimit = E MaxSquadSize : 5  ;
       Type = E PlaneClasses : Kate  ;
     }
     "PlaneStock 3" {
-      Count = E PlaneCount : 30  ;
+      Count = E PlaneCount : 18  ;
       SquadLimit = E MaxSquadSize : 5  ;
       Type = E PlaneClasses : Val  ;
     }
     "PlaneStock 4" {
-      Count = E PlaneCount : 20  ;
+      Count = E PlaneCount : 10  ;
       SquadLimit = E MaxSquadSize : 5  ;
       Type = E PlaneClasses : Zero  ;
     }
@@ -28317,22 +28317,22 @@ entity "Soryu" (MotherShipGen) {
     }
     Party = E Party : Japanese  ;
     "PlaneStock 1" {
-      Count = E PlaneCount : 20  ;
+      Count = E PlaneCount : 10  ;
       SquadLimit = E MaxSquadSize : 5  ;
       Type = E PlaneClasses : Zero  ;
     }
     "PlaneStock 2" {
-      Count = E PlaneCount : 30  ;
+      Count = E PlaneCount : 18  ;
       SquadLimit = E MaxSquadSize : 5  ;
       Type = E PlaneClasses : Kate  ;
     }
     "PlaneStock 3" {
-      Count = E PlaneCount : 30  ;
+      Count = E PlaneCount : 18  ;
       SquadLimit = E MaxSquadSize : 5  ;
       Type = E PlaneClasses : Val  ;
     }
     "PlaneStock 4" {
-      Count = E PlaneCount : 20  ;
+      Count = E PlaneCount : 10  ;
       SquadLimit = E MaxSquadSize : 5  ;
       Type = E PlaneClasses : Zero  ;
     }
@@ -28391,22 +28391,22 @@ entity "Akagi" (MotherShipGen) {
     }
     Party = E Party : Japanese  ;
     "PlaneStock 1" {
-      Count = E PlaneCount : 20  ;
+      Count = E PlaneCount : 10  ;
       SquadLimit = E MaxSquadSize : 5  ;
       Type = E PlaneClasses : Zero  ;
     }
     "PlaneStock 2" {
-      Count = E PlaneCount : 30  ;
+      Count = E PlaneCount : 18  ;
       SquadLimit = E MaxSquadSize : 5  ;
       Type = E PlaneClasses : Kate  ;
     }
     "PlaneStock 3" {
-      Count = E PlaneCount : 30  ;
+      Count = E PlaneCount : 18  ;
       SquadLimit = E MaxSquadSize : 5  ;
       Type = E PlaneClasses : Val  ;
     }
     "PlaneStock 4" {
-      Count = E PlaneCount : 20  ;
+      Count = E PlaneCount : 10  ;
       SquadLimit = E MaxSquadSize : 5  ;
       Type = E PlaneClasses : Zero  ;
     }
@@ -28470,19 +28470,19 @@ entity "Kaga-class 01" (MotherShipGen) {
       Type = E PlaneClasses : Zero  ;
     }
     "PlaneStock 2" {
-      Count = E PlaneCount : 30  ;
+      Count = E PlaneCount : 13  ;
       SquadLimit = E MaxSquadSize : 5  ;
       Type = E PlaneClasses : Kate  ;
     }
     "PlaneStock 3" {
-      Count = E PlaneCount : 30  ;
+      Count = E PlaneCount : 18  ;
       SquadLimit = E MaxSquadSize : 5  ;
       Type = E PlaneClasses : Val  ;
     }
     "PlaneStock 4" {
-      Count = E PlaneCount : 20  ;
+      Count = E PlaneCount : 14  ;
       SquadLimit = E MaxSquadSize : 5  ;
-      Type = E PlaneClasses : Zero  ;
+      Type = E PlaneClasses : Kate  ;
     }
     Race = E Races : Japan  ;
     RepairZoneArea = R "" ;
