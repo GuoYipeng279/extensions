@@ -41,10 +41,10 @@ end
 memoriafoglalas miatt kiveve
 -- egy nev altal megadott entityt berak a masodik paramkent megadott tablaba
 function luaInsertObject(name, unittable)
--- RELEASE_LOGOFF  	Assert(type(name) == "string", "ERROR: in function luaInsertObject, first param is not string!\t Type is: "..type(name))
--- RELEASE_LOGOFF  	Assert(type(unittable) == "table", "ERROR: in function luaInsertObject, second param is not table!\t Type is: "..type(unittable))
+		-- RELEASE_LOGOFF  	Assert(type(name) == "string", "ERROR: in function luaInsertObject, first param is not string!\t Type is: "..type(name))
+		-- RELEASE_LOGOFF  	Assert(type(unittable) == "table", "ERROR: in function luaInsertObject, second param is not table!\t Type is: "..type(unittable))
 	local unit = FindEntity(name)
--- RELEASE_LOGOFF  	Assert(unit ~= nil, "ERROR: can't find unit named "..name)
+		-- RELEASE_LOGOFF  	Assert(unit ~= nil, "ERROR: can't find unit named "..name)
 	table.insert(unittable, unit)
 end
 ]]
@@ -68,20 +68,20 @@ function luaGetDistance(Obj1, Obj2)
 		error("***ERROR: luaGetDistance's second param is a non-table parameter.", 2)
 	end
 
--- RELEASE_LOGOFF  	Assert(Obj1.ID ~= nil or Obj1.x ~= nil, "***ERROR: luaGetDistance's first param is a table without ID or X index!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(Obj2.ID ~= nil or Obj2.x ~= nil, "***ERROR: luaGetDistance's second param is a table without ID or X index!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(Obj1.ID ~= nil or Obj1.x ~= nil, "***ERROR: luaGetDistance's first param is a table without ID or X index!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(Obj2.ID ~= nil or Obj2.x ~= nil, "***ERROR: luaGetDistance's second param is a table without ID or X index!"..debug.traceback())
 
 	if Obj1.ID ~= nil then
--- RELEASE_LOGOFF  		Assert(not thisTable[Obj1.ID].Dead, "***ERROR: luaGetDistance's first param is a dead entity! ("..tostring(thisTable[Obj1.ID].Name)..")\n"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(not thisTable[Obj1.ID].Dead, "***ERROR: luaGetDistance's first param is a dead entity! ("..tostring(thisTable[Obj1.ID].Name)..")\n"..debug.traceback())
 --		if thisTable[Obj1.ID].Dead then
--- RELEASE_LOGOFF  --			luaHelperLog("Warning: luaGetDistance got a dead entity! 1st arg: "..thisTable[Obj1.ID].Name)
+		-- RELEASE_LOGOFF  --			luaHelperLog("Warning: luaGetDistance got a dead entity! 1st arg: "..thisTable[Obj1.ID].Name)
 --		end
 	end
 
 	if Obj2.ID ~= nil then
--- RELEASE_LOGOFF  		Assert(not thisTable[Obj2.ID].Dead, "***ERROR: luaGetDistance's second param is a dead entity! ("..tostring(thisTable[Obj2.ID].Name)..")\n"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(not thisTable[Obj2.ID].Dead, "***ERROR: luaGetDistance's second param is a dead entity! ("..tostring(thisTable[Obj2.ID].Name)..")\n"..debug.traceback())
 --		if thisTable[Obj2.ID].Dead then
--- RELEASE_LOGOFF  --			luaHelperLog("Warning: luaGetDistance got a dead entity! 2nd arg: "..thisTable[Obj2.ID].Name)
+		-- RELEASE_LOGOFF  --			luaHelperLog("Warning: luaGetDistance got a dead entity! 2nd arg: "..thisTable[Obj2.ID].Name)
 --		end
 	end
 --[[
@@ -115,7 +115,7 @@ function luaGetDistance(Obj1, Obj2)
 --	posc.y = posa.y-posb.y
 	posc.z = posa.z-posb.z
 	distance = math.sqrt(math.pow(posc.x, 2)+math.pow(posc.z, 2))
--- RELEASE_LOGOFF  --	luaHelperLog("Distance between "..Obj1.." and "..Obj2.." is "..distance.." m.")
+		-- RELEASE_LOGOFF  --	luaHelperLog("Distance between "..Obj1.." and "..Obj2.." is "..distance.." m.")
 	return distance
 end
 
@@ -147,7 +147,7 @@ function luaGetNearestUnitFromTable(targetUnit, targetTable)
 	local shortestOwnWay = 1000000
 	local nearestUnit
 	local target = thisTable[targetUnit.ID]
--- RELEASE_LOGOFF  	luaHelperLog("luaGetNearestUnitFromTable");
+		-- RELEASE_LOGOFF  	luaHelperLog("luaGetNearestUnitFromTable");
 
 	for key, unit in pairs(targetTable) do
 		if not unit.Dead then
@@ -161,11 +161,11 @@ function luaGetNearestUnitFromTable(targetUnit, targetTable)
 	end
 
 	if nearestUnit == nil then
--- RELEASE_LOGOFF  		luaHelperLog(" No unit found for the criteria")
+		-- RELEASE_LOGOFF  		luaHelperLog(" No unit found for the criteria")
 		return nil
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog(" Nearest unit: "..nearestUnit.Name)
+		-- RELEASE_LOGOFF  	luaHelperLog(" Nearest unit: "..nearestUnit.Name)
 	return nearestUnit, shortestOwnWay
 end
 
@@ -185,19 +185,19 @@ function luaGetNearestEnemy(targetUnit, uType)
 	local nearestEnemy
 	local nearestEnemyType
 	local target = thisTable[targetUnit.ID]
--- RELEASE_LOGOFF  	luaHelperLog("luaGetNearestEnemy "..target.Name..","..tostring(uType));
--- RELEASE_LOGOFF  --	luaHelperLog("Looking for uType: "..tostring(uType).."\townunit: "..target)
--- RELEASE_LOGOFF  --	luaHelperLog(target)
+		-- RELEASE_LOGOFF  	luaHelperLog("luaGetNearestEnemy "..target.Name..","..tostring(uType));
+		-- RELEASE_LOGOFF  --	luaHelperLog("Looking for uType: "..tostring(uType).."\townunit: "..target)
+		-- RELEASE_LOGOFF  --	luaHelperLog(target)
 
 	if uType ~= nil then
 		for key, unittype in pairs(recon[target.Party]["enemy"]) do
 			--luaHelperLog("unittype es searchType\n\t\t***"..key.." and "..tostring(uType))
 			if key == uType then
 				for key2, unit in pairs(unittype) do
--- RELEASE_LOGOFF  					luaHelperLog(" Unit : "..unit.Name)
--- RELEASE_LOGOFF  					luaHelperLog("  Dead? "..tostring(unit.Dead))
+		-- RELEASE_LOGOFF  					luaHelperLog(" Unit : "..unit.Name)
+		-- RELEASE_LOGOFF  					luaHelperLog("  Dead? "..tostring(unit.Dead))
 					if not unit.Dead then
--- RELEASE_LOGOFF  						luaHelperLog("  Found unit: "..unit.Name)
+		-- RELEASE_LOGOFF  						luaHelperLog("  Found unit: "..unit.Name)
 						Dist = luaGetDistance(unit, target)
 						if Dist < prevDistance and Dist < shortestOwnWay and target~=unit then
 							shortestOwnWay = Dist
@@ -210,11 +210,11 @@ function luaGetNearestEnemy(targetUnit, uType)
 		end
 
 		if nearestEnemy == nil then
--- RELEASE_LOGOFF  			luaHelperLog(" No enemy found for the criteria")
+		-- RELEASE_LOGOFF  			luaHelperLog(" No enemy found for the criteria")
 			return nil
 		end
 
--- RELEASE_LOGOFF  		luaHelperLog(" nearest enemy: "..nearestEnemy.Name)
+		-- RELEASE_LOGOFF  		luaHelperLog(" nearest enemy: "..nearestEnemy.Name)
 		return nearestEnemy, shortestOwnWay
 	else
 		for key, unittype in pairs(recon[target.Party]["enemy"]) do
@@ -232,10 +232,10 @@ function luaGetNearestEnemy(targetUnit, uType)
 		end
 
 		if nearestEnemy == nil then
--- RELEASE_LOGOFF  			luaHelperLog(" No enemy found")
+		-- RELEASE_LOGOFF  			luaHelperLog(" No enemy found")
 			return nil
 		else
--- RELEASE_LOGOFF  			luaHelperLog(" nearest enemy: "..nearestEnemy.Name)
+		-- RELEASE_LOGOFF  			luaHelperLog(" nearest enemy: "..nearestEnemy.Name)
 			return nearestEnemy, nearestEnemyType, shortestOwnWay
 		end
 	end
@@ -246,8 +246,8 @@ memoriafoglalas miatt kiveve
 -- az elobbi forditottja, tehat amik target utan meg vannak adva parameterkent, azokat NEM valogatja le
 function luaGetNearestEnemyNot(...)
 
--- RELEASE_LOGOFF  	Assert(arg[1].ID ~= nil, "***ERROR: first arg must be an entity."..debug.traceback())
--- RELEASE_LOGOFF  	Assert(arg[2] ~= nil, "***ERROR: luaGetNearestEnemyNot needs at least 2 params."..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(arg[1].ID ~= nil, "***ERROR: first arg must be an entity."..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(arg[2] ~= nil, "***ERROR: luaGetNearestEnemyNot needs at least 2 params."..debug.traceback())
 
 	local Dist = 0
 	local prevDistance = 1000000
@@ -318,8 +318,8 @@ function luaGetShipsAround(target, radius, allegiance, index, all, searchedtype,
 	elseif allegiance ~= "enemy" and allegiance ~= "neutral" and allegiance ~= "own" then
 		error("***Script function error: bad 'allegiance' parameter at luaGetShipsAround: "..allegiance, 2)
 	end
--- RELEASE_LOGOFF  	Assert(target ~= nil and target.ID ~= nil, "***ERROR: luaGetShipsAround's first param must have an ID key!"..debug.traceback())
--- RELEASE_LOGOFF  	luaHelperLog("luaGetShipsAround "..target.Name..","..radius..","..tostring(allegiance)..","..tostring(index)..","..tostring(all)..","..tostring(searchedtype))
+		-- RELEASE_LOGOFF  	Assert(target ~= nil and target.ID ~= nil, "***ERROR: luaGetShipsAround's first param must have an ID key!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("luaGetShipsAround "..target.Name..","..radius..","..tostring(allegiance)..","..tostring(index)..","..tostring(all)..","..tostring(searchedtype))
 
 	local targetUnit = thisTable[target.ID]
 	local shipsAround = {}
@@ -328,11 +328,11 @@ function luaGetShipsAround(target, radius, allegiance, index, all, searchedtype,
 	local rad2=radius*radius
 
 	for key, unittype in pairs(recon[targetUnit.Party][allegiance]) do
--- RELEASE_LOGOFF  		luaHelperLog("  Type "..key)
+		-- RELEASE_LOGOFF  		luaHelperLog("  Type "..key)
 		if (key == "destroyer" or key == "submarine" or key == "mothership" or key == "cargo" or key == "cruiser" or key == "torpedoboat" or key == "battleship" or key == "landingship" ) and (searchedtype == nil or searchedtype == key) then
 			for key2, unit in pairs(unittype) do
 				if index == nil then
--- RELEASE_LOGOFF  					luaHelperLog("    Unit "..unit.Name)
+		-- RELEASE_LOGOFF  					luaHelperLog("    Unit "..unit.Name)
 					if not unit.Dead and (all or unit.ID ~= targetUnit.ID) then
 						local posa
 						local posb
@@ -345,7 +345,7 @@ function luaGetShipsAround(target, radius, allegiance, index, all, searchedtype,
 						diffz=posa.z-posb.z
 
 						if diffx*diffx+diffz*diffz<rad2 then
--- RELEASE_LOGOFF  							luaHelperLog("      OK")
+		-- RELEASE_LOGOFF  							luaHelperLog("      OK")
 							if noretreaters ~= nil and not unit.Retreat then
 								table.insert(shipsAround, unit)
 							elseif noretreaters == nil then
@@ -354,7 +354,7 @@ function luaGetShipsAround(target, radius, allegiance, index, all, searchedtype,
 						end
 					end
 				else
--- RELEASE_LOGOFF  					luaHelperLog("    Unit "..unit.Name)
+		-- RELEASE_LOGOFF  					luaHelperLog("    Unit "..unit.Name)
 					if not unit.Dead and (all or unit.ID ~= targetUnit.ID) then
 						local posa
 						local posb
@@ -406,10 +406,10 @@ noretreaters: bool, ha nem nil akkor csak a nem visszavonulo egysegeket keresi
 shipsAroundTable: table, entitasokat tartalmazo tabla, sorszam vagy unit.Type indexxel
 ]]
 function luaGetShipsAroundCoordinate(target, radius, party, allegiance, index, searchedtype, noretreaters)
--- RELEASE_LOGOFF  	LogToFile("luaGetShipsAroundCoordinate is running for point: ", target)
+		-- RELEASE_LOGOFF  	LogToFile("luaGetShipsAroundCoordinate is running for point: ", target)
 
--- RELEASE_LOGOFF  	Assert(target ~= nil and target.x ~= nil and target.y ~= nil and target.z ~= nil, "***ERROR: luaGetShipsAroundCoordinate's first param must be a {x, y, z} coordinate!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(party == PARTY_ALLIED or party == PARTY_JAPANESE, "***ERROR: luaGetShipsAroundCoordinate needs a party (PARTY_ALLIED or PARTY_JAPANESE) as third param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target ~= nil and target.x ~= nil and target.y ~= nil and target.z ~= nil, "***ERROR: luaGetShipsAroundCoordinate's first param must be a {x, y, z} coordinate!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(party == PARTY_ALLIED or party == PARTY_JAPANESE, "***ERROR: luaGetShipsAroundCoordinate needs a party (PARTY_ALLIED or PARTY_JAPANESE) as third param!"..debug.traceback())
 
 	if allegiance == nil then
 		error("***Script function error: no 'allegiance' parameter at luaGetShipsAround.", 2)
@@ -422,14 +422,14 @@ function luaGetShipsAroundCoordinate(target, radius, party, allegiance, index, s
 	local uType
 
 	for key, unittype in pairs(recon[party][allegiance]) do
--- RELEASE_LOGOFF  		luaHelperLog("  Type "..key)
+		-- RELEASE_LOGOFF  		luaHelperLog("  Type "..key)
 		--if key ~= "fighter" and key ~= "levelbomber" and key ~= "divebomber" and key ~= "torpedobomber" and key ~= "reconplane" and key ~= "submarine" and key ~= "landfort" and key ~= "airfield" and key ~= "landvehicle" and key ~="kamikaze" and (searchedtype == nil or searchedtype == key) then
 		if (key == "destroyer" or key == "submarine" or key == "mothership" or key == "cargo" or key == "cruiser" or key == "torpedoboat"  or key == "battleship" or key == "landingship" ) and (searchedtype == nil or searchedtype == key) then
 			for key2, unit in pairs(unittype) do
 				if index == nil then
--- RELEASE_LOGOFF  					luaHelperLog("    Unit "..unit.Name)
+		-- RELEASE_LOGOFF  					luaHelperLog("    Unit "..unit.Name)
 					if not unit.Dead and luaGetDistance(unit, target) < radius then
--- RELEASE_LOGOFF  						luaHelperLog("      OK")
+		-- RELEASE_LOGOFF  						luaHelperLog("      OK")
 						if noretreaters ~= nil and not unit.Retreat then
 							table.insert(shipsAround, unit)
 						elseif noretreaters == nil then
@@ -437,7 +437,7 @@ function luaGetShipsAroundCoordinate(target, radius, party, allegiance, index, s
 						end
 					end
 				else
--- RELEASE_LOGOFF  					luaHelperLog("    Unit "..unit.Name)
+		-- RELEASE_LOGOFF  					luaHelperLog("    Unit "..unit.Name)
 					if not unit.Dead and luaGetDistance(unit, target) < radius then
 						if noretreaters ~= nil and not unit.Retreat then
 							tonumber(i)
@@ -476,9 +476,9 @@ index: bool, ha 'index' nil, akkor sorszamozza a tablat; ha nem, akkor tipus str
 planesAroundTable: table, entitasokat tartalmazo tabla, sorszam vagy unit.Type indexxel
 ]]
 function luaGetPlanesAround(target, radius, allegiance, index)
--- RELEASE_LOGOFF  	Assert(target ~= nil and target.ID ~= nil, "***ERROR: luaGetPlanesAround needs a targetentity as first param!\n"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(allegiance ~= nil, "***Script function error: no 'allegiance' parameter at luaGetPlanesAround."..debug.traceback())
--- RELEASE_LOGOFF  	Assert(allegiance == "enemy" or allegiance == "neutral" or allegiance == "own" or allegiance == "unknown", "***Script function error: bad 'allegiance' parameter at luaGetPlanesAround:"..allegiance.."\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target ~= nil and target.ID ~= nil, "***ERROR: luaGetPlanesAround needs a targetentity as first param!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(allegiance ~= nil, "***Script function error: no 'allegiance' parameter at luaGetPlanesAround."..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(allegiance == "enemy" or allegiance == "neutral" or allegiance == "own" or allegiance == "unknown", "***Script function error: bad 'allegiance' parameter at luaGetPlanesAround:"..allegiance.."\n"..debug.traceback())
 
 	local targetUnit = thisTable[target.ID]
 	local dist, uType
@@ -486,22 +486,22 @@ function luaGetPlanesAround(target, radius, allegiance, index)
 	local i = 0
 	local planesAround = {}
 
--- RELEASE_LOGOFF  --	luaHelperLog("ShipsAround initiated")
--- RELEASE_LOGOFF  --	luaHelperLog("Allegiance : "..allegiance)
--- RELEASE_LOGOFF  --	LogToFile("examined unit: ", targetUnit.Name)
--- RELEASE_LOGOFF  --	luaHelperLog("its party: "..targetUnit.Party)
+		-- RELEASE_LOGOFF  --	luaHelperLog("ShipsAround initiated")
+		-- RELEASE_LOGOFF  --	luaHelperLog("Allegiance : "..allegiance)
+		-- RELEASE_LOGOFF  --	LogToFile("examined unit: ", targetUnit.Name)
+		-- RELEASE_LOGOFF  --	luaHelperLog("its party: "..targetUnit.Party)
 	if index == nil then
 		for key, unittype in pairs(recon[targetUnit.Party][allegiance]) do
--- RELEASE_LOGOFF  --			luaHelperLog("key: "..key)
+		-- RELEASE_LOGOFF  --			luaHelperLog("key: "..key)
 			if key == "fighter" or key == "levelbomber" or key == "divebomber" or key == "torpedobomber" or key == "reconplane" or key == "kamikaze" then
 				for key2, unit in pairs(unittype) do
--- RELEASE_LOGOFF  --					luaHelperLog("kakas")
+		-- RELEASE_LOGOFF  --					luaHelperLog("kakas")
 					if not unit.Dead then
 						dist = luaGetDistance(unit, targetUnit)
 						if dist < radius and unit ~= targetUnit then
 							i = i+1
 							planesAround[i] = unit
--- RELEASE_LOGOFF  		--						luaHelperLog("-- planesAround inside. i = "..i..", PlanesAround table: "..planesAround[i])
+		-- RELEASE_LOGOFF  		--						luaHelperLog("-- planesAround inside. i = "..i..", PlanesAround table: "..planesAround[i])
 						end
 					end
 				end
@@ -516,9 +516,9 @@ function luaGetPlanesAround(target, radius, allegiance, index)
 		end
 	else
 		for key, unittype in pairs(recon[targetUnit.Party][allegiance]) do
--- RELEASE_LOGOFF  --			luaHelperLog("luaGetPlanesAround key: "..key)
+		-- RELEASE_LOGOFF  --			luaHelperLog("luaGetPlanesAround key: "..key)
 			if key == "fighter" or key == "levelbomber" or key == "divebomber" or key == "torpedobomber" or key == "reconplane" then
--- RELEASE_LOGOFF  --				luaHelperLog("Im in")
+		-- RELEASE_LOGOFF  --				luaHelperLog("Im in")
 				tonumber(i)
 				i = 0
 				for key2, unit in pairs(unittype) do
@@ -528,9 +528,9 @@ function luaGetPlanesAround(target, radius, allegiance, index)
 							tonumber(i)
 							i = i+1
 							uType = key..tostring(i)
--- RELEASE_LOGOFF  --							luaHelperLog("key "..key..", uType: "..tostring(uType))
+		-- RELEASE_LOGOFF  --							luaHelperLog("key "..key..", uType: "..tostring(uType))
 							planesAround[key..tostring(i)] = unit
--- RELEASE_LOGOFF  --							luaHelperLog("PlanesAround: "..planesAround)
+		-- RELEASE_LOGOFF  --							luaHelperLog("PlanesAround: "..planesAround)
 							number = number + 1
 						end
 					end
@@ -560,10 +560,10 @@ noretreaters: bool, ha nem nil akkor csak a nem visszavonulo egysegeket keresi
 planesAroundTable: table, entitasokat tartalmazo tabla, sorszam vagy unit.Type indexxel
 ]]
 function luaGetPlanesAroundCoordinate(target, radius, party, allegiance, index, searchedtype, noretreaters)
--- RELEASE_LOGOFF  	LogToFile("luaGetShipsAroundCoordinate is running for point: ", target)
+		-- RELEASE_LOGOFF  	LogToFile("luaGetShipsAroundCoordinate is running for point: ", target)
 
--- RELEASE_LOGOFF  	Assert(target ~= nil and luaIsCoordinate(target), "***ERROR: luaGetShipsAroundCoordinate's first param must be a {x, y, z} coordinate!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(party == PARTY_ALLIED or party == PARTY_JAPANESE, "***ERROR: luaGetShipsAroundCoordinate needs a party (PARTY_ALLIED or PARTY_JAPANESE) as third param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target ~= nil and luaIsCoordinate(target), "***ERROR: luaGetShipsAroundCoordinate's first param must be a {x, y, z} coordinate!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(party == PARTY_ALLIED or party == PARTY_JAPANESE, "***ERROR: luaGetShipsAroundCoordinate needs a party (PARTY_ALLIED or PARTY_JAPANESE) as third param!"..debug.traceback())
 
 	if allegiance == nil then
 		error("***Script function error: no 'allegiance' parameter at luaGetShipsAround.", 2)
@@ -576,14 +576,14 @@ function luaGetPlanesAroundCoordinate(target, radius, party, allegiance, index, 
 	local uType
 
 	for key, unittype in pairs(recon[party][allegiance]) do
--- RELEASE_LOGOFF  		luaHelperLog("  Type "..key)
+		-- RELEASE_LOGOFF  		luaHelperLog("  Type "..key)
 		if (key == "fighter" or key == "levelbomber" or key == "divebomber" or key == "torpedobomber" or key == "reconplane" or key == "kamikaze") and
 				(searchedtype == nil or searchedtype == key) then
 			for key2, unit in pairs(unittype) do
 				if index == nil then
--- RELEASE_LOGOFF  					luaHelperLog("    Unit "..unit.Name)
+		-- RELEASE_LOGOFF  					luaHelperLog("    Unit "..unit.Name)
 					if not unit.Dead and luaGetDistance(unit, target) < radius then
--- RELEASE_LOGOFF  						luaHelperLog("      OK")
+		-- RELEASE_LOGOFF  						luaHelperLog("      OK")
 						if noretreaters ~= nil and not unit.Retreat then
 							table.insert(planesAround, unit)
 						elseif noretreaters == nil then
@@ -591,7 +591,7 @@ function luaGetPlanesAroundCoordinate(target, radius, party, allegiance, index, 
 						end
 					end
 				else
--- RELEASE_LOGOFF  					luaHelperLog("    Unit "..unit.Name)
+		-- RELEASE_LOGOFF  					luaHelperLog("    Unit "..unit.Name)
 					if not unit.Dead and luaGetDistance(unit, target) < radius then
 						if noretreaters ~= nil and not unit.Retreat then
 							tonumber(i)
@@ -633,13 +633,13 @@ function luaGetVisibleEnemies(target)
 			tonumber(i)
 			i = i+1
 			uType = key..tostring(i)
--- RELEASE_LOGOFF  --			luaHelperLog("key "..key..", uType: "..uType)
+		-- RELEASE_LOGOFF  --			luaHelperLog("key "..key..", uType: "..uType)
 			visibleEnemies[key..tostring(i)] = unit
 			enemynumber = enemynumber + 1
 		end
 	end
--- RELEASE_LOGOFF  --	luaHelperLog(" teszt: enemynumber="..enemynumber)
--- RELEASE_LOGOFF  --	LogToFile("bakker", visibleEnemies)
+		-- RELEASE_LOGOFF  --	luaHelperLog(" teszt: enemynumber="..enemynumber)
+		-- RELEASE_LOGOFF  --	LogToFile("bakker", visibleEnemies)
 	if enemynumber == 0 then
 		return nil
 	else
@@ -664,7 +664,7 @@ function luaGetOwnPlanes(target)
 				tonumber(i)
 				i = i+1
 				uType = key..tostring(i)
--- RELEASE_LOGOFF  --				luaHelperLog("key "..key..", uType: "..uType)
+		-- RELEASE_LOGOFF  --				luaHelperLog("key "..key..", uType: "..uType)
 				ownPlanes[key..tostring(i)] = unit
 			end
 		end
@@ -685,17 +685,17 @@ target: table, adott egyseg amelyhet keresunk a reconban
 isVisible: bool, true ha belekerult mar a recon tablaba, false ha nem
 ]]
 function luaIsVisible(this,target)
--- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsVisible got a 'nil' target!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsVisible got a 'nil' target!"..debug.traceback())
 	if target.ID == nil and target.x ~= nil then
 		return true
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog("Is Target on:"..thisTable[target.ID].Name)
--- RELEASE_LOGOFF  	luaHelperLog(" For party: "..this.Party)
+		-- RELEASE_LOGOFF  	luaHelperLog("Is Target on:"..thisTable[target.ID].Name)
+		-- RELEASE_LOGOFF  	luaHelperLog(" For party: "..this.Party)
 	for key, allegiance in pairs(recon[this.Party]) do
--- RELEASE_LOGOFF  		luaHelperLog(" Checking allegiance: "..key)
+		-- RELEASE_LOGOFF  		luaHelperLog(" Checking allegiance: "..key)
 		for key2, unittype in pairs(allegiance) do
--- RELEASE_LOGOFF  			luaHelperLog("  Checking unittype: "..key2)
+		-- RELEASE_LOGOFF  			luaHelperLog("  Checking unittype: "..key2)
 			if unittype[target.ID] ~= nil then
 				return true
 			end
@@ -710,10 +710,10 @@ function luaIsVisible(this,target)
 
 
 	if target.Path ~= nil then
--- RELEASE_LOGOFF  		luaHelperLog("Target was a path...")
+		-- RELEASE_LOGOFF  		luaHelperLog("Target was a path...")
 		return true
 	else
--- RELEASE_LOGOFF  		luaHelperLog("Is Target on: "..thisTable[target.ID].Name.." failed")
+		-- RELEASE_LOGOFF  		luaHelperLog("Is Target on: "..thisTable[target.ID].Name.." failed")
 		return false
 	end
 end
@@ -730,36 +730,36 @@ isVisible: bool, true ha recon rangen belul van, false ha nem
 ]]
 -- adott objektumhoz (entity!) kepest nezi meg, hogy az o partyja latja-e (reconrange-en belul van-e) a masodik paramban megadott koordinatat
 function luaIsVisibleCoordinate(obj, coordinate, dist)
--- RELEASE_LOGOFF  	Assert(obj.ID ~= nil, "***ERROR: luaIsVisibleCoordinate needs an entity as 1st param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(coordinate.x ~= nil and coordinate.y ~= nil and coordinate.z ~= nil, "***ERROR: luaIsVisibleCoordinate needs a coordinate as 2nd param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(obj.ID ~= nil, "***ERROR: luaIsVisibleCoordinate needs an entity as 1st param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(coordinate.x ~= nil and coordinate.y ~= nil and coordinate.z ~= nil, "***ERROR: luaIsVisibleCoordinate needs a coordinate as 2nd param!"..debug.traceback())
 
 	if dist and type(dist) == "number" and dist > 0 then
--- RELEASE_LOGOFF  		luaHelperLog("Valid dist param")
+		-- RELEASE_LOGOFF  		luaHelperLog("Valid dist param")
 	else
 		dist = 3500
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog("luaIsVisibleCoordinate 's relative entity: "..obj.Name)
--- RELEASE_LOGOFF  	luaHelperLog("\texamined coordinate: ")
--- RELEASE_LOGOFF  	luaHelperLog(coordinate)
+		-- RELEASE_LOGOFF  	luaHelperLog("luaIsVisibleCoordinate 's relative entity: "..obj.Name)
+		-- RELEASE_LOGOFF  	luaHelperLog("\texamined coordinate: ")
+		-- RELEASE_LOGOFF  	luaHelperLog(coordinate)
 
 	for key, unittype in pairs(recon[obj.Party].own) do
 		for key2, unit in pairs(unittype) do
--- RELEASE_LOGOFF  			luaHelperLog(" Checking: "..unit.Name)
+		-- RELEASE_LOGOFF  			luaHelperLog(" Checking: "..unit.Name)
 			if not unit.Dead then
 				if luaGetDistance(unit, coordinate) < dist then
--- RELEASE_LOGOFF  					luaHelperLog("  Coordinate is in reconrange.")
+		-- RELEASE_LOGOFF  					luaHelperLog("  Coordinate is in reconrange.")
 					return true
 				else
--- RELEASE_LOGOFF  					luaHelperLog("  Coordinate is far, far away.")
+		-- RELEASE_LOGOFF  					luaHelperLog("  Coordinate is far, far away.")
 				end
 			else
--- RELEASE_LOGOFF  				luaHelperLog("Found a dead unit in recon.")
+		-- RELEASE_LOGOFF  				luaHelperLog("Found a dead unit in recon.")
 			end
 		end
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog("No own unit found in the vicinity of the given coordinate.")
+		-- RELEASE_LOGOFF  	luaHelperLog("No own unit found in the vicinity of the given coordinate.")
 	return false
 end
 
@@ -782,9 +782,9 @@ function luaPrioritySelect(visibleEnemies, priority1, priority2, priority3, prio
 	local targetSelected
 	local lpriority1, lpriority2, lpriority3, lpriority4, lpriority5, lpriority6 = priority1, priority2, priority3, priority4, priority5, priority6
 
--- RELEASE_LOGOFF  --	luaHelperLog("Selection parameters \n Visible units: ")
--- RELEASE_LOGOFF  --	luaHelperLog(visibleEnemies)
--- RELEASE_LOGOFF  --	luaHelperLog(" priorities: \n"..priority1.." "..priority2.." "..priority3.." "..priority4.." "..priority5.." "..priority6)
+		-- RELEASE_LOGOFF  --	luaHelperLog("Selection parameters \n Visible units: ")
+		-- RELEASE_LOGOFF  --	luaHelperLog(visibleEnemies)
+		-- RELEASE_LOGOFF  --	luaHelperLog(" priorities: \n"..priority1.." "..priority2.." "..priority3.." "..priority4.." "..priority5.." "..priority6)
 	if visibleEnemies == nil then
 		error("\n***ERROR: function luaPrioritySelect first param is nil instead of a table.", 2)
 	end
@@ -812,60 +812,60 @@ function luaPrioritySelect(visibleEnemies, priority1, priority2, priority3, prio
 		lpriority6 = "nyavaja"
 	end
 
--- RELEASE_LOGOFF  --	luaHelperLog("Selection parameters \n Visible units: ")
--- RELEASE_LOGOFF  --	luaHelperLog(visibleEnemies)
--- RELEASE_LOGOFF  --	luaHelperLog(" priorities: \n"..lpriority1.." "..lpriority2.." "..lpriority3.." "..lpriority4.." "..lpriority5.." "..lpriority6)
+		-- RELEASE_LOGOFF  --	luaHelperLog("Selection parameters \n Visible units: ")
+		-- RELEASE_LOGOFF  --	luaHelperLog(visibleEnemies)
+		-- RELEASE_LOGOFF  --	luaHelperLog(" priorities: \n"..lpriority1.." "..lpriority2.." "..lpriority3.." "..lpriority4.." "..lpriority5.." "..lpriority6)
 
 	for enemykey, enemyunit in pairs(visibleEnemies) do
--- RELEASE_LOGOFF  --		luaHelperLog("enemy type: "..enemykey)
+		-- RELEASE_LOGOFF  --		luaHelperLog("enemy type: "..enemykey)
 
 		if string.find(enemykey, lpriority1)~=nil then
--- RELEASE_LOGOFF  --			luaHelperLog("inside 1, found: "..enemyunit.Name)
+		-- RELEASE_LOGOFF  --			luaHelperLog("inside 1, found: "..enemyunit.Name)
 			return enemyunit, lpriority1
 		end
 	end
 
 	for enemykey, enemyunit in pairs(visibleEnemies) do
--- RELEASE_LOGOFF  --		luaHelperLog("enemy type: "..enemykey)
+		-- RELEASE_LOGOFF  --		luaHelperLog("enemy type: "..enemykey)
 
 		if string.find(enemykey, lpriority2)~=nil then
--- RELEASE_LOGOFF  --			luaHelperLog("inside 2, found: "..enemyunit.Name)
+		-- RELEASE_LOGOFF  --			luaHelperLog("inside 2, found: "..enemyunit.Name)
 			return enemyunit, lpriority2
 		end
 	end
 
 	for enemykey, enemyunit in pairs(visibleEnemies) do
--- RELEASE_LOGOFF  --		luaHelperLog("enemy type: "..enemykey)
+		-- RELEASE_LOGOFF  --		luaHelperLog("enemy type: "..enemykey)
 
 		if string.find(enemykey, lpriority3)~=nil then
--- RELEASE_LOGOFF  --			luaHelperLog("inside 3, found: "..enemyunit.Name)
+		-- RELEASE_LOGOFF  --			luaHelperLog("inside 3, found: "..enemyunit.Name)
 			return enemyunit, lpriority3
 		end
 	end
 
 	for enemykey, enemyunit in pairs(visibleEnemies) do
--- RELEASE_LOGOFF  --		luaHelperLog("enemy type: "..enemykey)
+		-- RELEASE_LOGOFF  --		luaHelperLog("enemy type: "..enemykey)
 
 		if string.find(enemykey, lpriority4)~=nil then
--- RELEASE_LOGOFF  --			luaHelperLog("inside 4, found: "..enemyunit.Name)
+		-- RELEASE_LOGOFF  --			luaHelperLog("inside 4, found: "..enemyunit.Name)
 			return enemyunit, lpriority4
 		end
 	end
 
 	for enemykey, enemyunit in pairs(visibleEnemies) do
--- RELEASE_LOGOFF  --		luaHelperLog("enemy type: "..enemykey)
+		-- RELEASE_LOGOFF  --		luaHelperLog("enemy type: "..enemykey)
 
 		if string.find(enemykey, lpriority5)~=nil then
--- RELEASE_LOGOFF  --			luaHelperLog("inside 5, found: "..enemyunit.Name)
+		-- RELEASE_LOGOFF  --			luaHelperLog("inside 5, found: "..enemyunit.Name)
 			return enemyunit, lpriority5
 		end
 	end
 
 	for enemykey, enemyunit in pairs(visibleEnemies) do
--- RELEASE_LOGOFF  --		luaHelperLog("enemy type: "..enemykey)
+		-- RELEASE_LOGOFF  --		luaHelperLog("enemy type: "..enemykey)
 
 		if string.find(enemykey, lpriority6)~=nil then
--- RELEASE_LOGOFF  --			luaHelperLog("inside 6, found: "..enemyunit.Name)
+		-- RELEASE_LOGOFF  --			luaHelperLog("inside 6, found: "..enemyunit.Name)
 			return enemyunit, lpriority6
 		end
 	end
@@ -885,7 +885,7 @@ function luaPrioritySelectNearest(...)	--luaPrioritySelectNearest(target, target
 	local dist
 	local mindist = 10000000000
 
--- RELEASE_LOGOFF  	luaHelperLog("Number of arguments at luaPrioritySelectNearest : "..table.getn(arg))
+		-- RELEASE_LOGOFF  	luaHelperLog("Number of arguments at luaPrioritySelectNearest : "..table.getn(arg))
 	if table.getn(arg) < 3 then
 		error("***Script function 'luaPrioritySelectNearest' error: not enough params!", 2)
 	end
@@ -929,7 +929,7 @@ memoriafoglalas miatt kiveve
 function luaPriorityList(...)
 	local selectionTable = {}
 
--- RELEASE_LOGOFF  	luaHelperLog("Number of arguments at luaPriorityList : "..table.getn(arg))
+		-- RELEASE_LOGOFF  	luaHelperLog("Number of arguments at luaPriorityList : "..table.getn(arg))
 	if table.getn(arg) < 4 then
 		error("***ERROR: luaPriorityList has not enough params! (must have at least 4)", 2)
 	end
@@ -946,35 +946,35 @@ function luaPriorityList(...)
 	for key, value in pairs(arg) do
 		if key == 1 then
 			target = value
--- RELEASE_LOGOFF  			luaHelperLog("target: "..thisTable[value.ID].Name)
+		-- RELEASE_LOGOFF  			luaHelperLog("target: "..thisTable[value.ID].Name)
 		elseif key == 2 then
 			targetTable = value
--- RELEASE_LOGOFF  			luaLogElementNames(targetTable, "Targettable")
+		-- RELEASE_LOGOFF  			luaLogElementNames(targetTable, "Targettable")
 		elseif key == 3 then
 			distanceLimit = value
--- RELEASE_LOGOFF  			luaHelperLog("distancelimit: "..distanceLimit)
+		-- RELEASE_LOGOFF  			luaHelperLog("distancelimit: "..distanceLimit)
 		elseif key == "n" then
--- RELEASE_LOGOFF  			luaHelperLog("luaPriorityList failed")
+		-- RELEASE_LOGOFF  			luaHelperLog("luaPriorityList failed")
 			return nil
 		else
 			for uType, unit in pairs(targetTable) do
 				if string.find(uType, value) ~= nil and not unit.Dead then
--- RELEASE_LOGOFF  					luaHelperLog("Found unittype "..value)
+		-- RELEASE_LOGOFF  					luaHelperLog("Found unittype "..value)
 					if distanceLimit ~= nil then
 						if luaGetDistance(target, unit) < distanceLimit then
--- RELEASE_LOGOFF  							luaHelperLog("...inserting...")
+		-- RELEASE_LOGOFF  							luaHelperLog("...inserting...")
 							table.insert(selectionTable, unit)
 						else
--- RELEASE_LOGOFF  							luaHelperLog("but it is too far")
+		-- RELEASE_LOGOFF  							luaHelperLog("but it is too far")
 						end
 					else
--- RELEASE_LOGOFF  						luaHelperLog("...inserting...")
+		-- RELEASE_LOGOFF  						luaHelperLog("...inserting...")
 						table.insert(selectionTable, unit)
 					end
 				end
 			end
 			if next(selectionTable) ~= nil then
--- RELEASE_LOGOFF  				luaLogElementNames(selectionTable, "luaPriorityList result")
+		-- RELEASE_LOGOFF  				luaLogElementNames(selectionTable, "luaPriorityList result")
 				return selectionTable
 			end
 		end
@@ -995,9 +995,9 @@ val: mixed, a key-hez tartozo ertek
 function luaPickRnd(anytable, tablekey)
 	local rnd, rndmax = 0, 0
 	local rndSelected
--- RELEASE_LOGOFF  --	luaHelperLog("Random selection from table ")
--- RELEASE_LOGOFF  --	luaHelperLog(anytable)
--- RELEASE_LOGOFF  --	luaHelperLog("initiated")
+		-- RELEASE_LOGOFF  --	luaHelperLog("Random selection from table ")
+		-- RELEASE_LOGOFF  --	luaHelperLog(anytable)
+		-- RELEASE_LOGOFF  --	luaHelperLog("initiated")
 	for key, value in pairs(anytable) do
 		rnd = luaRnd()
 		if rnd > rndmax then
@@ -1005,7 +1005,7 @@ function luaPickRnd(anytable, tablekey)
 			rndSelected = value
 			rndkey = key
 		end
--- RELEASE_LOGOFF  --		luaHelperLog("Random values - rnd: "..rnd..", rndmax: "..rndmax..", rndSelected: "..rndSelected)
+		-- RELEASE_LOGOFF  --		luaHelperLog("Random values - rnd: "..rnd..", rndmax: "..rndmax..", rndSelected: "..rndSelected)
 	end
 
 	if tablekey == nil then
@@ -1048,21 +1048,21 @@ function luaPickInRange(...)
 
 --[[
 
--- RELEASE_LOGOFF  	luaLog("-----------Pick in range in action-----------")
--- RELEASE_LOGOFF  	luaLog("- ")
--- RELEASE_LOGOFF  	luaLog("- Chances")
+		-- RELEASE_LOGOFF  	luaLog("-----------Pick in range in action-----------")
+		-- RELEASE_LOGOFF  	luaLog("- ")
+		-- RELEASE_LOGOFF  	luaLog("- Chances")
 	for i, v in pairs (chances) do
--- RELEASE_LOGOFF  		luaLog("-  "..i.." : "..v)
+		-- RELEASE_LOGOFF  		luaLog("-  "..i.." : "..v)
 	end
 ]]
 
 	local sumdice = 0
 	for key, value in pairs(chances) do
--- RELEASE_LOGOFF  		Assert(value >= 0, "luaPickInRange must not get a value smaller than 0!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(value >= 0, "luaPickInRange must not get a value smaller than 0!\n"..debug.traceback())
 		sumdice = sumdice + value
 	end
 
--- RELEASE_LOGOFF  --	luaLog("- Dice : "..sumdice)
+		-- RELEASE_LOGOFF  --	luaLog("- Dice : "..sumdice)
 
 	--luaLog("- Chances: ")
 	--luaLog(chances)
@@ -1093,24 +1093,24 @@ function luaPickInRange(...)
 	end
 
 	local result = luaRnd(1, sumdice)
--- RELEASE_LOGOFF  --	luaLog("- ")
--- RELEASE_LOGOFF  --	luaLog("- Roll: "..result)
+		-- RELEASE_LOGOFF  --	luaLog("- ")
+		-- RELEASE_LOGOFF  --	luaLog("- Roll: "..result)
 
 	local selectedRange
--- RELEASE_LOGOFF  --	luaLog("- ")
--- RELEASE_LOGOFF  --	luaLog("- Investigating ranges")
+		-- RELEASE_LOGOFF  --	luaLog("- ")
+		-- RELEASE_LOGOFF  --	luaLog("- Investigating ranges")
 	for key, value in pairs(ranges) do
--- RELEASE_LOGOFF  --		luaLog("-  Range "..key.." : "..value.min..", "..value.max.." Paramnum: "..value.ParamNum)
+		-- RELEASE_LOGOFF  --		luaLog("-  Range "..key.." : "..value.min..", "..value.max.." Paramnum: "..value.ParamNum)
 		if result >= value.min and result <= value.max then
--- RELEASE_LOGOFF  --			luaLog("-   Roll found at key "..value.ParamNum)
+		-- RELEASE_LOGOFF  --			luaLog("-   Roll found at key "..value.ParamNum)
 			selectedRange = value.ParamNum
 			break
 		end
 	end
 
--- RELEASE_LOGOFF  	Assert(selectedRange ~= nil, "***ERROR: luaPickInRange hasn't found solution for given data. Check args!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(selectedRange ~= nil, "***ERROR: luaPickInRange hasn't found solution for given data. Check args!"..debug.traceback())
 
--- RELEASE_LOGOFF  --	luaLog("---------------------------------")
+		-- RELEASE_LOGOFF  --	luaLog("---------------------------------")
 	return vals[selectedRange]
 end
 
@@ -1127,29 +1127,29 @@ function luaGetAttackers(target)
 		i = 0
 		for key2, unit in pairs(unittype) do
 			if thisTable[unit.ID]["FireAtWillTarget"] ~= nil then
--- RELEASE_LOGOFF  --				luaHelperLog("luaGetAttackers: reference.ID = "..target.ID.."\n examined FAWTarget.ID = "..thisTable[unit.ID]["FireAtWillTarget"].ID)
+		-- RELEASE_LOGOFF  --				luaHelperLog("luaGetAttackers: reference.ID = "..target.ID.."\n examined FAWTarget.ID = "..thisTable[unit.ID]["FireAtWillTarget"].ID)
 				if thisTable[unit.ID]["FireAtWillTarget"].ID == target.ID or thisTable[unit.ID]["Target"].ID == target.ID and luaGetDistance(unit, target)<7000 then
 					tonumber(i)
 					i = i+1
 					enemytype = key..tostring(i)
--- RELEASE_LOGOFF  		--			luaHelperLog("key "..key..", uType: "..uType)
+		-- RELEASE_LOGOFF  		--			luaHelperLog("key "..key..", uType: "..uType)
 					attackers[key..tostring(i)] = unit
 					enemynumber = enemynumber + 1
 				end
 			elseif thisTable[unit.ID]["Target"] ~= nil then
--- RELEASE_LOGOFF  --				luaHelperLog("\nTarget.ID = "..thisTable[unit.ID]["Target"].ID)
+		-- RELEASE_LOGOFF  --				luaHelperLog("\nTarget.ID = "..thisTable[unit.ID]["Target"].ID)
 				if thisTable[unit.ID]["Target"].ID == target.ID and luaGetDistance(unit, target)<7000 then
 					tonumber(i)
 					i = i+1
 					enemytype = key..tostring(i)
--- RELEASE_LOGOFF  		--			luaHelperLog("key "..key..", uType: "..uType)
+		-- RELEASE_LOGOFF  		--			luaHelperLog("key "..key..", uType: "..uType)
 					attackers[key..tostring(i)] = unit
 					enemynumber = enemynumber + 1
 				end
 			end
 		end
 	end
--- RELEASE_LOGOFF  	luaHelperLog(thisTable[target.ID].Name.." attackers' number = "..enemynumber)
+		-- RELEASE_LOGOFF  	luaHelperLog(thisTable[target.ID].Name.." attackers' number = "..enemynumber)
 	if enemynumber == 0 then
 		return nil
 	else
@@ -1168,28 +1168,28 @@ table: table, az osszevont tablak
 function luaSumTables(...)
 	local argnumber = table.getn(arg)
 	local sumtable = {}
--- RELEASE_LOGOFF  --	luaHelperLog("luaSumTables initiated, number of arguments: "..argnumber)
+		-- RELEASE_LOGOFF  --	luaHelperLog("luaSumTables initiated, number of arguments: "..argnumber)
 	--LogToFile("step1 ", arg)
 
 	for key, value in pairs(arg) do
--- RELEASE_LOGOFF  --		luaHelperLog("key "..key)
--- RELEASE_LOGOFF  --		luaHelperLog("value "..value)
--- RELEASE_LOGOFF  --		luaHelperLog("step2"..value.." uType: "..type)
--- RELEASE_LOGOFF  --		Assert( 0, debug.traceback("debug trace faka:") )
--- RELEASE_LOGOFF  --		luaHelperLog("step3"..value.." uType: "..type(value))
+		-- RELEASE_LOGOFF  --		luaHelperLog("key "..key)
+		-- RELEASE_LOGOFF  --		luaHelperLog("value "..value)
+		-- RELEASE_LOGOFF  --		luaHelperLog("step2"..value.." uType: "..type)
+		-- RELEASE_LOGOFF  --		Assert( 0, debug.traceback("debug trace faka:") )
+		-- RELEASE_LOGOFF  --		luaHelperLog("step3"..value.." uType: "..type(value))
 --		if type(value) == "table" then
--- RELEASE_LOGOFF  --		Assert( 0, debug.traceback() )
+		-- RELEASE_LOGOFF  --		Assert( 0, debug.traceback() )
 		if key ~= "n" then
--- RELEASE_LOGOFF  			Assert( type(value) == "table", debug.traceback("Bad type for luaSumTables") )
+		-- RELEASE_LOGOFF  			Assert( type(value) == "table", debug.traceback("Bad type for luaSumTables") )
 			for key2, value2 in pairs(value) do
 				if sumtable[key2] ~= nil then
--- RELEASE_LOGOFF  					luaHelperLog("Warning: adding tables, possible loss of data. Tablekey -"..key2.."- is already used, now it is overwritten.")
+		-- RELEASE_LOGOFF  					luaHelperLog("Warning: adding tables, possible loss of data. Tablekey -"..key2.."- is already used, now it is overwritten.")
 				end
 				sumtable[key2] = value2
 			end
 		end
 --		elseif type(value) ~= "table" and key ~= "n" then
--- RELEASE_LOGOFF  --			luaHelperLog("wrong value: "..value)
+		-- RELEASE_LOGOFF  --			luaHelperLog("wrong value: "..value)
 --			error("***ERROR: luaSumTables got a param which is not a table.", 2)
 --		end
 	end
@@ -1209,11 +1209,11 @@ function luaSumTablesIndex(...)
 	local sumtable = {}
 	local i = 0
 
--- RELEASE_LOGOFF  --	luaHelperLog("luaSumTablesIndex initiated, number of arguments: "..argnumber)
+		-- RELEASE_LOGOFF  --	luaHelperLog("luaSumTablesIndex initiated, number of arguments: "..argnumber)
 	--LogToFile("step1 ", arg)
 
 	for key, value in pairs(arg) do
--- RELEASE_LOGOFF  --		luaHelperLog("step2"..value.." type: "..type(value))
+		-- RELEASE_LOGOFF  --		luaHelperLog("step2"..value.." type: "..type(value))
 --		if type(value) == "table" then
 		--if not arg == nil then
 			if key ~= "n" then
@@ -1224,8 +1224,8 @@ function luaSumTablesIndex(...)
 			end
 		--end
 --		elseif type(value) ~= "table" and key ~= "n" then
--- RELEASE_LOGOFF  --			luaHelperLog("type: "..type(value)..", key: "..key)
--- RELEASE_LOGOFF  --			LogToFile("value: ", value)
+		-- RELEASE_LOGOFF  --			luaHelperLog("type: "..type(value)..", key: "..key)
+		-- RELEASE_LOGOFF  --			LogToFile("value: ", value)
 --			error("***ERROR: luaSumTablesIndex needs tables as arguments!", 2)
 --		end
 	end
@@ -1270,10 +1270,10 @@ function luaSortByDistance2(unit, targets, nearest)
 	local distOrder = {}
 	local targetList = luaSumTablesIndex(targets)
 
--- RELEASE_LOGOFF  	luaHelperLog("luaSortByDistance2 has been called")
+		-- RELEASE_LOGOFF  	luaHelperLog("luaSortByDistance2 has been called")
 
 	if next(targetList) == nil then
--- RELEASE_LOGOFF  		luaHelperLog("--> targettable is empty!")
+		-- RELEASE_LOGOFF  		luaHelperLog("--> targettable is empty!")
 		return
 	end
 	local sorted = {}
@@ -1327,12 +1327,12 @@ end
 memoriafoglalas miatt kiveve
 -- kivalasztja az elso 'targetType'-nak megfelelo tipusu unitot 'targetTable' tablabol
 function luaSelectType(targetTable, targetType)
--- RELEASE_LOGOFF  	Assert(type(targetTable) == "table", "***ERROR: luaSelectType first param must be a table with entities!\n"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(targetType) == "string", "***ERROR: luaSelectType second param must be a unittype string!\n"..debug.traceback())
--- RELEASE_LOGOFF  	luaHelperLog("luaSelectType called, searching for targettype "..targetType.."...")
+		-- RELEASE_LOGOFF  	Assert(type(targetTable) == "table", "***ERROR: luaSelectType first param must be a table with entities!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(targetType) == "string", "***ERROR: luaSelectType second param must be a unittype string!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("luaSelectType called, searching for targettype "..targetType.."...")
 	for key, value in pairs(targetTable) do
 		if value.Class.Type == targetType then
--- RELEASE_LOGOFF  			luaHelperLog(" Found targettype "..targetType..": "..value.Name )
+		-- RELEASE_LOGOFF  			luaHelperLog(" Found targettype "..targetType..": "..value.Name )
 			return value
 		end
 	end
@@ -1355,10 +1355,10 @@ function luaSortByDistance(unit, targets, nearest)
 	local distOrder = {}
 	local targetList = luaSumTablesIndex(targets)
 
--- RELEASE_LOGOFF  	luaHelperLog("luaSortByDistance has been called")
+		-- RELEASE_LOGOFF  	luaHelperLog("luaSortByDistance has been called")
 
 	if next(targetList) == nil then
--- RELEASE_LOGOFF  		luaHelperLog("--> targettable is empty!")
+		-- RELEASE_LOGOFF  		luaHelperLog("--> targettable is empty!")
 		return
 	end
 --[[
@@ -1371,11 +1371,11 @@ function luaSortByDistance(unit, targets, nearest)
 		dist = math.floor(luaGetDistance(unit, value))
 
 		if distOrder[dist] ~= nil then
--- RELEASE_LOGOFF  			luaHelperLog("found matching key, increasing number"..dist)
+		-- RELEASE_LOGOFF  			luaHelperLog("found matching key, increasing number"..dist)
 			dist = dist +1
 		end
 
--- RELEASE_LOGOFF  		luaHelperLog("-Adding key "..dist.." with entity: "..value.Name)
+		-- RELEASE_LOGOFF  		luaHelperLog("-Adding key "..dist.." with entity: "..value.Name)
 		table.insert(distOrder, tonumber(dist), value)
 		--distOrder[dist] = value
 	end
@@ -1385,17 +1385,17 @@ function luaSortByDistance(unit, targets, nearest)
 	local minDist=1000000
 	if nearest ~= nil then
 		--LogToFile("Distance table: ", distOrder)
--- RELEASE_LOGOFF  	--	luaLogElementNames(distOrder, "distance table")
+		-- RELEASE_LOGOFF  	--	luaLogElementNames(distOrder, "distance table")
 		for key, value in pairs(distOrder) do
--- RELEASE_LOGOFF  --			luaHelperLog("Checking "..value.Name..", distance: "..key)
--- RELEASE_LOGOFF  --			luaHelperLog("minimal distance: "..minDist)
+		-- RELEASE_LOGOFF  --			luaHelperLog("Checking "..value.Name..", distance: "..key)
+		-- RELEASE_LOGOFF  --			luaHelperLog("minimal distance: "..minDist)
 			if key < minDist then
--- RELEASE_LOGOFF  --				luaHelperLog("dist less then mindist, updating")
+		-- RELEASE_LOGOFF  --				luaHelperLog("dist less then mindist, updating")
 				minDist = key
 			end
 		end
 
--- RELEASE_LOGOFF  	--	luaHelperLog("luaSortByDistance nearest: "..distOrder[minDist].Name.." Distance: "..minDist)
+		-- RELEASE_LOGOFF  	--	luaHelperLog("luaSortByDistance nearest: "..distOrder[minDist].Name.." Distance: "..minDist)
 		return distOrder[minDist], minDist
 	else
 		return distOrder
@@ -1429,12 +1429,12 @@ end
 memoriafoglalas miatt kiveve
 -- kivalasztja az elso 'targetType'-nak megfelelo tipusu unitot 'targetTable' tablabol
 function luaSelectType(targetTable, targetType)
--- RELEASE_LOGOFF  	Assert(type(targetTable) == "table", "***ERROR: luaSelectType first param must be a table with entities!\n"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(targetType) == "string", "***ERROR: luaSelectType second param must be a unittype string!\n"..debug.traceback())
--- RELEASE_LOGOFF  	luaHelperLog("luaSelectType called, searching for targettype "..targetType.."...")
+		-- RELEASE_LOGOFF  	Assert(type(targetTable) == "table", "***ERROR: luaSelectType first param must be a table with entities!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(targetType) == "string", "***ERROR: luaSelectType second param must be a unittype string!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("luaSelectType called, searching for targettype "..targetType.."...")
 	for key, value in pairs(targetTable) do
 		if value.Class.Type == targetType then
--- RELEASE_LOGOFF  			luaHelperLog(" Found targettype "..targetType..": "..value.Name )
+		-- RELEASE_LOGOFF  			luaHelperLog(" Found targettype "..targetType..": "..value.Name )
 			return value
 		end
 	end
@@ -1512,8 +1512,8 @@ end
 memoriafoglalas miatt kiveve
 -- adott tablat redukal le annyi elemuve, ami meg van hatarozva masodik paramkent
 function luaReduceTableSize(targettable, size)
--- RELEASE_LOGOFF  	Assert(type(targettable) == "table" , "***ERROR: luaReduceTable needs a table for first param."..debug.traceback())
--- RELEASE_LOGOFF  	Assert(size ~= nil and size ~= 0, "***ERROR: luaReduceTable needs a number greater then 0 for second param."..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(targettable) == "table" , "***ERROR: luaReduceTable needs a table for first param."..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(size ~= nil and size ~= 0, "***ERROR: luaReduceTable needs a number greater then 0 for second param."..debug.traceback())
 	local reducedTable = {}
 	local i = 1
 	for key, value in pairs(targettable) do
@@ -1551,21 +1551,21 @@ function luaRemoveEmptyPlanes(unitTable, str)
 	end
 
 	for key, value in pairs(unitTable) do
--- RELEASE_LOGOFF  		Assert(luaGetType(value) == "plane", "***ERROR: luaRemoveEmptyPlanes must get a planetable!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(luaGetType(value) == "plane", "***ERROR: luaRemoveEmptyPlanes must get a planetable!\n"..debug.traceback())
 		value.ammo = GetProperty(value, "ammoType")
 		--luaLog("KAKAS")
 		--luaLog(value)
--- RELEASE_LOGOFF  		luaHelperLog("Ammo of unit "..value.Name..": "..value.ammo)
+		-- RELEASE_LOGOFF  		luaHelperLog("Ammo of unit "..value.Name..": "..value.ammo)
 		if value.ammo ~= 0 then
--- RELEASE_LOGOFF  			luaHelperLog(" unit has ammo yet")
+		-- RELEASE_LOGOFF  			luaHelperLog(" unit has ammo yet")
 			table.insert(ammoTable, value)
 		else
--- RELEASE_LOGOFF  			luaHelperLog("Unit has run out of ammo: "..str..value.Name)
+		-- RELEASE_LOGOFF  			luaHelperLog("Unit has run out of ammo: "..str..value.Name)
 		end
 	end
 
--- RELEASE_LOGOFF  	luaLogElementNames(unitTable, "orig table ")
--- RELEASE_LOGOFF  	luaLogElementNames(ammoTable, "those having ammo ")
+		-- RELEASE_LOGOFF  	luaLogElementNames(unitTable, "orig table ")
+		-- RELEASE_LOGOFF  	luaLogElementNames(ammoTable, "those having ammo ")
 
 	return ammoTable
 end
@@ -1636,8 +1636,8 @@ end
 --[[
 memoriafoglalas miatt kiveve
 function luaRotateVector(vector, dir)	-- ez egy nagy fukk, hallo. Todo w. low prior.
--- RELEASE_LOGOFF  	Assert(vector.x ~= nil and vector.z ~= nil, "***ERROR: luaRotateVector's first param must be a vectortable!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(dir == -90 or dir == 90, "***ERROR: luaRotateVector's second param must be the degree of turning!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(vector.x ~= nil and vector.z ~= nil, "***ERROR: luaRotateVector's first param must be a vectortable!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(dir == -90 or dir == 90, "***ERROR: luaRotateVector's second param must be the degree of turning!"..debug.traceback())
 	local normal = {}
 	if dir == 90 then
 		normal.x = vector.z
@@ -1647,7 +1647,7 @@ function luaRotateVector(vector, dir)	-- ez egy nagy fukk, hallo. Todo w. low pr
 		normal.z = vector.x
 	end
 
--- RELEASE_LOGOFF  	LogToFile("Rotated vector of ", vector, " towards ", dir, " is ", normal)
+		-- RELEASE_LOGOFF  	LogToFile("Rotated vector of ", vector, " towards ", dir, " is ", normal)
 	return normal
 end
 
@@ -1656,7 +1656,7 @@ end
 
 --[[
 function luaGetGroupNumber(groupent)
--- RELEASE_LOGOFF  	LogToFile("Counting group size for group: ", groupent)
+		-- RELEASE_LOGOFF  	LogToFile("Counting group size for group: ", groupent)
 	local count = 0
 	for key, childgroup in pairs(GetGroupChildren(groupent)) do
 		count = count + 1
@@ -1674,17 +1674,17 @@ memoriafoglalas miatt kiveve
 -- barmilyen indexelesu tablat atkonvertal tipusindexelesube
 -- argumentum csak entity-kbol allo tabla lehet
 function luaConvertIndicesToTypeIndices(EntTables)
--- RELEASE_LOGOFF  	Assert(EntTables ~= nil, "***ERROR: luaConvertIndicesToTypeIndices' argument is -nil- instead of a table."..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(EntTables ~= nil, "***ERROR: luaConvertIndicesToTypeIndices' argument is -nil- instead of a table."..debug.traceback())
 	local typeIndexedTable = {}
 	local i = 1
 	local knownTypes = {}
 	local inserting = true
 	for index, ent in pairs(EntTables) do
 		if knownTypes[ent.Class.Type] == nil then
--- RELEASE_LOGOFF  			luaHelperLog("New type "..ent.Class.Type)
+		-- RELEASE_LOGOFF  			luaHelperLog("New type "..ent.Class.Type)
 			knownTypes[ent.Class.Type] = 1
 		else
--- RELEASE_LOGOFF  			luaHelperLog("Already inserted type, increasing type num.")
+		-- RELEASE_LOGOFF  			luaHelperLog("Already inserted type, increasing type num.")
 			knownTypes[ent.Class.Type] = knownTypes[ent.Class.Type] + 1
 		end
 ]]
@@ -1694,14 +1694,14 @@ function luaConvertIndicesToTypeIndices(EntTables)
 	end
 
 	if next(typeIndexedTable) ~= nil then
--- RELEASE_LOGOFF  		luaHelperLog("Converting finished")
+		-- RELEASE_LOGOFF  		luaHelperLog("Converting finished")
 		for key, value in pairs(typeIndexedTable) do
--- RELEASE_LOGOFF  			luaHelperLog("Type: "..key)
--- RELEASE_LOGOFF  			luaHelperLog("Entity: "..value.Name)
+		-- RELEASE_LOGOFF  			luaHelperLog("Type: "..key)
+		-- RELEASE_LOGOFF  			luaHelperLog("Entity: "..value.Name)
 		end
 		return typeIndexedTable
 	else
--- RELEASE_LOGOFF  		luaHelperLog("There were no elements to convert")
+		-- RELEASE_LOGOFF  		luaHelperLog("There were no elements to convert")
 		return nil
 	end
 end
@@ -1716,28 +1716,28 @@ table2: table, masodik tabla
 equal: bool, igaz, ha 2 melysegig ugyananz a 2 table, ellenkezo esetben false
 ]]
 function luaAreEqualTables(table1, table2)
--- RELEASE_LOGOFF  	luaHelperLog("Checking two tables whether they are equal.")
--- RELEASE_LOGOFF  	Assert(type(table1) == "table" and type(table2) == "table", "***ERROR: luaAreEqualTables needs two tables as arguments!\n instead of "..type(table1).." and "..type(table2).."\n"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(next(table1) ~= nil, "***ERROR: luaAreEqualTables got an empty table as first param!\n"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(next(table2) ~= nil, "***ERROR: luaAreEqualTables got an empty table as second param!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("Checking two tables whether they are equal.")
+		-- RELEASE_LOGOFF  	Assert(type(table1) == "table" and type(table2) == "table", "***ERROR: luaAreEqualTables needs two tables as arguments!\n instead of "..type(table1).." and "..type(table2).."\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(next(table1) ~= nil, "***ERROR: luaAreEqualTables got an empty table as first param!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(next(table2) ~= nil, "***ERROR: luaAreEqualTables got an empty table as second param!\n"..debug.traceback())
 
 	for table1key, table1value in pairs(table1) do
 		if type(table1value) ~= "table" and table2[table1key] ~= table1value then
--- RELEASE_LOGOFF  			luaHelperLog("Found difference at key "..table1key..", equality failed at first level.")
+		-- RELEASE_LOGOFF  			luaHelperLog("Found difference at key "..table1key..", equality failed at first level.")
 			return false
 		elseif type(table1value) == "table" then
 			for table1tablekey, table1tablevalue in pairs(table1value) do
 				if table2[table1key] == nil or type(table1tablevalue) ~= "table" and table2[table1key][table1tablekey] ~= table1tablevalue then
--- RELEASE_LOGOFF  					luaHelperLog(" Found difference at key "..table1key..", equality failed at second level.")
+		-- RELEASE_LOGOFF  					luaHelperLog(" Found difference at key "..table1key..", equality failed at second level.")
 					return false
 				elseif type(table1tablevalue) == "table" then
--- RELEASE_LOGOFF  					luaHelperLog("  Unhandled depth, neglecting value at key "..table1tablekey)
+		-- RELEASE_LOGOFF  					luaHelperLog("  Unhandled depth, neglecting value at key "..table1tablekey)
 				end
 			end
 		end
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog("The given tables were the same for two levels depth.")
+		-- RELEASE_LOGOFF  	luaHelperLog("The given tables were the same for two levels depth.")
 	return true
 end
 
@@ -1750,7 +1750,7 @@ unitEnt: table, entity amelyet vizsgalunk
 hasParent: bool, ha igaz akkor a parent ernty-t adja vissza ellenkezo esetben false-ot
 ]]
 function luaHasParentGroup(unitEnt)
--- RELEASE_LOGOFF  	Assert(unitEnt.ID ~= nil, "***ERROR: luaHasParentGroup needs a game entity as argument!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(unitEnt.ID ~= nil, "***ERROR: luaHasParentGroup needs a game entity as argument!"..debug.traceback())
 	if IsFormationFollower(unitEnt) then
 		return GetFormationLeader(unitEnt)
 	end
@@ -1768,10 +1768,10 @@ inside: mixed, kulcs, ha benne van a targetTable-ben, false abban az esetben, ha
 ]]
 function luaIsInside(searched, targetTable)
 	local coord = luaIsCoordinate(searched)
--- RELEASE_LOGOFF  	Assert(searched.ID ~= nil or coord, "***ERROR: luaIsInside needs a game entity or a coordinate as first argument!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(searched.ID ~= nil or coord, "***ERROR: luaIsInside needs a game entity or a coordinate as first argument!"..debug.traceback())
 	--Assert(targetTable ~= nil and luaIsEntityTable(targetTable, true), "***ERROR: luaIsInside needs a table which consists of game entities as second argument!"..debug.traceback())
--- RELEASE_LOGOFF  	luaHelperLog("Coord? ")
--- RELEASE_LOGOFF  	luaHelperLog(coord)
+		-- RELEASE_LOGOFF  	luaHelperLog("Coord? ")
+		-- RELEASE_LOGOFF  	luaHelperLog(coord)
 	for key, value in pairs(targetTable) do
 		if not coord and value.ID == searched.ID or coord and luaAreEqualTables(value, searched) then
 			return key
@@ -1790,17 +1790,17 @@ name: string, erre a nevu entityre kresunk ra
 removed: mixed, true ha megtalalta a fuggveny es kivette, nil, ha nem talalt ilyen nevu entityt
 ]]
 function luaRemoveByName(targettable, name)
--- RELEASE_LOGOFF  	Assert(type(targettable) == "table", "***ERROR: luaRemoveByName needs a table as first argument!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(name) == "string", "***ERROR: luaRemoveByName's 2nd param must be a name string!"..debug.traceback())
--- RELEASE_LOGOFF  	luaHelperLog("luaRemoveByName called.")
+		-- RELEASE_LOGOFF  	Assert(type(targettable) == "table", "***ERROR: luaRemoveByName needs a table as first argument!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(name) == "string", "***ERROR: luaRemoveByName's 2nd param must be a name string!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("luaRemoveByName called.")
 	for key, value in pairs(targettable) do
 		if value.Name == name then
--- RELEASE_LOGOFF  			luaHelperLog(" Found element: "..name..", removing and exiting...")
+		-- RELEASE_LOGOFF  			luaHelperLog(" Found element: "..name..", removing and exiting...")
 			table.remove(targettable, key)
 			return true
 		end
 	end
--- RELEASE_LOGOFF  	luaHelperLog(" No entity found with name: "..name)
+		-- RELEASE_LOGOFF  	luaHelperLog(" No entity found with name: "..name)
 	return nil
 end
 
@@ -1814,13 +1814,13 @@ party: enmum, az entitas party-ja
 reconlevel: number, a kerdeses entity felderitettsegi szintje
 ]]
 function luaGetReconLevel(ent, party)
--- RELEASE_LOGOFF  	Assert(ent ~= nil, "***ERROR: luaGetReconLevel must have an entity as first param to work!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(party ~= nil, "***ERROR: luaGetReconLevel must have a party as second param to work!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(ent ~= nil, "***ERROR: luaGetReconLevel must have an entity as first param to work!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(party ~= nil, "***ERROR: luaGetReconLevel must have a party as second param to work!"..debug.traceback())
 
--- RELEASE_LOGOFF  	luaHelperLog("luaGetReconLevel called. Entity: "..ent.Name..", party: "..party)
+		-- RELEASE_LOGOFF  	luaHelperLog("luaGetReconLevel called. Entity: "..ent.Name..", party: "..party)
 	ent.reconlevel = GetProperty(ent, "reconlevel")
--- RELEASE_LOGOFF  	luaHelperLog(" Result: ")
--- RELEASE_LOGOFF  	luaHelperLog(ent.reconlevel[party])
+		-- RELEASE_LOGOFF  	luaHelperLog(" Result: ")
+		-- RELEASE_LOGOFF  	luaHelperLog(ent.reconlevel[party])
 	return ent.reconlevel[party]
 end
 
@@ -1831,7 +1831,7 @@ shortdesc:
 desc:
 ]]
 function luaMoveToInterval(unit, minx, maxx, minz, maxz, miny, maxy)
--- RELEASE_LOGOFF  	Assert(unit.ID ~= nil, "***ERROR: luaMoveToInterval needs an entity as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(unit.ID ~= nil, "***ERROR: luaMoveToInterval needs an entity as first param!"..debug.traceback())
 
 	local trg = {}							-- random mozgas sajat unitokra
 		trg.x = luaRnd(minx, maxx)
@@ -1841,13 +1841,13 @@ function luaMoveToInterval(unit, minx, maxx, minz, maxz, miny, maxy)
 			trg.y = luaRnd(miny, maxy)
 		end
 		trg.z = luaRnd(minz, maxz)
--- RELEASE_LOGOFF  	LogToFile("Selected moving target: ", trg)
+		-- RELEASE_LOGOFF  	LogToFile("Selected moving target: ", trg)
 	if luaGetType(unit) == "ship" or luaGetType(unit) == "sub" then
 		NavigatorMoveToRange(unit, trg)
 	elseif luaGetType(unit) == "plane" then
 		PilotMoveToRange(unit, trg, 1000)
 	elseif luaGetType(unit) == nil then
--- RELEASE_LOGOFF  		luaHelperLog("No type found for unit, movement is not executed.")
+		-- RELEASE_LOGOFF  		luaHelperLog("No type found for unit, movement is not executed.")
 		return nil
 	end
 end
@@ -1861,35 +1861,35 @@ unitent: table, a kerdeses entity
 type: mixed, az entity tipusa: ship, plane, sub, vehicle, landfort, vagy nil lehet
 ]]
 function luaGetType(unitent)
--- RELEASE_LOGOFF  	Assert(unitent ~= nil and unitent.ID ~= nil, "***ERROR: luaGetType needs an entity as arg!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(unitent ~= nil and unitent.ID ~= nil, "***ERROR: luaGetType needs an entity as arg!"..debug.traceback())
 
 	if unitent.Class.Type == "MotherShip" or unitent.Class.Type == "BattleShip" or unitent.Class.Type == "Cruiser" or unitent.Class.Type == "Cargo" or unitent.Class.Type == "Destroyer" or unitent.Class.Type == "TorpedoBoat" or unitent.Class.Type == "LandingShip" then
--- RELEASE_LOGOFF  		luaHelperLog(" Unit "..unitent.Name.." is a ship.")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Unit "..unitent.Name.." is a ship.")
 		return "ship"
 	elseif unitent.Class.Type == "Fighter" or unitent.Class.Type == "DiveBomber" or unitent.Class.Type == "TorpedoBomber" or unitent.Class.Type == "LevelBomber" or unitent.Class.Type == "SmallReconPlane" or unitent.Class.Type == "LargeReconPlane" or unitent.Class.Type == "Kamikaze" then
--- RELEASE_LOGOFF  		luaHelperLog(" Unit "..unitent.Name.." is a plane.")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Unit "..unitent.Name.." is a plane.")
 		return "plane"
 	elseif unitent.Class.Type == "Submarine" then
--- RELEASE_LOGOFF  		luaHelperLog(" Unit "..unitent.Name.." is a submarine.")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Unit "..unitent.Name.." is a submarine.")
 		return "sub"
 	elseif unitent.Class.Type == "LandVehicle" then
--- RELEASE_LOGOFF  		luaHelperLog(" Unit "..unitent.Name.." is a land vehicle.")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Unit "..unitent.Name.." is a land vehicle.")
 		return "vehicle"
 	elseif unitent.Class.Type == "LandFort" then
--- RELEASE_LOGOFF  		luaHelperLog(" Unit "..unitent.Name.." is a landfort.")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Unit "..unitent.Name.." is a landfort.")
 		return "landfort"
 	elseif unitent.Class.Type == "CommandBuilding" then
--- RELEASE_LOGOFF  		luaHelperLog(" Unit "..unitent.Name.." is a commandbuilding.")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Unit "..unitent.Name.." is a commandbuilding.")
 		return "commandbuilding"
 	elseif unitent.Class.Type == "AirField" then
--- RELEASE_LOGOFF  		luaHelperLog(" Unit "..unitent.Name.." is an airfield.")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Unit "..unitent.Name.." is an airfield.")
 		return "airfield"
 	elseif unitent.Class.Type == "Shipyard" then
--- RELEASE_LOGOFF  		luaHelperLog(" Unit "..unitent.Name.." is a shipyard.")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Unit "..unitent.Name.." is a shipyard.")
 		return "shipyard"
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog(" No type found for unit "..unitent.Name)
+		-- RELEASE_LOGOFF  	luaHelperLog(" No type found for unit "..unitent.Name)
 	return nil
 end
 
@@ -1900,34 +1900,34 @@ shortdesc:
 desc:
 ]]
 function luaTypeFilter(origtable, filtertype)
--- RELEASE_LOGOFF  	luaHelperLog("luaTypeFilter initiated...")
+		-- RELEASE_LOGOFF  	luaHelperLog("luaTypeFilter initiated...")
 	--luaLogElementNames(origtable, "\torig: ")
--- RELEASE_LOGOFF  	luaHelperLog("filter type: "..filtertype)
+		-- RELEASE_LOGOFF  	luaHelperLog("filter type: "..filtertype)
 
--- RELEASE_LOGOFF  	Assert(type(origtable) == "table", "***ERROR: needs a table as first param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(filtertype) == "string", "***ERROR: needs a typestring as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(origtable) == "table", "***ERROR: needs a table as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(filtertype) == "string", "***ERROR: needs a typestring as second param!"..debug.traceback())
 
 	local newTable = {}
 
 	for key, value in pairs (origtable) do
 		if value.Class.Type == filtertype then
--- RELEASE_LOGOFF  			luaHelperLog("Found that "..value.Name.." is a "..filtertype..", inserting.")
+		-- RELEASE_LOGOFF  			luaHelperLog("Found that "..value.Name.." is a "..filtertype..", inserting.")
 			table.insert(newTable, value)
 		end
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog("Filtering done.")
+		-- RELEASE_LOGOFF  	luaHelperLog("Filtering done.")
 	--luaLogElementNames(newTable, "\tfiltered entity: ")
 
 	return newTable
 end
 
 ---------------------------------------------------------------------------------
--- RELEASE_LOGOFF  -- Logolast segito fuggvenyek
+		-- RELEASE_LOGOFF  -- Logolast segito fuggvenyek
 ---------------------------------------------------------------------------------
 
 --[[AutoDoc
--- RELEASE_LOGOFF  usage: luaDoCustomLog([lgfile,] txt [,mode] [,helper])
+		-- RELEASE_LOGOFF  usage: luaDoCustomLog([lgfile,] txt [,mode] [,helper])
 category: Debug
 shortdesc: megadott logfileba ir
 desc: Megadott logfilba ir, parameterezestol fuggoen felulirja, vagy hozzairja a 'txt' parametert
@@ -1940,8 +1940,8 @@ function luaDoCustomLog(lgfile,txt,mode,helper)
 	if not Mission.CustomLog then
 		return
 	end
--- RELEASE_LOGOFF  	Assert(txt ~= nil,"ERROR in function luaDoCustomLog, txt is nil")
--- RELEASE_LOGOFF  	--Assert(mode ~= "a" or mode ~= "u", "ERROR luaDoCustomLog mode must be 'a' or 'u'")
+		-- RELEASE_LOGOFF  	Assert(txt ~= nil,"ERROR in function luaDoCustomLog, txt is nil")
+		-- RELEASE_LOGOFF  	--Assert(mode ~= "a" or mode ~= "u", "ERROR luaDoCustomLog mode must be 'a' or 'u'")
 
 	-- locals
 	local firstLog = true
@@ -2037,16 +2037,16 @@ function luaDoCustomLog(lgfile,txt,mode,helper)
 end
 
 --[[AutoDoc
--- RELEASE_LOGOFF  usage: luaLog(text [,helper])
+		-- RELEASE_LOGOFF  usage: luaLog(text [,helper])
 category: Debug
 shortdesc: logfileba ir
--- RELEASE_LOGOFF  desc: luaDoCustomLog konnyebb, egyszerubb hivasa
+		-- RELEASE_LOGOFF  desc: luaDoCustomLog konnyebb, egyszerubb hivasa
 txt: string vagy tabla (2 melysegig)
 helper: bool, ha true hozzafuzi a '---HelperLog---' stringet
 ]]
 function luaLog(text, helper)
--- RELEASE_LOGOFF  	Assert(Mission ~= nil and Mission.Name ~= nil and type(Mission.Name) == "string", "***ERROR: Mission must have .Name parameter!\n"..debug.traceback())
--- RELEASE_LOGOFF  	--Assert(text ~= nil, "***ERROR: luaLog needs an arg to work!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(Mission ~= nil and Mission.Name ~= nil and type(Mission.Name) == "string", "***ERROR: Mission must have .Name parameter!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	--Assert(text ~= nil, "***ERROR: luaLog needs an arg to work!\n"..debug.traceback())
 
 	local mode
 
@@ -2059,11 +2059,11 @@ function luaLog(text, helper)
 		text = "<NIL>"
 	end
 
--- RELEASE_LOGOFF  	luaDoCustomLog(Mission.Name..".log", text, mode, helper)
+		-- RELEASE_LOGOFF  	luaDoCustomLog(Mission.Name..".log", text, mode, helper)
 end
 
 --[[AutoDoc
--- RELEASE_LOGOFF  usage: luaLogTableNames(entTable [,str])
+		-- RELEASE_LOGOFF  usage: luaLogTableNames(entTable [,str])
 category: Debug
 shortdesc: kilogolja egy entitytable elemeninek a nevet
 desc: kilogolja a customlogban meghatarozott fileba egy entitytable elemeninek a nevet (unit.Name)
@@ -2071,21 +2071,21 @@ entTable: table, a logolando entitytabla
 str: string, a log elejer hozzafuzendo string
 ]]
 function luaLogTableNames(entTable, str)
--- RELEASE_LOGOFF  	luaHelperLog("luaLogTableNames called...")
+		-- RELEASE_LOGOFF  	luaHelperLog("luaLogTableNames called...")
 
--- RELEASE_LOGOFF  	Assert(type(entTable) == "table", "***ERROR: luaLogTableNames needs a table as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(entTable) == "table", "***ERROR: luaLogTableNames needs a table as param!"..debug.traceback())
 	if str == nil then
 		str = ""
 	end
 
--- RELEASE_LOGOFF  	luaLog("Listing table "..tostring(str).."'s names:")
+		-- RELEASE_LOGOFF  	luaLog("Listing table "..tostring(str).."'s names:")
 	for key, value in pairs(entTable) do
--- RELEASE_LOGOFF  		luaLog("\t- "..value.Name)
+		-- RELEASE_LOGOFF  		luaLog("\t- "..value.Name)
 	end
 end
 
 --[[AutoDoc
--- RELEASE_LOGOFF  usage: luaHelperLog(text)
+		-- RELEASE_LOGOFF  usage: luaHelperLog(text)
 category: Debug
 shortdesc: Mission-hoz kotodo helperlogolas engedelyezeset kezeli
 desc: kilogolja 'txt' stringet, tablat a HelperLog.txt fileba
@@ -2093,17 +2093,17 @@ txt: mixed, a logolando string vagy tabla
 ]]
 function luaHelperLog(text)
 	if Mission == nil then
--- RELEASE_LOGOFF  	 	Log("luaHelperLog: Mission == nil")
+		-- RELEASE_LOGOFF  	 	Log("luaHelperLog: Mission == nil")
 	else
--- RELEASE_LOGOFF  		--Assert(Mission ~= nil, "***ERROR: luaHelperLog needs a Mission running!"..debug.traceback())
+		-- RELEASE_LOGOFF  		--Assert(Mission ~= nil, "***ERROR: luaHelperLog needs a Mission running!"..debug.traceback())
 		if Mission.HelperLog then
--- RELEASE_LOGOFF  			luaLog(text, true)
+		-- RELEASE_LOGOFF  			luaLog(text, true)
 		end
 	end
 end
 
 --[[AutoDoc
--- RELEASE_LOGOFF  usage: luaLogElementNames(targettable [,str])
+		-- RELEASE_LOGOFF  usage: luaLogElementNames(targettable [,str])
 category: Debug
 shortdesc: tabla ertekekent levo entitasok neveit logolja
 desc: Adott tablaban levo entityk neveit logolja, str-kent tetszoleges megjegyzest adhatunk at
@@ -2117,20 +2117,20 @@ function luaLogElementNames(targettable, str)
 	end
 
 	if targettable == nil then
--- RELEASE_LOGOFF  		luaLog(str.." is nil")
+		-- RELEASE_LOGOFF  		luaLog(str.." is nil")
 		return
 	end
 
 	if next(targettable) == nil then
--- RELEASE_LOGOFF  		luaLog(str.." has no elements.")
+		-- RELEASE_LOGOFF  		luaLog(str.." has no elements.")
 		return
 	end
 
--- RELEASE_LOGOFF  	Assert(type(targettable) == "table", "***ERROR: luaLogElementNames first param must be a table!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(targettable ~= nil, "***ERROR: luaLogElementNames first param must be a table!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(targettable) == "table", "***ERROR: luaLogElementNames first param must be a table!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(targettable ~= nil, "***ERROR: luaLogElementNames first param must be a table!"..debug.traceback())
 	for key, value in pairs(targettable) do
--- RELEASE_LOGOFF  --		Assert(value.Name ~= nil, "***ERROR: luaLogElementNames needs a table with value.Name as first param "..debug.traceback())
--- RELEASE_LOGOFF  		luaLog("Table "..str.."'s "..tostring(key).." element is "..value.Name)
+		-- RELEASE_LOGOFF  --		Assert(value.Name ~= nil, "***ERROR: luaLogElementNames needs a table with value.Name as first param "..debug.traceback())
+		-- RELEASE_LOGOFF  		luaLog("Table "..str.."'s "..tostring(key).." element is "..value.Name)
 	end
 end
 
@@ -2142,14 +2142,14 @@ function luaLogElementTypes(targettable, str)
 		str = " table "
 	end
 	if targettable == nil then
--- RELEASE_LOGOFF  		luaHelperLog(str.."is nil")
+		-- RELEASE_LOGOFF  		luaHelperLog(str.."is nil")
 		return
 	end
 
--- RELEASE_LOGOFF  	Assert(type(targettable) == "table", "***ERROR: luaLogElementTypes' first param must be a table!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(targettable) == "table", "***ERROR: luaLogElementTypes' first param must be a table!"..debug.traceback())
 
 	for key, value in pairs(targettable) do
--- RELEASE_LOGOFF  		Log(" Table "..str, "'s ", key, " element's type is ", value.Type)
+		-- RELEASE_LOGOFF  		Log(" Table "..str, "'s ", key, " element's type is ", value.Type)
 	end
 end
 ]]
@@ -2179,7 +2179,7 @@ function luaDumpTable_Tech(table, levels, labelVector, actLevel)
 		return
 	end
 	for key, value in pairs(table) do
--- RELEASE_LOGOFF  		Log(luaIndent(actLevel), labelVector[actLevel], ": ", key)
+		-- RELEASE_LOGOFF  		Log(luaIndent(actLevel), labelVector[actLevel], ": ", key)
 		luaDumpTable_Tech(value, levels, labelVector, actLevel + 1)
 	end
 end
@@ -2191,7 +2191,7 @@ shortdesc:
 desc: a tablat (table) a megadott szintig (levels) a megadott label-ekkel (labelVector) kidumpolja a megadott kommenttel (comment)
 ]]
 function luaDumpTable(table, levels, labelVector, comment)
--- RELEASE_LOGOFF  	Log(comment)
+		-- RELEASE_LOGOFF  	Log(comment)
 	luaDumpTable_Tech(table, levels, labelVector, 1)
 end
 
@@ -2214,23 +2214,23 @@ end
 -- kaphat entityt, target-formatumot
 -- 'target' az az objektum, akit tamadnak, 'attacker' az, aki tamad
 function luaSetAttacker(target, attacker)
--- RELEASE_LOGOFF  	Assert(target.ID ~= nil, "***ERROR: luaSetAttacker's first param (target) must be a table with ID index!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(attacker.ID ~= nil, "***ERROR: luaSetAttacker's second param (attacker) must be a table with ID index!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target.ID ~= nil, "***ERROR: luaSetAttacker's first param (target) must be a table with ID index!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(attacker.ID ~= nil, "***ERROR: luaSetAttacker's second param (attacker) must be a table with ID index!"..debug.traceback())
 
--- RELEASE_LOGOFF  	luaHelperLog("luaSetAttacker"..attacker.Name.." "..target.Name);
+		-- RELEASE_LOGOFF  	luaHelperLog("luaSetAttacker"..attacker.Name.." "..target.Name);
 
--- RELEASE_LOGOFF  --	luaHelperLog("luaSetAttacker has been called. TARGET: "..thisTable[target.ID].Name..", ATTACKER: "..thisTable[attacker.ID].Name)
+		-- RELEASE_LOGOFF  --	luaHelperLog("luaSetAttacker has been called. TARGET: "..thisTable[target.ID].Name..", ATTACKER: "..thisTable[attacker.ID].Name)
 
 	if AttackerTable[target.ID] == nil then
 		AttackerTable[target.ID] = {}
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog("Attacker ID: "..attacker.ID)
+		-- RELEASE_LOGOFF  	luaHelperLog("Attacker ID: "..attacker.ID)
 	--table.insert(AttackerTable[target.ID], attacker.ID, thisTable[attacker.ID])
 	AttackerTable[target.ID][attacker.ID] = thisTable[attacker.ID]
--- RELEASE_LOGOFF  --	LogToFile("1", AttackerTable[target.ID])
--- RELEASE_LOGOFF  --	luaHelperLog("2"..AttackerTable[target.ID][attacker.ID])
--- RELEASE_LOGOFF  --	luaHelperLog("3"..AttackerTable[target.ID][attacker.ID].Name)
+		-- RELEASE_LOGOFF  --	LogToFile("1", AttackerTable[target.ID])
+		-- RELEASE_LOGOFF  --	luaHelperLog("2"..AttackerTable[target.ID][attacker.ID])
+		-- RELEASE_LOGOFF  --	luaHelperLog("3"..AttackerTable[target.ID][attacker.ID].Name)
 	--luaHelperLog("Adding...")
 	--luaLogGlobalAttackerTable()
 end
@@ -2238,17 +2238,17 @@ end
 -- kiveszi attackert a tablabol mindenhonnan
 -- ha target nem nil, akkor csak a targettol veszi el
 function luaClearAttacker(attacker, target)
--- RELEASE_LOGOFF  	Assert(attacker.ID ~= nil, "***ERROR: luaClearAttacker's first param (attacker) must be a table with ID index!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(attacker.ID ~= nil, "***ERROR: luaClearAttacker's first param (attacker) must be a table with ID index!"..debug.traceback())
 	if target ~= nil then
 		--LogToFile("Wrong value: ", target)
--- RELEASE_LOGOFF  		Assert(target.ID ~= nil, "***ERROR: luaClearAttacker's second param (target) must be nil or a table with ID index!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(target.ID ~= nil, "***ERROR: luaClearAttacker's second param (target) must be nil or a table with ID index!"..debug.traceback())
 	end
 
 	if target ~= nil then
--- RELEASE_LOGOFF  		luaHelperLog("luaClearAttacker "..attacker.Name..","..target.Name);
+		-- RELEASE_LOGOFF  		luaHelperLog("luaClearAttacker "..attacker.Name..","..target.Name);
 		--luaHelperLog("luaClearAttacker has been called. ATTACKER: "..thisTable[attacker.ID].Name..", TARGET: "..thisTable[target.ID].Name)
 	else
--- RELEASE_LOGOFF  		luaHelperLog("luaClearAttacker "..attacker.Name..",nil");
+		-- RELEASE_LOGOFF  		luaHelperLog("luaClearAttacker "..attacker.Name..",nil");
 		--luaHelperLog("luaClearAttacker has been called. ATTACKER: "..thisTable[attacker.ID].Name..", TARGET is nil")
 	end
 
@@ -2257,13 +2257,13 @@ function luaClearAttacker(attacker, target)
 		for attackerID, attackerEnt in pairs(attackers) do
 			if target == nil then
 				if attackerID == attacker.ID then
--- RELEASE_LOGOFF  					luaHelperLog("Found removable element step 1: "..thisTable[attacker.ID].Name)
+		-- RELEASE_LOGOFF  					luaHelperLog("Found removable element step 1: "..thisTable[attacker.ID].Name)
 					--table.remove(AttackerTable[targetID], attackerID)
 					AttackerTable[targetID][attackerID] = nil
 				end
 			else
 				if attackerID == attacker.ID and targetID == target.ID then
--- RELEASE_LOGOFF  					luaHelperLog("Found removable element step 2: "..thisTable[attacker.ID].Name)
+		-- RELEASE_LOGOFF  					luaHelperLog("Found removable element step 2: "..thisTable[attacker.ID].Name)
 					--table.remove(AttackerTable[targetID], attackerID)
 					AttackerTable[targetID][attackerID] = nil
 				end
@@ -2274,7 +2274,7 @@ function luaClearAttacker(attacker, target)
 			table.insert(removables, targetID)
 		end
 	end
--- RELEASE_LOGOFF  	LogToFile("Attacker table removables: ", removables)
+		-- RELEASE_LOGOFF  	LogToFile("Attacker table removables: ", removables)
 	luaRemoveElements(AttackerTable, removables) -- ha nincs eleme, targetID-t kivenni a globalisbol
 	--luaHelperLog("Removing...")
 	--luaLogGlobalAttackerTable()
@@ -2285,11 +2285,11 @@ end
 -- attackertype "ship", vagy "plane" lehet. Ha nil, akkor mindenkit visszaad. Ha az elozo ket ertek valamelyike, akkor csak azokat a tipusokat
 -- ha distance nem nil, akkor csak azokat adja vissza, akik a tavolsagon belul vannak
 function luaGetAttackers(target, attackertype, distance)
--- RELEASE_LOGOFF  	Assert(target.ID ~= nil, "***ERROR: luaGetAttackers' first param (target) must be a table with ID index!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(attackertype == "ship" or attackertype == "plane" or attackertype == nil, "***ERROR: luaGetAttackers' second param (attackertype) must be 'ship', 'plane', or nil! "..tostring(attackertype)..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(distance) == "number" or type(distance) == "nil", "***ERROR: luaGetAttackers' third param (distance) must be a number or nil!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target.ID ~= nil, "***ERROR: luaGetAttackers' first param (target) must be a table with ID index!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(attackertype == "ship" or attackertype == "plane" or attackertype == nil, "***ERROR: luaGetAttackers' second param (attackertype) must be 'ship', 'plane', or nil! "..tostring(attackertype)..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(distance) == "number" or type(distance) == "nil", "***ERROR: luaGetAttackers' third param (distance) must be a number or nil!"..debug.traceback())
 
--- RELEASE_LOGOFF  --	luaHelperLog("luaGetAttackers' parameters: \t  target: "..target.Name.."\t  attackertype: "..attackertype.."\t  distance: "..distance)
+		-- RELEASE_LOGOFF  --	luaHelperLog("luaGetAttackers' parameters: \t  target: "..target.Name.."\t  attackertype: "..attackertype.."\t  distance: "..distance)
 
 	--luaRemoveDeadsFromTable(AttackerTable, "  **  Attacker table deads  **  ") -- befejezni, vagy kidobni...
 
@@ -2299,56 +2299,56 @@ function luaGetAttackers(target, attackertype, distance)
 			--luaHelperLog("attacker entity: ")
 			--luaHelperLog(attackerEnt)
 			if not attackerEnt.Dead and attackertype == nil then
--- RELEASE_LOGOFF  --				luaHelperLog("entering non-type step")
+		-- RELEASE_LOGOFF  --				luaHelperLog("entering non-type step")
 				if distance == nil then
--- RELEASE_LOGOFF  --					luaHelperLog("inserted "..attackerEnt.Name)
+		-- RELEASE_LOGOFF  --					luaHelperLog("inserted "..attackerEnt.Name)
 					table.insert(attackers, attackerEnt)
 				else
--- RELEASE_LOGOFF  --					luaHelperLog("measuring distance")
+		-- RELEASE_LOGOFF  --					luaHelperLog("measuring distance")
 					if luaGetDistance(target, attackerEnt) < distance then
--- RELEASE_LOGOFF  --						luaHelperLog("inserted "..attackerEnt.Name)
+		-- RELEASE_LOGOFF  --						luaHelperLog("inserted "..attackerEnt.Name)
 						table.insert(attackers, attackerEnt)
 					else
--- RELEASE_LOGOFF  --						luaHelperLog("distance was given, but the attacker is too far: "..luaGetDistance(target, attackerEnt))
+		-- RELEASE_LOGOFF  --						luaHelperLog("distance was given, but the attacker is too far: "..luaGetDistance(target, attackerEnt))
 					end
 				end
 			elseif not attackerEnt.Dead and attackertype == "ship" then
--- RELEASE_LOGOFF  --				luaHelperLog("entering ship-checking step")
+		-- RELEASE_LOGOFF  --				luaHelperLog("entering ship-checking step")
 				if attackerEnt.Class.Type == "MotherShip" or attackerEnt.Class.Type == "battleship" or attackerEnt.Class.Type == "cruiser" or attackerEnt.Class.Type == "destroyer" or attackerEnt.Class.Type == "TBoat" then
--- RELEASE_LOGOFF  --					luaHelperLog("attacker is ship: "..attackerEnt.Name)
+		-- RELEASE_LOGOFF  --					luaHelperLog("attacker is ship: "..attackerEnt.Name)
 					if distance == nil then
--- RELEASE_LOGOFF  --						luaHelperLog("inserted "..attackerEnt.Name)
+		-- RELEASE_LOGOFF  --						luaHelperLog("inserted "..attackerEnt.Name)
 						table.insert(attackers, attackerEnt)
 					else
--- RELEASE_LOGOFF  --						luaHelperLog("measuring distance")
+		-- RELEASE_LOGOFF  --						luaHelperLog("measuring distance")
 						if luaGetDistance(target, attackerEnt) < distance then
--- RELEASE_LOGOFF  --							luaHelperLog("inserted "..attackerEnt.Name)
+		-- RELEASE_LOGOFF  --							luaHelperLog("inserted "..attackerEnt.Name)
 							table.insert(attackers, attackerEnt)
 						else
--- RELEASE_LOGOFF  --							luaHelperLog("distance was given, but the attacker is too far: "..luaGetDistance(target, attackerEnt))
+		-- RELEASE_LOGOFF  --							luaHelperLog("distance was given, but the attacker is too far: "..luaGetDistance(target, attackerEnt))
 						end
 					end
 				else
--- RELEASE_LOGOFF  --					luaHelperLog("attacker is not a ship, its type: "..thisTable[attackerID].Class.Type)
+		-- RELEASE_LOGOFF  --					luaHelperLog("attacker is not a ship, its type: "..thisTable[attackerID].Class.Type)
 				end
 			elseif not attackerEnt.Dead and attackertype == "plane" then
--- RELEASE_LOGOFF  --				luaHelperLog("entering plane-checking step")
+		-- RELEASE_LOGOFF  --				luaHelperLog("entering plane-checking step")
 				if attackerEnt.Class.Type == "DiveBomber" or attackerEnt.Class.Type == "TorpedoBomber" or attackerEnt.Class.Type == "LevelBomber" or attackerEnt.Class.Type == "Fighter" or attackerEnt.Class.Type == "Reconplane" then
--- RELEASE_LOGOFF  --					luaHelperLog("attacker is plane: "..attackerEnt.Name)
+		-- RELEASE_LOGOFF  --					luaHelperLog("attacker is plane: "..attackerEnt.Name)
 					if distance == nil then
--- RELEASE_LOGOFF  --						luaHelperLog("inserted "..attackerEnt.Name)
+		-- RELEASE_LOGOFF  --						luaHelperLog("inserted "..attackerEnt.Name)
 						table.insert(attackers, attackerEnt)
 					else
--- RELEASE_LOGOFF  --						luaHelperLog("measuring distance")
+		-- RELEASE_LOGOFF  --						luaHelperLog("measuring distance")
 						if luaGetDistance(target, attackerEnt) < distance then
--- RELEASE_LOGOFF  --							luaHelperLog("inserted "..attackerEnt.Name)
+		-- RELEASE_LOGOFF  --							luaHelperLog("inserted "..attackerEnt.Name)
 							table.insert(attackers, attackerEnt)
 						else
--- RELEASE_LOGOFF  --							luaHelperLog("distance was given, but the attacker is too far: "..luaGetDistance(target, attackerEnt))
+		-- RELEASE_LOGOFF  --							luaHelperLog("distance was given, but the attacker is too far: "..luaGetDistance(target, attackerEnt))
 						end
 					end
 				else
--- RELEASE_LOGOFF  --					luaHelperLog("attacker is not a plane, its type: "..attackerEnt.Class.Type)
+		-- RELEASE_LOGOFF  --					luaHelperLog("attacker is not a plane, its type: "..attackerEnt.Class.Type)
 				end
 			end
 		end
@@ -2363,8 +2363,8 @@ end
 
 -- az osszes tamado szamat adja vissza
 function luaGetAttackersNumber(target, attackertype, distance)
--- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaGetAttackersNumber's first param is nil instead of a table!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(target.ID ~= nil, "***ERROR: luaGetAttackersNumber's param must be a table with ID index!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaGetAttackersNumber's first param is nil instead of a table!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target.ID ~= nil, "***ERROR: luaGetAttackersNumber's param must be a table with ID index!"..debug.traceback())
 	local attackers = luaGetAttackers(target, attackertype, distance)
 	if attackers ~= nil then
 		return table.getn(attackers)
@@ -2374,16 +2374,16 @@ function luaGetAttackersNumber(target, attackertype, distance)
 end
 
 function luaGetTarget(attacker)
--- RELEASE_LOGOFF  	Assert(attacker ~= nil, "***ERROR: luaGetTarget got -nil- instead of a table!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(attacker.ID ~= nil, "***ERROR: luaGetTarget needs a table with ID!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(attacker ~= nil, "***ERROR: luaGetTarget got -nil- instead of a table!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(attacker.ID ~= nil, "***ERROR: luaGetTarget needs a table with ID!"..debug.traceback())
 	local targets = {}
 
 	for targetID, attackers in pairs(AttackerTable) do
 		for attackerID, attackerEnt in pairs(attackers) do
 			if attackerID == attacker.ID then
--- RELEASE_LOGOFF  				luaHelperLog("Found target for "..thisTable[attacker.ID].Name.." : "..thisTable[targetID].Name)
+		-- RELEASE_LOGOFF  				luaHelperLog("Found target for "..thisTable[attacker.ID].Name.." : "..thisTable[targetID].Name)
 				if thisTable[targetID].Dead then
--- RELEASE_LOGOFF  					luaHelperLog(" But its dead...")
+		-- RELEASE_LOGOFF  					luaHelperLog(" But its dead...")
 				else
 					table.insert(targets, thisTable[targetID])
 				end
@@ -2391,8 +2391,8 @@ function luaGetTarget(attacker)
 		end
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog("All targets of "..thisTable[attacker.ID].Name.." are :")
--- RELEASE_LOGOFF  	luaLogElementNames(targets, " Targets")
+		-- RELEASE_LOGOFF  	luaHelperLog("All targets of "..thisTable[attacker.ID].Name.." are :")
+		-- RELEASE_LOGOFF  	luaLogElementNames(targets, " Targets")
 	if next(targets) ~= nil then
 		return luaSortByDistance(attacker, targets, 1)
 	else
@@ -2437,9 +2437,9 @@ function luaGetRetreatersAround(target, radius, allegiance, index, all, searched
 	local ships = luaGetShipsAround(target, radius, allegiance, index, all, searchedtype)
 	local retreaters = {}
 	for idx, unitEnt in pairs(ships) do
--- RELEASE_LOGOFF  		luaHelperLog("Checking "..unitEnt.Name)
+		-- RELEASE_LOGOFF  		luaHelperLog("Checking "..unitEnt.Name)
 		if unitEnt.Retreat then
--- RELEASE_LOGOFF  			luaHelperLog("  The ship is retreating")
+		-- RELEASE_LOGOFF  			luaHelperLog("  The ship is retreating")
 			table.insert(retreaters, unitEnt)
 		end
 	end
@@ -2448,17 +2448,17 @@ end
 
 function luaShipRetreat(unitEnt, evacSide, escortUnits)
 	local retreaters = luaGetRetreatersAround(unitEnt, 5000, "own", 1)
--- RELEASE_LOGOFF  	luaLogElementNames(retreaters, "Retreaters around "..unitEnt.Name)
+		-- RELEASE_LOGOFF  	luaLogElementNames(retreaters, "Retreaters around "..unitEnt.Name)
 	if retreaters == nil then
--- RELEASE_LOGOFF  		luaHelperLog("No retreaters found around, moving towards evacuation side: "..evacSide)
+		-- RELEASE_LOGOFF  		luaHelperLog("No retreaters found around, moving towards evacuation side: "..evacSide)
 		GroupOrder(unitEnt, "Moveto", evacSide)
 	else
--- RELEASE_LOGOFF  		luaHelperLog("There are retreaters around, joining in.")
+		-- RELEASE_LOGOFF  		luaHelperLog("There are retreaters around, joining in.")
 		GroupOrder(unitEnt, "FixFollow", luaSortByDistance(unitEnt, retreaters, 1))
 	end
 	if escortUnits ~= nil then
--- RELEASE_LOGOFF  		luaHelperLog("Adding escorts to retreater")
--- RELEASE_LOGOFF  		luaLogElementNames(escortUnits, "Escort")
+		-- RELEASE_LOGOFF  		luaHelperLog("Adding escorts to retreater")
+		-- RELEASE_LOGOFF  		luaLogElementNames(escortUnits, "Escort")
 		local escortnum = 1
 		for idx, escortEnt in pairs(escortUnits) do
 			if escortnum == 1 then
@@ -2485,7 +2485,7 @@ squadEntTable: table, az aktiv squadronok entity tablaja
 ]]
 function luaGetSlotsAndSquads(airbaseEnt)
 	if airbaseEnt.ID == nil or airbaseEnt.Dead then
--- RELEASE_LOGOFF  		luaHelperLog("luaGetSlotsAndSquads first param is not a valid entity")
+		-- RELEASE_LOGOFF  		luaHelperLog("luaGetSlotsAndSquads first param is not a valid entity")
 		return
 	end
 
@@ -2554,7 +2554,7 @@ function luaRnd(min, max)
 	elseif min ~= nil and max == nil then	-- egy param
 		rnd = random(min)
 	elseif min ~= nil and max ~= nil then	-- ket param
--- RELEASE_LOGOFF  		Assert(type(min) == "number" and type(max) == "number", "***ERROR: luaRnd needs two integers to work!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(type(min) == "number" and type(max) == "number", "***ERROR: luaRnd needs two integers to work!"..debug.traceback())
 		--luaHelperLog("min: "..tostring(min)..", max: "..tostring(max))
 		--luaLog("Random Min value: "..min..", Max value: "..max)
 		--luaLog("Called from: "..debug.traceback())
@@ -2580,7 +2580,7 @@ number: number, a kerekitendo szam
 round: number, a kerekitett ertek
 ]]
 function luaRound(number)
--- RELEASE_LOGOFF  	Assert( type(number) == "number", "***ERROR: luaRound needs a number as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert( type(number) == "number", "***ERROR: luaRound needs a number as param!"..debug.traceback())
 	if number < (math.floor(number) + 0.5) then
 		number = math.floor(number)
 	else
@@ -2600,19 +2600,19 @@ angle: number, az elmozgatas irany, fokban
 coord: table, az elmozgatott vektor koordinatai
 ]]
 function luaMoveCoordinate(coordinate, distance, angle)
--- RELEASE_LOGOFF  	Assert(coordinate ~= nil and luaIsCoordinate(coordinate), "***ERROR: luaMoveCoordinate needs a coordinate as first param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(distance) == "number", "***ERROR: luaMoveCoordinate needs a number as second param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(angle) == "number", "***ERROR: luaMoveCoordinate needs a number as third param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(coordinate ~= nil and luaIsCoordinate(coordinate), "***ERROR: luaMoveCoordinate needs a coordinate as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(distance) == "number", "***ERROR: luaMoveCoordinate needs a number as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(angle) == "number", "***ERROR: luaMoveCoordinate needs a number as third param!"..debug.traceback())
 
 	if angle < 0 then
 		angle = math.mod(angle, 360) + 360
 	else
 		angle = math.mod(angle, 360)
 	end
--- RELEASE_LOGOFF  	luaHelperLog("luaMoveCoordinate angle: "..angle)
+		-- RELEASE_LOGOFF  	luaHelperLog("luaMoveCoordinate angle: "..angle)
 
--- RELEASE_LOGOFF  	luaHelperLog("luaMoveCoordinate original coordinate:")
--- RELEASE_LOGOFF  	luaHelperLog(coordinate)
+		-- RELEASE_LOGOFF  	luaHelperLog("luaMoveCoordinate original coordinate:")
+		-- RELEASE_LOGOFF  	luaHelperLog(coordinate)
 
 	local finalCoordinate =
 	{
@@ -2625,8 +2625,8 @@ function luaMoveCoordinate(coordinate, distance, angle)
 	finalCoordinate.y = coordinate.y
 	finalCoordinate.z = luaRound(coordinate.z + distance * math.cos(math.rad(angle)))
 
--- RELEASE_LOGOFF  	luaHelperLog("luaMoveCoordinate final coordinate:")
--- RELEASE_LOGOFF  	luaHelperLog(finalCoordinate)
+		-- RELEASE_LOGOFF  	luaHelperLog("luaMoveCoordinate final coordinate:")
+		-- RELEASE_LOGOFF  	luaHelperLog(finalCoordinate)
 
 	return finalCoordinate
 end
@@ -2641,9 +2641,9 @@ allowEmptyTable: bool, vizsgaljunk e ures tablat
 numberTable: bool, true ha a tabla elemei 'number' tipusuak e, illetve false ha nem vagy a target nem tabla
 ]]
 function luaIsNumberTable(target, allowEmptyTable)
--- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsNumberTable needs a target!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsNumberTable needs a target!"..debug.traceback())
 	if allowEmptyTable then
--- RELEASE_LOGOFF  		Assert(type(allowEmptyTable) == "boolean", "***ERROR: luaIsNumberTable needs a boolean as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(type(allowEmptyTable) == "boolean", "***ERROR: luaIsNumberTable needs a boolean as second param!"..debug.traceback())
 	end
 	local emptyTable = true
 	if type(target) == "table" then
@@ -2672,9 +2672,9 @@ allowEmptyTable: bool, vizsgaljunk e ures tablat
 stringTable: bool, true ha a tabla elemei 'string' tipusuak e, illetve false ha nem vagy a target nem tabla
 ]]
 function luaIsStringTable(target, allowEmptyTable)
--- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsStringTable needs a target!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsStringTable needs a target!"..debug.traceback())
 	if allowEmptyTable then
--- RELEASE_LOGOFF  		Assert(type(allowEmptyTable) == "boolean", "***ERROR: luaIsStringTable needs a boolean as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(type(allowEmptyTable) == "boolean", "***ERROR: luaIsStringTable needs a boolean as second param!"..debug.traceback())
 	end
 	local emptyTable = true
 	if type(target) == "table" then
@@ -2703,9 +2703,9 @@ allowEmptyTable: bool, vizsgaljunk e ures tablat
 entTable: bool, true ha a tabla elemei entityk, illetve false ha nem vagy a target nem tabla
 ]]
 function luaIsEntityTable(target, allowEmptyTable)
--- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsEntityTable needs a target!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsEntityTable needs a target!"..debug.traceback())
 	if allowEmptyTable then
--- RELEASE_LOGOFF  		Assert(type(allowEmptyTable) == "boolean", "***ERROR: luaIsEntityTable needs a boolean as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(type(allowEmptyTable) == "boolean", "***ERROR: luaIsEntityTable needs a boolean as second param!"..debug.traceback())
 	end
 	local emptyTable = true
 	if type(target) == "table" then
@@ -2738,9 +2738,9 @@ allowEmptyTable: bool, vizsgaljunk e ures tablat
 entTable: bool, true ha a tabla elemei entityk vagy koordinatak, illetve false ha nem vagy a target nem tabla
 ]]
 function luaIsEntityOrCoordinateTable(target, allowEmptyTable)
--- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsEntityOrCoordinateTable needs a target!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsEntityOrCoordinateTable needs a target!"..debug.traceback())
 	if allowEmptyTable then
--- RELEASE_LOGOFF  		Assert(type(allowEmptyTable) == "boolean", "***ERROR: luaIsEntityOrCoordinateTable needs a boolean as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(type(allowEmptyTable) == "boolean", "***ERROR: luaIsEntityOrCoordinateTable needs a boolean as second param!"..debug.traceback())
 	end
 	local emptyTable = true
 	if type(target) == "table" then
@@ -2769,9 +2769,9 @@ allowEmptyTable: bool, vizsgaljunk e ures tablat
 returnTable: bool, true ha a tabla elemei plane entityk, illetve false ha nem vagy a target nem tabla
 ]]
 function luaIsPlaneTable(target, allowEmptyTable)
--- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsPlaneTable needs a target!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsPlaneTable needs a target!"..debug.traceback())
 	if allowEmptyTable then
--- RELEASE_LOGOFF  		Assert(type(allowEmptyTable) == "boolean", "***ERROR: luaIsPlaneTable needs a boolean as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(type(allowEmptyTable) == "boolean", "***ERROR: luaIsPlaneTable needs a boolean as second param!"..debug.traceback())
 	end
 	local emptyTable = true
 	if type(target) == "table" then
@@ -2804,9 +2804,9 @@ allowEmptyTable: bool, vizsgaljunk e ures tablat
 returnTable: bool, true ha a tabla elemei ship entityk, illetve false ha nem vagy a target nem tabla
 ]]
 function luaIsShipTable(target, allowEmptyTable)
--- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsShipTable needs a target!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsShipTable needs a target!"..debug.traceback())
 	if allowEmptyTable then
--- RELEASE_LOGOFF  		Assert(type(allowEmptyTable) == "boolean", "***ERROR: luaIsShipTable needs a boolean as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(type(allowEmptyTable) == "boolean", "***ERROR: luaIsShipTable needs a boolean as second param!"..debug.traceback())
 	end
 	local emptyTable = true
 	if type(target) == "table" then
@@ -2839,9 +2839,9 @@ allowEmptyTable: bool, vizsgaljunk e ures tablat
 returnTable: bool, true ha a tabla elemei airbase entityk, illetve false ha nem vagy a target nem tabla
 ]]
 function luaIsAirfieldTable(target, allowEmptyTable)
--- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsAirfieldTable needs a target!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsAirfieldTable needs a target!"..debug.traceback())
 	if allowEmptyTable then
--- RELEASE_LOGOFF  		Assert(type(allowEmptyTable) == "boolean", "***ERROR: luaIsAirfieldTable needs a boolean as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(type(allowEmptyTable) == "boolean", "***ERROR: luaIsAirfieldTable needs a boolean as second param!"..debug.traceback())
 	end
 	local emptyTable = true
 	if type(target) == "table" then
@@ -2874,9 +2874,9 @@ allowEmptyTable: bool, vizsgaljunk e ures tablat
 returnTable: bool, true ha a tabla elemei patrol entity, illetve false ha nem vagy a target nem tabla
 ]]
 function luaIsAirPatrolTable(target, allowEmptyTable)
--- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsAirPatrolTable needs a target!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsAirPatrolTable needs a target!"..debug.traceback())
 	if allowEmptyTable then
--- RELEASE_LOGOFF  		Assert(type(allowEmptyTable) == "boolean", "***ERROR: luaIsAirPatrolTable needs a boolean as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(type(allowEmptyTable) == "boolean", "***ERROR: luaIsAirPatrolTable needs a boolean as second param!"..debug.traceback())
 	end
 	local emptyTable = true
 	if type(target) == "table" then
@@ -2922,7 +2922,7 @@ entity: table, a vizsgalt entitas
 returnEnt: mixed, az entity.ScriptTarget-ben beallitott entitas, illetve nil ha nincsen ilyen
 ]]
 function luaGetScriptTarget(entity)
--- RELEASE_LOGOFF  	Assert(luaIsEntityTable({entity}), "***ERROR: luaGetScriptTarget needs an entity as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(luaIsEntityTable({entity}), "***ERROR: luaGetScriptTarget needs an entity as param!"..debug.traceback())
 	if UnitGetAttackTarget(entity) == entity.ScriptTarget and entity.ScriptTarget ~= nil then
 		return entity.ScriptTarget
 	end
@@ -2939,12 +2939,12 @@ target: table, a 'entity'ben meghatarozott unit celpontja
 attackType: mixed, ATTACKTYPE_ANY, ATTACKTYPE_GUN_ONLY, ATTACKTYPE_BOMB_OR_TORPEDO, nil erteket veheti fel
 ]]
 function luaSetScriptTarget(entity, target, attackType)
--- RELEASE_LOGOFF  	Assert(luaIsEntityTable({entity}), "***ERROR: luaSetScriptTarget needs an entity as first param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(luaIsEntityTable({target}, true), "***ERROR: luaSetScriptTarget needs an entity or nil as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(luaIsEntityTable({entity}), "***ERROR: luaSetScriptTarget needs an entity as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(luaIsEntityTable({target}, true), "***ERROR: luaSetScriptTarget needs an entity or nil as second param!"..debug.traceback())
 	if attackType then
--- RELEASE_LOGOFF  		Assert(target ~= nil, "***ERROR: luaSetScriptTarget's attackType should be nil if the second parameter is nil!"..debug.traceback())
--- RELEASE_LOGOFF  		Assert(luaIsPlaneTable({entity}), "***ERROR: luaSetScriptTarget's third parameter should be declared only for planes!"..debug.traceback())
--- RELEASE_LOGOFF  		Assert(attackType == "ATTACKTYPE_ANY" or attackType == "ATTACKTYPE_GUN_ONLY" or attackType == "ATTACKTYPE_BOMB_OR_TORPEDO", "***ERROR: luaSetScriptTarget third param shoud be ATTACKTYPE_ANY, ATTACKTYPE_GUN_ONLY or ATTACKTYPE_BOMB_OR_TORPEDO!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(target ~= nil, "***ERROR: luaSetScriptTarget's attackType should be nil if the second parameter is nil!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(luaIsPlaneTable({entity}), "***ERROR: luaSetScriptTarget's third parameter should be declared only for planes!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(attackType == "ATTACKTYPE_ANY" or attackType == "ATTACKTYPE_GUN_ONLY" or attackType == "ATTACKTYPE_BOMB_OR_TORPEDO", "***ERROR: luaSetScriptTarget third param shoud be ATTACKTYPE_ANY, ATTACKTYPE_GUN_ONLY or ATTACKTYPE_BOMB_OR_TORPEDO!"..debug.traceback())
 	end
 
 	if luaGetType(entity) == "ship" or luaGetType(entity) == "sub" then
@@ -2970,9 +2970,9 @@ shortdesc:
 desc:
 ]]
 function luaIdleUnitFilter(unitTable, filterType)
--- RELEASE_LOGOFF  	Assert(unitTable ~= nil and luaIsEntityTable(unitTable, true), "***ERROR: luaIdleUnitFilter needs a table which consists of entities as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(unitTable ~= nil and luaIsEntityTable(unitTable, true), "***ERROR: luaIdleUnitFilter needs a table which consists of entities as first param!"..debug.traceback())
 	if filterType then
--- RELEASE_LOGOFF  		Assert(type(filterType) == "string" and (filterType == "script" or filterType == "code"), "***ERROR: luaIdleUnitFilter's filterType parameter should be \"script\" or \"code\"!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(type(filterType) == "string" and (filterType == "script" or filterType == "code"), "***ERROR: luaIdleUnitFilter's filterType parameter should be \"script\" or \"code\"!"..debug.traceback())
 	end
 
 	if not filterType then
@@ -3006,9 +3006,9 @@ desc:
 ]]
 --2D-s szog
 function luaGetAngle(a, b, c)
--- RELEASE_LOGOFF  	Assert(a ~= nil and (luaIsCoordinate(a) or a == "world" ), "***ERROR: luaGetAngle needs a coordinate or \"world\" as first param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(b ~= nil and luaIsCoordinate(b), "***ERROR: luaGetAngle needs a coordinate as second param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(c ~= nil and luaIsCoordinate(c), "***ERROR: luaGetAngle needs a coordinate as third param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(a ~= nil and (luaIsCoordinate(a) or a == "world" ), "***ERROR: luaGetAngle needs a coordinate or \"world\" as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(b ~= nil and luaIsCoordinate(b), "***ERROR: luaGetAngle needs a coordinate as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(c ~= nil and luaIsCoordinate(c), "***ERROR: luaGetAngle needs a coordinate as third param!"..debug.traceback())
 
 	if a ~= "world" then
 		if a.z == b.z and a.x == b.x then
@@ -3073,11 +3073,11 @@ pos: table, a vizsgalt koordinata
 inArea: bool, true, ha a megadott 'pos' a kerdeses teruleten belul van e, illetve false, ha nem
 ]]
 function luaIsInArea(area, pos)
--- RELEASE_LOGOFF  	Assert(area ~= nil, "***ERROR: luaIsInArea needs {coordinate1, coordinate2} table as first parameter!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(pos ~= nil and luaIsCoordinate(pos), "***ERROR: luaIsInArea needs a coordinate as second parameter!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(area ~= nil, "***ERROR: luaIsInArea needs {coordinate1, coordinate2} table as first parameter!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(pos ~= nil and luaIsCoordinate(pos), "***ERROR: luaIsInArea needs a coordinate as second parameter!"..debug.traceback())
 	local minX, minZ, maxX, maxZ
 	for i, coordinate in pairs (area) do
--- RELEASE_LOGOFF  		Assert(coordinate ~= nil and luaIsCoordinate(coordinate), "***ERROR: luaIsInArea needs {coordinate1, coordinate2} table as first parameter!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(coordinate ~= nil and luaIsCoordinate(coordinate), "***ERROR: luaIsInArea needs {coordinate1, coordinate2} table as first parameter!"..debug.traceback())
 		if i == 1 then
 			minX = coordinate.x
 			minZ = coordinate.z
@@ -3095,7 +3095,7 @@ function luaIsInArea(area, pos)
 				maxZ = coordinate.z
 			end
 		else
--- RELEASE_LOGOFF  			Assert(false, "***ERROR: luaIsInArea needs {coordinate1, coordinate2} table as first parameter!"..debug.traceback())
+		-- RELEASE_LOGOFF  			Assert(false, "***ERROR: luaIsInArea needs {coordinate1, coordinate2} table as first parameter!"..debug.traceback())
 		end
 	end
 
@@ -3115,8 +3115,8 @@ a masodik az ellenkezo iranyba tolt koordinata. A distance nem lehet nagyobb min
 --[[
 memoriafoglalas miatt kiveve
 function luaMoveOnBorder(originalPos, distance)
--- RELEASE_LOGOFF  	Assert(originalPos ~= nil and luaIsCoordinate(originalPos), "***ERROR: luaMoveOnBorder needs a coordinate on the border as first parameter!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(distance ~= nil and type(distance) == "number" and distance > 0, "***ERROR: luaMoveOnBorder needs a positive number as second parameter!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(originalPos ~= nil and luaIsCoordinate(originalPos), "***ERROR: luaMoveOnBorder needs a coordinate on the border as first parameter!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(distance ~= nil and type(distance) == "number" and distance > 0, "***ERROR: luaMoveOnBorder needs a positive number as second parameter!"..debug.traceback())
 
 	local exitZone1, exitZone2
 	exitZone1, exitZone2 = GetBorderZone()
@@ -3132,10 +3132,10 @@ function luaMoveOnBorder(originalPos, distance)
 
 	local a = 0
 	local b = 0
--- RELEASE_LOGOFF  	luaHelperLog("luaMoveOnBorder: originalPos")
--- RELEASE_LOGOFF  	luaHelperLog(originalPos)
--- RELEASE_LOGOFF  	luaHelperLog("luaMoveOnBorder: exitZone")
--- RELEASE_LOGOFF  	luaHelperLog(exitZone)
+		-- RELEASE_LOGOFF  	luaHelperLog("luaMoveOnBorder: originalPos")
+		-- RELEASE_LOGOFF  	luaHelperLog(originalPos)
+		-- RELEASE_LOGOFF  	luaHelperLog("luaMoveOnBorder: exitZone")
+		-- RELEASE_LOGOFF  	luaHelperLog(exitZone)
 	if luaRound(exitZone[1].x) == luaRound(originalPos.x) then
 		--W
 		a = 0
@@ -3153,7 +3153,7 @@ function luaMoveOnBorder(originalPos, distance)
 		a = 0
 		b = 1
 	else
--- RELEASE_LOGOFF  		Assert(false, "***ERROR: luaMoveOnBorder needs a coordinate on the border as first parameter!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(false, "***ERROR: luaMoveOnBorder needs a coordinate on the border as first parameter!"..debug.traceback())
 	end
 	local alignment = math.abs(a - b)
 
@@ -3216,9 +3216,9 @@ function luaMoveOnBorder(originalPos, distance)
 		end
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog("luaMoveOnBorder: movedPos")
--- RELEASE_LOGOFF  	luaHelperLog(movedPos[1])
--- RELEASE_LOGOFF  	luaHelperLog(movedPos[2])
+		-- RELEASE_LOGOFF  	luaHelperLog("luaMoveOnBorder: movedPos")
+		-- RELEASE_LOGOFF  	luaHelperLog(movedPos[1])
+		-- RELEASE_LOGOFF  	luaHelperLog(movedPos[2])
 
 	return movedPos[1], movedPos[2]
 end
@@ -3231,7 +3231,7 @@ shortdesc:
 desc:
 ]]
 function luaGetCamRelPos(targetEnt)
--- RELEASE_LOGOFF  	Assert(luaIsEntityTable({targetEnt}), "***ERROR: luaGetCamRelPos needs an entity as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(luaIsEntityTable({targetEnt}), "***ERROR: luaGetCamRelPos needs an entity as param!"..debug.traceback())
 	if targetEnt.Dead then
 		return
 	end
@@ -3283,20 +3283,20 @@ function luaGetDistance3D(Obj1, Obj2)
 		error("***ERROR: luaGetDistance's second param is a non-table parameter.", 2)
 	end
 
--- RELEASE_LOGOFF  	Assert(Obj1.ID ~= nil or Obj1.x ~= nil, "***ERROR: luaGetDistance's first param is a table without ID or X index!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(Obj2.ID ~= nil or Obj2.x ~= nil, "***ERROR: luaGetDistance's second param is a table without ID or X index!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(Obj1.ID ~= nil or Obj1.x ~= nil, "***ERROR: luaGetDistance's first param is a table without ID or X index!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(Obj2.ID ~= nil or Obj2.x ~= nil, "***ERROR: luaGetDistance's second param is a table without ID or X index!"..debug.traceback())
 
 	if Obj1.ID ~= nil then
--- RELEASE_LOGOFF  		Assert(not thisTable[Obj1.ID].Dead, "***ERROR: luaGetDistance's first param is a dead entity! ("..tostring(thisTable[Obj1.ID].Name)..")\n"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(not thisTable[Obj1.ID].Dead, "***ERROR: luaGetDistance's first param is a dead entity! ("..tostring(thisTable[Obj1.ID].Name)..")\n"..debug.traceback())
 --		if thisTable[Obj1.ID].Dead then
--- RELEASE_LOGOFF  --			luaHelperLog(" Warning: luaGetDistance got a dead entity! 1st arg: "..thisTable[Obj1.ID].Name)
+		-- RELEASE_LOGOFF  --			luaHelperLog(" Warning: luaGetDistance got a dead entity! 1st arg: "..thisTable[Obj1.ID].Name)
 --		end
 	end
 
 	if Obj2.ID ~= nil then
--- RELEASE_LOGOFF  		Assert(not thisTable[Obj2.ID].Dead, "***ERROR: luaGetDistance's second param is a dead entity! ("..tostring(thisTable[Obj2.ID].Name)..")\n"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(not thisTable[Obj2.ID].Dead, "***ERROR: luaGetDistance's second param is a dead entity! ("..tostring(thisTable[Obj2.ID].Name)..")\n"..debug.traceback())
 --		if thisTable[Obj2.ID].Dead then
--- RELEASE_LOGOFF  --			luaHelperLog(" Warning: luaGetDistance got a dead entity! 2nd arg: "..thisTable[Obj2.ID].Name)
+		-- RELEASE_LOGOFF  --			luaHelperLog(" Warning: luaGetDistance got a dead entity! 2nd arg: "..thisTable[Obj2.ID].Name)
 --		end
 	end
 --[[
@@ -3330,7 +3330,7 @@ function luaGetDistance3D(Obj1, Obj2)
 	posc.y = posa.y-posb.y
 	posc.z = posa.z-posb.z
 	distance = math.sqrt(math.pow(posc.x, 2)+math.pow(posc.z, 2)+math.pow(posc.y, 2))
--- RELEASE_LOGOFF  --	luaHelperLog("Distance between "..Obj1.." and "..Obj2.." is "..distance.." m.")
+		-- RELEASE_LOGOFF  --	luaHelperLog("Distance between "..Obj1.." and "..Obj2.." is "..distance.." m.")
 	return distance
 end
 
@@ -3386,10 +3386,10 @@ inputID: enum, lsd. inputs.lua, a szimulalando inputID
 mul: number, impulzus erossege
 ]]
 function luaPressDisabledInput(inputID, mul)
--- RELEASE_LOGOFF  	Assert(inputID ~= nil and type(inputID) == "number", "***ERROR: luaPressDisabledInput needs an InputID as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(inputID ~= nil and type(inputID) == "number", "***ERROR: luaPressDisabledInput needs an InputID as first param!"..debug.traceback())
 	ForceEnableInput(inputID, true)
 	if mul then
--- RELEASE_LOGOFF  		Assert(type(mul) == "number", "***ERROR: luaPressDisabledInput needs an number as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(type(mul) == "number", "***ERROR: luaPressDisabledInput needs an number as second param!"..debug.traceback())
 		HackPressInput(inputID, mul)
 	else
 		HackPressInput(inputID)
@@ -3406,7 +3406,7 @@ coordinate: table, a konvertalando koordinata
 pos: table, a konvertalt koordinata
 ]]
 function luaConvertXYZTo123(coordinate)
--- RELEASE_LOGOFF  	Assert(coordinate ~= nil and luaIsCoordinate(coordinate), "***ERROR: luaConvertXYZTo123 needs a coordinate as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(coordinate ~= nil and luaIsCoordinate(coordinate), "***ERROR: luaConvertXYZTo123 needs a coordinate as param!"..debug.traceback())
 	local pos = {}
 	table.insert(pos, coordinate.x)
 	table.insert(pos, coordinate.y)
@@ -3423,7 +3423,7 @@ coordinate: table, a konvertalando koordinata
 pos: table, a konvertalt polar {radius, theta, rho}
 ]]
 function luaConvertRelPosToPolar(coordinate)
--- RELEASE_LOGOFF  	Assert(coordinate ~= nil and luaIsCoordinate(coordinate), "***ERROR: luaConvertRelPosToPolar needs a coordinate as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(coordinate ~= nil and luaIsCoordinate(coordinate), "***ERROR: luaConvertRelPosToPolar needs a coordinate as param!"..debug.traceback())
 	local origo =
 	{
 		["x"] = 0,
@@ -3460,16 +3460,16 @@ this:  table, a Mission thisTable-je
 msg: string, a Mission-nek atadott uzenet
 ]]
 function luaMessageHandler(this, msg)
--- RELEASE_LOGOFF  	Log("luaMessageHandler has been called.")
+		-- RELEASE_LOGOFF  	Log("luaMessageHandler has been called.")
 	if msg ~= nil then
 		if msg.Message == MSG_KILLED then
--- RELEASE_LOGOFF  			Log("Missionscript terminated.")
--- RELEASE_LOGOFF  			Log(" Playtime was ", math.floor(GameTime()), " secs (", GameTime()/60, " mins)")
+		-- RELEASE_LOGOFF  			Log("Missionscript terminated.")
+		-- RELEASE_LOGOFF  			Log(" Playtime was ", math.floor(GameTime()), " secs (", GameTime()/60, " mins)")
 			this.Dead = true	-- kodbol nem allitodik?
 			return "killed"
 		elseif msg.Message == MSG_CHEAT then
--- RELEASE_LOGOFF  			Log("---------------------------CHEAT----------------------------------")
--- RELEASE_LOGOFF  			Log("CHEATparams: F-", msg.F, ", Alt-", msg.Alt, ", Ctrl-", msg.Ctrl, ", Shift-", msg.Shift)
+		-- RELEASE_LOGOFF  			Log("---------------------------CHEAT----------------------------------")
+		-- RELEASE_LOGOFF  			Log("CHEATparams: F-", msg.F, ", Alt-", msg.Alt, ", Ctrl-", msg.Ctrl, ", Shift-", msg.Shift)
 
 -------------------------- Single
 			-- torpedok feltoltese
@@ -3478,7 +3478,7 @@ function luaMessageHandler(this, msg)
 				for key, value in pairs(recon[this.Party].own.torpedoboat) do
 					ShipSetTorpedoStock(value, 8)
 				end
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			-- torpedok nullazasa
 			elseif msg.F == 2 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 1 then
@@ -3486,7 +3486,7 @@ function luaMessageHandler(this, msg)
 				for key, value in pairs(recon[this.Party].own.torpedoboat) do
 					ShipSetTorpedoStock(value, 0)
 				end
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			-- ellenseges torpedok feltoltese
 			elseif msg.F == 3 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 1 then
@@ -3500,7 +3500,7 @@ function luaMessageHandler(this, msg)
 						ShipSetTorpedoStock(value, 8)
 					end
 				end
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			-- ellenseges torpedok elvetele
 			elseif msg.F == 4 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 1 then
@@ -3514,7 +3514,7 @@ function luaMessageHandler(this, msg)
 						ShipSetTorpedoStock(value, 0)
 					end
 				end
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 5 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 1 then
 				local unit = GetSelectedUnit()
@@ -3531,7 +3531,7 @@ function luaMessageHandler(this, msg)
 					ReloadTorpedoes(unit)
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 6 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 1 then
 				MissionNarrative("Reloading bombs on all plane in scene")
@@ -3546,7 +3546,7 @@ function luaMessageHandler(this, msg)
 					end
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 7 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 1 then
 				local unit = GetSelectedUnit()
@@ -3597,7 +3597,7 @@ function luaMessageHandler(this, msg)
 						luaAutomaticReloader(unit)
 					end
 				end
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 8 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 1 then
 				MissionNarrative("CHEAT: Fading new sound sample")
@@ -3605,7 +3605,7 @@ function luaMessageHandler(this, msg)
 
 
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			-- Killing selected unit
 			elseif msg.F == 9 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 1 then
@@ -3613,108 +3613,108 @@ function luaMessageHandler(this, msg)
 				if unit == nil then
 					return
 				end
--- RELEASE_LOGOFF  				Log("CHEAT: F9. Killing selected unit ("..unit.Name..")")
+		-- RELEASE_LOGOFF  				Log("CHEAT: F9. Killing selected unit ("..unit.Name..")")
 				MissionNarrative("CHEAT: Killing selected unit ("..unit.Name..")")
 				Kill(unit)
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			-- OneShotKill
 			elseif msg.F == 10 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 1 then
 				if OneShotKill then
--- RELEASE_LOGOFF  					Log("Oneshotkill switched OFF")
+		-- RELEASE_LOGOFF  					Log("Oneshotkill switched OFF")
 					MissionNarrative("CHEAT: One shot kill turned OFF")
 					OneShotKill = false
 				else
--- RELEASE_LOGOFF  					Log("Oneshotkill switched ON")
+		-- RELEASE_LOGOFF  					Log("Oneshotkill switched ON")
 					MissionNarrative("CHEAT: One shot kill activated")
 					OneShotKill = true
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 
 			-- Ctrl
 			elseif msg.F == 1 and msg.Ctrl == 1 and msg.Alt == 0 and msg.Shift == 0 then
 				local unit = GetSelectedUnit()
 				if unit ~= nil then
--- RELEASE_LOGOFF  					luaHelperLog(" Setting "..unit.Name.." to invincible")
+		-- RELEASE_LOGOFF  					luaHelperLog(" Setting "..unit.Name.." to invincible")
 					MissionNarrative("CHEAT: Invulnerability for "..unit.Name)
 					SetInvincible(unit, true)
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 2 and msg.Ctrl == 1 and msg.Alt == 0 and msg.Shift == 0 then
 				local unit = GetSelectedUnit()
 				if unit ~= nil then
--- RELEASE_LOGOFF  					luaHelperLog(" Setting "..unit.Name.." to vulnerable")
+		-- RELEASE_LOGOFF  					luaHelperLog(" Setting "..unit.Name.." to vulnerable")
 					MissionNarrative("CHEAT: Vulnerability for "..unit.Name)
 					SetInvincible(unit, false)
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 3 and msg.Ctrl == 1 and msg.Alt == 0 and msg.Shift == 0 then
--- RELEASE_LOGOFF  				Log("CHEAT: Ctrl-F3. Invulnerability for all player-side units.")
+		-- RELEASE_LOGOFF  				Log("CHEAT: Ctrl-F3. Invulnerability for all player-side units.")
 				MissionNarrative("CHEAT: Invulnerability for all player-units")
 				for key, value in pairs(recon[this.Party].own) do
 					for key2, unit in pairs(value) do
--- RELEASE_LOGOFF  						Log("Setting invincible: ", unit.Name)
+		-- RELEASE_LOGOFF  						Log("Setting invincible: ", unit.Name)
 						SetInvincible(unit, true)
 					end
 				end
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 4 and msg.Ctrl == 1 and msg.Alt == 0 and msg.Shift == 0 then
--- RELEASE_LOGOFF  				Log("CHEAT: Ctrl-F4. Vulnerability for all player-side units.")
+		-- RELEASE_LOGOFF  				Log("CHEAT: Ctrl-F4. Vulnerability for all player-side units.")
 				MissionNarrative("CHEAT: Vulnerability for all player-units")
 				for key, value in pairs(recon[this.Party].own) do
 					for key2, unit in pairs(value) do
--- RELEASE_LOGOFF  						Log("Setting invincible: ", unit.Name)
+		-- RELEASE_LOGOFF  						Log("Setting invincible: ", unit.Name)
 						SetInvincible(unit, false)
 					end
 				end
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 5 and msg.Ctrl == 1 and msg.Alt == 0 and msg.Shift == 0 then
--- RELEASE_LOGOFF  				Log("CHEAT: Ctrl-F5. Invulnerability for all enemy units.")
+		-- RELEASE_LOGOFF  				Log("CHEAT: Ctrl-F5. Invulnerability for all enemy units.")
 				MissionNarrative("CHEAT: Invulnerability for all enemy units")
 				if this.Party == PARTY_JAPANESE then
 					for key, value in pairs(recon[PARTY_ALLIED].own) do
 						for key2, unit in pairs(value) do
--- RELEASE_LOGOFF  							Log("Setting invincible: ", unit.Name)
+		-- RELEASE_LOGOFF  							Log("Setting invincible: ", unit.Name)
 							SetInvincible(unit, true)
 						end
 					end
 				else
 					for key, value in pairs(recon[PARTY_JAPANESE].own) do
 						for key2, unit in pairs(value) do
--- RELEASE_LOGOFF  							Log("Setting invincible: ", unit.Name)
+		-- RELEASE_LOGOFF  							Log("Setting invincible: ", unit.Name)
 							SetInvincible(unit, true)
 						end
 					end
 				end
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 6 and msg.Ctrl == 1 and msg.Alt == 0 and msg.Shift == 0 then
--- RELEASE_LOGOFF  				Log("CHEAT: Ctrl-F6. Vulnerability for all enemy units.")
+		-- RELEASE_LOGOFF  				Log("CHEAT: Ctrl-F6. Vulnerability for all enemy units.")
 				MissionNarrative("CHEAT: Vulnerability for all enemy units")
 				if this.Party == PARTY_JAPANESE then
 					for key, value in pairs(recon[PARTY_ALLIED].own) do
 						for key2, unit in pairs(value) do
--- RELEASE_LOGOFF  							Log("Setting invincible: ", unit.Name)
+		-- RELEASE_LOGOFF  							Log("Setting invincible: ", unit.Name)
 							SetInvincible(unit, false)
 						end
 					end
 				else
 					for key, value in pairs(recon[PARTY_JAPANESE].own) do
 						for key2, unit in pairs(value) do
--- RELEASE_LOGOFF  							Log("Setting invincible: ", unit.Name)
+		-- RELEASE_LOGOFF  							Log("Setting invincible: ", unit.Name)
 							SetInvincible(unit, false)
 						end
 					end
 				end
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 7 and msg.Ctrl == 1 and msg.Alt == 0 and msg.Shift == 0 then
 				local unit = GetSelectedUnit()
@@ -3722,15 +3722,15 @@ function luaMessageHandler(this, msg)
 					return
 				end
 
--- RELEASE_LOGOFF  				Log("CHEAT: repairing unit "..unit.Name)
+		-- RELEASE_LOGOFF  				Log("CHEAT: repairing unit "..unit.Name)
 
 				MissionNarrative("CHEAT: Reapairing unit "..unit.Name)
 				CheatMaxRepair(unit)
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 8 and msg.Ctrl == 1 and msg.Alt == 0 and msg.Shift == 0 then
--- RELEASE_LOGOFF  				Log("CHEAT: repairing all unit in scene")
+		-- RELEASE_LOGOFF  				Log("CHEAT: repairing all unit in scene")
 
 				MissionNarrative("CHEAT: Reapairing all unit in scene")
 
@@ -3742,7 +3742,7 @@ function luaMessageHandler(this, msg)
 					end
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 9 and msg.Ctrl == 1 and msg.Alt == 0 and msg.Shift == 0 then
 				local unit = GetSelectedUnit()
@@ -3753,13 +3753,13 @@ function luaMessageHandler(this, msg)
 				if luaGetType(unit) == "ship" or luaGetType(unit) == "sub" then
 					MissionNarrative("CHEAT: Removing water from ship "..unit.Name)
 					CheatRemoveWater(unit)
--- RELEASE_LOGOFF  					Log("CHEAT: removing water from unit "..unit.Name)
+		-- RELEASE_LOGOFF  					Log("CHEAT: removing water from unit "..unit.Name)
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 10 and msg.Ctrl == 1 and msg.Alt == 0 and msg.Shift == 0 then
--- RELEASE_LOGOFF  				Log("CHEAT: removing water from all ship/sub in scene")
+		-- RELEASE_LOGOFF  				Log("CHEAT: removing water from all ship/sub in scene")
 
 				MissionNarrative("CHEAT: Removing water from all ship and submarine in scene")
 
@@ -3773,23 +3773,23 @@ function luaMessageHandler(this, msg)
 					end
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 
 			-- Alt - AI
 			elseif msg.F == 1 and msg.Ctrl == 0 and msg.Alt == 1 and msg.Shift == 0 then
--- RELEASE_LOGOFF  				Log("Holdfire on: ", GetSelectedUnit().Name)
+		-- RELEASE_LOGOFF  				Log("Holdfire on: ", GetSelectedUnit().Name)
 				MissionNarrative("CHEAT: setting HoldFire on selected unit ("..GetSelectedUnit().Name..")")
 				UnitHoldFire(GetSelectedUnit())
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 
 			elseif msg.F == 2 and msg.Ctrl == 0 and msg.Alt == 1 and msg.Shift == 0 then
--- RELEASE_LOGOFF  				Log("Freefire on: ", GetSelectedUnit().Name)
+		-- RELEASE_LOGOFF  				Log("Freefire on: ", GetSelectedUnit().Name)
 				MissionNarrative("CHEAT: setting FreeFire on selected unit ("..GetSelectedUnit().Name..")")
 				UnitFreeFire(GetSelectedUnit())
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 3 and msg.Ctrl == 0 and msg.Alt == 1 and msg.Shift == 0 then
 
@@ -3798,7 +3798,7 @@ function luaMessageHandler(this, msg)
 					return
 				end
 
--- RELEASE_LOGOFF  				Log("Disable AI on unit ", sel.Name)
+		-- RELEASE_LOGOFF  				Log("Disable AI on unit ", sel.Name)
 
 				local selType = luaGetType(sel)
 
@@ -3824,7 +3824,7 @@ function luaMessageHandler(this, msg)
 					ArtilleryEnable(sel, false)
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 4 and msg.Ctrl == 0 and msg.Alt == 1 and msg.Shift == 0 then
 
@@ -3833,7 +3833,7 @@ function luaMessageHandler(this, msg)
 					return
 				end
 
--- RELEASE_LOGOFF  				Log("Enable AI on unit ", sel.Name)
+		-- RELEASE_LOGOFF  				Log("Enable AI on unit ", sel.Name)
 
 				local selType = luaGetType(sel)
 
@@ -3856,16 +3856,16 @@ function luaMessageHandler(this, msg)
 					ArtilleryEnable(sel, true)
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 5 and msg.Ctrl == 0 and msg.Alt == 1 and msg.Shift == 0 then
 				MissionNarrative("CHEAT: Disable AI on all unit")
 				for key, rParty in pairs(recon) do
--- RELEASE_LOGOFF  					luaHelperLog("Checking party "..key)
+		-- RELEASE_LOGOFF  					luaHelperLog("Checking party "..key)
 					for key2, ownUnits in pairs(rParty.own) do
--- RELEASE_LOGOFF  						luaLog(" Checking ownUnits table at key "..key2)
+		-- RELEASE_LOGOFF  						luaLog(" Checking ownUnits table at key "..key2)
 						for uID, unit in pairs(ownUnits) do
--- RELEASE_LOGOFF  							Log("Disable AI on unit ", unit.Name)
+		-- RELEASE_LOGOFF  							Log("Disable AI on unit ", unit.Name)
 
 							local selType = luaGetType(unit)
 
@@ -3891,14 +3891,14 @@ function luaMessageHandler(this, msg)
 					end
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 6 and msg.Ctrl == 0 and msg.Alt == 1 and msg.Shift == 0 then
 				MissionNarrative("CHEAT: Enable AI on all unit")
 				for key, rParty in pairs(recon) do
 					for key2, ownUnits in pairs(rParty.own) do
 						for unitType, unit in pairs(ownUnits) do
--- RELEASE_LOGOFF  							Log("Enable AI on unit ", unit.Name)
+		-- RELEASE_LOGOFF  							Log("Enable AI on unit ", unit.Name)
 
 							local selType = luaGetType(unit)
 
@@ -3921,7 +3921,7 @@ function luaMessageHandler(this, msg)
 					end
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 7 and msg.Ctrl == 0 and msg.Alt == 1 and msg.Shift == 0 then
 				SelectedUnit = GetSelectedUnit()
@@ -3944,7 +3944,7 @@ function luaMessageHandler(this, msg)
 				end
 
 				MissionNarrative("CHEAT: Setting current unit level to:"..CrewText)
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 8 and msg.Ctrl == 0 and msg.Alt == 1 and msg.Shift == 0 then
 				if Mission.AlliedCrewLevelCheat == nil then
@@ -3982,7 +3982,7 @@ function luaMessageHandler(this, msg)
 				end
 				MissionNarrative("CHEAT: Own party crew level is: "..CrewText)
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 9 and msg.Ctrl == 0 and msg.Alt == 1 and msg.Shift == 0 then
 				if Mission.JapCrewLevelCheat == nil then
@@ -4017,7 +4017,7 @@ function luaMessageHandler(this, msg)
 					end
 				end
 				MissionNarrative("CHEAT: Enemy party crew level is: "..CrewText)
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 10 and msg.Ctrl == 0 and msg.Alt == 1 and msg.Shift == 0 then
 				local unit = GetSelectedUnit()
@@ -4051,7 +4051,7 @@ function luaMessageHandler(this, msg)
 						MissionNarrative("CHEAT: Setting max speed to "..tostring(unit.CurrentBooster).."x")
 					end
 				end
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 
 -------------------------- Shift
@@ -4059,86 +4059,86 @@ function luaMessageHandler(this, msg)
 			elseif msg.F == 1 and msg.Ctrl == 0 and msg.Alt == 0 and msg.Shift == 1 then
 				MissionNarrative("CHEAT: Stepping missionphase")
 				this.Cheat_PhaseShift = true
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			-- Kuldetes sikeresse tetele
 			elseif msg.F == 2 and msg.Ctrl == 0 and msg.Alt == 0 and msg.Shift == 1 then
 				MissionNarrativeOverride("CHEAT: Mission success")
 				--this.Cheat_MissionSuccess = true
--- RELEASE_LOGOFF  				luaLog(">>> CHEAT CALLED: Mission success")
+		-- RELEASE_LOGOFF  				luaLog(">>> CHEAT CALLED: Mission success")
 
 				luaObj_CompletedAll()
 				Scoring_SetMissionCompleted(true)
 				EndScene()
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 3 and msg.Ctrl == 0 and msg.Alt == 0 and msg.Shift == 1 then
 				MissionNarrative("CHEAT: Starting/Stopping countdown")
 				if Mission.CountdownTbl == nil then
--- RELEASE_LOGOFF  					luaHelperLog("CountdownTbl not declared, quitting.")
+		-- RELEASE_LOGOFF  					luaHelperLog("CountdownTbl not declared, quitting.")
 					return
 				end
 
 				--if Mission.CountdownStopped == nil then
--- RELEASE_LOGOFF  				--	luaHelperLog("CountdownStopped flag value is not set. It is now false.")
+		-- RELEASE_LOGOFF  				--	luaHelperLog("CountdownStopped flag value is not set. It is now false.")
 				--	Mission.CountdownStopped = false
 				--end
 
 				if not Mission.CountdownStopped then
 					Mission.CountdownTbl.CountdownTime = CountdownTimeLeft()
--- RELEASE_LOGOFF  					luaHelperLog("Setting countdown time to "..tostring(Mission.CountdownTbl.CountdownTime))
+		-- RELEASE_LOGOFF  					luaHelperLog("Setting countdown time to "..tostring(Mission.CountdownTbl.CountdownTime))
 					CountdownCancel()
 					Mission.CountdownStopped = true
--- RELEASE_LOGOFF  					luaHelperLog("Stopping countdown, CountdownStopped flag is true.")
+		-- RELEASE_LOGOFF  					luaHelperLog("Stopping countdown, CountdownStopped flag is true.")
 				elseif Mission.CountdownStopped then
 					Countdown(Mission.CountdownTbl.txt, Mission.CountdownTbl.StartLevel, Mission.CountdownTbl.CountdownTime, Mission.CountdownTbl.Callback, Mission.CountdownTbl.CallbackParams)
 					Mission.CountdownStopped = false
--- RELEASE_LOGOFF  					luaHelperLog("Starting countdown with params: txt: "..tostring(Mission.CountdownTbl.txt)..", startlvl: "..tostring(Mission.CountdownTbl.StartLevel)..", time: "..tostring(Mission.CountdownTbl.CountdownTime)..", callback: "..tostring(Mission.CountdownTbl.Callback)..", clbparams: "..tostring(Mission.CountdownTbl.CallbackParams))
--- RELEASE_LOGOFF  					luaHelperLog("CountdownStopped falg is false.")
+		-- RELEASE_LOGOFF  					luaHelperLog("Starting countdown with params: txt: "..tostring(Mission.CountdownTbl.txt)..", startlvl: "..tostring(Mission.CountdownTbl.StartLevel)..", time: "..tostring(Mission.CountdownTbl.CountdownTime)..", callback: "..tostring(Mission.CountdownTbl.Callback)..", clbparams: "..tostring(Mission.CountdownTbl.CallbackParams))
+		-- RELEASE_LOGOFF  					luaHelperLog("CountdownStopped falg is false.")
 				end
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 4 and msg.Ctrl == 0 and msg.Alt == 0 and msg.Shift == 1 then
 				MissionNarrativeOverride("CHEAT: Mission failure")
 
--- RELEASE_LOGOFF  				luaLog(">>> CHEAT CALLED: Mission failed")
+		-- RELEASE_LOGOFF  				luaLog(">>> CHEAT CALLED: Mission failed")
 
 				luaObj_FailedAll()
 				Scoring_SetMissionCompleted(false)
 				EndScene()
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 5 and msg.Ctrl == 0 and msg.Alt == 0 and msg.Shift == 1 then
 				--MissionNarrative("CHEAT: Switching custom log")
 
 				if not Mission.CustomLog then
--- RELEASE_LOGOFF  					Log("\t-> ON")
+		-- RELEASE_LOGOFF  					Log("\t-> ON")
 					Mission.CustomLog = true
 					MissionNarrative("Turning Custom log ON")
 				else
--- RELEASE_LOGOFF  					Log("\t-> OFF")
+		-- RELEASE_LOGOFF  					Log("\t-> OFF")
 					Mission.CustomLog = false
 					MissionNarrative("Turning Custom log OFF")
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 6 and msg.Ctrl == 0 and msg.Alt == 0 and msg.Shift == 1 then
--- RELEASE_LOGOFF  				Log("CHEAT: Switching helpers' log")
+		-- RELEASE_LOGOFF  				Log("CHEAT: Switching helpers' log")
 
 				if not Mission.HelperLog then
--- RELEASE_LOGOFF  					Log("\t-> ON")
+		-- RELEASE_LOGOFF  					Log("\t-> ON")
 					Mission.HelperLog = true
 					MissionNarrative("Turning Helpers' log ON")
 				else
--- RELEASE_LOGOFF  					Log("\t-> OFF")
+		-- RELEASE_LOGOFF  					Log("\t-> OFF")
 					Mission.HelperLog = false
 					MissionNarrative("Turning Helpers' log OFF")
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 7 and msg.Ctrl == 0 and msg.Alt == 0 and msg.Shift == 1 then
 				if not MessageSender then
@@ -4146,48 +4146,48 @@ function luaMessageHandler(this, msg)
 					return
 				end
 
--- RELEASE_LOGOFF  				Log("CHEAT: Switching message sender log")
+		-- RELEASE_LOGOFF  				Log("CHEAT: Switching message sender log")
 				if not MessageSender.Logging then
--- RELEASE_LOGOFF  					Log("\t-> ON")
+		-- RELEASE_LOGOFF  					Log("\t-> ON")
 					SETLOG(MessageSender, true)
 					MessageSender.Logging = true
 					MissionNarrative("CHEAT : Turning MessageSender log ON")
 				else
--- RELEASE_LOGOFF  					Log("\t-> OFF")
+		-- RELEASE_LOGOFF  					Log("\t-> OFF")
 					SETLOG(MessageSender, false)
 					MessageSender.Logging = false
 					MissionNarrative("CHEAT: Turning MessageSender log OFF")
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 8 and msg.Ctrl == 0 and msg.Alt == 0 and msg.Shift == 1 then
 				MissionNarrative("Log for mission is ON")
 				if Mission ~= nil then
 					SETLOG(Mission, true)
 				end
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 9 and msg.Ctrl == 0 and msg.Alt == 0 and msg.Shift == 1 then
 				MissionNarrative("Log for mission is OFF")
 				if Mission ~= nil then
 					SETLOG(Mission, false)
 				end
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 
 			elseif msg.F == 10 and msg.Ctrl == 0 and msg.Alt == 0 and msg.Shift == 1 then
 				if Mission.UnitCountEnabled then
 					MissionNarrativeUrgent("Unitcount turned OFF")
 					Mission.UnitCountEnabled = false
--- RELEASE_LOGOFF  					luaHelperLog("Unitcount disabled")
+		-- RELEASE_LOGOFF  					luaHelperLog("Unitcount disabled")
 				else
 					MissionNarrativeUrgent("Unitcount turned ON")
 					Mission.UnitCountEnabled = true
--- RELEASE_LOGOFF  					luaHelperLog("Unitcount enabled")
+		-- RELEASE_LOGOFF  					luaHelperLog("Unitcount enabled")
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 
 			-- Shift + Ctrl
@@ -4208,7 +4208,7 @@ function luaMessageHandler(this, msg)
 						end
 					end
 				end
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			-- minden ellenseg elrejtese
 			elseif msg.F == 2 and msg.Ctrl == 1 and msg.Alt == 0 and msg.Shift == 1 then
@@ -4227,7 +4227,7 @@ function luaMessageHandler(this, msg)
 						end
 					end
 				end
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			-- Setting recon data to normal level
 			elseif msg.F == 3 and msg.Ctrl == 1 and msg.Alt == 0 and msg.Shift == 1 then
@@ -4246,7 +4246,7 @@ function luaMessageHandler(this, msg)
 					end
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			-- minden sajat egyseg felderitese az ellenseg altal
 			elseif msg.F == 4 and msg.Ctrl == 1 and msg.Alt == 0 and msg.Shift == 1 then
@@ -4265,7 +4265,7 @@ function luaMessageHandler(this, msg)
 						end
 					end
 				end
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			-- sajat egysegek elrejtese az ellenseg elol
 			elseif msg.F == 5 and msg.Ctrl == 1 and msg.Alt == 0 and msg.Shift == 1 then
@@ -4284,7 +4284,7 @@ function luaMessageHandler(this, msg)
 					end
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			-- sajat egysegek felderitettsegenek normalisra valo visszaallitasa
 			elseif msg.F == 6 and msg.Ctrl == 1 and msg.Alt == 0 and msg.Shift == 1 then
@@ -4301,31 +4301,31 @@ function luaMessageHandler(this, msg)
 						end
 					end
 				end
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 7 and msg.Ctrl == 1 and msg.Alt == 0 and msg.Shift == 1 then
 				MissionNarrative("CHEAT: Music custom1")
 				Music_Control_SetLevel(MUSIC_CUSTOM1)
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 8 and msg.Ctrl == 1 and msg.Alt == 0 and msg.Shift == 1 then
 				MissionNarrative("CHEAT: Music custom2")
 				Music_Control_SetLevel(MUSIC_CUSTOM2)
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 9 and msg.Ctrl == 1 and msg.Alt == 0 and msg.Shift == 1 then
 				MissionNarrative("CHEAT: Music custom3")
 				Music_Control_SetLevel(MUSIC_CUSTOM3)
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 10 and msg.Ctrl == 1 and msg.Alt == 0 and msg.Shift == 1 then
 				MissionNarrative("CHEAT: Turning messages off")
 				EnableMessages(false)
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 
 ------------------- Alt + Shift
@@ -4345,7 +4345,7 @@ function luaMessageHandler(this, msg)
 					end
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 2 and msg.Ctrl == 0 and msg.Alt == 1 and msg.Shift == 1 then
 				local unit = GetSelectedUnit()
@@ -4364,16 +4364,16 @@ function luaMessageHandler(this, msg)
 					MissionNarrative("CHEAT: Clearing unitclass is not possible now!")
 				end
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 
 			elseif msg.F == 3 and msg.Ctrl == 0 and msg.Alt == 1 and msg.Shift == 1 then
--- RELEASE_LOGOFF  				luaLog("Narrative on screen: Missionphase "..Mission.MissionPhase)
+		-- RELEASE_LOGOFF  				luaLog("Narrative on screen: Missionphase "..Mission.MissionPhase)
 				MissionNarrative("Missionphase: "..Mission.MissionPhase)
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 4 and msg.Ctrl == 0 and msg.Alt == 1 and msg.Shift == 1 then
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 5 and msg.Ctrl == 0 and msg.Alt == 1 and msg.Shift == 1 then
 				MissionNarrative("CHEAT: Siralyt rakok a scene-be bele")
@@ -4382,15 +4382,15 @@ function luaMessageHandler(this, msg)
 						--["Position"] = { ["x"] = 197, ["y"] = 502, ["z"] = -2642 },
 						["Position"] = GetCameraState().Position
 					})
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 6 and msg.Ctrl == 0 and msg.Alt == 1 and msg.Shift == 1 then
 				MissionNarrative("CHEAT: Killing landscape")
 					local ls = FindEntity("Landscape")
--- RELEASE_LOGOFF  					luaLog("LS: "..ls.Name)
+		-- RELEASE_LOGOFF  					luaLog("LS: "..ls.Name)
 
 					Kill(ls, true)
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 
 			-- kamerahelyzet kimentese CameraState.log-ba
@@ -4398,7 +4398,7 @@ function luaMessageHandler(this, msg)
 				MissionNarrative("CameraState logging")
 				luaWriteCamState()
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 8 and msg.Ctrl == 0 and msg.Alt == 1 and msg.Shift == 1 then
 
@@ -4413,7 +4413,7 @@ function luaMessageHandler(this, msg)
 				MissionNarrativeClear()
 				MissionNarrative("FOV set to "..tostring(FOVBase))
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 9 and msg.Ctrl == 0 and msg.Alt == 1 and msg.Shift == 1 then
 				if FOVBase == nil then
@@ -4427,66 +4427,66 @@ function luaMessageHandler(this, msg)
 				MissionNarrativeClear()
 				MissionNarrative("FOV set to "..tostring(FOVBase))
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 10 and msg.Ctrl == 0 and msg.Alt == 1 and msg.Shift == 1 then
 				MissionNarrative("CHEAT: missionend")
 				if Mission.MissionStatus ~= nil then
 					luaMissionEnd_Finale()
 				end
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 
 ----------------------- Alt + Ctrl
 			elseif msg.F == 1 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 0 then
 				MissionNarrative("CHEAT: Sinking current ship")
 				Sink(GetSelectedUnit(), 1)
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 2 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 0 then
 				MissionNarrative("CHEAT: movieplay")
 				PlayBinkMovie("Test.bik", "")
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 3 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 0 then
 				PS2Rectangle();
 				MissionNarrative("CHEAT: ")
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 4 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 0 then
 				MissionNarrative("CHEAT: Engine start failure")
 				Effect("BoatEngineStartFail", GetCameraState().Position)
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 5 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 0 then
 				MissionNarrative("CHEAT: Engine start")
 				Effect("BoatEngineStart", GetCameraState().Position)
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 6 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 0 then
 				MissionNarrative("CHEAT: Music calm")
 				Music_Control_SetLevel(MUSIC_CALM)
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 7 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 0 then
 				MissionNarrative("CHEAT: Music tension")
 				Music_Control_SetLevel(MUSIC_TENSION)
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 8 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 0 then
 				MissionNarrative("CHEAT: Music action")
 				Music_Control_SetLevel(MUSIC_ACTION)
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 9 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 0 then
 				MissionNarrative("CHEAT: Music defeat")
 				Music_Control_SetLevel(MUSIC_DEFEAT)
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 10 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 0 then
 				MissionNarrative("CHEAT: Music victory")
 				Music_Control_SetLevel(MUSIC_VICTORY)
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 
 ----------------------- Alt + Ctrl + Shift
@@ -4520,57 +4520,57 @@ function luaMessageHandler(this, msg)
 						}
 					MovCamNew_AddPosition(pos0)
 				end
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 2 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 1 then
 				MissionNarrative("CHEAT: Sound fade away")
 				SoundFade(0, "luaSoundFadeTestCB", 5)
 				--Blackout(true, "luaSoundFadeTestCB", 5, 1)
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 3 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 1 then
 				MissionNarrative("CHEAT: Sound fade in")
 				SoundFade(1, "luaSoundFadeTestCB", 5)
 				--Blackout(false, "luaSoundFadeTestCB", 5, 0)
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 4 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 1 then
 				MissionNarrative("CHEAT: Sound fade to half volume")
 				SoundFade(0.5, "luaSoundFadeTestCB", 5)
 				--Blackout(true, "luaSoundFadeTestCB", 5, 0.5)
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 5 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 1 then
 				MissionNarrative("CHEAT: ")
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 6 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 1 then
 				MissionNarrative("CHEAT: ")
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 7 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 1 then
 				MissionNarrative("CHEAT: ")
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 8 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 1 then
 				MissionNarrative("CHEAT: ")
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 9 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 1 then
 				MissionNarrative("CHEAT: ")
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 			elseif msg.F == 10 and msg.Ctrl == 1 and msg.Alt == 1 and msg.Shift == 1 then
 				MissionNarrative("CHEAT: Clearing dialogues")
 				luaClearDialogs()
 
--- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
+		-- RELEASE_LOGOFF  				Log("---------------------------CHEAT END------------------------------")
 				return
 ]]
 			end
 		end
 	else
--- RELEASE_LOGOFF  		Log(" No message")
+		-- RELEASE_LOGOFF  		Log(" No message")
 	end
 end
 
@@ -4586,14 +4586,14 @@ hit: bool, eltallja e a 'target'-et vagy sem
 ]]
 -- generating fake machine-gunning around target
 function luaFakeMG(target, num, angle, hit)
--- RELEASE_LOGOFF  	luaHelperLog("Generating fake MGeffects...")
+		-- RELEASE_LOGOFF  	luaHelperLog("Generating fake MGeffects...")
 
 	local pos, trgtype, fireangle
 	local bpos = {}
 	local bnum
 
 	-- loadup
--- RELEASE_LOGOFF  	luaHelperLog(" + Carpetbombing!")
+		-- RELEASE_LOGOFF  	luaHelperLog(" + Carpetbombing!")
 
 	if not num then	-- itt a sorok szama
 		bnum = 1
@@ -4604,17 +4604,17 @@ function luaFakeMG(target, num, angle, hit)
 	if angle == nil then
 		fireAngle = 0
 	else
--- RELEASE_LOGOFF  		luaHelperLog(" Angle given: "..angle)
+		-- RELEASE_LOGOFF  		luaHelperLog(" Angle given: "..angle)
 		fireAngle = angle
 	end
 
 	local rndEltolas
 	if not hit then
 		if luaPickInRange("front", 5, "back", 5) == "front" then
--- RELEASE_LOGOFF  			luaHelperLog(" Front selected")
+		-- RELEASE_LOGOFF  			luaHelperLog(" Front selected")
 			rndEltolas = target.Class.Length/2 + luaRnd(10, 40)
 		else
--- RELEASE_LOGOFF  			luaHelperLog(" Back selected")
+		-- RELEASE_LOGOFF  			luaHelperLog(" Back selected")
 			rndEltolas = -target.Class.Length/2 - luaRnd(10, 40)
 		end
 	else
@@ -4643,7 +4643,7 @@ function luaFakeMG(target, num, angle, hit)
 		end
 	end
 
--- RELEASE_LOGOFF  	LogToFile("Final positions: ", bpos)
+		-- RELEASE_LOGOFF  	LogToFile("Final positions: ", bpos)
 
 	--  Effect generation
 	local delay = 0.1
@@ -4661,14 +4661,14 @@ function luaFakeMG(target, num, angle, hit)
 		}
 
 	for key, value in pairs(bpos) do
--- RELEASE_LOGOFF  		luaHelperLog(" Examining pos "..key)
+		-- RELEASE_LOGOFF  		luaHelperLog(" Examining pos "..key)
 		if bnum > 1 then	-- tobb oszlop
--- RELEASE_LOGOFF  			luaHelperLog(" > Multiple insertation ("..bnum..")")
+		-- RELEASE_LOGOFF  			luaHelperLog(" > Multiple insertation ("..bnum..")")
 			table.insert(multiPos, value)
 			i = i + 1
 			if i == bnum then
 				i = 0
--- RELEASE_LOGOFF  				luaHelperLog(" >> now inserting.")
+		-- RELEASE_LOGOFF  				luaHelperLog(" >> now inserting.")
 				--delay = delay + 0.1
 				table.insert(timer, {[1] = luaFakeMGTimer, [2] = delay})
 				table.insert(paramTable.Pos, multiPos)
@@ -4677,7 +4677,7 @@ function luaFakeMG(target, num, angle, hit)
 				multiPos = {}
 			end
 		else
--- RELEASE_LOGOFF  			luaHelperLog(" > single insertation.")
+		-- RELEASE_LOGOFF  			luaHelperLog(" > single insertation.")
 			table.insert(timer, {[1] = luaFakeMGTimer, [2] = delay})
 			table.insert(paramTable.Pos, {value})
 			--luaDelay(luaFakeMGTimer, delay, "Pos", value)
@@ -4697,8 +4697,8 @@ tmethis: table, a luaFakeMG fv altal atdott valtozok
 ]]
 function luaFakeMGTimer(timerthis)
 	SETLOG(timerthis, true)
--- RELEASE_LOGOFF  	luaHelperLog("Generating fake bomb explosion...")
--- RELEASE_LOGOFF  	luaHelperLog(" Positions: "..timerthis.ParamTable.Pos)
+		-- RELEASE_LOGOFF  	luaHelperLog("Generating fake bomb explosion...")
+		-- RELEASE_LOGOFF  	luaHelperLog(" Positions: "..timerthis.ParamTable.Pos)
 
 	if timerthis.TimerFunctionNum == nil then
 		timerthis.TimerFunctionNum = 1
@@ -4706,28 +4706,28 @@ function luaFakeMGTimer(timerthis)
 		timerthis.TimerFunctionNum = timerthis.TimerFunctionNum + 1
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog(" FunctionNum: "..timerthis.TimerFunctionNum)
+		-- RELEASE_LOGOFF  	luaHelperLog(" FunctionNum: "..timerthis.TimerFunctionNum)
 
 --	for key, value in pairs(timerthis.ParamTable.Pos) do
--- RELEASE_LOGOFF  --		luaHelperLog("TESZTPOS: key - "..key..", value: "..tostring(value))
+		-- RELEASE_LOGOFF  --		luaHelperLog("TESZTPOS: key - "..key..", value: "..tostring(value))
 --	end
 
 	luaHelperLog("  Pos to function num: "..timerthis.ParamTable.Pos[timerthis.TimerFunctionNum])
 
 	for key, value in pairs(timerthis.ParamTable.Pos[timerthis.TimerFunctionNum]) do
--- RELEASE_LOGOFF  		luaHelperLog("  > POS: "..value)
+		-- RELEASE_LOGOFF  		luaHelperLog("  > POS: "..value)
 		local land = IsLandscape(value)
 		local ship = IsShip(value)
 
 		if not ship and not land then				-- water
--- RELEASE_LOGOFF  			luaHelperLog("  Target is on water!")
+		-- RELEASE_LOGOFF  			luaHelperLog("  Target is on water!")
 			Effect("MachinegunHitWater", value)
 		elseif land then					-- landscape
--- RELEASE_LOGOFF  			luaHelperLog("  Target is on landscape!")
+		-- RELEASE_LOGOFF  			luaHelperLog("  Target is on landscape!")
 			value.y = land
 			Effect("MachinegunHit", value)
 		elseif ship then					-- ship
--- RELEASE_LOGOFF  			luaHelperLog("  Target is on ship!")
+		-- RELEASE_LOGOFF  			luaHelperLog("  Target is on ship!")
 			value.y = ship
 			Effect("MachinegunHitGround", value)
 		end
@@ -4738,20 +4738,20 @@ function luaFakeMGTimer(timerthis)
 	-- OLD !!
 	local pos = timerthis.ParamTable.Pos
 	if pos.x == nil then
--- RELEASE_LOGOFF  		luaHelperLog(" Multiple coordinates!")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Multiple coordinates!")
 		for key, value in pairs(pos) do
 			local land = IsLandscape(value)
 			local ship = IsShip(value)
 
 			if not ship and not land then				-- water
--- RELEASE_LOGOFF  				luaHelperLog("  Target is on water!")
+		-- RELEASE_LOGOFF  				luaHelperLog("  Target is on water!")
 				Effect("MachinegunHitWater", value)
 			elseif land then					-- landscape
--- RELEASE_LOGOFF  				luaHelperLog("  Target is on landscape!")
+		-- RELEASE_LOGOFF  				luaHelperLog("  Target is on landscape!")
 				value.y = land
 				Effect("MachinegunHit", value)
 			elseif ship then					-- ship
--- RELEASE_LOGOFF  				luaHelperLog("  Target is on ship!")
+		-- RELEASE_LOGOFF  				luaHelperLog("  Target is on ship!")
 				value.y = ship
 				Effect("MachinegunHitGround", value)
 			end
@@ -4762,14 +4762,14 @@ function luaFakeMGTimer(timerthis)
 		local ship = IsShip(pos)
 
 		if not ship and not land then				-- water
--- RELEASE_LOGOFF  			luaHelperLog("  Target is on water!")
+		-- RELEASE_LOGOFF  			luaHelperLog("  Target is on water!")
 			Effect("MachinegunHitWater", pos)
 		elseif land then					-- landscape
--- RELEASE_LOGOFF  			luaHelperLog("  Target is on landscape!")
+		-- RELEASE_LOGOFF  			luaHelperLog("  Target is on landscape!")
 			pos.y = land
 			Effect("MachinegunHit", pos)
 		elseif ship then					-- ship
--- RELEASE_LOGOFF  			luaHelperLog("  Target is on ship!")
+		-- RELEASE_LOGOFF  			luaHelperLog("  Target is on ship!")
 			pos.y = ship
 			Effect("MachinegunHitGround", pos)
 		end
@@ -4791,7 +4791,7 @@ angle: number, carpetnel szamit, az erkezesi szog (oramutato jarasaval megyezo i
 hit: bool, carpetnal szamit, ha true, akkor biztos eltalalja az effekt a celpontot, egyebkent eltolassal mukodik (nincs kizarva a talalat)
 ]]
 function luaFakeBombing(target, mode, num, angle, hit)
--- RELEASE_LOGOFF  	luaHelperLog("Generating fake bombeffects...")
+		-- RELEASE_LOGOFF  	luaHelperLog("Generating fake bombeffects...")
 
 	local pos, trgtype, fireangle
 	local bpos = {}
@@ -4811,7 +4811,7 @@ function luaFakeBombing(target, mode, num, angle, hit)
 
 	-- loadup
 	if mode == "carpet" then
--- RELEASE_LOGOFF  		luaHelperLog(" + Carpetbombing!")
+		-- RELEASE_LOGOFF  		luaHelperLog(" + Carpetbombing!")
 
 		if not num then	-- itt a sorok szama
 			bnum = 1
@@ -4822,17 +4822,17 @@ function luaFakeBombing(target, mode, num, angle, hit)
 		if angle == nil then
 			fireAngle = 0
 		else
--- RELEASE_LOGOFF  			luaHelperLog(" Angle given: "..angle)
+		-- RELEASE_LOGOFF  			luaHelperLog(" Angle given: "..angle)
 			fireAngle = angle
 		end
 
 		local rndEltolas
 		if not hit then
 			if luaPickInRange("front", 5, "back", 5) == "front" then
--- RELEASE_LOGOFF  				luaHelperLog(" Front selected")
+		-- RELEASE_LOGOFF  				luaHelperLog(" Front selected")
 				rndEltolas = target.Class.Length/2 + luaRnd(10, 40)
 			else
--- RELEASE_LOGOFF  				luaHelperLog(" Back selected")
+		-- RELEASE_LOGOFF  				luaHelperLog(" Back selected")
 				rndEltolas = -target.Class.Length/2 - luaRnd(10, 40)
 			end
 		else
@@ -4861,18 +4861,18 @@ function luaFakeBombing(target, mode, num, angle, hit)
 			end
 		end
 
--- RELEASE_LOGOFF  		LogToFile("Final positions: ", bpos)
+		-- RELEASE_LOGOFF  		LogToFile("Final positions: ", bpos)
 		local multiPos = {}
 		local i = 0
 		for key, value in pairs(bpos) do
--- RELEASE_LOGOFF  			luaHelperLog(" Examining pos "..key)
+		-- RELEASE_LOGOFF  			luaHelperLog(" Examining pos "..key)
 			if bnum > 1 then	-- tobb oszlop
--- RELEASE_LOGOFF  				luaHelperLog(" > Multiple insertation ("..bnum..")")
+		-- RELEASE_LOGOFF  				luaHelperLog(" > Multiple insertation ("..bnum..")")
 				table.insert(multiPos, value)
 				i = i + 1
 				if i == bnum then
 					i = 0
--- RELEASE_LOGOFF  					luaHelperLog(" >> now inserting.")
+		-- RELEASE_LOGOFF  					luaHelperLog(" >> now inserting.")
 					--delay = delay + 0.1
 					table.insert(timer, {[1] = luaFakeBombingTimer, [2] = delay})
 					table.insert(paramTable.Pos, multiPos)
@@ -4881,7 +4881,7 @@ function luaFakeBombing(target, mode, num, angle, hit)
 					multiPos = {}
 				end
 			else
--- RELEASE_LOGOFF  				luaHelperLog(" > single insertation.")
+		-- RELEASE_LOGOFF  				luaHelperLog(" > single insertation.")
 				table.insert(timer, {[1] = luaFakeBombingTimer, [2] = delay})
 				table.insert(paramTable.Pos, {value})
 				--luaDelay(luaFakeMGTimer, delay, "Pos", value)
@@ -4895,27 +4895,27 @@ function luaFakeBombing(target, mode, num, angle, hit)
 		local i = 0
 		local multiPos = {}
 		for key, value in pairs(bpos) do
--- RELEASE_LOGOFF  			luaHelperLog(" Examining pos "..key)
+		-- RELEASE_LOGOFF  			luaHelperLog(" Examining pos "..key)
 			if bnum > 1 then	-- tobb oszlop
--- RELEASE_LOGOFF  				luaHelperLog(" > Multiple insertation ("..bnum..")")
+		-- RELEASE_LOGOFF  				luaHelperLog(" > Multiple insertation ("..bnum..")")
 				table.insert(multiPos, value)
 				i = i + 1
 				if i == bnum then
 					i = 0
--- RELEASE_LOGOFF  					luaHelperLog(" >> now inserting.")
+		-- RELEASE_LOGOFF  					luaHelperLog(" >> now inserting.")
 					luaDelay(luaFakeBombingTimer, delay, "Pos", multiPos)
 					multiPos = {}
 					delay = delay + 0.2
 				end
 			else
--- RELEASE_LOGOFF  				luaHelperLog(" >> single insertation.")
+		-- RELEASE_LOGOFF  				luaHelperLog(" >> single insertation.")
 				luaDelay(luaFakeBombingTimer, delay, "Pos", value)
 				delay = delay + 0.2
 			end
 		end
 ]]
 	elseif mode == "single" then
--- RELEASE_LOGOFF  		luaHelperLog(" + Single bombing with "..tostring(bnum).." bombs!")
+		-- RELEASE_LOGOFF  		luaHelperLog(" + Single bombing with "..tostring(bnum).." bombs!")
 		if num == nil or num == 0 then
 			bnum = 5	-- default 5
 		else
@@ -4925,7 +4925,7 @@ function luaFakeBombing(target, mode, num, angle, hit)
 		for i = 1, bnum do
 			-- todo: rnd pos around ship
 			local side = luaPickInRange("left", 5, "right", 5)
--- RELEASE_LOGOFF  			luaHelperLog(" - Effect on the "..side.."!")
+		-- RELEASE_LOGOFF  			luaHelperLog(" - Effect on the "..side.."!")
 
 			local localPos
 			if side == "left" then
@@ -4935,14 +4935,14 @@ function luaFakeBombing(target, mode, num, angle, hit)
 			end
 
 			local trgPos = RelativePosition(target, localPos)
--- RELEASE_LOGOFF  			luaHelperLog("Final Coordinate "..tostring(bnum)..": ")
--- RELEASE_LOGOFF  			luaHelperLog(trgPos)
+		-- RELEASE_LOGOFF  			luaHelperLog("Final Coordinate "..tostring(bnum)..": ")
+		-- RELEASE_LOGOFF  			luaHelperLog(trgPos)
 			table.insert(bpos, trgPos)
 		end
 
 		--  Effect generation
 		for key, value in pairs(bpos) do
--- RELEASE_LOGOFF  			luaHelperLog(" Calling timer ")
+		-- RELEASE_LOGOFF  			luaHelperLog(" Calling timer ")
 			--luaDelay(luaFakeBombingTimer, delay, "Pos", value)
 			--delay = delay + 0.2
 			table.insert(timer, {[1] = luaFakeBombingTimer, [2] = delay})
@@ -4962,9 +4962,9 @@ tmethis: table, a luaFakeMG fv altal atdott valtozok
 ]]
 function luaFakeBombingTimer(timerthis)
 	SETLOG(timerthis, false)
--- RELEASE_LOGOFF  	luaHelperLog("Generating fake bomb explosion...")
--- RELEASE_LOGOFF  	luaHelperLog(" Position: ")
--- RELEASE_LOGOFF  	luaHelperLog(timerthis.ParamTable.Pos)
+		-- RELEASE_LOGOFF  	luaHelperLog("Generating fake bomb explosion...")
+		-- RELEASE_LOGOFF  	luaHelperLog(" Position: ")
+		-- RELEASE_LOGOFF  	luaHelperLog(timerthis.ParamTable.Pos)
 
 	if timerthis.TimerFunctionNum == nil then
 		timerthis.TimerFunctionNum = 1
@@ -4972,33 +4972,33 @@ function luaFakeBombingTimer(timerthis)
 		timerthis.TimerFunctionNum = timerthis.TimerFunctionNum + 1
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog(" FunctionNum: "..timerthis.TimerFunctionNum)
+		-- RELEASE_LOGOFF  	luaHelperLog(" FunctionNum: "..timerthis.TimerFunctionNum)
 
 --	for key, value in pairs(timerthis.ParamTable.Pos) do
--- RELEASE_LOGOFF  --		luaHelperLog("TESZTPOS: key - "..key..", value: "..tostring(value))
+		-- RELEASE_LOGOFF  --		luaHelperLog("TESZTPOS: key - "..key..", value: "..tostring(value))
 --	end
 
 	luaHelperLog("  Pos to function num: ")
--- RELEASE_LOGOFF  	luaHelperLog(timerthis.ParamTable.Pos[timerthis.TimerFunctionNum])
+		-- RELEASE_LOGOFF  	luaHelperLog(timerthis.ParamTable.Pos[timerthis.TimerFunctionNum])
 
 	for key, value in pairs(timerthis.ParamTable.Pos[timerthis.TimerFunctionNum]) do
--- RELEASE_LOGOFF  		luaHelperLog("  > POS: ")
--- RELEASE_LOGOFF  		luaHelperLog(value)
+		-- RELEASE_LOGOFF  		luaHelperLog("  > POS: ")
+		-- RELEASE_LOGOFF  		luaHelperLog(value)
 		local land = IsLandscape(value)
 		local ship = IsShip(value)
 
 		-- only tmp test!
--- RELEASE_LOGOFF  		luaLog(" -+- FAKEBOMB EFFECT GEN")
+		-- RELEASE_LOGOFF  		luaLog(" -+- FAKEBOMB EFFECT GEN")
 
 		if not ship and not land then				-- water
--- RELEASE_LOGOFF  			luaHelperLog("  Target is on water!")
+		-- RELEASE_LOGOFF  			luaHelperLog("  Target is on water!")
 			Effect("ImpactBigBombWater", value)
 		elseif land then					-- landscape
--- RELEASE_LOGOFF  			luaHelperLog("  Target is on landscape!")
+		-- RELEASE_LOGOFF  			luaHelperLog("  Target is on landscape!")
 			value.y = land
 			Effect("ImpactBigGround", value)
 		elseif ship then					-- ship
--- RELEASE_LOGOFF  			luaHelperLog("  Target is on ship!")
+		-- RELEASE_LOGOFF  			luaHelperLog("  Target is on ship!")
 			value.y = ship
 			Effect("ExplosionBigShip", value)
 		end
@@ -5007,20 +5007,20 @@ function luaFakeBombingTimer(timerthis)
 --[[	OLD !!
 	local pos = timerthis.ParamTable.Pos
 	if pos.x == nil then
--- RELEASE_LOGOFF  		luaHelperLog(" Multiple coordinates!")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Multiple coordinates!")
 		for key, value in pairs(pos) do
 			local land = IsLandscape(value)
 			local ship = IsShip(value)
 
 			if not ship and not land then				-- water
--- RELEASE_LOGOFF  				luaHelperLog("  Target is on water!")
+		-- RELEASE_LOGOFF  				luaHelperLog("  Target is on water!")
 				Effect("LargeBombExplosionWater", value)
 			elseif land then					-- landscape
--- RELEASE_LOGOFF  				luaHelperLog("  Target is on landscape!")
+		-- RELEASE_LOGOFF  				luaHelperLog("  Target is on landscape!")
 				value.y = land
 				Effect("LargeBombExplosionArmour", value)
 			elseif ship then					-- ship
--- RELEASE_LOGOFF  				luaHelperLog("  Target is on ship!")
+		-- RELEASE_LOGOFF  				luaHelperLog("  Target is on ship!")
 				value.y = ship
 				Effect("LargeBombExplosionGround", value)
 			end
@@ -5030,14 +5030,14 @@ function luaFakeBombingTimer(timerthis)
 		local ship = IsShip(pos)
 
 		if not ship and not land then				-- water
--- RELEASE_LOGOFF  			luaHelperLog("  Target is on water!")
+		-- RELEASE_LOGOFF  			luaHelperLog("  Target is on water!")
 			Effect("LargeBombExplosionWater", pos)
 		elseif land then					-- landscape
--- RELEASE_LOGOFF  			luaHelperLog("  Target is on landscape!")
+		-- RELEASE_LOGOFF  			luaHelperLog("  Target is on landscape!")
 			pos.y = land
 			Effect("LargeBombExplosionArmour", pos)
 		elseif ship then					-- ship
--- RELEASE_LOGOFF  			luaHelperLog("  Target is on ship!")
+		-- RELEASE_LOGOFF  			luaHelperLog("  Target is on ship!")
 			pos.y = ship
 			Effect("LargeBombExplosionGround", pos)
 		end
@@ -5056,9 +5056,9 @@ unit: table, a vizsgalt entitas
 func: function, a feltetel teljesulese esten meghivott fv neve
 ]]
 function luaCheckArrival(unit, func)
--- RELEASE_LOGOFF  	Assert(type(func) == "function", "***ERROR: luaCheckArrival needs a callback function to work properly!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(unit ~= nil, "***ERROR: luaCheckArrival needs an entity as first param!"..debug.traceback())
--- RELEASE_LOGOFF  	luaHelperLog("luaCheckArrival called on unit "..unit.Name)
+		-- RELEASE_LOGOFF  	Assert(type(func) == "function", "***ERROR: luaCheckArrival needs a callback function to work properly!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(unit ~= nil, "***ERROR: luaCheckArrival needs an entity as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("luaCheckArrival called on unit "..unit.Name)
 
 	if unit.MsgFunctions == nil then
 		unit.MsgFunctions = {}
@@ -5068,7 +5068,7 @@ function luaCheckArrival(unit, func)
 		unit.MsgFunctions.Arrival.Function = func
 
 	if MessageSender == nil then
--- RELEASE_LOGOFF  		luaHelperLog("Creating MessageSender entity")
+		-- RELEASE_LOGOFF  		luaHelperLog("Creating MessageSender entity")
 		MessageSender = CreateScript("luaInitMessageSender")
 	end
 
@@ -5083,8 +5083,8 @@ desc: Nem vizsgal tovabb 'unit'-ra luaCheckArrival bealitott valtozokat, a Mesag
 unit: table, a vizsgalt entitas
 ]]
 function luaClearCheckArrival(unit)
--- RELEASE_LOGOFF  	Assert(unit ~= nil and unit.Name ~= nil, "***ERROR: luaClearCheckArrival needs an entity as param!"..debug.traceback())
--- RELEASE_LOGOFF  	luaHelperLog("Clearing arrival check on unit "..unit.Name)
+		-- RELEASE_LOGOFF  	Assert(unit ~= nil and unit.Name ~= nil, "***ERROR: luaClearCheckArrival needs an entity as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("Clearing arrival check on unit "..unit.Name)
 	luaRemoveByName(MessageSender.Arrivals, unit.Name)
 	unit.MsgFunctions.Arrival = nil
 end
@@ -5098,10 +5098,10 @@ unit: table, a vizsgalt entitas
 func: function, a feltetel teljesulese esten meghivott fv neve
 ]]
 function luaCheckDeath(unit, func)
--- RELEASE_LOGOFF  	Assert(unit ~= nil, "***ERROR: luaCheckDeath needs an entity as first param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(func) == "function", "***ERROR: luaCheckDeath needs a callback function to work properly!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(unit ~= nil, "***ERROR: luaCheckDeath needs an entity as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(func) == "function", "***ERROR: luaCheckDeath needs a callback function to work properly!"..debug.traceback())
 
--- RELEASE_LOGOFF  	luaHelperLog("luaCheckDeath called on unit "..unit.Name)
+		-- RELEASE_LOGOFF  	luaHelperLog("luaCheckDeath called on unit "..unit.Name)
 
 	if unit.MsgFunctions == nil then
 		unit.MsgFunctions = {}
@@ -5111,11 +5111,11 @@ function luaCheckDeath(unit, func)
 		unit.MsgFunctions.Death.Function = func
 
 	if MessageSender == nil then
--- RELEASE_LOGOFF  		luaHelperLog("Creating MessageSender entity")
+		-- RELEASE_LOGOFF  		luaHelperLog("Creating MessageSender entity")
 		MessageSender = CreateScript("luaInitMessageSender")
 --		luaDelay(luaInsertToMessageSender, 4, "unit", unit, "Type", "Diers")
 --	else
--- RELEASE_LOGOFF  --		luaHelperLog("MessageSender already exists, inserting unit")
+		-- RELEASE_LOGOFF  --		luaHelperLog("MessageSender already exists, inserting unit")
 --		table.insert(MessageSender.Diers, unit)
 	end
 
@@ -5130,8 +5130,8 @@ desc: Nem vizsgal tovabb 'unit'-ra luaCheckDeath bealitott valtozokat, a MesageS
 unit: table, a vizsgalt entitas
 ]]
 function luaClearCheckDeath(unit)
--- RELEASE_LOGOFF  	Assert(unit ~= nil and unit.Name ~= nil, "***ERROR: luaClearCheckDeath needs an entity as param!"..debug.traceback())
--- RELEASE_LOGOFF  	luaHelperLog("Clearing death check on unit "..unit.Name)
+		-- RELEASE_LOGOFF  	Assert(unit ~= nil and unit.Name ~= nil, "***ERROR: luaClearCheckDeath needs an entity as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("Clearing death check on unit "..unit.Name)
 	luaRemoveByName(MessageSender.Death, unit.Name)
 	unit.MsgFunctions.Death = nil
 end
@@ -5146,11 +5146,11 @@ func: function, a feltetel teljesulese esten meghivott fv neve
 ammotype: enum, a vizsgalt ammo tipusa(AMMO_DEPTHCHARGE, AMMO_TORPEDO, AMMO_NONE)
 ]]
 function luaCheckAmmo(unit, func,  ammotype)
--- RELEASE_LOGOFF  	Assert(unit ~= nil, "***ERROR: luaCheckAmmo needs an entity as first param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(func) == "function", "***ERROR: luaCheckAmmo needs a callback function as third param to work properly!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(unit ~= nil, "***ERROR: luaCheckAmmo needs an entity as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(func) == "function", "***ERROR: luaCheckAmmo needs a callback function as third param to work properly!"..debug.traceback())
 	--Assert(ammotype == AMMO_DEPTHCHARGE or ammotype == AMMO_BOMB or ammotype == AMMO_TORPEDO or ammotype == AMMO_NONE, "***ERROR: luaCheckPlaneAmmo needs an ammo as second param!"..debug.traceback())
 
--- RELEASE_LOGOFF  	luaHelperLog("luaCheckAmmo called on unit "..unit.Name)
+		-- RELEASE_LOGOFF  	luaHelperLog("luaCheckAmmo called on unit "..unit.Name)
 
 	if unit.MsgFunctions == nil then
 		unit.MsgFunctions = {}
@@ -5170,11 +5170,11 @@ function luaCheckAmmo(unit, func,  ammotype)
 	end
 
 	if MessageSender == nil then
--- RELEASE_LOGOFF  		luaHelperLog("Creating MessageSender entity")
+		-- RELEASE_LOGOFF  		luaHelperLog("Creating MessageSender entity")
 		MessageSender = CreateScript("luaInitMessageSender")
 --		luaDelay(luaInsertToMessageSender, 4, "unit", unit, "Type", "AmmoCheckers")
 --	else
--- RELEASE_LOGOFF  --		luaHelperLog("MessageSender already exists, inserting unit")
+		-- RELEASE_LOGOFF  --		luaHelperLog("MessageSender already exists, inserting unit")
 --		table.insert(MessageSender.AmmoCheckers, unit)
 	end
 
@@ -5189,11 +5189,11 @@ desc: Nem vizsgal tovabb 'unit'-ra luaCheckAmmo bealitott valtozokat, a MesageSe
 unit: table, a vizsgalt entitas
 ]]
 function luaClearCheckAmmo(unit)
--- RELEASE_LOGOFF  	Assert(unit ~= nil and unit.Name ~= nil, "***ERROR: luaClearCheckAmmo needs an entity as param!"..debug.traceback())
--- RELEASE_LOGOFF  	luaHelperLog("Clearing ammo check on unit "..unit.Name)
+		-- RELEASE_LOGOFF  	Assert(unit ~= nil and unit.Name ~= nil, "***ERROR: luaClearCheckAmmo needs an entity as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("Clearing ammo check on unit "..unit.Name)
 
 	if unit.MsgFunctions.AmmoCheck == nil then
--- RELEASE_LOGOFF  		luaHelperLog("There is no ammo check on unit!")
+		-- RELEASE_LOGOFF  		luaHelperLog("There is no ammo check on unit!")
 		return
 	end
 
@@ -5212,11 +5212,11 @@ distance: number, a vizsgalt tavolsag
 func: function, a feltetel teljesulese esten meghivott fv neve
 ]]
 function luaCheckDistance(unit, targetUnit, distance, func)
--- RELEASE_LOGOFF  	Assert(unit ~= nil, "***ERROR: luaCheckDistance needs an entity as first param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(targetUnit ~= nil, "***ERROR: luaCheckDistance needs a target (entity/coordinate) as second param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(distance ~= nil, "***ERROR: luaCheckDistance needs a distance as third param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(func) == "function", "***ERROR: luaCheckDistance needs a callback function as fourth param to work properly!"..debug.traceback())
--- RELEASE_LOGOFF  	luaHelperLog("luaCheckDistance called on unit "..unit.Name..", target: "..tostring(targetUnit)..", distance: "..distance)
+		-- RELEASE_LOGOFF  	Assert(unit ~= nil, "***ERROR: luaCheckDistance needs an entity as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(targetUnit ~= nil, "***ERROR: luaCheckDistance needs a target (entity/coordinate) as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(distance ~= nil, "***ERROR: luaCheckDistance needs a distance as third param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(func) == "function", "***ERROR: luaCheckDistance needs a callback function as fourth param to work properly!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("luaCheckDistance called on unit "..unit.Name..", target: "..tostring(targetUnit)..", distance: "..distance)
 
 	if unit.MsgFunctions == nil then
 		unit.MsgFunctions = {}
@@ -5233,15 +5233,15 @@ function luaCheckDistance(unit, targetUnit, distance, func)
 
 	table.insert(unit.MsgFunctions.DistanceCheck, execTable)
 
--- RELEASE_LOGOFF  	-- too deep recursion LogToFile(" final unittable: ", unit.MsgFunctions.DistanceCheck)
+		-- RELEASE_LOGOFF  	-- too deep recursion LogToFile(" final unittable: ", unit.MsgFunctions.DistanceCheck)
 
 
 	if MessageSender == nil then
--- RELEASE_LOGOFF  		luaHelperLog("Creating MessageSender entity")
+		-- RELEASE_LOGOFF  		luaHelperLog("Creating MessageSender entity")
 		MessageSender = CreateScript("luaInitMessageSender")
 --		luaDelay(luaInsertToMessageSender, 4, "unit", unit, "Type", "DistanceCheckers")
 --	else
--- RELEASE_LOGOFF  --		luaHelperLog("MessageSender already exists, inserting unit")
+		-- RELEASE_LOGOFF  --		luaHelperLog("MessageSender already exists, inserting unit")
 --		table.insert(MessageSender.DistanceCheckers, unit)
 	end
 
@@ -5259,44 +5259,44 @@ unit: table, a vizsgalt entitas
 target: table, a 'unit'-hoz kepest vizsgalt entitas
 ]]
 function luaClearCheckDistance(unit, target)
--- RELEASE_LOGOFF  	Assert(unit ~= nil and unit.Name ~= nil, "***ERROR: luaClearCheckDistance needs an entity as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(unit ~= nil and unit.Name ~= nil, "***ERROR: luaClearCheckDistance needs an entity as first param!"..debug.traceback())
 	--Assert(target ~= nil, "***ERROR: luaClearCheckDistance needs an entity/coordinate as second param!"..debug.traceback())
 
 	if target ~= nil then
 		if not luaIsCoordinate(target) then
--- RELEASE_LOGOFF  			luaHelperLog("Clearing distance check on unit "..unit.Name..", and target: "..target.Name)
+		-- RELEASE_LOGOFF  			luaHelperLog("Clearing distance check on unit "..unit.Name..", and target: "..target.Name)
 		else
--- RELEASE_LOGOFF  			LogToFile("Clearing distance check on unit ", unit.Name, ", and target: ", target)
+		-- RELEASE_LOGOFF  			LogToFile("Clearing distance check on unit ", unit.Name, ", and target: ", target)
 		end
 
 		if unit.MsgFunctions.DistanceCheck == nil then
--- RELEASE_LOGOFF  			luaHelperLog("unit doesn't have any distance check running!")
+		-- RELEASE_LOGOFF  			luaHelperLog("unit doesn't have any distance check running!")
 			return
 		end
 
 		local targetFound = false
 		for key, value in pairs(unit.MsgFunctions.DistanceCheck) do
 			if luaAreEqualTables(value.Target, target) then
--- RELEASE_LOGOFF  				luaHelperLog(" found target, clearing...")
+		-- RELEASE_LOGOFF  				luaHelperLog(" found target, clearing...")
 				table.remove(unit.MsgFunctions.DistanceCheck, key)
 				targetFound = true
 				break
 			end
 		end
 		if not targetFound then
--- RELEASE_LOGOFF  			luaHelperLog("Target not found!")
+		-- RELEASE_LOGOFF  			luaHelperLog("Target not found!")
 			return false
 		end
 
 		if next(unit.MsgFunctions.DistanceCheck) == nil then
--- RELEASE_LOGOFF  			luaHelperLog(" All distancetarget removed, clearing from main table...")
+		-- RELEASE_LOGOFF  			luaHelperLog(" All distancetarget removed, clearing from main table...")
 			luaRemoveByName(MessageSender.DistanceCheckers, unit.Name)
 			unit.MsgFunctions.DistanceCheck = nil
 		else
--- RELEASE_LOGOFF  			luaHelperLog(unit.Name.." has other target(s) yet")
+		-- RELEASE_LOGOFF  			luaHelperLog(unit.Name.." has other target(s) yet")
 		end
 	else
--- RELEASE_LOGOFF  		luaHelperLog("Removing all distance check from unit "..unit.Name)
+		-- RELEASE_LOGOFF  		luaHelperLog("Removing all distance check from unit "..unit.Name)
 		luaRemoveByName(MessageSender.DistanceCheckers..unit.Name)
 		unit.MsgFunctions.DistanceCheck = nil
 	end
@@ -5312,11 +5312,11 @@ reconstate: number, a vizsgalt recon level
 func: function, a feltetel teljesulese esten meghivott fv neve
 ]]
 function luaCheckRecon(unit, reconstate, func)
--- RELEASE_LOGOFF  	Assert(unit ~= nil, "***ERROR: luaCheckRecon needs an entity as first param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(reconstate >= 0 and reconstate <= 3, "***ERROR: luaCheckRecon needs a valid reconstate (0-3) as second param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(func) == "function", "***ERROR: luaCheckRecon needs a callback function as third param to work properly!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(unit ~= nil, "***ERROR: luaCheckRecon needs an entity as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(reconstate >= 0 and reconstate <= 3, "***ERROR: luaCheckRecon needs a valid reconstate (0-3) as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(func) == "function", "***ERROR: luaCheckRecon needs a callback function as third param to work properly!"..debug.traceback())
 
--- RELEASE_LOGOFF  	luaHelperLog("luaCheckRecon called on unit "..unit.Name)
+		-- RELEASE_LOGOFF  	luaHelperLog("luaCheckRecon called on unit "..unit.Name)
 
 	if unit.MsgFunctions == nil then
 		unit.MsgFunctions = {}
@@ -5327,7 +5327,7 @@ function luaCheckRecon(unit, reconstate, func)
 		unit.MsgFunctions.ReconCheck.ReconState = reconstate
 
 	if MessageSender == nil then
--- RELEASE_LOGOFF  		luaHelperLog("Creating MessageSender entity")
+		-- RELEASE_LOGOFF  		luaHelperLog("Creating MessageSender entity")
 		MessageSender = CreateScript("luaInitMessageSender")
 	end
 
@@ -5342,13 +5342,13 @@ desc: Nem vizsgal tovabb 'unit'-ra luaCheckRecon bealitott valtozokat, a MesageS
 unit: table, a vizsgalt entitas
 ]]
 function luaClearCheckRecon(unit)
--- RELEASE_LOGOFF  	Assert(unit ~= nil and unit.Name ~= nil, "***ERROR: luaClearCheckRecon needs an entity as param!"..debug.traceback())
--- RELEASE_LOGOFF  	luaHelperLog("Clearing reconcheck on unit "..unit.Name)
+		-- RELEASE_LOGOFF  	Assert(unit ~= nil and unit.Name ~= nil, "***ERROR: luaClearCheckRecon needs an entity as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("Clearing reconcheck on unit "..unit.Name)
 	luaRemoveByName(MessageSender.ReconCheckers, unit.Name)
 	if unit.MsgFunctions ~= nil then
 		unit.MsgFunctions.ReconCheck = nil
 	else
--- RELEASE_LOGOFF  		luaHelperLog("***WARNING: no MsgFunction at unit!")
+		-- RELEASE_LOGOFF  		luaHelperLog("***WARNING: no MsgFunction at unit!")
 	end
 end
 
@@ -5361,10 +5361,10 @@ unit: table, a vizsgalt entitas
 func: function, a feltetel teljesulese esten meghivott fv neve
 ]]
 function luaCheckExit(unit, func)
--- RELEASE_LOGOFF  	Assert(unit ~= nil, "***ERROR: luaCheckExit needs an entity as first param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(func) == "function", "***ERROR: luaCheckExit needs a callback function as second param to work properly!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(unit ~= nil, "***ERROR: luaCheckExit needs an entity as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(func) == "function", "***ERROR: luaCheckExit needs a callback function as second param to work properly!"..debug.traceback())
 
--- RELEASE_LOGOFF  	luaHelperLog("luaCheckExit called on unit "..unit.Name)
+		-- RELEASE_LOGOFF  	luaHelperLog("luaCheckExit called on unit "..unit.Name)
 
 	if unit.MsgFunctions == nil then
 		unit.MsgFunctions = {}
@@ -5376,7 +5376,7 @@ function luaCheckExit(unit, func)
 	end
 
 	if MessageSender == nil then
--- RELEASE_LOGOFF  		luaHelperLog("Creating MessageSender entity")
+		-- RELEASE_LOGOFF  		luaHelperLog("Creating MessageSender entity")
 		MessageSender = CreateScript("luaInitMessageSender")
 	end
 
@@ -5391,8 +5391,8 @@ desc: Nem vizsgal tovabb 'unit'-ra luaCheckExit bealitott valtozokat, a MesageSe
 unit: table, a vizsgalt entitas
 ]]
 function luaClearCheckExit(unit)
--- RELEASE_LOGOFF  	Assert(unit ~= nil and unit.Name ~= nil, "***ERROR: luaClearCheckExit needs an entity as param!"..debug.traceback())
--- RELEASE_LOGOFF  	luaHelperLog("Clearing exit check on unit: "..unit.Name)
+		-- RELEASE_LOGOFF  	Assert(unit ~= nil and unit.Name ~= nil, "***ERROR: luaClearCheckExit needs an entity as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("Clearing exit check on unit: "..unit.Name)
 
 	luaRemoveByName(MessageSender.Exiters, unit.Name)
 	unit.MsgFunctions.ExitCheck = nil
@@ -5403,11 +5403,11 @@ memoriafoglalas miatt kiveve
 -- reconsaver
 function luaTCReconSaver(this)
 	SETLOG(this, true)
--- RELEASE_LOGOFF  	luaHelperLog("luaTCReconSaver is initiated.")
+		-- RELEASE_LOGOFF  	luaHelperLog("luaTCReconSaver is initiated.")
 
 	local selected = GetSelectedUnit()
--- RELEASE_LOGOFF  	luaHelperLog("Currently selected unit: "..selected.Name)
--- RELEASE_LOGOFF  	luaHelperLog(" its party: "..selected.Party)
+		-- RELEASE_LOGOFF  	luaHelperLog("Currently selected unit: "..selected.Name)
+		-- RELEASE_LOGOFF  	luaHelperLog(" its party: "..selected.Party)
 	this.Party = SetParty(this, selected.Party)
 	this.Carriers = {}
 	this.SpawnTimeLimit = 120	-- az ido, ami leteltekor ujrahivodnak a fighterek
@@ -5415,12 +5415,12 @@ function luaTCReconSaver(this)
 	this.DistanceLimit = 13000	-- az a tavolsag a repulok es anyahajok kozott, amin tul bespawnolunk enemyt.
 	this.Interceptors = {}		-- azok a gepek, amiket bespawnolunk elfogasra
 	for key, value in pairs(recon[this.Party].own.mothership) do
--- RELEASE_LOGOFF  		luaHelperLog("Own carrier found: "..value.Name)
+		-- RELEASE_LOGOFF  		luaHelperLog("Own carrier found: "..value.Name)
 		table.insert(this.Carriers, value)
 	end
 
 	if table.getn(this.Carriers) == 0 then
--- RELEASE_LOGOFF  		luaHelperLog("++ No own carrier found, deleting ReconSaver ++")
+		-- RELEASE_LOGOFF  		luaHelperLog("++ No own carrier found, deleting ReconSaver ++")
 		DeleteScript(this)
 		return
 	end
@@ -5429,28 +5429,28 @@ function luaTCReconSaver(this)
 end
 
 function luaTCReconSaver_think(this, msg)
--- RELEASE_LOGOFF  	luaHelperLog("luaTCReconSaver is running.")
--- RELEASE_LOGOFF  	luaHelperLog(" Time since last spawned fighter: "..GameTime()-this.SpawnTime)
+		-- RELEASE_LOGOFF  	luaHelperLog("luaTCReconSaver is running.")
+		-- RELEASE_LOGOFF  	luaHelperLog(" Time since last spawned fighter: "..GameTime()-this.SpawnTime)
 
 	if msg ~= nil and msg.Message == MSG_KILLED then
--- RELEASE_LOGOFF  		luaHelperLog("ReconSaver killed")
+		-- RELEASE_LOGOFF  		luaHelperLog("ReconSaver killed")
 		return
 	end
 
 	this.Carriers = luaRemoveDeadsFromTable(this.Carriers, " carrier sunk: ")
 	if table.getn(this.Carriers) == 0 then
--- RELEASE_LOGOFF  		luaHelperLog("++ No own carrier found, deleting ReconSaver ++")
+		-- RELEASE_LOGOFF  		luaHelperLog("++ No own carrier found, deleting ReconSaver ++")
 		DeleteScript(this)
 		return
 	end
 
 	for key, value in pairs(this.Interceptors) do
 		if value.Dead then
--- RELEASE_LOGOFF  			luaHelperLog(value.Name.." interceptor shot down (ID: "..value.ID..") deleting attacked flag from "..value.Target.Name)
+		-- RELEASE_LOGOFF  			luaHelperLog(value.Name.." interceptor shot down (ID: "..value.ID..") deleting attacked flag from "..value.Target.Name)
 			value.Target.attacked = false
 		end
 		if value.Target.Dead and not value.Dead then
--- RELEASE_LOGOFF  			luaHelperLog(value.Name.."(ID: ", value.ID, ") interceptor's target is shot down, leaving area")
+		-- RELEASE_LOGOFF  			luaHelperLog(value.Name.."(ID: ", value.ID, ") interceptor's target is shot down, leaving area")
 			local trg = {}
 				trg.x = -2000000
 				trg.y = 1000
@@ -5463,12 +5463,12 @@ function luaTCReconSaver_think(this, msg)
 	this.Planes = {}
 	for key, unittype in pairs(recon[this.Party].own) do
 		for key2, unit in pairs(unittype) do
--- RELEASE_LOGOFF  			luaHelperLog("Checking "..unit.Name.." type: "..key)
+		-- RELEASE_LOGOFF  			luaHelperLog("Checking "..unit.Name.." type: "..key)
 			if (key == "fighter" or key == "divebomber" or key == "torpedobomber" or key == "levelbomber" or key == "reconplane") and not unit.Dead then
--- RELEASE_LOGOFF  				luaHelperLog(" Plane found, inserting...")
+		-- RELEASE_LOGOFF  				luaHelperLog(" Plane found, inserting...")
 				table.insert(this.Planes, unit)
 			else
--- RELEASE_LOGOFF  				luaHelperLog(" Unit is not a plane (or a dead plane), neglecting.")
+		-- RELEASE_LOGOFF  				luaHelperLog(" Unit is not a plane (or a dead plane), neglecting.")
 			end
 		end
 
@@ -5476,7 +5476,7 @@ function luaTCReconSaver_think(this, msg)
 
 	if table.getn(this.Planes) ~= 0 then
 		for key, plane in pairs(this.Planes) do
--- RELEASE_LOGOFF  			luaHelperLog("Checking distance of "..plane.Name.." from carriers...")
+		-- RELEASE_LOGOFF  			luaHelperLog("Checking distance of "..plane.Name.." from carriers...")
 			local dist, mindist
 			for key2, carrier in pairs(this.Carriers) do
 				dist = luaGetDistance(carrier, plane)
@@ -5487,12 +5487,12 @@ function luaTCReconSaver_think(this, msg)
 						mindist = dist
 					end
 				end
--- RELEASE_LOGOFF  				luaHelperLog(" distance from "..carrier.Name.." is "..dist.." m.")
+		-- RELEASE_LOGOFF  				luaHelperLog(" distance from "..carrier.Name.." is "..dist.." m.")
 			end
--- RELEASE_LOGOFF  			luaHelperLog(" Minimal distance from carriers: "..mindist.." m")
+		-- RELEASE_LOGOFF  			luaHelperLog(" Minimal distance from carriers: "..mindist.." m")
 			if mindist > this.DistanceLimit and GameTime() - this.SpawnTime > this.SpawnTimeLimit then
 				if plane.attacked == nil then
--- RELEASE_LOGOFF  					luaHelperLog("  plane is too far, spawning enemy fighters. (Limit was "..this.DistanceLimit.." m)")
+		-- RELEASE_LOGOFF  					luaHelperLog("  plane is too far, spawning enemy fighters. (Limit was "..this.DistanceLimit.." m)")
 					-- spawn
 					local spawned
 					this.SpawnTime = GameTime()
@@ -5503,12 +5503,12 @@ function luaTCReconSaver_think(this, msg)
 					end
 
 					if plane.Class.Type ~= "ReconPlane" then
--- RELEASE_LOGOFF  						luaHelperLog("   Target is not a reconplane, attacking")
+		-- RELEASE_LOGOFF  						luaHelperLog("   Target is not a reconplane, attacking")
 						PilotGunFire(spawned, plane)
 						spawned.Target = plane
 						table.insert(this.Interceptors, spawned)
 					else
--- RELEASE_LOGOFF  						luaHelperLog("   Target is a reconplane, leaving area")
+		-- RELEASE_LOGOFF  						luaHelperLog("   Target is a reconplane, leaving area")
 						local trg = {}
 							trg.x = -2000000
 							trg.y = 1000
@@ -5517,12 +5517,12 @@ function luaTCReconSaver_think(this, msg)
 					end
 					plane.attacked = true
 				else
--- RELEASE_LOGOFF  					luaHelperLog("  already allocated enemy on it, neglecting.")
+		-- RELEASE_LOGOFF  					luaHelperLog("  already allocated enemy on it, neglecting.")
 				end
 			end
 		end
 	else
--- RELEASE_LOGOFF  		luaHelperLog("No plane in air...")
+		-- RELEASE_LOGOFF  		luaHelperLog("No plane in air...")
 	end
 
 end
@@ -5532,7 +5532,7 @@ end
 -- Airstrike egy squadnak
 function luaAirstrikeManager(this, squad, home, targettype)
 	SETLOG(this, true)
--- RELEASE_LOGOFF  	luaHelperLog("--Airstrike manager is initiated with "..squad.Name)
+		-- RELEASE_LOGOFF  	luaHelperLog("--Airstrike manager is initiated with "..squad.Name)
 
 	this.Party = SetParty(this, squad.Party)
 
@@ -5544,12 +5544,12 @@ end
 
 function luaAirstrikeManager_think(this, msg)
 	if msg ~= nil and msg.Message == MSG_KILLED then
--- RELEASE_LOGOFF  		luaHelperLog("-Airstrike manager killed-")
+		-- RELEASE_LOGOFF  		luaHelperLog("-Airstrike manager killed-")
 		return
 	end
 
 	if this.Squad.Dead then
--- RELEASE_LOGOFF  		luaHelperLog(" Squad "..this.Squad.Name.." has died. Exiting Airstrike.")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Squad "..this.Squad.Name.." has died. Exiting Airstrike.")
 		DeleteScript(this)
 		return
 	end
@@ -5557,7 +5557,7 @@ function luaAirstrikeManager_think(this, msg)
 	this.Squad.unitcommand = GetProperty(this.Squad, "unitcommand")
 	this.Squad.ammo = GetProperty(this.Squad, "ammoType")
 	this.Squad.state = GetProperty(this.Squad, "state")
--- RELEASE_LOGOFF  	luaHelperLog(this.Squad.Name.."'s state is: "..this.Squad.state..", phase: "..this.Squad.phase)
+		-- RELEASE_LOGOFF  	luaHelperLog(this.Squad.Name.."'s state is: "..this.Squad.state..", phase: "..this.Squad.phase)
 	--if this.Squad.state == 2 and this.Squad.phase == PHASE_IDLE then
 	if this.Squad.state == 2 and this.Squad.unitcommand == COMMAND_HOLDPOS then
 		local enemyToAttack
@@ -5569,11 +5569,11 @@ function luaAirstrikeManager_think(this, msg)
 		end
 
 		if enemyToAttack == nil then
--- RELEASE_LOGOFF  			luaHelperLog(" No enemy found for the criteria. Waiting...")
+		-- RELEASE_LOGOFF  			luaHelperLog(" No enemy found for the criteria. Waiting...")
 			return
 		end
 
--- RELEASE_LOGOFF  		luaHelperLog(" Squad "..this.Squad.Name.." is attacking "..enemyToAttack.Name)
+		-- RELEASE_LOGOFF  		luaHelperLog(" Squad "..this.Squad.Name.." is attacking "..enemyToAttack.Name)
 
 		if this.Squad.ammo == 1 then
 			PilotBomb(this.Squad, enemyToAttack)
@@ -5583,11 +5583,11 @@ function luaAirstrikeManager_think(this, msg)
 	end
 
 	if this.Squad.ammo == 0 and this.Squad.unitcommand ~= COMMAND_LAND and not this.Leaving then
--- RELEASE_LOGOFF  		luaHelperLog(" Squad "..this.Squad.Name.." is going home to land.")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Squad "..this.Squad.Name.." is going home to land.")
 		if not this.Home.Dead then
 			PilotLand(this.Squad, this.Home)
 		else
--- RELEASE_LOGOFF  			luaHelperLog("  Own carrier sunk, choosing another.")
+		-- RELEASE_LOGOFF  			luaHelperLog("  Own carrier sunk, choosing another.")
 			for key, value in pairs(recon[this.Party].own.mothership) do
 				if not value.Dead then
 					PilotLand(this.Squad, value)
@@ -5595,7 +5595,7 @@ function luaAirstrikeManager_think(this, msg)
 				end
 			end
 
--- RELEASE_LOGOFF  			luaHelperLog("   no carrier found on own side, leaving scene.")
+		-- RELEASE_LOGOFF  			luaHelperLog("   no carrier found on own side, leaving scene.")
 			local trg = {}
 				trg.x = -35000
 				trg.y = 2000
@@ -5606,7 +5606,7 @@ function luaAirstrikeManager_think(this, msg)
 	end
 
 	if this.Squad.unitcommand == COMMAND_LAND and this.Squad.state == 1 then
--- RELEASE_LOGOFF  		luaHelperLog(" Squad "..this.Squad.Name.." returned home and landing is ongoing. Terminating Airstrike manager.")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Squad "..this.Squad.Name.." returned home and landing is ongoing. Terminating Airstrike manager.")
 		DeleteScript(this)
 	end
 end
@@ -5624,7 +5624,7 @@ timerTime: number, a kesleltetes ideje masodpercben
 ]]
 function luaDelay(timedFunction, timerTime, ...)
 	if timerTime < 0.5 then
--- RELEASE_LOGOFF  		luaLog("***Warning: luaDelay second parameter is less than 0.5!")
+		-- RELEASE_LOGOFF  		luaLog("***Warning: luaDelay second parameter is less than 0.5!")
 	end
 	--luaHelperLog("Delay function called with "..tostring(timedFunction).." in "..tostring(timerTime).." secs.")
 
@@ -5675,12 +5675,12 @@ desc: A luaDelay altal letrehozott script entitast torli, megszuntetve ezzel a k
 timerEnt: table, script entity, a luaDelay hozza letre
 ]]
 function luaClearDelay(timerEnt)
--- RELEASE_LOGOFF  	Assert( type(timerEnt) == "table", "***ERROR: luaClearDelay needs a timer entity as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert( type(timerEnt) == "table", "***ERROR: luaClearDelay needs a timer entity as param!"..debug.traceback())
 	if not timerEnt.Dead then
 		ClearThink(timerEnt)
 		DeleteScript(timerEnt)
 	else
--- RELEASE_LOGOFF  		luaLog("Timer ID"..timerEnt.ID.." to clear is already dead.")
+		-- RELEASE_LOGOFF  		luaLog("Timer ID"..timerEnt.ID.." to clear is already dead.")
 	end
 end
 
@@ -5739,21 +5739,21 @@ trg: table, entitas,koordinata, ha megadjuk erre az entityre, koordinatara kerul
 quiet: bool, csnedes uzemmod, nem kap warningot az uj objektivarol a jatekos
 ]]
 function luaObj_Add(level, num, trg, quiet)
--- RELEASE_LOGOFF  	Assert(level ~= nil and num ~= nil, "***ERROR: luaObj_Add needs a level and an objective number as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(level ~= nil and num ~= nil, "***ERROR: luaObj_Add needs a level and an objective number as param!"..debug.traceback())
 
 	if luaObj_IsActive(level, num) then
--- RELEASE_LOGOFF  		luaHelperLog("Objective "..level..num.." is already added...")
+		-- RELEASE_LOGOFF  		luaHelperLog("Objective "..level..num.." is already added...")
 		return
 	end
 
 	if not Mission.LuaObjLog then
 		Mission.LuaObjLog = true
--- RELEASE_LOGOFF  		luaDoCustomLog("Objectives.log", "Objective added: "..level.." "..tostring(num), "u")
+		-- RELEASE_LOGOFF  		luaDoCustomLog("Objectives.log", "Objective added: "..level.." "..tostring(num), "u")
 	else
--- RELEASE_LOGOFF  		luaDoCustomLog("Objectives.log", "Objective added: "..level.." "..tostring(num))
+		-- RELEASE_LOGOFF  		luaDoCustomLog("Objectives.log", "Objective added: "..level.." "..tostring(num))
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog("Objective is being added: "..level..num)
+		-- RELEASE_LOGOFF  	luaHelperLog("Objective is being added: "..level..num)
 
 	local obj = Mission.Objectives[level][num]
 
@@ -5824,11 +5824,11 @@ num: mixed, az objektiva kulcsa a tablaban
 target: table, entitas,koordinata, ha megadjuk erre az entityre, koordinatara kerul az objektiva marker
 ]]
 function luaObj_AddUnit(level, num, target)
--- RELEASE_LOGOFF  	Assert(level == "primary" or level == "secondary" or level == "hidden" or level == "marker1" or level == "marker2" or level == "marker3", "ERROR: luaObj_AddUnit's first param must be primary/secondary/hidden/marker!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(num) == "number", "ERROR: luaObj_AddUnit's 2nd param must be a number!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(level == "primary" or level == "secondary" or level == "hidden" or level == "marker1" or level == "marker2" or level == "marker3", "ERROR: luaObj_AddUnit's first param must be primary/secondary/hidden/marker!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(num) == "number", "ERROR: luaObj_AddUnit's 2nd param must be a number!"..debug.traceback())
 
 	if target.Name ~= nil then
--- RELEASE_LOGOFF  		luaHelperLog("Adding unit "..target.Name.."to objective: "..level..num)
+		-- RELEASE_LOGOFF  		luaHelperLog("Adding unit "..target.Name.."to objective: "..level..num)
 	end
 
 	local obj = Mission.Objectives[level][num]
@@ -5853,11 +5853,11 @@ num: mixed, az objektiva kulcsa a tablaban
 target: table, entitas,koordinata, ha megadjuk erre az entityre, koordinatara kerul az objektiva marker
 ]]
 function luaObj_RemoveUnit(level, num, target)
--- RELEASE_LOGOFF  	Assert(level == "primary" or level == "secondary" or level == "hidden" or level == "marker1" or level == "marker2" or level == "marker3", "ERROR: luaObj_RemoveUnit's first param must be primary/secondary/hidden!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(num) == "number", "ERROR: luaObj_AddUnit's 2nd param must be a number!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(level == "primary" or level == "secondary" or level == "hidden" or level == "marker1" or level == "marker2" or level == "marker3", "ERROR: luaObj_RemoveUnit's first param must be primary/secondary/hidden!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(num) == "number", "ERROR: luaObj_AddUnit's 2nd param must be a number!"..debug.traceback())
 
 	if target.Name ~= nil then
--- RELEASE_LOGOFF  		luaHelperLog("Removing unit "..target.Name.." from objective: "..level..num)
+		-- RELEASE_LOGOFF  		luaHelperLog("Removing unit "..target.Name.." from objective: "..level..num)
 	end
 
 	local obj = Mission.Objectives[level][num]
@@ -5872,17 +5872,17 @@ function luaObj_RemoveUnit(level, num, target)
 
 	local idx = luaIsInside(target, obj.Target)
 
--- RELEASE_LOGOFF  	luaHelperLog(" > targettable before: ")
--- RELEASE_LOGOFF  	luaHelperLog(obj.Target)
--- RELEASE_LOGOFF  	luaHelperLog(" > index of removable unit in targettable: "..tostring(idx))
+		-- RELEASE_LOGOFF  	luaHelperLog(" > targettable before: ")
+		-- RELEASE_LOGOFF  	luaHelperLog(obj.Target)
+		-- RELEASE_LOGOFF  	luaHelperLog(" > index of removable unit in targettable: "..tostring(idx))
 
 	if idx then
--- RELEASE_LOGOFF  		luaHelperLog(" > element found at index \""..tostring(idx).."\", removing")
+		-- RELEASE_LOGOFF  		luaHelperLog(" > element found at index \""..tostring(idx).."\", removing")
 		table.remove(obj.Target, idx)
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog(" > targettable after: ")
--- RELEASE_LOGOFF  	luaHelperLog(obj.Target)
+		-- RELEASE_LOGOFF  	luaHelperLog(" > targettable after: ")
+		-- RELEASE_LOGOFF  	luaHelperLog(obj.Target)
 end
 
 --[[AutoDoc
@@ -5896,22 +5896,22 @@ setMusic: bool, true eseten lejatszodik a MinorVictory zene
 quiet: boot, true eseten nem jatszodik le hang effect
 ]]
 function luaObj_Completed(level, num, setMusic, quiet)
--- RELEASE_LOGOFF  	Assert(level ~= nil and num ~= nil, "***ERROR: luaObj_Completed needs a level and an objective number as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(level ~= nil and num ~= nil, "***ERROR: luaObj_Completed needs a level and an objective number as param!"..debug.traceback())
 
 	if not luaObj_IsActive(level, num) or luaObj_GetSuccess(level, num) ~= nil then
--- RELEASE_LOGOFF  		luaHelperLog("Obj_Completed called but objective is not added or finished/failed yet.")
+		-- RELEASE_LOGOFF  		luaHelperLog("Obj_Completed called but objective is not added or finished/failed yet.")
 		return
 	end
 
 	if not Mission.LuaObjLog then
 		Mission.LuaObjLog = true
--- RELEASE_LOGOFF  		luaDoCustomLog("Objectives.log", "+ Objective completed: "..level.." "..tostring(num), "u")
+		-- RELEASE_LOGOFF  		luaDoCustomLog("Objectives.log", "+ Objective completed: "..level.." "..tostring(num), "u")
 	else
--- RELEASE_LOGOFF  		luaDoCustomLog("Objectives.log", "+ Objective completed: "..level.." "..tostring(num))
+		-- RELEASE_LOGOFF  		luaDoCustomLog("Objectives.log", "+ Objective completed: "..level.." "..tostring(num))
 	end
 
 	local obj = Mission.Objectives[level][num]
--- RELEASE_LOGOFF  	luaHelperLog("Completing objective : "..obj.ID)
+		-- RELEASE_LOGOFF  	luaHelperLog("Completing objective : "..obj.ID)
 	if obj.Party ~= nil and obj.PlayerIndex == nil then
 		Objectives_Completed(obj.Party, nil, obj.ID, obj.TextCompleted, quiet)
 	elseif obj.Party ~= nil and obj.PlayerIndex ~= nil then
@@ -5942,22 +5942,22 @@ setMusic: bool, true eseten lejatszodik a MinorDefeat zene
 quiet: boot, true eseten nem jatszodik le hang effect
 ]]
 function luaObj_Failed(level, num, setMusic, quiet)
--- RELEASE_LOGOFF  	Assert(level ~= nil and num ~= nil, "***ERROR: luaObj_Failed needs a level and an objective number as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(level ~= nil and num ~= nil, "***ERROR: luaObj_Failed needs a level and an objective number as param!"..debug.traceback())
 
 	if not luaObj_IsActive(level, num) or luaObj_GetSuccess(level, num) ~= nil then
--- RELEASE_LOGOFF  		luaHelperLog("Obj_Failed called but objective is not added or finished/failed yet.")
+		-- RELEASE_LOGOFF  		luaHelperLog("Obj_Failed called but objective is not added or finished/failed yet.")
 		return
 	end
 
 	if not Mission.LuaObjLog then
 		Mission.LuaObjLog = true
--- RELEASE_LOGOFF  		luaDoCustomLog("Objectives.log", "- Objective failed: "..level.." "..tostring(num), "u")
+		-- RELEASE_LOGOFF  		luaDoCustomLog("Objectives.log", "- Objective failed: "..level.." "..tostring(num), "u")
 	else
--- RELEASE_LOGOFF  		luaDoCustomLog("Objectives.log", "- Objective failed: "..level.." "..tostring(num))
+		-- RELEASE_LOGOFF  		luaDoCustomLog("Objectives.log", "- Objective failed: "..level.." "..tostring(num))
 	end
 
 	local obj = Mission.Objectives[level][num]
--- RELEASE_LOGOFF  	luaHelperLog("Failed objective : "..obj.ID)
+		-- RELEASE_LOGOFF  	luaHelperLog("Failed objective : "..obj.ID)
 	if obj.Party ~= nil and obj.PlayerIndex == nil then
 		Objectives_Failed(obj.Party, nil, obj.ID, obj.TextFailed, quiet)
 	elseif obj.Party ~= nil and obj.PlayerIndex ~= nil then
@@ -5987,7 +5987,7 @@ num: mixed, az objektiva kulcsa a tablaban
 active: bool, true, ha az objektiva aktiv, false ha nem
 ]]
 function luaObj_IsActive(level, num)
--- RELEASE_LOGOFF  	Assert(level ~= nil and num ~= nil, "***ERROR: luaObj_IsActive needs a level and an objective number as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(level ~= nil and num ~= nil, "***ERROR: luaObj_IsActive needs a level and an objective number as param!"..debug.traceback())
 	if Mission.Objectives[level][num].Active then
 		return true
 	else
@@ -6005,15 +6005,15 @@ num: mixed, az objektiva kulcsa a tablaban
 success: true, ha az objektiva sikeresen teljesult, false ha elbukott es nil, ha meg nem zarult le sehogyan
 ]]
 function luaObj_GetSuccess(level, num)
--- RELEASE_LOGOFF  	Assert(level ~= nil and num ~= nil, "***ERROR: luaObj_GetSuccess needs a level and an objective number as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(level ~= nil and num ~= nil, "***ERROR: luaObj_GetSuccess needs a level and an objective number as param!"..debug.traceback())
 	if Mission.Objectives[level][num].Success == nil then
--- RELEASE_LOGOFF  		luaHelperLog("Objective "..level..num.." has not been finished yet.")
+		-- RELEASE_LOGOFF  		luaHelperLog("Objective "..level..num.." has not been finished yet.")
 		return nil
 	elseif Mission.Objectives[level][num].Success then
--- RELEASE_LOGOFF  		luaHelperLog("Objective "..level..num.." is finished successfully.")
+		-- RELEASE_LOGOFF  		luaHelperLog("Objective "..level..num.." is finished successfully.")
 		return true
 	elseif not Mission.Objectives[level][num].Success then
--- RELEASE_LOGOFF  		luaHelperLog("Objective "..level..num.." is failed.")
+		-- RELEASE_LOGOFF  		luaHelperLog("Objective "..level..num.." is failed.")
 		return false
 	end
 end
@@ -6030,10 +6030,10 @@ function luaObj_FailedAll(active)
 		for num, obj in pairs (ptable) do
 			if luaObj_GetSuccess(priority, num) == nil and (not active or (active and luaObj_IsActive(priority, num))) then
 				if not active and not luaObj_IsActive(priority, num) then
--- RELEASE_LOGOFF  					luaHelperLog("Objective no given yet, adding to fail: "..priority.." "..num)
+		-- RELEASE_LOGOFF  					luaHelperLog("Objective no given yet, adding to fail: "..priority.." "..num)
 					luaObj_Add(priority, num, nil, true)
 				end
--- RELEASE_LOGOFF  				luaHelperLog("Failing objective "..priority.." "..num)
+		-- RELEASE_LOGOFF  				luaHelperLog("Failing objective "..priority.." "..num)
 				luaObj_Failed(priority, num, false, true)
 			end
 		end
@@ -6056,11 +6056,11 @@ function luaObj_CompletedAll(active)
 		for num, obj in pairs (ptable) do
 			if luaObj_GetSuccess(priority, num) == nil and (not active or (active and luaObj_IsActive(priority, num))) then
 				if not luaObj_IsActive(priority, num) and not active then
--- RELEASE_LOGOFF  					luaHelperLog("Objective not active yet, adding...")
+		-- RELEASE_LOGOFF  					luaHelperLog("Objective not active yet, adding...")
 					--luaObj_Add(priority, num)	-- quietben kell hozzaadni
 					luaObj_Add(priority, num, nil, true)	-- quietben kell hozzaadni
 				end
--- RELEASE_LOGOFF  				luaHelperLog("Completing objective "..priority.." "..num)
+		-- RELEASE_LOGOFF  				luaHelperLog("Completing objective "..priority.." "..num)
 				luaObj_Completed(priority, num)
 			end
 		end
@@ -6079,13 +6079,13 @@ desc: FIXME
 surrendererParty: partyID (PARTY_ALLIED/PARTY_JAPANESE)
 ]]
 function luaSurrender(surrendererParty)
--- RELEASE_LOGOFF  	luaLog("Surrender")
--- RELEASE_LOGOFF  	Assert(surrendererParty ~= nil and type(surrendererParty) == "number", "***ERROR: luaSurrender needs a PartyID as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaLog("Surrender")
+		-- RELEASE_LOGOFF  	Assert(surrendererParty ~= nil and type(surrendererParty) == "number", "***ERROR: luaSurrender needs a PartyID as first param!"..debug.traceback())
 	Mission.MissionEnd = true
 	Mission.Surrender = true
 	Mission.SurrendererParty = surrendererParty
 	local winnerParty = (1 - surrendererParty)
--- RELEASE_LOGOFF  	luaLog("winnerParty: "..tostring(winnerParty))
+		-- RELEASE_LOGOFF  	luaLog("winnerParty: "..tostring(winnerParty))
 	local active = true
 	local firstWinnerUnit
 	local firstLoserUnit
@@ -6094,13 +6094,13 @@ function luaSurrender(surrendererParty)
 	if Mission.Multiplayer then
 		if LobbySettings.GameMode ~= "globals.gamemode_competitive" then
 			if surrendererParty == PARTY_ALLIED then
--- RELEASE_LOGOFF  				luaHelperLog("-- "..tostring(LobbySettings.GameMode).." playing Japanese victory voice-over --")
+		-- RELEASE_LOGOFF  				luaHelperLog("-- "..tostring(LobbySettings.GameMode).." playing Japanese victory voice-over --")
 				for i = 1, 8 do
 					local slotID = i - 1
 					DisplayMessage(slotID, "scoremulti_japanese_win")
 				end
 			else
--- RELEASE_LOGOFF  				luaHelperLog("-- "..tostring(LobbySettings.GameMode).." playing Allied victory voice-over --")
+		-- RELEASE_LOGOFF  				luaHelperLog("-- "..tostring(LobbySettings.GameMode).." playing Allied victory voice-over --")
 				for i = 1, 8 do
 					local slotID = i - 1
 					DisplayMessage(slotID, "scoremulti_allies_win")
@@ -6127,38 +6127,38 @@ function luaSurrender(surrendererParty)
 		for num, obj in pairs (ptable) do
 			if luaObj_GetSuccess(priority, num) == nil and (not active or (active and luaObj_IsActive(priority, num))) then
 				if not luaObj_IsActive(priority, num) and not active then
--- RELEASE_LOGOFF  					luaLog("Objective not active yet, adding...")
+		-- RELEASE_LOGOFF  					luaLog("Objective not active yet, adding...")
 					luaObj_Add(priority, num, nil, true)	-- quietben kell hozzaadni
 				end
--- RELEASE_LOGOFF  				luaLog("obj.Party: "..tostring(obj.Party))
+		-- RELEASE_LOGOFF  				luaLog("obj.Party: "..tostring(obj.Party))
 				if winnerParty == obj.Party then
--- RELEASE_LOGOFF  					luaLog("Completing objective "..priority.." "..num)
+		-- RELEASE_LOGOFF  					luaLog("Completing objective "..priority.." "..num)
 					luaObj_Completed(priority, num)
 					if obj.Target and not firstWinnerUnit then
 						for i, unit in pairs (obj.Target) do
 							if unit.ID and unit.Party ~= nil and unit.Party == winnerParty and not unit.Dead then
 								firstWinnerUnit = unit
--- RELEASE_LOGOFF  								luaLog("####firstWinnerUnit:")
--- RELEASE_LOGOFF  								luaLog(firstWinnerUnit)
+		-- RELEASE_LOGOFF  								luaLog("####firstWinnerUnit:")
+		-- RELEASE_LOGOFF  								luaLog(firstWinnerUnit)
 								break
 							end
 						end
 					end
 				else
--- RELEASE_LOGOFF  					luaLog("Failing objective "..priority.." "..num)
+		-- RELEASE_LOGOFF  					luaLog("Failing objective "..priority.." "..num)
 					luaObj_Failed(priority, num)
 					if obj.Target and not firstLoserUnit then
 						for i, unit in pairs (obj.Target) do
 							if unit.ID and unit.Party ~= nil and unit.Party ~= winnerParty and not unit.Dead then
 								firstLoserUnit = unit
--- RELEASE_LOGOFF  								luaLog("####firstLoserUnit:")
--- RELEASE_LOGOFF  								luaLog(firstLoserUnit)
+		-- RELEASE_LOGOFF  								luaLog("####firstLoserUnit:")
+		-- RELEASE_LOGOFF  								luaLog(firstLoserUnit)
 								break
 							elseif unit.ID and unit.Party ~= nil and unit.Party ~= winnerParty then
 								if not TrulyDead(unit) then
 									firstDeadLoserUnit = unit
--- RELEASE_LOGOFF  									luaLog("####firstDeadLoserUnit:")
--- RELEASE_LOGOFF  									luaLog(firstDeadLoserUnit)
+		-- RELEASE_LOGOFF  									luaLog("####firstDeadLoserUnit:")
+		-- RELEASE_LOGOFF  									luaLog(firstDeadLoserUnit)
 									break
 								end
 							end
@@ -6179,19 +6179,19 @@ function luaSurrender(surrendererParty)
 		luaMissionCompletedNew(firstWinnerUnit, "", nil, nil, nil, winnerParty)
 	else
 		if Mission.MultiplayerType == "Duel" and not Mission.InitDuelSurrender then
--- RELEASE_LOGOFF  			luaLog("Duel mode recognized...")
+		-- RELEASE_LOGOFF  			luaLog("Duel mode recognized...")
 			Mission.InitDuelSurrender = true
 			local alliedUnits = luaGetShipsAroundCoordinate({["x"] = 0, ["y"] = 0, ["z"] = 0}, 40000, PARTY_ALLIED, "own")
 			local japaneseUnits = luaGetShipsAroundCoordinate({["x"] = 0, ["y"] = 0, ["z"] = 0}, 40000, PARTY_JAPANESE, "own")
 			if alliedUnits ~= nil then
--- RELEASE_LOGOFF  				luaLog("Units in alliedUnits: "..table.getn(alliedUnits))
+		-- RELEASE_LOGOFF  				luaLog("Units in alliedUnits: "..table.getn(alliedUnits))
 			else
--- RELEASE_LOGOFF  				luaLog("No Allied units found!")
+		-- RELEASE_LOGOFF  				luaLog("No Allied units found!")
 			end
 			if japaneseUnits ~= nil then
--- RELEASE_LOGOFF  				luaLog("Units in japaneseUnits: "..table.getn(japaneseUnits))
+		-- RELEASE_LOGOFF  				luaLog("Units in japaneseUnits: "..table.getn(japaneseUnits))
 			else
--- RELEASE_LOGOFF  				luaLog("No Japanese units found!")
+		-- RELEASE_LOGOFF  				luaLog("No Japanese units found!")
 			end
 			if winnerParty == PARTY_ALLIED then
 				if alliedUnits ~= nil then
@@ -6199,7 +6199,7 @@ function luaSurrender(surrendererParty)
 				elseif japaneseUnits ~= nil then
 					luaMissionCompletedNew(luaPickRnd(japaneseUnits), "", nil, nil, nil, winnerParty)
 				else
--- RELEASE_LOGOFF  					luaLog("Spawning a unit for mission complete!")
+		-- RELEASE_LOGOFF  					luaLog("Spawning a unit for mission complete!")
 					local unitToShow = GenerateObject(Mission.USEndUnit.Name)
 					luaMissionCompletedNew(unitToShow, "", nil, nil, nil, winnerParty)
 				end
@@ -6209,7 +6209,7 @@ function luaSurrender(surrendererParty)
 				elseif alliedUnits ~= nil then
 					luaMissionCompletedNew(luaPickRnd(alliedUnits), "", nil, nil, nil, winnerParty)
 				else
--- RELEASE_LOGOFF  					luaLog("Spawning a unit for mission complete!")
+		-- RELEASE_LOGOFF  					luaLog("Spawning a unit for mission complete!")
 					local unitToShow = GenerateObject(Mission.JapEndUnit.Name)
 					luaMissionCompletedNew(unitToShow, "", nil, nil, nil, winnerParty)
 				end
@@ -6218,7 +6218,7 @@ function luaSurrender(surrendererParty)
 			ForceRecon()
 			local unitfound = false
 			for key, unittype in pairs(recon[winnerParty]["own"]) do
--- RELEASE_LOGOFF  				luaLog(key)
+		-- RELEASE_LOGOFF  				luaLog(key)
 				if key ~= "path" and key ~= "landvehicle" then
 					for i, unit in pairs(unittype) do
 						if not unit.Dead then
@@ -6230,7 +6230,7 @@ function luaSurrender(surrendererParty)
 			end
 			if not unitfound then
 				for key, unittype in pairs(recon[surrendererParty]["own"]) do
--- RELEASE_LOGOFF  					luaLog(key)
+		-- RELEASE_LOGOFF  					luaLog(key)
 					if key ~= "path" and key ~= "landvehicle" then
 						for i, unit in pairs(unittype) do
 							if not unit.Dead then
@@ -6296,7 +6296,7 @@ function luaObj_FillSingleScores()
 			end
 		end
 	else
--- RELEASE_LOGOFF  		luaDoCustomLog("ERROR: No objective table present!")
+		-- RELEASE_LOGOFF  		luaDoCustomLog("ERROR: No objective table present!")
 	end
 end
 
@@ -6314,15 +6314,15 @@ function luaObj_DoScoring()
 	end
 
 	if not Mission.Multiplayer then
--- RELEASE_LOGOFF  		luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Objective score log\n","u")
+		-- RELEASE_LOGOFF  		luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Objective score log\n","u")
 		for priority, ptable in pairs(Mission.Objectives) do
--- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Checking "..priority.." objectives...")
+		-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Checking "..priority.." objectives...")
 			for num, obj in pairs(ptable) do
 				if luaObj_GetSuccess(priority, num) then
--- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is completed, rewarding by "..obj.ScoreCompleted)
+		-- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is completed, rewarding by "..obj.ScoreCompleted)
 					Scoring_SetMissionScore(obj.ID, luaRound(obj.ScoreCompleted))
 				else
--- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
+		-- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
 					Scoring_SetMissionScore(obj.ID, luaRound(obj.ScoreFailed))
 				end
 			end
@@ -6332,8 +6332,8 @@ function luaObj_DoScoring()
 		if LobbySettings and not LobbySettings == nil then
 		
 		if LobbySettings.GameMode == "globals.gamemode_competitive" then
--- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- MODE: "..tostring(LobbySettings.GameMode).." ---","u")
--- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  Mission.PointLimit == "..tostring(Mission.PointLimit).."! ")
+		-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- MODE: "..tostring(LobbySettings.GameMode).." ---","u")
+		-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  Mission.PointLimit == "..tostring(Mission.PointLimit).."! ")
 				local MPlayers = GetPlayerDetails()
 				local actplayerscore = 0
 				local objindex = 0
@@ -6355,7 +6355,7 @@ function luaObj_DoScoring()
 					if Mission.Objectives.primary[objindex].ScoreFailed ~= 0 then
 						Mission.Objectives.primary[objindex].ScoreFailed = luaRound(Mission.Objectives.primary[objindex].ScoreFailed)
 					end
--- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..tostring(Mission.Objectives.primary[objindex].ID).." | objective.ScoreFailed: "..tostring(Mission.Objectives.primary[objindex].ScoreFailed))
+		-- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..tostring(Mission.Objectives.primary[objindex].ID).." | objective.ScoreFailed: "..tostring(Mission.Objectives.primary[objindex].ScoreFailed))
 				end
 			else
 				local highestinsteadpointlimit = 1
@@ -6381,12 +6381,12 @@ function luaObj_DoScoring()
 					if Mission.Objectives.primary[objindex].ScoreFailed ~= 0 then
 						Mission.Objectives.primary[objindex].ScoreFailed = luaRound(Mission.Objectives.primary[objindex].ScoreFailed)
 					end
--- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..tostring(Mission.Objectives.primary[objindex].ID).." | objective.ScoreFailed: "..tostring(Mission.Objectives.primary[objindex].ScoreFailed))
+		-- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..tostring(Mission.Objectives.primary[objindex].ID).." | objective.ScoreFailed: "..tostring(Mission.Objectives.primary[objindex].ScoreFailed))
 				end
 			end
--- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- ---")
+		-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- ---")
 		elseif LobbySettings.GameMode == "globals.gamemode_duel" then
--- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- MODE: "..tostring(LobbySettings.GameMode).." ---","u")
+		-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- MODE: "..tostring(LobbySettings.GameMode).." ---","u")
 			for index, objtable in pairs (Mission.Objectives) do
 				if objtable == Mission.Objectives.primary then
 					for index, objective in pairs (objtable) do
@@ -6396,16 +6396,16 @@ function luaObj_DoScoring()
 							else
 								objective.ScoreFailed = ( objective.ScoreCompleted / Mission.RoundLimit ) * Mission.JapaneseRoundWon
 							end
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." | objective.ScoreFailed: "..tostring(objective.ScoreFailed))
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." | objective.ScoreFailed: "..tostring(objective.ScoreFailed))
 						else
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  ERROR! Mission.RoundLimit == 0! ")
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  ERROR! Mission.RoundLimit == 0! ")
 						end
 					end
 				end
 			end
--- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- ---")
+		-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- ---")
 		elseif LobbySettings.GameMode == "globals.gamemode_escort" then
--- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- MODE: "..tostring(LobbySettings.GameMode).." ---","u")
+		-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- MODE: "..tostring(LobbySettings.GameMode).." ---","u")
 			local MPlayers = GetPlayerDetails()
 			local usplayersscore = 0
 			local japplayersscore = 0
@@ -6434,19 +6434,19 @@ function luaObj_DoScoring()
 								objective.ScoreFailed = ( objective.ScoreCompleted / allplayersscore ) * japplayersscore
 							end
 						else
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  ERROR! allplayersscore == 0 or GameTime() < 300! ")
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  ERROR! allplayersscore == 0 or GameTime() < 300! ")
 						end
 						if objective.ScoreFailed ~= 0 then
 							objective.ScoreFailed = luaRound(objective.ScoreFailed)
 						end
--- RELEASE_LOGOFF  						luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." | objective.ScoreFailed: "..tostring(objective.ScoreFailed))
+		-- RELEASE_LOGOFF  						luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." | objective.ScoreFailed: "..tostring(objective.ScoreFailed))
 					end
 				end
 			end
--- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- ---")
+		-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- ---")
 		elseif LobbySettings.GameMode == "globals.gamemode_islandcapture" then
 		if not Mission.PlayingCOOP and not Mission.MultiplayerType == "Classic" then
--- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- MODE: "..tostring(LobbySettings.GameMode).." ---","u")
+		-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- MODE: "..tostring(LobbySettings.GameMode).." ---","u")
 			for index, objtable in pairs (Mission.Objectives) do
 				if objtable == Mission.Objectives.primary then
 					for index, objective in pairs (objtable) do
@@ -6467,7 +6467,7 @@ function luaObj_DoScoring()
 								end
 							end
 						elseif GameTime() > 300 then
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " GameTime() > 300 ")
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " GameTime() > 300 ")
 							if objective.Party == PARTY_ALLIED then
 								objective.ScoreFailed = ( objective.ScoreCompleted / ( Mission.AlliedCapturePoints + Mission.JapaneseCapturePoints ) ) * Mission.AlliedCapturePoints
 							else
@@ -6477,14 +6477,14 @@ function luaObj_DoScoring()
 						if objective.ScoreFailed ~= 0 then
 							objective.ScoreFailed = luaRound(objective.ScoreFailed)
 						end
--- RELEASE_LOGOFF  						luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." | objective.ScoreFailed: "..tostring(objective.ScoreFailed))
+		-- RELEASE_LOGOFF  						luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." | objective.ScoreFailed: "..tostring(objective.ScoreFailed))
 					end
 				end
 			end
--- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- ---")
+		-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- ---")
 		end
 		elseif LobbySettings.GameMode == "globals.gamemode_siege" then
--- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- MODE: "..tostring(LobbySettings.GameMode).." ---","u")
+		-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- MODE: "..tostring(LobbySettings.GameMode).." ---","u")
 			for index, objtable in pairs (Mission.Objectives) do
 				if objtable == Mission.Objectives.primary then
 					for index, objective in pairs (objtable) do
@@ -6497,11 +6497,11 @@ function luaObj_DoScoring()
 						if objective.ScoreFailed ~= 0 then
 							objective.ScoreFailed = luaRound(objective.ScoreFailed)
 						end
--- RELEASE_LOGOFF  						luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." | objective.ScoreFailed: "..tostring(objective.ScoreFailed))
+		-- RELEASE_LOGOFF  						luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." | objective.ScoreFailed: "..tostring(objective.ScoreFailed))
 					end
 				end
 			end
--- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- ---")
+		-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " --- ---")
 		end
 
 		local MPlayers = Multi_GetPlayers()
@@ -6511,54 +6511,54 @@ function luaObj_DoScoring()
 		if MPlayers and table.getn(MPlayers) > 0 then
 		
 			for playerID, PartyID in pairs (MPlayers) do
-	-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
+			-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
 				for priority, ptable in pairs(Mission.Objectives) do
-	-- RELEASE_LOGOFF  				luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Checking "..priority.." objectives...")
+			-- RELEASE_LOGOFF  				luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Checking "..priority.." objectives...")
 					for num, obj in pairs(ptable) do
-	-- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " PartyID: "..tostring(PartyID).." | obj.Party: "..tostring(obj.Party))
+			-- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " PartyID: "..tostring(PartyID).." | obj.Party: "..tostring(obj.Party))
 						if obj.Party == PartyID then
-	-- RELEASE_LOGOFF  						luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Num: "..num)
-	-- RELEASE_LOGOFF  						luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "PlayerID: "..playerID + 1)
+			-- RELEASE_LOGOFF  						luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Num: "..num)
+			-- RELEASE_LOGOFF  						luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "PlayerID: "..playerID + 1)
 							if luaObj_GetSuccess(priority, num) then
 								if Mission.CompetitiveWinnerIndex == nil or Mission.CompetitiveWinnerIndex ~= nil and obj.PlayerIndex == nil then
-	-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD nil Winner!")
-	-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is completed, rewarding by "..obj.ScoreCompleted)
+			-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD nil Winner!")
+			-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is completed, rewarding by "..obj.ScoreCompleted)
 									Scoring_SetMissionScore(playerID, obj.ID, luaRound(obj.ScoreCompleted))
-	-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
+			-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
 								elseif Mission.CompetitiveWinnerIndex ~= nil then
 									local objID = Mission.CompetitiveWinnerIndex + 1
 									local playerObjID = playerID + 1
-	-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " PlayerID "..playerID)
-	-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " CompetitiveWinnerIndex "..Mission.CompetitiveWinnerIndex)
-	-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Number "..num)
-	-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Obj ID "..obj.ID)
+			-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " PlayerID "..playerID)
+			-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " CompetitiveWinnerIndex "..Mission.CompetitiveWinnerIndex)
+			-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Number "..num)
+			-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Obj ID "..obj.ID)
 									if playerID == Mission.CompetitiveWinnerIndex then
-	-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Good Win!")
-	-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is completed, rewarding by "..obj.ScoreCompleted)
+			-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Good Win!")
+			-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is completed, rewarding by "..obj.ScoreCompleted)
 										Scoring_SetMissionScore(playerID, obj.ID, luaRound(obj.ScoreCompleted))
-	-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
+			-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
 									elseif num == playerObjID then
-	-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD Fail!")
-	-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
+			-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD Fail!")
+			-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
 										Scoring_SetMissionScore(playerID, obj.ID, luaRound(obj.ScoreFailed))
-	-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
+			-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
 									else
-	-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD End!")
-	-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by 0")
+			-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD End!")
+			-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by 0")
 										Scoring_SetMissionScore(playerID, obj.ID, 0)
-	-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
+			-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
 									end
 								end
 							elseif LobbySettings.GameMode ~= "globals.gamemode_competitive" then
-	-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD Obj!")
-	-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
+			-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD Obj!")
+			-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
 								Scoring_SetMissionScore(playerID, obj.ID, luaRound(obj.ScoreFailed))
-	-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
+			-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
 							elseif num == playerID + 1 then
-	-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD Comp Obj!")
-	-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
+			-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD Comp Obj!")
+			-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
 								Scoring_SetMissionScore(playerID, obj.ID, luaRound(obj.ScoreFailed))
-	-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
+			-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
 							end
 						end
 					end
@@ -6588,48 +6588,48 @@ function luaObj_DoScoring()
 	
 	for slotID, value in pairs (MPlayers) do
 		if value.ai == true then
--- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
+		-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
 			for priority, ptable in pairs(Mission.Objectives) do
--- RELEASE_LOGOFF  				luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Checking "..priority.." objectives...")
+		-- RELEASE_LOGOFF  				luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Checking "..priority.." objectives...")
 				for num, obj in pairs(ptable) do
--- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " value.party: "..tostring(value.party).." | obj.Party: "..tostring(obj.Party))
+		-- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " value.party: "..tostring(value.party).." | obj.Party: "..tostring(obj.Party))
 					if obj.Party == value.party then
 						if luaObj_GetSuccess(priority, num) then
 							if Mission.CompetitiveWinnerIndex == nil or Mission.CompetitiveWinnerIndex ~= nil and obj.PlayerIndex == nil then
--- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD nil Winner!")
--- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is completed, rewarding by "..obj.ScoreCompleted)
+		-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD nil Winner!")
+		-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is completed, rewarding by "..obj.ScoreCompleted)
 								Scoring_SetMissionScore(slotID, obj.ID, luaRound(obj.ScoreCompleted))
--- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
+		-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
 							elseif Mission.CompetitiveWinnerIndex ~= nil then
 								local objID = Mission.CompetitiveWinnerIndex + 1
 								local playerObjID = slotID + 1
 								if slotID == Mission.CompetitiveWinnerIndex then
--- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Good Win!")
--- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is completed, rewarding by "..obj.ScoreCompleted)
+		-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Good Win!")
+		-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is completed, rewarding by "..obj.ScoreCompleted)
 									Scoring_SetMissionScore(slotID, obj.ID, luaRound(obj.ScoreCompleted))
--- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
+		-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
 								elseif num == playerObjID then
--- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD Fail!")
--- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
+		-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD Fail!")
+		-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
 									Scoring_SetMissionScore(slotID, obj.ID, luaRound(obj.ScoreFailed))
--- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
+		-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
 								else
--- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD End!")
--- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by 0")
+		-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD End!")
+		-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by 0")
 									Scoring_SetMissionScore(slotID, obj.ID, 0)
--- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
+		-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
 								end
 							end
 						elseif LobbySettings.GameMode ~= "globals.gamemode_competitive" then
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD Comp Obj!")
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD Comp Obj!")
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
 							Scoring_SetMissionScore(slotID, obj.ID, luaRound(obj.ScoreFailed))
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
 						elseif num == slotID + 1 then
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD Obj!")
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "BAD Obj!")
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
 							Scoring_SetMissionScore(slotID, obj.ID, luaRound(obj.ScoreFailed))
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
 						end
 					end
 				end
@@ -6652,9 +6652,9 @@ level: string, az objektiva szintje, primary, secondary, hidden
 num: mixed, az objektiva kulcsa a tablaban
 ]]
 function luaObj_AddReminder(level, num, counter)
--- RELEASE_LOGOFF  	Assert(level ~= nil and num ~= nil, "***ERROR: luaObj_AddReminder needs a level and an objective number as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(level ~= nil and num ~= nil, "***ERROR: luaObj_AddReminder needs a level and an objective number as param!"..debug.traceback())
 
--- RELEASE_LOGOFF  	luaHelperLog("Adding reminder to objective "..level..num)
+		-- RELEASE_LOGOFF  	luaHelperLog("Adding reminder to objective "..level..num)
 
 	Mission.Objectives[level][num].Counter = counter
 	Mission.Objectives[level][num].Remind = true
@@ -6671,9 +6671,9 @@ level: string, az objektiva szintje, primary, secondary, hidden
 num: mixed, az objektiva kulcsa a tablaban
 ]]
 function luaObj_RemoveReminder(level, num)
--- RELEASE_LOGOFF  	Assert(level ~= nil and num ~= nil, "***ERROR: luaObj_RemoveReminder needs a level and an objective number as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(level ~= nil and num ~= nil, "***ERROR: luaObj_RemoveReminder needs a level and an objective number as param!"..debug.traceback())
 
--- RELEASE_LOGOFF  	luaHelperLog("Removing reminder to objective "..level..num)
+		-- RELEASE_LOGOFF  	luaHelperLog("Removing reminder to objective "..level..num)
 
 	Mission.Objectives[level][num].Remind = nil
 	Mission.Objectives[level][num].Displayed = 0
@@ -6686,7 +6686,7 @@ shortdesc: adott valtozok alapjan kiirja/leveszi a warning systembol a objektiva
 desc: idozitot hoz letre, ha az objektivahoz aktiv tartozik .Remind valtozo es kiirja a kepernyore warning formaban
 ]]
 function luaObj_Reminder()
--- RELEASE_LOGOFF  	luaHelperLog("luaObj_Reminder called...")
+		-- RELEASE_LOGOFF  	luaHelperLog("luaObj_Reminder called...")
 
 	local remindTime
 
@@ -6702,10 +6702,10 @@ function luaObj_Reminder()
 				value.ObjPrevRemindTime = 0
 			end
 			if value.Active and value.Success == nil and value.Remind and GameTime()-value.ObjPrevRemindTime > remindTime then
--- RELEASE_LOGOFF  				luaHelperLog(" reminding primary objective: "..key)
+		-- RELEASE_LOGOFF  				luaHelperLog(" reminding primary objective: "..key)
 				value.ObjPrevRemindTime = GameTime()
 				if not value.Reminded then
--- RELEASE_LOGOFF  					luaHelperLog("First time reminder, not printing!")
+		-- RELEASE_LOGOFF  					luaHelperLog("First time reminder, not printing!")
 					value.Reminded = true
 					return
 				elseif value.Counter ~= nil and value.Counter > value.Displayed then
@@ -6726,10 +6726,10 @@ function luaObj_Reminder()
 				value.ObjPrevRemindTime = 0
 			end
 			if value.Active and value.Success == nil and value.Remind and GameTime()-value.ObjPrevRemindTime > remindTime then
--- RELEASE_LOGOFF  				luaHelperLog(" reminding secondary objective: "..key)
+		-- RELEASE_LOGOFF  				luaHelperLog(" reminding secondary objective: "..key)
 				value.ObjPrevRemindTime = GameTime()
 				if not value.Reminded then
--- RELEASE_LOGOFF  					luaHelperLog("First time reminder, not printing!")
+		-- RELEASE_LOGOFF  					luaHelperLog("First time reminder, not printing!")
 					value.Reminded = true
 					return
 				elseif value.Counter ~= nil and value.Counter > value.Displayed then
@@ -6773,7 +6773,7 @@ name: string, a keresett hidden unit neve
 hiddenName: table, mely tartalmazza a hidden unit nevet
 ]]
 function luaFindHidden(name)
--- RELEASE_LOGOFF  	Assert(type(name) == "string" , "***ERROR: luaFindHidden needs a string as param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(name) == "string" , "***ERROR: luaFindHidden needs a string as param!"..debug.traceback())
 	return {["Name"] = name}
 end
 
@@ -6787,10 +6787,10 @@ renametable: table, melyben 'Name' kulcsok ertekeinek megfeleloen atnevezi a gen
 generatedElements: table, mely tartalmazza a generealt unitok this tablait
 ]]
 function luaGenerateObjects(hiddenTable, renametable)
--- RELEASE_LOGOFF  	luaHelperLog("luaGenerateElements initiated")
+		-- RELEASE_LOGOFF  	luaHelperLog("luaGenerateElements initiated")
 	local generatedElements = {}
 	for key, value in pairs (hiddenTable) do
--- RELEASE_LOGOFF  		Assert(value.Name ~= nil, "***ERROR: luaGenerateObjects failed because of a noname element at key "..key.."!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(value.Name ~= nil, "***ERROR: luaGenerateObjects failed because of a noname element at key "..key.."!"..debug.traceback())
 		if renametable then
 			generatedElements[key] = GenerateObject(value.Name, renametable[key].Name)
 		else
@@ -6798,7 +6798,7 @@ function luaGenerateObjects(hiddenTable, renametable)
 		end
 	end
 
--- RELEASE_LOGOFF  	luaLogElementNames(generatedElements, "Generated ")
+		-- RELEASE_LOGOFF  	luaLogElementNames(generatedElements, "Generated ")
 
 	return generatedElements
 end
@@ -6813,37 +6813,37 @@ num: mixed, a keresett pont a pathon belul, lehet string: 'first', 'last' vagy n
 point: table, szabvany koordinata tabla
 ]]
 function luaGetPathPoint(pathent, num)
--- RELEASE_LOGOFF  	luaHelperLog("Initiating luaGetPathPoint...")
+		-- RELEASE_LOGOFF  	luaHelperLog("Initiating luaGetPathPoint...")
 
 
--- RELEASE_LOGOFF  	Assert(pathent ~= nil, "***ERROR: luaGetPathPoint's first param must be a path entity (got nil)!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(pathent ~= nil, "***ERROR: luaGetPathPoint's first param must be a path entity (got nil)!"..debug.traceback())
 
--- RELEASE_LOGOFF  	luaHelperLog("\tPathent: "..pathent.Name)
--- RELEASE_LOGOFF  	luaHelperLog("\tpoint: "..num)
+		-- RELEASE_LOGOFF  	luaHelperLog("\tPathent: "..pathent.Name)
+		-- RELEASE_LOGOFF  	luaHelperLog("\tpoint: "..num)
 
--- RELEASE_LOGOFF  	Assert(pathent.ID ~= nil, "***ERROR: luaGetPathPoint's first param must be a path entity!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(num == "last" or num == "first" or type(num) == "number", "***ERROR: luaGetPathPoints' second param must be 'first', 'last' or a number!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(pathent.ID ~= nil, "***ERROR: luaGetPathPoint's first param must be a path entity!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(num == "last" or num == "first" or type(num) == "number", "***ERROR: luaGetPathPoints' second param must be 'first', 'last' or a number!"..debug.traceback())
 
 	local pathPoints = FillPathPoints(pathent)
 	local pathSize = luaCountTable(pathPoints)
--- RELEASE_LOGOFF  	luaHelperLog(" Path points' num: "..pathSize)
+		-- RELEASE_LOGOFF  	luaHelperLog(" Path points' num: "..pathSize)
 
 	if num == "first" then
--- RELEASE_LOGOFF  		luaHelperLog("\nGivin' back first coordinate")
+		-- RELEASE_LOGOFF  		luaHelperLog("\nGivin' back first coordinate")
 		return pathPoints[1]
 	elseif num == "last" then
--- RELEASE_LOGOFF  		luaHelperLog("\nGivin' back last coordinate")
+		-- RELEASE_LOGOFF  		luaHelperLog("\nGivin' back last coordinate")
 		return pathPoints[pathSize]
 	end
 
 	for key, value in pairs (pathPoints) do
 		if key == num then
--- RELEASE_LOGOFF  			luaHelperLog("\nGivin' back "..key.."st/nd/rd/th coordinate")
+		-- RELEASE_LOGOFF  			luaHelperLog("\nGivin' back "..key.."st/nd/rd/th coordinate")
 			return value
 		end
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog("No point found, probably exceeding threshold.")
+		-- RELEASE_LOGOFF  	luaHelperLog("No point found, probably exceeding threshold.")
 	return nil
 end
 
@@ -6856,9 +6856,9 @@ entity: table, a kerdeses entitas this tablaja
 enable: bool, true eseten engedelyez mindent, false eseten tilt
 ]]
 function luaShutUp(entity, enable)
--- RELEASE_LOGOFF  	luaHelperLog("luaShutUp "..tostring(enable).." initiated on unit "..entity.Name)
--- RELEASE_LOGOFF  	Assert(entity.Name ~= nil, "***ERROR: luaShutUp needs an entity as first param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(enable) == "boolean", "***ERROR: luaShutUp needs a boolean as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("luaShutUp "..tostring(enable).." initiated on unit "..entity.Name)
+		-- RELEASE_LOGOFF  	Assert(entity.Name ~= nil, "***ERROR: luaShutUp needs an entity as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(enable) == "boolean", "***ERROR: luaShutUp needs a boolean as second param!"..debug.traceback())
 
 	TorpedoEnable(entity, enable)
 	AAEnable(entity, enable)
@@ -6874,9 +6874,9 @@ entity: table, a kerdeses entitas this tablaja
 enable: bool, true eseten engedelyez mindent, false eseten tilt
 ]]
 function luaEnableNavigator(entity, enable)
--- RELEASE_LOGOFF  	luaHelperLog("luaDisableNavigator "..enable.." initiated on unit "..entity.Name)
--- RELEASE_LOGOFF  	Assert(entity.Name ~= nil and (luaGetType(entity) == "ship" or luaGetType(entity) == "sub"), "***ERROR: luaDisableNavigator needs a ship or submarine entity as first param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(enable) == "boolean", "***ERROR: luaDisableNavigator needs a boolean as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("luaDisableNavigator "..enable.." initiated on unit "..entity.Name)
+		-- RELEASE_LOGOFF  	Assert(entity.Name ~= nil and (luaGetType(entity) == "ship" or luaGetType(entity) == "sub"), "***ERROR: luaDisableNavigator needs a ship or submarine entity as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(enable) == "boolean", "***ERROR: luaDisableNavigator needs a boolean as second param!"..debug.traceback())
 
 	if not enable then
 		NavigatorStop(entity)
@@ -6903,7 +6903,7 @@ shortdesc: idozitett letiltja a navigacios AI-t vezerles
 desc: luaEnableNavigator() fv altal hivott oidoziteto fv
 ]]
 function luaEnableNavigator_ext()
--- RELEASE_LOGOFF  	Assert(Mission.TmpParam_extEnt ~= nil and next(Mission.TmpParam_extEnt) ~= nil, "***ERROR: delayed navigator setup got an empty parameter!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(Mission.TmpParam_extEnt ~= nil and next(Mission.TmpParam_extEnt) ~= nil, "***ERROR: delayed navigator setup got an empty parameter!"..debug.traceback())
 
 	NavigatorEnable(Mission.TmpParam_extEnt[1], Mission.TmpParam_extBool[1])
 
@@ -6925,7 +6925,7 @@ target: table, a vizsgalt celpont
 isCoord: bool, true ha a celpont koordinata, false ha nem
 ]]
 function luaIsCoordinate(target)
--- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsCoordinate needs a target!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaIsCoordinate needs a target!"..debug.traceback())
 
 	--luaHelperLog("Checking "..target.." whether it's a coordinate...")
 	if type(target) == "table" then
@@ -6993,7 +6993,7 @@ function luaGenerateRandomClouds(cloudNumber, cloudBox, prevalenceBig, prevalenc
 	end
 
 	if cloudNumber <= 0 or (prevalenceBig <= 0 and prevalenceMedium <= 0 and prevalenceSmall <= 0) then
--- RELEASE_LOGOFF  		luaHelperLog(" Illegal cloud number, prevalences, cloud names or cloudbox, no cloud generated ")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Illegal cloud number, prevalences, cloud names or cloudbox, no cloud generated ")
 		return nil
 	else
 		local CloudSky = {}
@@ -7049,7 +7049,7 @@ function luaGenerateRandomClouds(cloudNumber, cloudBox, prevalenceBig, prevalenc
 				which = 3
 			end
 
--- RELEASE_LOGOFF  --			luaHelperLog(" Generating "..count..". cloud, type: "..which)
+		-- RELEASE_LOGOFF  --			luaHelperLog(" Generating "..count..". cloud, type: "..which)
 
 			repeat
 				CloudOK = true
@@ -7057,11 +7057,11 @@ function luaGenerateRandomClouds(cloudNumber, cloudBox, prevalenceBig, prevalenc
 				CloudPos.x = luaRnd(cloudBox[1].x, cloudBox[2].x)
 				CloudPos.y = luaRnd(cloudBox[1].y, cloudBox[2].y)
 				CloudPos.z = luaRnd(cloudBox[1].z, cloudBox[2].z)
--- RELEASE_LOGOFF  				luaHelperLog(" Current CloudPos: "..CloudPos.x.." ; "..CloudPos.y.." ; "..CloudPos.z)
+		-- RELEASE_LOGOFF  				luaHelperLog(" Current CloudPos: "..CloudPos.x.." ; "..CloudPos.y.." ; "..CloudPos.z)
 
 				for num, value in pairs(CloudSky) do
 					if value ~= nil and num ~= count then
--- RELEASE_LOGOFF  --						luaHelperLog(num..". CloudPos: "..value.x.." ; "..value.y.." ; "..value.z)
+		-- RELEASE_LOGOFF  --						luaHelperLog(num..". CloudPos: "..value.x.." ; "..value.y.." ; "..value.z)
 
 						local diffX = value.x - CloudPos.x
 						local diffY = value.y - CloudPos.y
@@ -7070,7 +7070,7 @@ function luaGenerateRandomClouds(cloudNumber, cloudBox, prevalenceBig, prevalenc
 
 						-- a mar meglevokhoz tul kozel generalt felho nem jo, ujat kerunk
 						if cloudDist < CloudSky[num].Dist + CloudTypes[which].Dist then
--- RELEASE_LOGOFF  							luaHelperLog(" CLOUD denied, because dists are: "..cloudDist.." ; "..CloudSky[num].Dist.." ; "..CloudTypes[which].Dist)
+		-- RELEASE_LOGOFF  							luaHelperLog(" CLOUD denied, because dists are: "..cloudDist.." ; "..CloudSky[num].Dist.." ; "..CloudTypes[which].Dist)
 							CloudOK = false
 							break
 						end
@@ -7079,7 +7079,7 @@ function luaGenerateRandomClouds(cloudNumber, cloudBox, prevalenceBig, prevalenc
 			until CloudOK
 
 			CloudRot.y = DEG(luaRnd(0, 180))
--- RELEASE_LOGOFF  --			luaHelperLog(" Cloud rotated by: "..CloudRot.y * 180 / math.pi)
+		-- RELEASE_LOGOFF  --			luaHelperLog(" Cloud rotated by: "..CloudRot.y * 180 / math.pi)
 
 			SpawnLight(CloudTypes[which].Name, CloudPos, CloudRot)
 			table.insert(CloudSky, CloudPos)
@@ -7222,7 +7222,7 @@ function luaStartDialog(dialogID, log)
 	StartDialog(dialogID, Mission.Dialogues[dialogID])
 
 	if log then
--- RELEASE_LOGOFF  		luaLog("Dialog started. ID: "..dialogID)
+		-- RELEASE_LOGOFF  		luaLog("Dialog started. ID: "..dialogID)
 	end
 end
 
@@ -7241,13 +7241,13 @@ callback: function, ez a fv hivodik meg ha a kameramozgas veget ert
 ]]
 -- pos: "front", "back", "left", "right", "top", "bottom"
 function luaCamOnTarget(target, pos, select, special, flytime, callback)
--- RELEASE_LOGOFF  	luaHelperLog("luaCamOnTarget initiated...")
+		-- RELEASE_LOGOFF  	luaHelperLog("luaCamOnTarget initiated...")
 
--- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaCamOnTarget needs a target entity at first!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaCamOnTarget needs a target entity at first!"..debug.traceback())
 
--- RELEASE_LOGOFF  	luaHelperLog(" Desired position: ")
--- RELEASE_LOGOFF  	luaHelperLog(pos)
--- RELEASE_LOGOFF  	luaHelperLog(" on target: "..target.Name)
+		-- RELEASE_LOGOFF  	luaHelperLog(" Desired position: ")
+		-- RELEASE_LOGOFF  	luaHelperLog(pos)
+		-- RELEASE_LOGOFF  	luaHelperLog(" on target: "..target.Name)
 	local radius, rho, theta
 	local targetType = luaGetType(target)
 	local moveTime
@@ -7290,7 +7290,7 @@ function luaCamOnTarget(target, pos, select, special, flytime, callback)
 		end
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog(" CamTarget "..target.Name.." is a "..targetType..", radius set to "..radius)
+		-- RELEASE_LOGOFF  	luaHelperLog(" CamTarget "..target.Name.." is a "..targetType..", radius set to "..radius)
 
 	-- irany
 	if pos == "front" then
@@ -7342,13 +7342,13 @@ flytime: number, ennyi ido alatt mozog at a kamera a targetre, default 4 sec.
 callback: function, ez a fv hivodik meg ha a kameramozgas veget ert
 ]]
 function luaCamOnTargetNew(target, pos, select, special, flytime, callback)
--- RELEASE_LOGOFF  	luaHelperLog("luaCamOnTargetNew initiated...")
+		-- RELEASE_LOGOFF  	luaHelperLog("luaCamOnTargetNew initiated...")
 
--- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaCamOnTarget needs a target entity at first!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaCamOnTarget needs a target entity at first!"..debug.traceback())
 
--- RELEASE_LOGOFF  	luaHelperLog(" Desired position: ")
--- RELEASE_LOGOFF  	luaHelperLog(pos)
--- RELEASE_LOGOFF  	luaHelperLog(" on target: "..target.Name)
+		-- RELEASE_LOGOFF  	luaHelperLog(" Desired position: ")
+		-- RELEASE_LOGOFF  	luaHelperLog(pos)
+		-- RELEASE_LOGOFF  	luaHelperLog(" on target: "..target.Name)
 	local radius, rho, theta
 	local targetType = luaGetType(target)
 	local moveTime
@@ -7391,7 +7391,7 @@ function luaCamOnTargetNew(target, pos, select, special, flytime, callback)
 		end
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog(" CamTarget "..target.Name.." is a "..targetType..", radius set to "..radius)
+		-- RELEASE_LOGOFF  	luaHelperLog(" CamTarget "..target.Name.." is a "..targetType..", radius set to "..radius)
 
 	-- irany
 	if pos == "front" then
@@ -7557,15 +7557,15 @@ flytime: number, ennyi ido alatt mozog at a kamera a targetre, default 4 sec.
 callback: function, ez a fv hivodik meg ha a kameramozgas veget ert
 ]]
 function luaCamOnTargetFree(target, theta, rho, distance, select, special, flytime, callback)
--- RELEASE_LOGOFF  	luaHelperLog("luaCamOnTargetFree initiated...")
+		-- RELEASE_LOGOFF  	luaHelperLog("luaCamOnTargetFree initiated...")
 
--- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaCamOnTarget needs a target entity at first!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(theta ~= nil, "***ERROR: luaCamOnTarget needs a theta parameter!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(rho ~= nil, "***ERROR: luaCamOnTarget needs a rho parameter!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(distance ~= nil, "***ERROR: luaCamOnTarget needs a distance parameter!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(target ~= nil, "***ERROR: luaCamOnTarget needs a target entity at first!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(theta ~= nil, "***ERROR: luaCamOnTarget needs a theta parameter!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(rho ~= nil, "***ERROR: luaCamOnTarget needs a rho parameter!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(distance ~= nil, "***ERROR: luaCamOnTarget needs a distance parameter!"..debug.traceback())
 
--- RELEASE_LOGOFF  	luaHelperLog(" Desired position: ")
--- RELEASE_LOGOFF  	luaHelperLog(" on target: "..target.Name)
+		-- RELEASE_LOGOFF  	luaHelperLog(" Desired position: ")
+		-- RELEASE_LOGOFF  	luaHelperLog(" on target: "..target.Name)
 	local targetType = luaGetType(target)
 	local moveTime
 	if flytime == nil then
@@ -7646,12 +7646,12 @@ desc: A luaCamOnTargetFreehez hasonloan mukodik, csak postables-ben több pozíció
 	true)
 ]]
 function luaCamIngameMovieAuto(postables, callback, bo, cbtime)
--- RELEASE_LOGOFF  	luaHelperLog("luaCamIngameMovieAuto initiated...")
+		-- RELEASE_LOGOFF  	luaHelperLog("luaCamIngameMovieAuto initiated...")
 --(target, theta, rho, distance, select, special, flytime, callback)
--- RELEASE_LOGOFF  --	Assert(target ~= nil, "***ERROR: luaCamOnTarget needs a target entity at first!"..debug.traceback())
--- RELEASE_LOGOFF  --	Assert(theta ~= nil, "***ERROR: luaCamOnTarget needs a theta parameter!"..debug.traceback())
--- RELEASE_LOGOFF  --	Assert(rho ~= nil, "***ERROR: luaCamOnTarget needs a rho parameter!"..debug.traceback())
--- RELEASE_LOGOFF  --	Assert(distance ~= nil, "***ERROR: luaCamOnTarget needs a distance parameter!"..debug.traceback())
+		-- RELEASE_LOGOFF  --	Assert(target ~= nil, "***ERROR: luaCamOnTarget needs a target entity at first!"..debug.traceback())
+		-- RELEASE_LOGOFF  --	Assert(theta ~= nil, "***ERROR: luaCamOnTarget needs a theta parameter!"..debug.traceback())
+		-- RELEASE_LOGOFF  --	Assert(rho ~= nil, "***ERROR: luaCamOnTarget needs a rho parameter!"..debug.traceback())
+		-- RELEASE_LOGOFF  --	Assert(distance ~= nil, "***ERROR: luaCamOnTarget needs a distance parameter!"..debug.traceback())
 
 	EnableInput(false)
 	BlackBars(true)
@@ -7712,7 +7712,7 @@ function luaCamIngameMovieAuto(postables, callback, bo, cbtime)
 			end
 		end
 
--- RELEASE_LOGOFF  		luaLog(campos)
+		-- RELEASE_LOGOFF  		luaLog(campos)
 
 		MovCamNew_AddPosition(campos)
 	end
@@ -7745,12 +7745,12 @@ params:
 	- bb				: a blackbar kezdjen -e kimenni movie vege elott (default: false)
 ]]
 function luaIngameMovie(tab, cb, bo, cbtime, bb)
--- RELEASE_LOGOFF  	luaHelperLog("luaIngameMovie initiated...")
+		-- RELEASE_LOGOFF  	luaHelperLog("luaIngameMovie initiated...")
 
--- RELEASE_LOGOFF  --	Assert(table ~= nil, "***ERROR: luaIngameMovie needs a table."..debug.traceback())
--- RELEASE_LOGOFF  	luaHelperLog("*** table ***")
--- RELEASE_LOGOFF  	luaHelperLog(tab)
--- RELEASE_LOGOFF  	luaHelperLog("*** table ***")
+		-- RELEASE_LOGOFF  --	Assert(table ~= nil, "***ERROR: luaIngameMovie needs a table."..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("*** table ***")
+		-- RELEASE_LOGOFF  	luaHelperLog(tab)
+		-- RELEASE_LOGOFF  	luaHelperLog("*** table ***")
 
 --	for i = 1,10 do
 --		HideScoreDisplay(i,0)
@@ -7835,10 +7835,10 @@ function luaCamOnTargetExt(timerthis)
 			DeleteScript(Mission.MovieCallbackParameters.Delay)
 		end
 	end
--- RELEASE_LOGOFF  	luaHelperLog("*** timerthis before ***")
--- RELEASE_LOGOFF  	luaHelperLog(timerthis)
--- RELEASE_LOGOFF  	luaHelperLog("*****************")
--- RELEASE_LOGOFF  	luaHelperLog(Mission.MovieCallbackParameters)
+		-- RELEASE_LOGOFF  	luaHelperLog("*** timerthis before ***")
+		-- RELEASE_LOGOFF  	luaHelperLog(timerthis)
+		-- RELEASE_LOGOFF  	luaHelperLog("*****************")
+		-- RELEASE_LOGOFF  	luaHelperLog(Mission.MovieCallbackParameters)
 	if type(timerthis) ~= "table" then
 		timerthis = {}
 		timerthis.ParamTable = {}
@@ -7846,9 +7846,9 @@ function luaCamOnTargetExt(timerthis)
 		timerthis.ParamTable.CB = Mission.MovieCallbackParameters.Callback
 		Mission.MovieCallbackParameters = nil
 	end
--- RELEASE_LOGOFF  	luaHelperLog("*** timerthis after ***")
--- RELEASE_LOGOFF  	luaHelperLog(timerthis)
--- RELEASE_LOGOFF  	luaHelperLog("*****************")
+		-- RELEASE_LOGOFF  	luaHelperLog("*** timerthis after ***")
+		-- RELEASE_LOGOFF  	luaHelperLog(timerthis)
+		-- RELEASE_LOGOFF  	luaHelperLog("*****************")
 	--BlackBars(false)
 	if timerthis.ParamTable.CB then
 		timerthis.ParamTable.CB()
@@ -7870,20 +7870,20 @@ shortdesc:
 desc:
 ]]
 function luaAirfieldManager(airfield, fighterClassIDs, otherClassIDs, targetList, travelAlt, wingCount)
--- RELEASE_LOGOFF  	luaHelperLog("luaAirfieldManager Called!")
--- RELEASE_LOGOFF  	Assert(luaIsAirfieldTable({airfield}), "***ERROR: luaAirfieldManager needs an airfield/carrier as first param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(fighterClassIDs ~= nil and luaIsNumberTable(fighterClassIDs), "***ERROR: luaAirfieldManager needs a classID table as second param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(otherClassIDs ~= nil and luaIsNumberTable(otherClassIDs), "***ERROR: luaAirfieldManager needs a classID table as third param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("luaAirfieldManager Called!")
+		-- RELEASE_LOGOFF  	Assert(luaIsAirfieldTable({airfield}), "***ERROR: luaAirfieldManager needs an airfield/carrier as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(fighterClassIDs ~= nil and luaIsNumberTable(fighterClassIDs), "***ERROR: luaAirfieldManager needs a classID table as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(otherClassIDs ~= nil and luaIsNumberTable(otherClassIDs), "***ERROR: luaAirfieldManager needs a classID table as third param!"..debug.traceback())
 	if targetList then
--- RELEASE_LOGOFF  		Assert(luaIsEntityTable(targetList, true), "***ERROR: luaAirfieldManager's targetList must be a unitlist!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(luaIsEntityTable(targetList, true), "***ERROR: luaAirfieldManager's targetList must be a unitlist!"..debug.traceback())
 	else
 		targetList = {}
 	end
 	if travelAlt then
--- RELEASE_LOGOFF  		Assert(type(travelAlt) == "number", "***ERROR: luaAirfieldManager's travelAlt must be a number!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(type(travelAlt) == "number", "***ERROR: luaAirfieldManager's travelAlt must be a number!"..debug.traceback())
 	end
 	if wingCount then
--- RELEASE_LOGOFF  		Assert(wingCount == 1 or wingCount == 2 or wingCount == 3, "***ERROR: luaAirfieldManager's wingCount must be 1, 2 or 3!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(wingCount == 1 or wingCount == 2 or wingCount == 3, "***ERROR: luaAirfieldManager's wingCount must be 1, 2 or 3!"..debug.traceback())
 	else
 		wingCount = 3
 	end
@@ -7912,7 +7912,7 @@ function luaAirfieldManager(airfield, fighterClassIDs, otherClassIDs, targetList
 			
 		end
 		
--- RELEASE_LOGOFF  		luaHelperLog("luaAirfieldManager Generated:"..planeEntTable[table.getn(planeEntTable)].Name)
+		-- RELEASE_LOGOFF  		luaHelperLog("luaAirfieldManager Generated:"..planeEntTable[table.getn(planeEntTable)].Name)
 	elseif activeSquads < slotSetting and IsReadyToSendPlanes(airfield) then
 		if table.getn(luaTypeFilter(planeEntTable, "Fighter")) == 0 then
 			local i = luaRnd(1,table.getn(fighterClassIDs))
@@ -7930,7 +7930,7 @@ function luaAirfieldManager(airfield, fighterClassIDs, otherClassIDs, targetList
 				
 			end
 			
--- RELEASE_LOGOFF  			luaHelperLog("luaAirfieldManager Generated:"..planeEntTable[table.getn(planeEntTable)].Name)
+		-- RELEASE_LOGOFF  			luaHelperLog("luaAirfieldManager Generated:"..planeEntTable[table.getn(planeEntTable)].Name)
 		else
 			local i = luaRnd(1,table.getn(otherClassIDs))
 			if VehicleClass[otherClassIDs[i]].Type == "Kamikaze" then
@@ -7947,12 +7947,12 @@ function luaAirfieldManager(airfield, fighterClassIDs, otherClassIDs, targetList
 				
 			end
 			
--- RELEASE_LOGOFF  			luaHelperLog("luaAirfieldManager Generated:"..planeEntTable[table.getn(planeEntTable)].Name)
+		-- RELEASE_LOGOFF  			luaHelperLog("luaAirfieldManager Generated:"..planeEntTable[table.getn(planeEntTable)].Name)
 		end
 	elseif activeSquads >= slotSetting then
--- RELEASE_LOGOFF  		luaHelperLog("luaAirfieldManager Status: There isn't any free slots!"..airfield.Name)
+		-- RELEASE_LOGOFF  		luaHelperLog("luaAirfieldManager Status: There isn't any free slots!"..airfield.Name)
 	else
--- RELEASE_LOGOFF  		luaHelperLog("luaAirfieldManager Status: Airfield occupied!"..airfield.Name)
+		-- RELEASE_LOGOFF  		luaHelperLog("luaAirfieldManager Status: Airfield occupied!"..airfield.Name)
 	end
 
 	if not planeEntTable then
@@ -7962,9 +7962,9 @@ function luaAirfieldManager(airfield, fighterClassIDs, otherClassIDs, targetList
 	for index, unit in pairs (planeEntTable) do
 		unit.ammo = GetProperty(unit, "ammoType")
 		if unit.Class.Type == "Fighter" then
--- RELEASE_LOGOFF  			luaHelperLog("Unit on patrol:"..unit.Name)
+		-- RELEASE_LOGOFF  			luaHelperLog("Unit on patrol:"..unit.Name)
 		elseif ( UnitGetAttackTarget(unit) == nil ) and (unit.ammo ~= 0 or unit.Class.Type == "Kamikaze") then
--- RELEASE_LOGOFF  			luaHelperLog("Unit searching for new target:"..unit.Name)
+		-- RELEASE_LOGOFF  			luaHelperLog("Unit searching for new target:"..unit.Name)
 			--luaHelperLog("targetList")
 			--luaHelperLog(targetList)
 			local filteredTargetList = {}
@@ -7979,13 +7979,13 @@ function luaAirfieldManager(airfield, fighterClassIDs, otherClassIDs, targetList
 					end
 				end
 				if filtered and table.getn(tempTargetList) == 0 then
--- RELEASE_LOGOFF  					luaHelperLog("There is no valid torpedo target in targetList!")
+		-- RELEASE_LOGOFF  					luaHelperLog("There is no valid torpedo target in targetList!")
 				elseif filtered then
--- RELEASE_LOGOFF  					luaHelperLog("Invalid torpedo targets removed from targetList!")
+		-- RELEASE_LOGOFF  					luaHelperLog("Invalid torpedo targets removed from targetList!")
 				end
 				filteredTargetList = tempTargetList
 			else
--- RELEASE_LOGOFF  				luaHelperLog("There is no need for target filtering for this unit!")
+		-- RELEASE_LOGOFF  				luaHelperLog("There is no need for target filtering for this unit!")
 				filteredTargetList = targetList
 			end
 			--luaHelperLog("filteredTargetList")
@@ -8006,7 +8006,7 @@ function luaAirfieldManager(airfield, fighterClassIDs, otherClassIDs, targetList
 						end
 					end
 					if filtered and table.getn(tempShipsAround) == 0 then
--- RELEASE_LOGOFF  						luaHelperLog("There isn't any valid torpedo/kamikaze target in range!")
+		-- RELEASE_LOGOFF  						luaHelperLog("There isn't any valid torpedo/kamikaze target in range!")
 						shipsAround = nil
 					elseif filtered then
 						shipsAround = tempShipsAround
@@ -8024,19 +8024,19 @@ function luaAirfieldManager(airfield, fighterClassIDs, otherClassIDs, targetList
 				local currentTarget
 				local distance
 				currentTarget, distance = luaSortByDistance(unit, preferedTargets, true)
--- RELEASE_LOGOFF  				luaHelperLog("Targeting... "..tostring(currentTarget.Name))
+		-- RELEASE_LOGOFF  				luaHelperLog("Targeting... "..tostring(currentTarget.Name))
 				PilotSetTarget(unit, currentTarget)
 				if unit.ammo == AMMO_BOMB and travelAlt then
 					SquadronSetTravelAlt(unit, travelAlt)
 					SquadronSetAttackAlt(unit, travelAlt)
 				end
 				unit.AirfieldManager = nil
--- RELEASE_LOGOFF  				luaHelperLog("Orders received, Target confirmed:"..unit.Name..currentTarget.Name)
+		-- RELEASE_LOGOFF  				luaHelperLog("Orders received, Target confirmed:"..unit.Name..currentTarget.Name)
 			elseif filteredTargetList and next(filteredTargetList) then
 				--luaLogElementNames(filteredTargetList, " Designated target ")
--- RELEASE_LOGOFF  				luaHelperLog("Choosing one from the designated targets...")
+		-- RELEASE_LOGOFF  				luaHelperLog("Choosing one from the designated targets...")
 				local currentTarget = luaPickRnd(filteredTargetList)
--- RELEASE_LOGOFF  				luaHelperLog(" Chosen target: "..currentTarget.Name)
+		-- RELEASE_LOGOFF  				luaHelperLog(" Chosen target: "..currentTarget.Name)
 				PilotSetTarget(unit, currentTarget)
 				if unit.ammo == AMMO_BOMB and travelAlt then
 					SquadronSetTravelAlt(unit, travelAlt)
@@ -8047,13 +8047,13 @@ function luaAirfieldManager(airfield, fighterClassIDs, otherClassIDs, targetList
 				if unit.AirfieldManager == nil then
 					PilotMoveToRange(unit,airfield,2000)
 					unit.AirfieldManager = "PilotMoveToRange"
--- RELEASE_LOGOFF  					luaHelperLog("No tangos in sight! Returning for patrol!"..unit.Name..GetProperty(unit, "unitcommand"))
+		-- RELEASE_LOGOFF  					luaHelperLog("No tangos in sight! Returning for patrol!"..unit.Name..GetProperty(unit, "unitcommand"))
 				else
--- RELEASE_LOGOFF  					luaHelperLog("No tangos in sight! Continuing patrol!"..unit.Name..GetProperty(unit, "unitcommand"))
+		-- RELEASE_LOGOFF  					luaHelperLog("No tangos in sight! Continuing patrol!"..unit.Name..GetProperty(unit, "unitcommand"))
 				end
 			end
 		elseif unit.ammo ~= 0 or unit.Class.Type == "Kamikaze" then
--- RELEASE_LOGOFF  			luaHelperLog("Unit with ammo and active target:"..unit.Name..GetProperty(unit, "unitcommand")..GetPrimaryTarget(unit).Name)
+		-- RELEASE_LOGOFF  			luaHelperLog("Unit with ammo and active target:"..unit.Name..GetProperty(unit, "unitcommand")..GetPrimaryTarget(unit).Name)
 		end
 	end
 end
@@ -8071,11 +8071,11 @@ shortdesc:
 desc:
 ]]
 function luaCapManager(airfield, fighterClassIDs, capSquadNumber)
--- RELEASE_LOGOFF  	luaHelperLog("luaCapManager Called!")
--- RELEASE_LOGOFF  	Assert(luaIsAirfieldTable({airfield}), "***ERROR: luaCapManager needs an airfield/carrier as first param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(fighterClassIDs ~= nil and luaIsNumberTable(fighterClassIDs), "***ERROR: luaCapManager needs a classID table as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("luaCapManager Called!")
+		-- RELEASE_LOGOFF  	Assert(luaIsAirfieldTable({airfield}), "***ERROR: luaCapManager needs an airfield/carrier as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(fighterClassIDs ~= nil and luaIsNumberTable(fighterClassIDs), "***ERROR: luaCapManager needs a classID table as second param!"..debug.traceback())
 	if capSquadNumber then
--- RELEASE_LOGOFF  		Assert(type(capSquadNumber) == "number", "***ERROR: luaCapManager's capSquadNumber must be a number!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(type(capSquadNumber) == "number", "***ERROR: luaCapManager's capSquadNumber must be a number!"..debug.traceback())
 	else
 		capSquadNumber = 1
 	end
@@ -8090,19 +8090,19 @@ function luaCapManager(airfield, fighterClassIDs, capSquadNumber)
 		airfield.slots = GetProperty(airfield, "slots")
 		planeEntTable = {}
 		table.insert(planeEntTable, thisTable[tostring(airfield.slots[slotIndex].squadron)])
--- RELEASE_LOGOFF  		luaHelperLog("luaCapManager Generated:"..planeEntTable[table.getn(planeEntTable)].Name)
+		-- RELEASE_LOGOFF  		luaHelperLog("luaCapManager Generated:"..planeEntTable[table.getn(planeEntTable)].Name)
 	elseif activeSquads < slotSetting and IsReadyToSendPlanes(airfield) then
 		if table.getn(luaTypeFilter(planeEntTable, "Fighter")) < capSquadNumber then
 			local i = luaRnd(1,table.getn(fighterClassIDs))
 			local slotIndex = LaunchSquadron(airfield,fighterClassIDs[i],3)
 			airfield.slots = GetProperty(airfield, "slots")
 			table.insert(planeEntTable, thisTable[tostring(airfield.slots[slotIndex].squadron)])
--- RELEASE_LOGOFF  			luaHelperLog("luaCapManager Generated:"..planeEntTable[table.getn(planeEntTable)].Name)
+		-- RELEASE_LOGOFF  			luaHelperLog("luaCapManager Generated:"..planeEntTable[table.getn(planeEntTable)].Name)
 		end
 	elseif activeSquads >= slotSetting then
--- RELEASE_LOGOFF  		luaHelperLog("luaCapManager Status: There isn't any free slots!"..airfield.Name)
+		-- RELEASE_LOGOFF  		luaHelperLog("luaCapManager Status: There isn't any free slots!"..airfield.Name)
 	else
--- RELEASE_LOGOFF  		luaHelperLog("luaCapManager Status: Airfield occupied!"..airfield.Name)
+		-- RELEASE_LOGOFF  		luaHelperLog("luaCapManager Status: Airfield occupied!"..airfield.Name)
 	end
 
 	if not planeEntTable then
@@ -8147,24 +8147,24 @@ shortdesc:
 desc:
 ]]
 function luaLaunchAirstrike(phase, stopPhase, airfields, classIDs, entities, equipments)
--- RELEASE_LOGOFF  	Assert(type(phase) == "number" and phase > 0, "***ERROR: luaLaunchAirstrike needs a positive number as first param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(stopPhase) == "number" and phase > 0, "***ERROR: luaLaunchAirstrike needs a positive number as second param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(airfields ~= nil and luaIsAirfieldTable(airfields, true), "***ERROR: luaLaunchAirstrike needs a table which consists of airfield/carrier entities as third param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(classIDs ~= nil and luaIsNumberTable(classIDs), "***ERROR: luaLaunchAirstrike needs a classID table as fourth param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(entities ~= nil and luaIsEntityTable(entities, true), "***ERROR: luaLaunchAirstrike needs an entity table as fifth param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(phase) == "number" and phase > 0, "***ERROR: luaLaunchAirstrike needs a positive number as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(stopPhase) == "number" and phase > 0, "***ERROR: luaLaunchAirstrike needs a positive number as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(airfields ~= nil and luaIsAirfieldTable(airfields, true), "***ERROR: luaLaunchAirstrike needs a table which consists of airfield/carrier entities as third param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(classIDs ~= nil and luaIsNumberTable(classIDs), "***ERROR: luaLaunchAirstrike needs a classID table as fourth param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(entities ~= nil and luaIsEntityTable(entities, true), "***ERROR: luaLaunchAirstrike needs an entity table as fifth param!"..debug.traceback())
 
 	if not equipments or type(equipments) ~= "table" then
 		equipments = {}
 	end
 
 	if phase >= stopPhase then
--- RELEASE_LOGOFF  		luaHelperLog("luaLaunchAirstrike Warning: StopPhase already reached!")
+		-- RELEASE_LOGOFF  		luaHelperLog("luaLaunchAirstrike Warning: StopPhase already reached!")
 		--luaLog("luaLaunchAirstrike Warning: StopPhase already reached!")
 		return phase, entities, 1
 	end
 	airfields = luaRemoveDeadsFromTable(airfields)
 	if table.getn(airfields) == 0 then
--- RELEASE_LOGOFF  		luaHelperLog("luaLaunchAirstrike Error: There isn't any living airfield!")
+		-- RELEASE_LOGOFF  		luaHelperLog("luaLaunchAirstrike Error: There isn't any living airfield!")
 		--luaLog("luaLaunchAirstrike Error: There isn't any living airfield!")
 		phase = stopPhase
 		return phase, entities, 2
@@ -8174,7 +8174,7 @@ function luaLaunchAirstrike(phase, stopPhase, airfields, classIDs, entities, equ
 
 	for index, airfield in pairs (airfields) do
 		if phase >= stopPhase then
--- RELEASE_LOGOFF  			luaHelperLog("luaLaunchAirstrike Skipped: StopPhase reached! "..airfield.Name)
+		-- RELEASE_LOGOFF  			luaHelperLog("luaLaunchAirstrike Skipped: StopPhase reached! "..airfield.Name)
 			--luaLog("luaLaunchAirstrike Skipped: StopPhase reached! "..airfield.Name)
 		else
 			airfield.slots = GetProperty(airfield, "slots")
@@ -8187,7 +8187,7 @@ function luaLaunchAirstrike(phase, stopPhase, airfields, classIDs, entities, equ
 				i=i+1
 			end
 			if numberOfUsedSlots > 3 then
--- RELEASE_LOGOFF  				luaHelperLog("luaLaunchAirstrike Warning: The following airfield has no available slots! "..airfield.Name)
+		-- RELEASE_LOGOFF  				luaHelperLog("luaLaunchAirstrike Warning: The following airfield has no available slots! "..airfield.Name)
 				--luaLog("luaLaunchAirstrike Warning: The following airfield has no available slots! "..airfield.Name)
 				airfieldWarning = airfieldWarning + 1
 			elseif numberOfUsedSlots < 4 then
@@ -8201,19 +8201,19 @@ function luaLaunchAirstrike(phase, stopPhase, airfields, classIDs, entities, equ
 					end
 					airfield.slots = GetProperty(airfield, "slots")
 					table.insert(entities, thisTable[tostring(airfield.slots[slotIndex].squadron)])
--- RELEASE_LOGOFF  					luaHelperLog("luaLaunchAirstrike Generated: "..entities[table.getn(entities)].Name)
+		-- RELEASE_LOGOFF  					luaHelperLog("luaLaunchAirstrike Generated: "..entities[table.getn(entities)].Name)
 					--luaLog("luaLaunchAirstrike Generated: "..entities[table.getn(entities)].Name)
 					phase = phase + 1
 					airfieldSuccess = airfieldSuccess + 1
 				elseif not IsReadyToSendPlanes(airfield) then
--- RELEASE_LOGOFF  					luaHelperLog("luaLaunchAirstrike Skipped: Airfield occupied! "..airfield.Name)
+		-- RELEASE_LOGOFF  					luaHelperLog("luaLaunchAirstrike Skipped: Airfield occupied! "..airfield.Name)
 					--luaLog("luaLaunchAirstrike Skipped: Airfield occupied! "..airfield.Name)
 				end
 			end
 		end
 	end
 	if airfieldWarning == table.getn(airfields) then
--- RELEASE_LOGOFF  		luaHelperLog("luaLaunchAirstrike Skipped: There isn't any free slots!")
+		-- RELEASE_LOGOFF  		luaHelperLog("luaLaunchAirstrike Skipped: There isn't any free slots!")
 		--luaLog("luaLaunchAirstrike Skipped: There isn't any free slots!")
 		--phase = stopPhase
 		return phase, entities, 3
@@ -8221,7 +8221,7 @@ function luaLaunchAirstrike(phase, stopPhase, airfields, classIDs, entities, equ
 	if airfieldSuccess > 0 then
 		return phase, entities, 0
 	else
--- RELEASE_LOGOFF  		luaHelperLog("luaLaunchAirstrike Skipped: All airfields are busy!")
+		-- RELEASE_LOGOFF  		luaHelperLog("luaLaunchAirstrike Skipped: All airfields are busy!")
 		--luaLog("luaLaunchAirstrike Skipped: All airfields are busy!")
 		return phase, entities, 4
 	end
@@ -8234,18 +8234,18 @@ shortdesc:
 desc:
 ]]
 function luaAirPatrol(target, innerRange, outerRange, airPatrolPlanes, airPatrolTable, airPatrolParty)
--- RELEASE_LOGOFF  	luaHelperLog("luaAirPatrol Called!")
--- RELEASE_LOGOFF  	Assert(target ~= nil and (luaIsCoordinate(target) or target.ID ~= nil), "***ERROR: luaAirPatrol needs a coordinate/entity as first param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(innerRange) == "number" and innerRange >= 0, "***ERROR: luaAirPatrol needs a positive number or 0 as second param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(outerRange) == "number" and outerRange > 0, "***ERROR: luaAirPatrol needs a positive number as third param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(innerRange <= outerRange, "***ERROR: luaAirPatrol's outerRange should be equal to or greater than innerRange!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(airPatrolPlanes ~= nil and luaIsPlaneTable(airPatrolPlanes, true), "***ERROR: luaAirPatrol needs a table which consists of airplane entities as fourth param!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(airPatrolTable ~= nil and luaIsAirPatrolTable(airPatrolTable, true), "***ERROR: luaAirPatrol needs a table which consists of AirPatrol entries as fifth param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("luaAirPatrol Called!")
+		-- RELEASE_LOGOFF  	Assert(target ~= nil and (luaIsCoordinate(target) or target.ID ~= nil), "***ERROR: luaAirPatrol needs a coordinate/entity as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(innerRange) == "number" and innerRange >= 0, "***ERROR: luaAirPatrol needs a positive number or 0 as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(outerRange) == "number" and outerRange > 0, "***ERROR: luaAirPatrol needs a positive number as third param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(innerRange <= outerRange, "***ERROR: luaAirPatrol's outerRange should be equal to or greater than innerRange!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(airPatrolPlanes ~= nil and luaIsPlaneTable(airPatrolPlanes, true), "***ERROR: luaAirPatrol needs a table which consists of airplane entities as fourth param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(airPatrolTable ~= nil and luaIsAirPatrolTable(airPatrolTable, true), "***ERROR: luaAirPatrol needs a table which consists of AirPatrol entries as fifth param!"..debug.traceback())
 	if airPatrolParty then
 		if luaIsCoordinate(target) then
--- RELEASE_LOGOFF  			Assert(airPatrolParty == PARTY_ALLIED or airPatrolParty == PARTY_JAPANESE, "***ERROR: luaAirPatrol needs a party (PARTY_ALLIED or PARTY_JAPANESE) as sixth param!"..debug.traceback())
+		-- RELEASE_LOGOFF  			Assert(airPatrolParty == PARTY_ALLIED or airPatrolParty == PARTY_JAPANESE, "***ERROR: luaAirPatrol needs a party (PARTY_ALLIED or PARTY_JAPANESE) as sixth param!"..debug.traceback())
 		else
--- RELEASE_LOGOFF  			Assert(false, "***ERROR: luaAirPatrol needs a party only if the target is a coordinate!"..debug.traceback())
+		-- RELEASE_LOGOFF  			Assert(false, "***ERROR: luaAirPatrol needs a party only if the target is a coordinate!"..debug.traceback())
 		end
 	end
 
@@ -8268,22 +8268,22 @@ function luaAirPatrol(target, innerRange, outerRange, airPatrolPlanes, airPatrol
 	end
 
 	if table.getn(bombersAround) == 0 then
--- RELEASE_LOGOFF  		luaHelperLog("There are no bombers in range!")
+		-- RELEASE_LOGOFF  		luaHelperLog("There are no bombers in range!")
 	end
 
 	local idleFighters = luaIdleUnitFilter(airPatrolPlanes)
 
 	for i, bomberPlane in pairs (bombersAround) do
 		local foundInTable = false
--- RELEASE_LOGOFF  		luaHelperLog("luaAirPatrol Status: Checking "..bomberPlane.Name.." in AirPatrol list...")
+		-- RELEASE_LOGOFF  		luaHelperLog("luaAirPatrol Status: Checking "..bomberPlane.Name.." in AirPatrol list...")
 		for index, airPatrol in pairs (airPatrolTable) do
 			if airPatrol.BomberPlane == bomberPlane then
 				if airPatrol.FighterPlane.Dead then
--- RELEASE_LOGOFF  					luaHelperLog("luaAirPatrol Status: Previous guardian squad is killed!")
+		-- RELEASE_LOGOFF  					luaHelperLog("luaAirPatrol Status: Previous guardian squad is killed!")
 					table.remove(airPatrolTable[index])
 					break
 				else
--- RELEASE_LOGOFF  					luaHelperLog("luaAirPatrol Status: Guardian squad "..airPatrol.FighterPlane.Name.." is chasing this enemy!")
+		-- RELEASE_LOGOFF  					luaHelperLog("luaAirPatrol Status: Guardian squad "..airPatrol.FighterPlane.Name.." is chasing this enemy!")
 					foundInTable = true
 					airPatrol.UpToDate = true
 					break
@@ -8296,23 +8296,23 @@ function luaAirPatrol(target, innerRange, outerRange, airPatrolPlanes, airPatrol
 			end
 
 			if table.getn(idleFighters) ~= 0 then
--- RELEASE_LOGOFF  				luaHelperLog("luaAirPatrol Status: Selecting guardian squad for the chase...")
+		-- RELEASE_LOGOFF  				luaHelperLog("luaAirPatrol Status: Selecting guardian squad for the chase...")
 				local nearestFighter = luaSortByDistance(bomberPlane, idleFighters, true)
 				luaSetScriptTarget(nearestFighter, bomberPlane)
--- RELEASE_LOGOFF  				luaHelperLog("luaAirPatrol Status: Guardian squad "..nearestFighter.Name.." has locked this enemy!")
+		-- RELEASE_LOGOFF  				luaHelperLog("luaAirPatrol Status: Guardian squad "..nearestFighter.Name.." has locked this enemy!")
 				local tempTable = {}
 					tempTable["FighterPlane"] = nearestFighter
 					tempTable["BomberPlane"] = bomberPlane
 					tempTable["UpToDate"] = true
 				table.insert(airPatrolTable, tempTable)
 			else
--- RELEASE_LOGOFF  				luaHelperLog("luaAirPatrol Status: There is no idle guardian squad!")
+		-- RELEASE_LOGOFF  				luaHelperLog("luaAirPatrol Status: There is no idle guardian squad!")
 			end
 		end
 	end
 
 	if table.getn(airPatrolTable) ~= 0 then
--- RELEASE_LOGOFF  		luaHelperLog("luaAirPatrol Status: Updating AirPatrol list!")
+		-- RELEASE_LOGOFF  		luaHelperLog("luaAirPatrol Status: Updating AirPatrol list!")
 	end
 	local tempPatrolTable = {}
 	for index, airPatrol in pairs (airPatrolTable) do
@@ -8320,7 +8320,7 @@ function luaAirPatrol(target, innerRange, outerRange, airPatrolPlanes, airPatrol
 			airPatrol.UpToDate = false
 			table.insert(tempPatrolTable, airPatrol)
 		else
--- RELEASE_LOGOFF  			luaHelperLog("luaAirPatrol Status: Removing "..airPatrol.BomberPlane.Name.." from AirPatrol list!")
+		-- RELEASE_LOGOFF  			luaHelperLog("luaAirPatrol Status: Removing "..airPatrol.BomberPlane.Name.." from AirPatrol list!")
 			if not airPatrol.FighterPlane.Dead then
 				luaSetScriptTarget(airPatrol.FighterPlane, nil)
 			end
@@ -8396,14 +8396,14 @@ function luaAirPatrol(target, innerRange, outerRange, airPatrolPlanes, airPatrol
 				end
 			end
 
--- RELEASE_LOGOFF  			luaHelperLog("luaAirPatrol Status: Guardian squad "..unit.Name.." is returning for patrol at "..newAngle.."!")
+		-- RELEASE_LOGOFF  			luaHelperLog("luaAirPatrol Status: Guardian squad "..unit.Name.." is returning for patrol at "..newAngle.."!")
 			PilotMoveTo(unit, luaMoveCoordinate(targetPos, (innerRange+5), newAngle))
 		else
 			local currentTargetPos = GetPosition(unit)
 			local newAngle = luaGetAngle("world", targetPos, currentTargetPos)
 			table.insert(sortedAngleTable, newAngle)
 
--- RELEASE_LOGOFF  			luaHelperLog("luaAirPatrol Status: Guardian squad "..unit.Name.." is returning for patrol at "..newAngle.."!")
+		-- RELEASE_LOGOFF  			luaHelperLog("luaAirPatrol Status: Guardian squad "..unit.Name.." is returning for patrol at "..newAngle.."!")
 			PilotMoveTo(unit, luaMoveCoordinate(targetPos, innerRange, newAngle))
 		end
 	end
@@ -8419,9 +8419,9 @@ airbase: table, a vizsgalt airbase entity
 calssID: number, adott unit VechicleClasses.lua-ban szereplo kulcsa
 ]]
 function luaRemoveAllFromStocks(airbase, classID)
--- RELEASE_LOGOFF  	Assert(luaIsAirfieldTable({airbase}), "***ERROR: luaRemoveAllFromStocks requires an airbase as first param!"..debug.traceback())
--- RELEASE_LOGOFF  	luaHelperLog("Removing full stock from airbase "..airbase.Name)
--- RELEASE_LOGOFF  	luaHelperLog("Removable class: "..classID)
+		-- RELEASE_LOGOFF  	Assert(luaIsAirfieldTable({airbase}), "***ERROR: luaRemoveAllFromStocks requires an airbase as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("Removing full stock from airbase "..airbase.Name)
+		-- RELEASE_LOGOFF  	luaHelperLog("Removable class: "..classID)
 
 	local classnum = 0
 	airbase.planes = GetProperty(airbase, "planes")
@@ -8431,7 +8431,7 @@ function luaRemoveAllFromStocks(airbase, classID)
 		end
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog("Total number: "..classnum)
+		-- RELEASE_LOGOFF  	luaHelperLog("Total number: "..classnum)
 
 	RemoveAirBasePlanes(airbase, classID, classnum)
 end
@@ -8453,16 +8453,16 @@ shortdesc: luaClearDialogs() idozito fv-e
 desc: ez az idozito torli a dialogusokat
 ]]
 function luaClearDialogsCallback()
--- RELEASE_LOGOFF  	luaHelperLog("Removing all dialogues from queue.")
+		-- RELEASE_LOGOFF  	luaHelperLog("Removing all dialogues from queue.")
 	local dlgs = GetActDialogIDs()
 
 	for key, value in pairs(dlgs) do
--- RELEASE_LOGOFF  		luaHelperLog("+ Clearing dialogue: "..value)
+		-- RELEASE_LOGOFF  		luaHelperLog("+ Clearing dialogue: "..value)
 		--BreakDialog(value)
 		KillDialog(value)
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog("-> Done!")
+		-- RELEASE_LOGOFF  	luaHelperLog("-> Done!")
 end
 
 --[[AutoDoc
@@ -8475,24 +8475,24 @@ range: number, ilyen messze kezd el feltolteni, default 200 m
 torpedoNumberOverride: number, ennyi torpedoval toltodik fel, default az egyseg max. torpedo szama
 ]]
 function luaTorpedoReloader(entityOrCoordinateTable, range, torpedoNumberOverride)
--- RELEASE_LOGOFF  	luaHelperLog("luaTorpedoReloader Called!")
--- RELEASE_LOGOFF  	Assert(entityOrCoordinateTable ~= nil and luaIsEntityOrCoordinateTable(entityOrCoordinateTable), "***ERROR: luaTorpedoReloader needs a table which consists of coordinates and/or entities as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("luaTorpedoReloader Called!")
+		-- RELEASE_LOGOFF  	Assert(entityOrCoordinateTable ~= nil and luaIsEntityOrCoordinateTable(entityOrCoordinateTable), "***ERROR: luaTorpedoReloader needs a table which consists of coordinates and/or entities as first param!"..debug.traceback())
 	if range then
--- RELEASE_LOGOFF  		Assert(type(range) == "number" and range > 0, "***ERROR: luaTorpedoReloader needs a positive number as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(type(range) == "number" and range > 0, "***ERROR: luaTorpedoReloader needs a positive number as second param!"..debug.traceback())
 	else
 		range = 200
 	end
 	if torpedoNumberOverride then
--- RELEASE_LOGOFF  		Assert(type(torpedoNumberOverride) == "number" and torpedoNumberOverride > 0, "***ERROR: luaTorpedoReloader needs a positive number as third param!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(type(torpedoNumberOverride) == "number" and torpedoNumberOverride > 0, "***ERROR: luaTorpedoReloader needs a positive number as third param!"..debug.traceback())
 	end
 
 	for index, harbor in pairs (entityOrCoordinateTable) do
 		local shipsAround = {}
 		if luaIsCoordinate(harbor) then
--- RELEASE_LOGOFF  			luaHelperLog("luaTorpedoReloader Harbor: coordinate")
+		-- RELEASE_LOGOFF  			luaHelperLog("luaTorpedoReloader Harbor: coordinate")
 			shipsAround = luaGetShipsAroundCoordinate(harbor, range, Mission.Party, "own")
 		else
--- RELEASE_LOGOFF  			luaHelperLog("luaTorpedoReloader Harbor: "..harbor.Name..", Dead: "..tostring(harbor.Dead))
+		-- RELEASE_LOGOFF  			luaHelperLog("luaTorpedoReloader Harbor: "..harbor.Name..", Dead: "..tostring(harbor.Dead))
 			if not harbor.Dead then
 				shipsAround = luaGetShipsAround(harbor, range, "own")
 			end
@@ -8502,10 +8502,10 @@ function luaTorpedoReloader(entityOrCoordinateTable, range, torpedoNumberOverrid
 			for i, ship in pairs (shipsAround) do
 				if ship.Class.MaxTorpedoStock ~= nil then
 					if torpedoNumberOverride then
--- RELEASE_LOGOFF  						luaHelperLog("luaTorpedoReloader Setting torpedo stock of "..ship.Name.." to "..torpedoNumberOverride)
+		-- RELEASE_LOGOFF  						luaHelperLog("luaTorpedoReloader Setting torpedo stock of "..ship.Name.." to "..torpedoNumberOverride)
 						ShipSetTorpedoStock(ship, torpedoNumberOverride)
 					else
--- RELEASE_LOGOFF  						luaHelperLog("luaTorpedoReloader Setting torpedo stock of "..ship.Name.." to "..tostring(ship.Class.MaxTorpedoStock))
+		-- RELEASE_LOGOFF  						luaHelperLog("luaTorpedoReloader Setting torpedo stock of "..ship.Name.." to "..tostring(ship.Class.MaxTorpedoStock))
 						ShipSetTorpedoStock(ship, ship.Class.MaxTorpedoStock)
 					end
 				end
@@ -8526,13 +8526,13 @@ clbk: function, ezt a fv-t hivja meg, ha lejar a visszaszamlalas
 clbkparams: table, a callback fv parameterei
 ]]
 function luaSetCountdown(txt,startlvl,cdwntime,clbk,clbkparams)
--- RELEASE_LOGOFF  	Assert(type(txt) == "string", "ERROR: luaSetCountdown first param is not set or it's type isn't string")
--- RELEASE_LOGOFF  	Assert(type(startlvl) == "number", "ERROR: luaSetCountdown second param is not set or it's type isn't number")
--- RELEASE_LOGOFF  	Assert(type(cdwntime) == "number", "ERROR: ERROR: luaSetCountdown third param is not set or it's type isn't number")
--- RELEASE_LOGOFF  	Assert(type(clbk) == "string", "ERROR: ERROR: luaSetCountdown fourth param is not set or it's type isn't string")
+		-- RELEASE_LOGOFF  	Assert(type(txt) == "string", "ERROR: luaSetCountdown first param is not set or it's type isn't string")
+		-- RELEASE_LOGOFF  	Assert(type(startlvl) == "number", "ERROR: luaSetCountdown second param is not set or it's type isn't number")
+		-- RELEASE_LOGOFF  	Assert(type(cdwntime) == "number", "ERROR: ERROR: luaSetCountdown third param is not set or it's type isn't number")
+		-- RELEASE_LOGOFF  	Assert(type(clbk) == "string", "ERROR: ERROR: luaSetCountdown fourth param is not set or it's type isn't string")
 
 	if startlvl > 3 then
--- RELEASE_LOGOFF  		luaHelperLog("Warning luaSetCountdown startlevel value is more than 3, you made a bad lookin' gui dude!")
+		-- RELEASE_LOGOFF  		luaHelperLog("Warning luaSetCountdown startlevel value is more than 3, you made a bad lookin' gui dude!")
 	end
 
 	Mission.CountdownTbl = {
@@ -8554,7 +8554,7 @@ desc: egy luaSetCountdown() altal beallitott visszamlalast indit el
 ]]
 function luaStartCountdown()
 	Countdown(Mission.CountdownTbl.txt, Mission.CountdownTbl.StartLevel, Mission.CountdownTbl.CountdownTime, Mission.CountdownTbl.Callback, Mission.CountdownTbl.CallbackParams)
--- RELEASE_LOGOFF  	luaHelperLog("Starting countdown with params: txt: "..tostring(Mission.CountdownTbl.txt)..", startlvl: "..tostring(Mission.CountdownTbl.StartLevel)..", time: "..tostring(Mission.CountdownTbl.CountdownTime)..", callback: "..tostring(Mission.CountdownTbl.Callback)..", clbparams: "..tostring(Mission.CountdownTbl.CallbackParams))
+		-- RELEASE_LOGOFF  	luaHelperLog("Starting countdown with params: txt: "..tostring(Mission.CountdownTbl.txt)..", startlvl: "..tostring(Mission.CountdownTbl.StartLevel)..", time: "..tostring(Mission.CountdownTbl.CountdownTime)..", callback: "..tostring(Mission.CountdownTbl.Callback)..", clbparams: "..tostring(Mission.CountdownTbl.CallbackParams))
 end
 
 --[[AutoDoc
@@ -8568,8 +8568,8 @@ callbackType: string, 'each' vagy 'end' lehet, azaz minden generalas utan avagy 
 renameTable: table, nevek felsorolva Name kulccsal, erre nevezodnek at a generalt unitok
 ]]
 function luaGenerateObjectsDelayed(entNameTable, callback, callbackType, renameTable)
--- RELEASE_LOGOFF  	luaHelperLog("Calling delayed generation")
--- RELEASE_LOGOFF  	Assert(type(entNameTable) == "table", "***ERROR: luaGenerateObjectsDelayed(entNameTable, callback, cbType) first param is not a table!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("Calling delayed generation")
+		-- RELEASE_LOGOFF  	Assert(type(entNameTable) == "table", "***ERROR: luaGenerateObjectsDelayed(entNameTable, callback, cbType) first param is not a table!"..debug.traceback())
 	--Assert(type(callback) == "function", "***ERROR: luaGenerateObjectsDelayed(entNameTable, callback, cbType) second param must be a function!"..debug.traceback())
 
 	local paramTable = {}
@@ -8580,9 +8580,9 @@ function luaGenerateObjectsDelayed(entNameTable, callback, callbackType, renameT
 		paramTable.CallbackType = callbackType
 	end
 
--- RELEASE_LOGOFF  	Assert(paramTable.CallbackType == "each" or paramTable.CallbackType == "end", "***ERROR: luaGenerateObjectsDelayed 3rd param must be 'each' or 'end' or nil!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(paramTable.CallbackType == "each" or paramTable.CallbackType == "end", "***ERROR: luaGenerateObjectsDelayed 3rd param must be 'each' or 'end' or nil!"..debug.traceback())
 
--- RELEASE_LOGOFF  	luaLogTableNames(entNameTable, "Delayed generation :")
+		-- RELEASE_LOGOFF  	luaLogTableNames(entNameTable, "Delayed generation :")
 
 	paramTable.Names = {}
 
@@ -8608,14 +8608,14 @@ function luaGenerateObjectsDelayed(entNameTable, callback, callbackType, renameT
 		--luaLog("KAKAS! : "..tostring(delay))
 
 		table.insert(timer, {[1] = luaGenerateObjectsDelayedTimer, [2] = delay})
--- RELEASE_LOGOFF  		luaHelperLog(" Packing "..value.Name.." to param table")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Packing "..value.Name.." to param table")
 		table.insert(paramTable.Names, value)
 	end
 
 	paramTable.Callback = callback
 	if renameTable ~= nil then
--- RELEASE_LOGOFF  		Assert(type(renameTable) == "table", "***ERROR: renameTable must be a table!"..debug.traceback())
--- RELEASE_LOGOFF  		Assert(luaCountTable(renameTable) == luaCountTable(entNameTable), "***ERROR: renameTable size must be equal to entNameTable size!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(type(renameTable) == "table", "***ERROR: renameTable must be a table!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(luaCountTable(renameTable) == luaCountTable(entNameTable), "***ERROR: renameTable size must be equal to entNameTable size!"..debug.traceback())
 		paramTable.RenameTable = renameTable
 	end
 
@@ -8630,7 +8630,7 @@ desc: a luaGenerateObjectsDelayed() fv idozito fv, mely a tenyleges generalast v
 timerthis: table, luaGenerateObjectsDelayed() altal atadott valtozok osszessege
 ]]
 function luaGenerateObjectsDelayedTimer(timerthis)
--- RELEASE_LOGOFF  	luaHelperLog("Delayed timer called")
+		-- RELEASE_LOGOFF  	luaHelperLog("Delayed timer called")
 
 	if timerthis.EnteredNum == nil then
 		timerthis.EnteredNum = 1
@@ -8639,25 +8639,25 @@ function luaGenerateObjectsDelayedTimer(timerthis)
 		timerthis.EnteredNum = timerthis.EnteredNum + 1
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog(timerthis.ParamTable.Names)
--- RELEASE_LOGOFF  	luaHelperLog(" Entered num : "..timerthis.EnteredNum)
--- RELEASE_LOGOFF  	luaHelperLog(" Generating "..timerthis.ParamTable.Names[timerthis.EnteredNum].Name)
+		-- RELEASE_LOGOFF  	luaHelperLog(timerthis.ParamTable.Names)
+		-- RELEASE_LOGOFF  	luaHelperLog(" Entered num : "..timerthis.EnteredNum)
+		-- RELEASE_LOGOFF  	luaHelperLog(" Generating "..timerthis.ParamTable.Names[timerthis.EnteredNum].Name)
 
 	local generatedUnit
 
 	if timerthis.ParamTable.RenameTable == nil then
 		generatedUnit = GenerateObject(timerthis.ParamTable.Names[timerthis.EnteredNum].Name)
 	else
--- RELEASE_LOGOFF  		luaHelperLog(" New name given: "..timerthis.ParamTable.RenameTable[timerthis.EnteredNum].Name)
+		-- RELEASE_LOGOFF  		luaHelperLog(" New name given: "..timerthis.ParamTable.RenameTable[timerthis.EnteredNum].Name)
 		generatedUnit = GenerateObject(timerthis.ParamTable.Names[timerthis.EnteredNum].Name, timerthis.ParamTable.RenameTable[timerthis.EnteredNum].Name)
 	end
 
 	table.insert(timerthis.GeneratedUnits, generatedUnit)
--- RELEASE_LOGOFF  	luaHelperLog(" + Done!")
+		-- RELEASE_LOGOFF  	luaHelperLog(" + Done!")
 
 	if timerthis.ParamTable.Callback ~= nil then
 		if timerthis.ParamTable.CallbackType == "end" and timerthis.ParamTable.Names[timerthis.EnteredNum+1] == nil then
--- RELEASE_LOGOFF  			luaHelperLog(" Entered last time, calling callback function...")
+		-- RELEASE_LOGOFF  			luaHelperLog(" Entered last time, calling callback function...")
 			timerthis.ParamTable.Callback(timerthis.GeneratedUnits)
 		elseif timerthis.ParamTable.CallbackType == "each" then
 			timerthis.ParamTable.Callback(generatedUnit)
@@ -8684,11 +8684,11 @@ callbackType: string, 'each' vagy 'end' lehet, azaz minden generalas utan avagy 
 renameTable: table, nevek felsorolva Name kulccsal, erre nevezodnek at a generalt unitok
 ]]
 function luaSpawnDelayed(entNameTable, spawnType, target, minDist, maxDist, height, angle0, angle1, callback, callbackType, renameTable)
--- RELEASE_LOGOFF  	luaHelperLog("Calling delayed spawn")
+		-- RELEASE_LOGOFF  	luaHelperLog("Calling delayed spawn")
 
 
--- RELEASE_LOGOFF  	Assert(type(entNameTable) == "table", "***ERROR: luaSpawnDelayed' first param must be a templatename table!"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(not target.Dead, "***ERROR: luaSpawnDelayed' target is already dead!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(entNameTable) == "table", "***ERROR: luaSpawnDelayed' first param must be a templatename table!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(not target.Dead, "***ERROR: luaSpawnDelayed' target is already dead!"..debug.traceback())
 	
 	local paramTable = {}
 
@@ -8698,9 +8698,9 @@ function luaSpawnDelayed(entNameTable, spawnType, target, minDist, maxDist, heig
 		paramTable.CallbackType = callbackType
 	end
 
--- RELEASE_LOGOFF  	Assert(paramTable.CallbackType == "each" or paramTable.CallbackType == "end", "***ERROR: luaSpawnDelayed callbackType param must be 'each' or 'end' or nil!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(paramTable.CallbackType == "each" or paramTable.CallbackType == "end", "***ERROR: luaSpawnDelayed callbackType param must be 'each' or 'end' or nil!"..debug.traceback())
 
--- RELEASE_LOGOFF  	luaLogElementNames(entNameTable, "Delayed spawn :")
+		-- RELEASE_LOGOFF  	luaLogElementNames(entNameTable, "Delayed spawn :")
 	local delay = 0.1 + luaRnd()
 
 	paramTable.Names = {}
@@ -8719,7 +8719,7 @@ function luaSpawnDelayed(entNameTable, spawnType, target, minDist, maxDist, heig
 		end
 		local delay = 0.1 + luaRnd()
 		table.insert(timer, {[1] = luaSpawnDelayedTimer, [2] = delay})
--- RELEASE_LOGOFF  		luaHelperLog(" Packing "..value.Name.." to param table")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Packing "..value.Name.." to param table")
 		table.insert(paramTable.Names, value)
 	end
 
@@ -8732,8 +8732,8 @@ function luaSpawnDelayed(entNameTable, spawnType, target, minDist, maxDist, heig
 
 	paramTable.Callback = callback
 	if renameTable ~= nil then
--- RELEASE_LOGOFF  		Assert(type(renameTable) == "table", "***ERROR: renameTable must be a table!"..debug.traceback())
--- RELEASE_LOGOFF  		Assert(luaCountTable(renameTable) == luaCountTable(entNameTable), "***ERROR: renameTable size must be equal to entNameTable size!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(type(renameTable) == "table", "***ERROR: renameTable must be a table!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(luaCountTable(renameTable) == luaCountTable(entNameTable), "***ERROR: renameTable size must be equal to entNameTable size!"..debug.traceback())
 		paramTable.RenameTable = renameTable
 	end
 
@@ -8766,7 +8766,7 @@ shortdesc: idozitett entity spawn idozito fv-e
 desc: a luaSpawnDelayed() parameteri alapjan elvegzi az idozitett spawnt
 ]]
 function luaSpawnDelayedTimer(timerthis)
--- RELEASE_LOGOFF  	luaHelperLog("Delayed timer called")
+		-- RELEASE_LOGOFF  	luaHelperLog("Delayed timer called")
 
 	if timerthis.EnteredNum == nil then
 		timerthis.EnteredNum = 1
@@ -8775,9 +8775,9 @@ function luaSpawnDelayedTimer(timerthis)
 		timerthis.EnteredNum = timerthis.EnteredNum + 1
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog(timerthis.ParamTable.Names)
--- RELEASE_LOGOFF  	luaHelperLog(" Entered num : "..timerthis.EnteredNum)
--- RELEASE_LOGOFF  	luaHelperLog(" Spawning "..timerthis.ParamTable.Names[timerthis.EnteredNum].Name)
+		-- RELEASE_LOGOFF  	luaHelperLog(timerthis.ParamTable.Names)
+		-- RELEASE_LOGOFF  	luaHelperLog(" Entered num : "..timerthis.EnteredNum)
+		-- RELEASE_LOGOFF  	luaHelperLog(" Spawning "..timerthis.ParamTable.Names[timerthis.EnteredNum].Name)
 
 	local params = timerthis.ParamTable
 	local spawnParams = timerthis.ParamTable.SpawnArgs
@@ -8786,7 +8786,7 @@ function luaSpawnDelayedTimer(timerthis)
 
 	local generatedUnit
 	if spawnParams.target.Dead and spawnParams.spawnType == ST_RELANGLE then
--- RELEASE_LOGOFF  		luaHelperLog(" -- Target is dead and angle was relative!")
+		-- RELEASE_LOGOFF  		luaHelperLog(" -- Target is dead and angle was relative!")
 		return
 	end
 
@@ -8801,11 +8801,11 @@ function luaSpawnDelayedTimer(timerthis)
 	end
 
 	table.insert(timerthis.GeneratedUnits, generatedUnit)
--- RELEASE_LOGOFF  	luaHelperLog(" + Done!")
+		-- RELEASE_LOGOFF  	luaHelperLog(" + Done!")
 
 	if timerthis.ParamTable.Callback ~= nil then
 		if timerthis.ParamTable.CallbackType == "end" and timerthis.ParamTable.Names[timerthis.EnteredNum+1] == nil then
--- RELEASE_LOGOFF  			luaHelperLog(" Entered last time, calling callback function...")
+		-- RELEASE_LOGOFF  			luaHelperLog(" Entered last time, calling callback function...")
 			timerthis.ParamTable.Callback(timerthis.GeneratedUnits)
 		elseif timerthis.ParamTable.CallbackType == "each" then
 			timerthis.ParamTable.Callback(generatedUnit)
@@ -8823,8 +8823,8 @@ callback: function, ezt a fuggvenyt hivjuk meg
 callbackType: string, 'each' vagy 'end' lehet, azaz minden generalas utan avagy csak a vegen hivjuk e meg a 'callback' fv-t
 ]]
 function luaMassKillDelayed(entTable, callback, callbackType)
--- RELEASE_LOGOFF  	luaHelperLog("Calling mass kill...")
--- RELEASE_LOGOFF  	Assert(type(entTable) == "table", "***ERROR: luaMassKillDelayed(entTable, callback, cbType) first param is not a table!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("Calling mass kill...")
+		-- RELEASE_LOGOFF  	Assert(type(entTable) == "table", "***ERROR: luaMassKillDelayed(entTable, callback, cbType) first param is not a table!"..debug.traceback())
 	--Assert(type(callback) == "function", "***ERROR: luaGenerateObjectsDelayed(entNameTable, callback, cbType) second param must be a function!"..debug.traceback())
 
 	local paramTable = {}
@@ -8835,9 +8835,9 @@ function luaMassKillDelayed(entTable, callback, callbackType)
 		paramTable.CallbackType = callbackType
 	end
 
--- RELEASE_LOGOFF  	Assert(paramTable.CallbackType == "each" or paramTable.CallbackType == "end", "***ERROR: luaMassKillDelayed 3rd param must be 'each' or 'end' or nil!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(paramTable.CallbackType == "each" or paramTable.CallbackType == "end", "***ERROR: luaMassKillDelayed 3rd param must be 'each' or 'end' or nil!"..debug.traceback())
 
--- RELEASE_LOGOFF  	luaLogTableNames(entTable, "Delayed kill :")
+		-- RELEASE_LOGOFF  	luaLogTableNames(entTable, "Delayed kill :")
 	local delay = 0.1 + luaRnd()
 
 	paramTable.Ents = {}
@@ -8853,7 +8853,7 @@ function luaMassKillDelayed(entTable, callback, callbackType)
 	for key, value in pairs(entTable) do
 		local delay = 0.1 + luaRnd()
 		table.insert(timer, {[1] = luaMassKillDelayedTimer, [2] = delay})
--- RELEASE_LOGOFF  		luaHelperLog(" Packing "..value.Name.." to param table")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Packing "..value.Name.." to param table")
 		table.insert(paramTable.Ents, value)
 	end
 
@@ -8870,7 +8870,7 @@ desc: luaMassKillDelayed()-ben beallitott parameterek alapjan vegrehajtja a kill
 timerthis: table, luaMassKillDelayed()-ben osszegzett valtozok
 ]]
 function luaMassKillDelayedTimer(timerthis)
--- RELEASE_LOGOFF  	luaHelperLog("Delayed killtimer called")
+		-- RELEASE_LOGOFF  	luaHelperLog("Delayed killtimer called")
 
 	if timerthis.EnteredNum == nil then
 		timerthis.EnteredNum = 1
@@ -8880,24 +8880,24 @@ function luaMassKillDelayedTimer(timerthis)
 	end
 
 	--luaHelperLog(timerthis.ParamTable.Ents) 	-- too deep recursion
--- RELEASE_LOGOFF  	luaHelperLog(" Entered num : "..timerthis.EnteredNum)
+		-- RELEASE_LOGOFF  	luaHelperLog(" Entered num : "..timerthis.EnteredNum)
 
 	local killedUnit = timerthis.ParamTable.Ents[timerthis.EnteredNum]
--- RELEASE_LOGOFF  	luaHelperLog(" Unit being killed: "..killedUnit.Name)
+		-- RELEASE_LOGOFF  	luaHelperLog(" Unit being killed: "..killedUnit.Name)
 	table.insert(timerthis.KilledUnits, killedUnit)
 
 	if killedUnit.Dead then
--- RELEASE_LOGOFF  		luaHelperLog("  Its already dead, skippin'")
+		-- RELEASE_LOGOFF  		luaHelperLog("  Its already dead, skippin'")
 	else
--- RELEASE_LOGOFF  		luaHelperLog("  Killin'")
+		-- RELEASE_LOGOFF  		luaHelperLog("  Killin'")
 		Kill(killedUnit, true)
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog(" + Done!")
+		-- RELEASE_LOGOFF  	luaHelperLog(" + Done!")
 
 	if timerthis.ParamTable.Callback ~= nil then
 		if timerthis.ParamTable.CallbackType == "end" and timerthis.ParamTable.Ents[timerthis.EnteredNum+1] == nil then
--- RELEASE_LOGOFF  			luaHelperLog(" Entered last time, calling callback function...")
+		-- RELEASE_LOGOFF  			luaHelperLog(" Entered last time, calling callback function...")
 			timerthis.ParamTable.Callback(timerthis.KilledUnits)
 		elseif timerthis.ParamTable.CallbackType == "each" then
 			timerthis.ParamTable.Callback(killedUnit)
@@ -8953,7 +8953,7 @@ function luaSpawn(templateName, spawnType, targetEntOrPos, minDist, maxDist, hei
 
 	if targetEntOrPos then
 		if not luaIsCoordinate(targetEntOrPos) then
--- RELEASE_LOGOFF  			Assert(not targetEntOrPos.Dead, "***ERROR: luaSpawn needs a coordinate or living entity as fourth parameter!"..debug.traceback())
+		-- RELEASE_LOGOFF  			Assert(not targetEntOrPos.Dead, "***ERROR: luaSpawn needs a coordinate or living entity as fourth parameter!"..debug.traceback())
 		end
 	end
 	local invalidSpawn = true
@@ -8965,14 +8965,14 @@ function luaSpawn(templateName, spawnType, targetEntOrPos, minDist, maxDist, hei
 		tempEntity = Spawn(templateName, spawnType, targetEntOrPos, minDist, maxDist, height, angle0, angle1)
 	end
 	if tempEntity then
--- RELEASE_LOGOFF  		luaHelperLog("luaSpawn: Spawn has generated an entity.")
+		-- RELEASE_LOGOFF  		luaHelperLog("luaSpawn: Spawn has generated an entity.")
 		invalidSpawn = false
 		if luaGetType(tempEntity) ~= "plane" then
 			local tempPos = GetPosition(tempEntity)
 			if Mission.InvalidSpawnAreas then
 				for index, spawnArea in pairs (Mission.InvalidSpawnAreas) do
 					if luaIsInArea(spawnArea, tempPos) then
--- RELEASE_LOGOFF  						luaHelperLog("luaSpawn: Killing the generated ship because it has been generated into a restricted area!")
+		-- RELEASE_LOGOFF  						luaHelperLog("luaSpawn: Killing the generated ship because it has been generated into a restricted area!")
 						invalidSpawn = true
 						Kill(tempEntity, true)
 						break
@@ -8982,14 +8982,14 @@ function luaSpawn(templateName, spawnType, targetEntOrPos, minDist, maxDist, hei
 		end
 	end
 	if invalidSpawn then
--- RELEASE_LOGOFF  		luaHelperLog("luaSpawn: Previous Spawn attempts has failed!")
+		-- RELEASE_LOGOFF  		luaHelperLog("luaSpawn: Previous Spawn attempts has failed!")
 		if newName then
 			tempEntity = GenerateObject(templateName, newName)
 		else
 			tempEntity = GenerateObject(templateName)
 		end
 		if luaGetType(tempEntity) == "plane" then
--- RELEASE_LOGOFF  			luaHelperLog("luaSpawn: Spawning the plane with higher altitude ...")
+		-- RELEASE_LOGOFF  			luaHelperLog("luaSpawn: Spawning the plane with higher altitude ...")
 			local tempEntity2
 			if newName then
 				tempEntity2 = Spawn(templateName, spawnType, targetEntOrPos, minDist, maxDist, (height + 2100), angle0, angle1, newName)
@@ -8997,12 +8997,12 @@ function luaSpawn(templateName, spawnType, targetEntOrPos, minDist, maxDist, hei
 				tempEntity2 = Spawn(templateName, spawnType, targetEntOrPos, minDist, maxDist, (height + 2100), angle0, angle1)
 			end
 			if tempEntity2 then
--- RELEASE_LOGOFF  				luaHelperLog("luaSpawn: ... has succeded!")
+		-- RELEASE_LOGOFF  				luaHelperLog("luaSpawn: ... has succeded!")
 				Kill(tempEntity, true)
 				tempEntity = tempEntity2
 			else
--- RELEASE_LOGOFF  				luaHelperLog("luaSpawn: ... has failed!")
--- RELEASE_LOGOFF  				luaHelperLog("luaSpawn: The last option is to spawn the unit on the scene border!")
+		-- RELEASE_LOGOFF  				luaHelperLog("luaSpawn: ... has failed!")
+		-- RELEASE_LOGOFF  				luaHelperLog("luaSpawn: The last option is to spawn the unit on the scene border!")
 				local radius = 100
 				--luaHelperLog("radius")
 				--luaHelperLog(radius)
@@ -9018,7 +9018,7 @@ function luaSpawn(templateName, spawnType, targetEntOrPos, minDist, maxDist, hei
 				--luaHelperLog("borderCross")
 				--luaHelperLog(borderCross)
 				if borderCross == nil then
--- RELEASE_LOGOFF  					Assert(false, "GetBorderCross has returned nil!!!", debug.traceback())
+		-- RELEASE_LOGOFF  					Assert(false, "GetBorderCross has returned nil!!!", debug.traceback())
 				else
 					local newPos =
 					{
@@ -9082,9 +9082,9 @@ function luaSpawn(templateName, spawnType, targetEntOrPos, minDist, maxDist, hei
 									rotation = luaGetAngle("world", tempPos, targetEntOrPos)
 								end
 								secureBorderCross = tempPos
--- RELEASE_LOGOFF  								luaHelperLog("luaSpawn: Found a secure border position ...")
+		-- RELEASE_LOGOFF  								luaHelperLog("luaSpawn: Found a secure border position ...")
 								--luaHelperLog("secureBorderCross")
--- RELEASE_LOGOFF  								luaHelperLog(secureBorderCross)
+		-- RELEASE_LOGOFF  								luaHelperLog(secureBorderCross)
 								rotation = 360 - rotation
 								--TODO: repulo squadokra is leellenorizni a forgatast, mert nem volt jo
 								PutTo(tempEntity, secureBorderCross, rotation)
@@ -9094,13 +9094,13 @@ function luaSpawn(templateName, spawnType, targetEntOrPos, minDist, maxDist, hei
 							end
 						end
 					else
--- RELEASE_LOGOFF  						Assert(false, "luaSpawn: Can't spawn unit! Report this immediately to the level designer!")
+		-- RELEASE_LOGOFF  						Assert(false, "luaSpawn: Can't spawn unit! Report this immediately to the level designer!")
 					end
 					i = i + 1
 				until secureBorderCross
 			end
 		else
--- RELEASE_LOGOFF  			luaHelperLog("luaSpawn: The last option is to spawn the unit on the scene border!")
+		-- RELEASE_LOGOFF  			luaHelperLog("luaSpawn: The last option is to spawn the unit on the scene border!")
 			local radius = (tempEntity.Class.Length / 2)
 			--luaHelperLog("length / 2")
 			if (tempEntity.Class.Width / 2) > radius then
@@ -9121,7 +9121,7 @@ function luaSpawn(templateName, spawnType, targetEntOrPos, minDist, maxDist, hei
 			--luaHelperLog("borderCross")
 			--luaHelperLog(borderCross)
 			if borderCross == nil then
--- RELEASE_LOGOFF  				Assert(false, "GetBorderCross has returned nil!!!", debug.traceback())
+		-- RELEASE_LOGOFF  				Assert(false, "GetBorderCross has returned nil!!!", debug.traceback())
 			end
 
 			local secureBorderCross
@@ -9175,8 +9175,8 @@ function luaSpawn(templateName, spawnType, targetEntOrPos, minDist, maxDist, hei
 							end
 							secureBorderCross = tempPos
 							--luaHelperLog("secureBorderCross")
--- RELEASE_LOGOFF  							luaHelperLog("luaSpawn: Found a secure border position ...")
--- RELEASE_LOGOFF  							luaHelperLog(secureBorderCross)
+		-- RELEASE_LOGOFF  							luaHelperLog("luaSpawn: Found a secure border position ...")
+		-- RELEASE_LOGOFF  							luaHelperLog(secureBorderCross)
 							rotation = 360 - rotation
 							PutTo(tempEntity, secureBorderCross, rotation)
 							--luaHelperLog("tempEntity's position after PutTo")
@@ -9185,7 +9185,7 @@ function luaSpawn(templateName, spawnType, targetEntOrPos, minDist, maxDist, hei
 						end
 					end
 				else
--- RELEASE_LOGOFF  					Assert(false, "luaSpawn: Can't spawn unit! Report this immediately to the level designer!")
+		-- RELEASE_LOGOFF  					Assert(false, "luaSpawn: Can't spawn unit! Report this immediately to the level designer!")
 				end
 				i = i + 1
 			until secureBorderCross
@@ -9292,10 +9292,10 @@ vehicleNum: number, ennyi vehicle tipusu unitunk van a misszioban
 fortNum: number, ennyi landfort tipusu unitunk van a misszioban
 ]]
 function luaCountUnits(watch)
--- RELEASE_LOGOFF  	luaHelperLog("Counting unit numbers and types")
+		-- RELEASE_LOGOFF  	luaHelperLog("Counting unit numbers and types")
 
 	if not Mission.UnitCountEnabled then
--- RELEASE_LOGOFF  		luaHelperLog(" Count not allowed.")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Count not allowed.")
 		return
 	end
 
@@ -9305,17 +9305,17 @@ function luaCountUnits(watch)
 	for sideStr, side in pairs(recon) do
 		for typeStr, unittype in pairs(side.own) do
 
--- RELEASE_LOGOFF  			luaHelperLog("  unittype: "..typeStr)
+		-- RELEASE_LOGOFF  			luaHelperLog("  unittype: "..typeStr)
 
 			for ID, unit in pairs(unittype) do
--- RELEASE_LOGOFF  				luaHelperLog("   unit: "..unit.Name)
+		-- RELEASE_LOGOFF  				luaHelperLog("   unit: "..unit.Name)
 
 				if not unit.Dead then
 					-- typecounter
 					local inside = false
 					local uType = unit.Class.Type
 
--- RELEASE_LOGOFF  					luaHelperLog("    checking type: "..uType)
+		-- RELEASE_LOGOFF  					luaHelperLog("    checking type: "..uType)
 					for key, value in pairs(types) do
 						if value == uType then
 							inside = true
@@ -9323,7 +9323,7 @@ function luaCountUnits(watch)
 					end
 
 					if not inside then
--- RELEASE_LOGOFF  						luaHelperLog("    + type "..uType.." not found yet, inserting")
+		-- RELEASE_LOGOFF  						luaHelperLog("    + type "..uType.." not found yet, inserting")
 						table.insert(types, uType)
 					end
 
@@ -9378,13 +9378,13 @@ function luaCountUnits(watch)
 	end
 
 	typeNum = luaCountTable(types)
--- RELEASE_LOGOFF  	luaHelperLog("Final types:")
--- RELEASE_LOGOFF  	luaHelperLog(types)
--- RELEASE_LOGOFF  	luaHelperLog(" + typenum: "..typeNum)
--- RELEASE_LOGOFF  	luaHelperLog(" + planenum: "..planeNum)
--- RELEASE_LOGOFF  	luaHelperLog(" + shipnum: "..shipNum)
--- RELEASE_LOGOFF  	luaHelperLog(" + vehiclenum: "..vehicleNum)
--- RELEASE_LOGOFF  	luaHelperLog(" + fortnum: "..fortNum)
+		-- RELEASE_LOGOFF  	luaHelperLog("Final types:")
+		-- RELEASE_LOGOFF  	luaHelperLog(types)
+		-- RELEASE_LOGOFF  	luaHelperLog(" + typenum: "..typeNum)
+		-- RELEASE_LOGOFF  	luaHelperLog(" + planenum: "..planeNum)
+		-- RELEASE_LOGOFF  	luaHelperLog(" + shipnum: "..shipNum)
+		-- RELEASE_LOGOFF  	luaHelperLog(" + vehiclenum: "..vehicleNum)
+		-- RELEASE_LOGOFF  	luaHelperLog(" + fortnum: "..fortNum)
 
 
 	--- obsolete!!
@@ -9401,8 +9401,8 @@ function luaCountUnits(watch)
 	local loadShip = poolShip + poolPlane*planeToShip
 	local loadPlane = poolPlane + poolShip*shipToPlane
 
--- RELEASE_LOGOFF  	luaHelperLog("Ship load: "..loadShip)
--- RELEASE_LOGOFF  	luaHelperLog("Plane load: "..loadPlane)
+		-- RELEASE_LOGOFF  	luaHelperLog("Ship load: "..loadShip)
+		-- RELEASE_LOGOFF  	luaHelperLog("Plane load: "..loadPlane)
 
 	--local load = (freeFromPlane*planeToShip + shipNum) + (freeFromShip*shipToPlane + planeNum)
 
@@ -9410,12 +9410,12 @@ function luaCountUnits(watch)
 	--local load = poolEater		-- pontosabb szamitas
 	local load = tostring(poolEater/limit*100).."%"
 
--- RELEASE_LOGOFF  	luaHelperLog("Load: "..tostring(load))
+		-- RELEASE_LOGOFF  	luaHelperLog("Load: "..tostring(load))
 	--luaHelperLog("Load / limit ratio: "..tostring(load/limit))
--- RELEASE_LOGOFF  	luaHelperLog("Load / limit ratio: "..tostring(poolEater/limit))
+		-- RELEASE_LOGOFF  	luaHelperLog("Load / limit ratio: "..tostring(poolEater/limit))
 
 	if poolEater/limit > 1 then
--- RELEASE_LOGOFF  		luaLog(" WARNING: Over the PS2's unitlimit!!")	-- warning: missionlog!
+		-- RELEASE_LOGOFF  		luaLog(" WARNING: Over the PS2's unitlimit!!")	-- warning: missionlog!
 	end
 
 	--[[
@@ -9440,29 +9440,29 @@ function luaCountUnits(watch)
 		end
 
 		Mission.UnitCount.TypeNum = typeNum
--- RELEASE_LOGOFF  		AddWatch("Mission.UnitCount.TypeNum")
+		-- RELEASE_LOGOFF  		AddWatch("Mission.UnitCount.TypeNum")
 
 		Mission.UnitCount.PlaneNum = planeNum
--- RELEASE_LOGOFF  		AddWatch("Mission.UnitCount.PlaneNum")
+		-- RELEASE_LOGOFF  		AddWatch("Mission.UnitCount.PlaneNum")
 
 		Mission.UnitCount.ShipNum = shipNum
--- RELEASE_LOGOFF  		AddWatch("Mission.UnitCount.ShipNum")
+		-- RELEASE_LOGOFF  		AddWatch("Mission.UnitCount.ShipNum")
 
 		Mission.UnitCount.VehicleNum = vehicleNum
--- RELEASE_LOGOFF  		AddWatch("Mission.UnitCount.VehicleNum")
+		-- RELEASE_LOGOFF  		AddWatch("Mission.UnitCount.VehicleNum")
 
 		Mission.UnitCount.FortNum = fortNum
--- RELEASE_LOGOFF  		AddWatch("Mission.UnitCount.FortNum")
+		-- RELEASE_LOGOFF  		AddWatch("Mission.UnitCount.FortNum")
 
 		Mission.UnitCount.Load = load
--- RELEASE_LOGOFF  		AddWatch("Mission.UnitCount.Load")
+		-- RELEASE_LOGOFF  		AddWatch("Mission.UnitCount.Load")
 	end
 
 	return typeNum, planeNum, shipNum, vehicleNum, fortNum
 end
 
 function luaCountUnitsRemoveWatches()
--- RELEASE_LOGOFF  	luaHelperLog("Removing countunits watches")
+		-- RELEASE_LOGOFF  	luaHelperLog("Removing countunits watches")
 	if Mission.UnitCount then
 		RemoveWatch("Mission.UnitCount.TypeNum")
 		RemoveWatch("Mission.UnitCount.PlaneNum")
@@ -9487,7 +9487,7 @@ function luaGetSquadronPlaneNum(ent)
 		num = num + 1
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog("Plane num in squad "..ent.Name.." is "..num)
+		-- RELEASE_LOGOFF  	luaHelperLog("Plane num in squad "..ent.Name.." is "..num)
 	return num
 end
 
@@ -9501,7 +9501,7 @@ target:
 distance:
 ]]
 function luaGetCapPoint(source, target, distance)
--- RELEASE_LOGOFF  	Assert(source ~= nil and target ~= nil and distance ~= nil, "***ERROR: luaGetCapPoint got a nil parameter!\n--"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(source ~= nil and target ~= nil and distance ~= nil, "***ERROR: luaGetCapPoint got a nil parameter!\n--"..debug.traceback())
 
 	local sourceP, sourceT
 	if luaIsEntityTable({source}) then
@@ -9509,7 +9509,7 @@ function luaGetCapPoint(source, target, distance)
 	elseif luaIsCoordinate(source) then
 		sourceP = source
 	else
--- RELEASE_LOGOFF  		Assert(false, "***ERROR: luaGetCapPoint's source must be a coordinate or entity!\n--"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(false, "***ERROR: luaGetCapPoint's source must be a coordinate or entity!\n--"..debug.traceback())
 	end
 
 	if luaIsEntityTable({target}) then
@@ -9517,16 +9517,16 @@ function luaGetCapPoint(source, target, distance)
 	elseif luaIsCoordinate(target) then
 		targetP = target
 	else
--- RELEASE_LOGOFF  		Assert(false, "***ERROR: luaGetCapPoint's target must be a coordinate or entity!\n--"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(false, "***ERROR: luaGetCapPoint's target must be a coordinate or entity!\n--"..debug.traceback())
 	end
 
--- RELEASE_LOGOFF  	Assert(type(distance) == "number", "***ERROR: luaGetCapPoint's third param must be a number!\n--"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(distance) == "number", "***ERROR: luaGetCapPoint's third param must be a number!\n--"..debug.traceback())
 
 	local angle = luaGetAngle("world", sourceP, targetP)
--- RELEASE_LOGOFF  	luaHelperLog("Angle: "..angle)
+		-- RELEASE_LOGOFF  	luaHelperLog("Angle: "..angle)
 	local fcoord = luaMoveCoordinate(sourceP, distance, angle)
--- RELEASE_LOGOFF  	luaHelperLog("Final coordinate: ")
--- RELEASE_LOGOFF  	luaHelperLog(fcoord)
+		-- RELEASE_LOGOFF  	luaHelperLog("Final coordinate: ")
+		-- RELEASE_LOGOFF  	luaHelperLog(fcoord)
 
 	return fcoord
 end
@@ -9542,11 +9542,11 @@ failText: string, ezt az uzenetet irjuk ki warningkent
 movie: string, a .bik file neve amit lejatszunk a kameramozgas utan
 ]]
 function luaMissionFailed(failEnt, failText, movie)
--- RELEASE_LOGOFF  	luaHelperLog("luaMissionFailed called...")
+		-- RELEASE_LOGOFF  	luaHelperLog("luaMissionFailed called...")
 
--- RELEASE_LOGOFF  	Assert(type(failText) == "string", "***ERROR: luaMissionFailed requires a string as 'failtext'!\n"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(luaIsEntityTable({failEnt}), "***ERROR: luaMissionFailed requires an entity as 'failent'!\n"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(Mission ~= nil, "***ERROR: luaMissionFailed requires a Mission running!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(failText) == "string", "***ERROR: luaMissionFailed requires a string as 'failtext'!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(luaIsEntityTable({failEnt}), "***ERROR: luaMissionFailed requires an entity as 'failent'!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(Mission ~= nil, "***ERROR: luaMissionFailed requires a Mission running!\n"..debug.traceback())
 
 	Mission.MissionStatus = false
 
@@ -9583,19 +9583,19 @@ function luaMissionFailed(failEnt, failText, movie)
 
 	-- mindenkit serthetetlenne teszunk
 	for key, value in pairs(luaGetOwnUnits(nil, PARTY_ALLIED)) do
--- RELEASE_LOGOFF  		luaLog(" Setting invincible: "..value.Name)	-- tmp
+		-- RELEASE_LOGOFF  		luaLog(" Setting invincible: "..value.Name)	-- tmp
 		if not value.Dead then
 			SetInvincible(value, true)
 		end
 	end
 	for key, value in pairs(luaGetOwnUnits(nil, PARTY_JAPANESE)) do
--- RELEASE_LOGOFF  		luaLog(" Setting invincible: "..value.Name)	-- tmp
+		-- RELEASE_LOGOFF  		luaLog(" Setting invincible: "..value.Name)	-- tmp
 		if not value.Dead then
 			SetInvincible(value, true)
 		end
 	end
 	for key, value in pairs(luaGetOwnUnits(nil, PARTY_NEUTRAL)) do
--- RELEASE_LOGOFF  		luaLog(" Setting invincible: "..value.Name)	-- tmp
+		-- RELEASE_LOGOFF  		luaLog(" Setting invincible: "..value.Name)	-- tmp
 		if not value.Dead then
 			SetInvincible(value, true)
 		end
@@ -9623,14 +9623,14 @@ desc: a luaMissionFailed()-ben meghivott kameramozgast vezerlo fv
 function luaMissionFailed_CamOnFailEnt()		-- kameradobas fv
 	local ent = Mission.MissionFailParams.Ent
 	if TrulyDead(ent) then
--- RELEASE_LOGOFF  		luaHelperLog(" Target entity is cold dead, getting last position")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Target entity is cold dead, getting last position")
 		local pos = ent.LastPosition
 		if pos.y < 2 then
 			pos.y = 2
 		end
 		MovCam_PathWalkPathPointPropertyPotlekokkal({ { ["pos"] = pos, }, }, 1, false, 4)
 	else
--- RELEASE_LOGOFF  		luaHelperLog(" Target entity is just deadmeat yet")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Target entity is just deadmeat yet")
 		MovCam_SetDeviationFactor(0)
 
 		local size = ent.Class.Length*1.15
@@ -9687,8 +9687,8 @@ function luaMissionFailed_CamRound()
 		-- visszaallitjuk az eredeti sebesseget es gyorsulast
 		MovCam_ResetSpeedLimits()
 		MovCam_ResetAccelTime()
--- RELEASE_LOGOFF  		luaLog("<< _CamRound type: "..tostring(uType)..", size: "..tostring(size).." >>")
--- RELEASE_LOGOFF  		luaLog("Origsize in mission: "..tostring(Mission.MissionFailParams.Size))
+		-- RELEASE_LOGOFF  		luaLog("<< _CamRound type: "..tostring(uType)..", size: "..tostring(size).." >>")
+		-- RELEASE_LOGOFF  		luaLog("Origsize in mission: "..tostring(Mission.MissionFailParams.Size))
 		luaMissionEndCamRound_ext(uType, size)
 
 		if Mission.MissionFailParams.Ent.Dead and (uType == "plane" or uType == "sub" or uType == "ship") then
@@ -9706,7 +9706,7 @@ uType: string, a luaMissionFailed()-ben beallitott entity tipusa
 size: number, a kamera mozgast meghatarzo parameter, a luaMissionFailed() beallitja
 ]]
 function luaMissionEndCamRound_ext(uType, size)
--- RELEASE_LOGOFF  	luaLog("<< _ext type: "..tostring(uType)..", size: "..tostring(size).." >>")
+		-- RELEASE_LOGOFF  	luaLog("<< _ext type: "..tostring(uType)..", size: "..tostring(size).." >>")
 	if uType == "plane" then
 		MovCam_AddInterpolator("walkHInput", size/1400, size/1400, 0, 18)	-- es korbemegyunk a merettol fuggo sebesseggel
 	elseif uType == "ship" then
@@ -9739,11 +9739,11 @@ turnMusicOff: bool, true eseten elhallgat a zene, false es nil eseten nem
 fadeTime: number, ennyi sec. utan tortenik meg a teljes fade
 ]]
 function luaFadeAway(callback, turnMusicOff, fadeTime)
--- RELEASE_LOGOFF  	luaHelperLog("Fading away to dark")
+		-- RELEASE_LOGOFF  	luaHelperLog("Fading away to dark")
 	--luaLog("Fadeaway called, messages false "..debug.traceback())
 	EnableMessages(false)
 	SoundFade(0, "", 2)
--- RELEASE_LOGOFF  	luaLog("turnMusicOff: "..tostring(turnMusicOff))
+		-- RELEASE_LOGOFF  	luaLog("turnMusicOff: "..tostring(turnMusicOff))
 	if turnMusicOff then
 		MusicFade(0) -- 2 sec alatt
 	end
@@ -9755,7 +9755,7 @@ function luaFadeAway(callback, turnMusicOff, fadeTime)
 			Blackout(true, "")
 		end
 	else
--- RELEASE_LOGOFF  		luaHelperLog("Param: "..tostring(callback))
+		-- RELEASE_LOGOFF  		luaHelperLog("Param: "..tostring(callback))
 		if fadeTime and type(fadeTime) == "number" then
 			Blackout(true, callback, fadeTime)
 		else
@@ -9774,7 +9774,7 @@ callback: string, a fv neve amit meghivunk blackout eseten
 msg: bool, true eseten nem kapcsolja vissza a message systemet, false es nil eseten igen
 ]]
 function luaFadeIn(callback, msg)
--- RELEASE_LOGOFF  	luaHelperLog("Fading in to light")
+		-- RELEASE_LOGOFF  	luaHelperLog("Fading in to light")
 
 	if not msg then
 		--luaLog("Fadein called, messages true "..debug.traceback())
@@ -9787,7 +9787,7 @@ function luaFadeIn(callback, msg)
 	if callback == nil or type(callback) ~= "string" then
 		Blackout(false, "")
 	else
--- RELEASE_LOGOFF  		luaHelperLog("Param: "..tostring(callback))
+		-- RELEASE_LOGOFF  		luaHelperLog("Param: "..tostring(callback))
 		Blackout(false, callback)
 	end
 end
@@ -9801,7 +9801,7 @@ cb1: function, a lefade utan meghivando fv neve
 cb2: function, a felfade utan meghivando fv neve
 ]]
 function luaCrossFade(cb1, cb2)
--- RELEASE_LOGOFF  	luaLog("Crossfade started")
+		-- RELEASE_LOGOFF  	luaLog("Crossfade started")
 	luaFadeAway("luaCrossFade1")	-- itt volt kikapcsolva a zene
 	if Mission.Helpers == nil then
 		Mission.Helpers = {}
@@ -9864,11 +9864,11 @@ winnerParty: enum, a gyoztes party (PARTY_ALLIED, PARTY_JAPANESE)
 complEnt: table, az entity this tablaja amire a kamera mozogni fog
 ]]
 function luaMultiMissionCompleted(winnerParty, complEnt)
--- RELEASE_LOGOFF  	luaHelperLog("luaMultiMissionCompleted called...")
+		-- RELEASE_LOGOFF  	luaHelperLog("luaMultiMissionCompleted called...")
 
--- RELEASE_LOGOFF  	Assert(winnerParty == PARTY_ALLIED or winnerParty == PARTY_JAPANESE, "***ERROR: luaMultiMissionCompleted requires a valid party!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(winnerParty == PARTY_ALLIED or winnerParty == PARTY_JAPANESE, "***ERROR: luaMultiMissionCompleted requires a valid party!\n"..debug.traceback())
 	--Assert(luaIsEntityTable({complEnt}), "***ERROR: luaMultiMissionCompleted requires an entity as 'complEnt'!\n"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(Mission ~= nil, "***ERROR: luaMultiMissionCompleted requires a Mission running!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(Mission ~= nil, "***ERROR: luaMultiMissionCompleted requires a Mission running!\n"..debug.traceback())
 
 
 	Mission.MissionStatus = true
@@ -9912,11 +9912,11 @@ onlymovie: bool, true esten nincsen kamera, fade utan egybol a .bik movie kovetk
 ]]
 function luaMissionCompleted(complEnt, complText, movie, noRanking, onlymovie)
 	--local cLog = "MissionComp.log"
--- RELEASE_LOGOFF  	luaHelperLog("luaMissionCompleted called...")
+		-- RELEASE_LOGOFF  	luaHelperLog("luaMissionCompleted called...")
 
--- RELEASE_LOGOFF  	Assert(type(complText) == "string", "***ERROR: luaMissionCompleted requires a string as 'complText'!\n"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(luaIsEntityTable({complEnt}), "***ERROR: luaMissionCompleted requires an entity as 'complEnt'!\n"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(Mission ~= nil, "***ERROR: luaMissionCompleted requires a Mission running!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(complText) == "string", "***ERROR: luaMissionCompleted requires a string as 'complText'!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(luaIsEntityTable({complEnt}), "***ERROR: luaMissionCompleted requires an entity as 'complEnt'!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(Mission ~= nil, "***ERROR: luaMissionCompleted requires a Mission running!\n"..debug.traceback())
 
 	Mission.MissionStatus = true
 
@@ -9942,21 +9942,21 @@ function luaMissionCompleted(complEnt, complText, movie, noRanking, onlymovie)
 
 	-- mindenkit serthetetlenne teszunk
 	for key, value in pairs(luaGetOwnUnits(nil, PARTY_ALLIED)) do
--- RELEASE_LOGOFF  		luaLog(" Setting invincible allied units: "..value.Name)	-- tmp
+		-- RELEASE_LOGOFF  		luaLog(" Setting invincible allied units: "..value.Name)	-- tmp
 		if not value.Dead then
 			SetInvincible(value, true)
 		end
 	end
 
 	for key, value in pairs(luaGetOwnUnits(nil, PARTY_JAPANESE)) do
--- RELEASE_LOGOFF  		luaLog(" Setting invincible Japanese units: "..value.Name)	-- tmp
+		-- RELEASE_LOGOFF  		luaLog(" Setting invincible Japanese units: "..value.Name)	-- tmp
 		if not value.Dead then
 			SetInvincible(value, true)
 		end
 	end
 
 	for key, value in pairs(luaGetOwnUnits(nil, PARTY_NEUTRAL)) do
--- RELEASE_LOGOFF  		luaLog(" Setting invincible neutral units: "..value.Name)	-- tmp
+		-- RELEASE_LOGOFF  		luaLog(" Setting invincible neutral units: "..value.Name)	-- tmp
 		if not value.Dead then
 			SetInvincible(value, true)
 		end
@@ -9971,13 +9971,13 @@ function luaMissionCompleted(complEnt, complText, movie, noRanking, onlymovie)
 
 	--luaLog("kakas4")
 	if noRanking then
--- RELEASE_LOGOFF  		luaHelperLog("Ranking forbidden")
+		-- RELEASE_LOGOFF  		luaHelperLog("Ranking forbidden")
 	else
 		local medal = luaGetMedalReward()
 		if type(medal) == "number" then
 			Scoring_SetRanking(medal)
 		else
--- RELEASE_LOGOFF  			luaHelperLog("Wrong medal return value, setting it to bronze")
+		-- RELEASE_LOGOFF  			luaHelperLog("Wrong medal return value, setting it to bronze")
 			Scoring_SetRanking(MEDAL_BRONZE)
 		end
 	end
@@ -10005,7 +10005,7 @@ function luaMissionCompleted_CamOnComplEnt()
 	local ent = Mission.MissionComplParams.Ent
 	if TrulyDead(ent) then
 		--luaLog("kakas2")
--- RELEASE_LOGOFF  		luaHelperLog(" Target entity is cold dead, getting last position")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Target entity is cold dead, getting last position")
 		local pos = ent.LastPosition
 		if pos.y < 2 then
 			pos.y = 2
@@ -10013,7 +10013,7 @@ function luaMissionCompleted_CamOnComplEnt()
 		MovCam_PathWalkPathPointPropertyPotlekokkal({ { ["pos"] = pos, }, }, 1, false, 4)
 	else
 --[[
--- RELEASE_LOGOFF  		luaHelperLog(" Target entity is just deadmeat yet")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Target entity is just deadmeat yet")
 		MovCam_SetDeviationFactor(0)
 		MovCam_RefPos_Radius(Mission.MissionComplParams.Ent, 100, false, 4)
 		luaDelay(luaMissionCompleted_CamRound, 3)
@@ -10023,7 +10023,7 @@ function luaMissionCompleted_CamOnComplEnt()
 		local size = ent.Class.Length*1.15
 		Mission.MissionComplParams.Size = size
 		local uType = luaGetType(ent)
--- RELEASE_LOGOFF  		luaLog("<< _CamOnComplEnt type: "..tostring(uType)..", size: "..tostring(size).." >>")
+		-- RELEASE_LOGOFF  		luaLog("<< _CamOnComplEnt type: "..tostring(uType)..", size: "..tostring(size).." >>")
 
 		--luaLog("kakas")
 
@@ -10034,7 +10034,7 @@ function luaMissionCompleted_CamOnComplEnt()
 		local fakePos = luaMoveCoordinate(entPos, 1000, entDir)
 		local angle = luaGetAngle(camPos, entPos, fakePos)
 
--- RELEASE_LOGOFF  		luaLog("Angle: "..tostring(angle))
+		-- RELEASE_LOGOFF  		luaLog("Angle: "..tostring(angle))
 
 		if uType == "sub" then
 			--MovCam_RefPos_Polar(ent, size, -math.pi/8, -math.pi/12, false, 2)
@@ -10073,7 +10073,7 @@ function luaMissionCompleted_CamRound()
 		MovCam_ResetAccelTime()
 
 		local size = Mission.MissionComplParams.Size
--- RELEASE_LOGOFF  		luaLog("<< _CamRound type: "..tostring(uType)..", size: "..tostring(size).." >>")
+		-- RELEASE_LOGOFF  		luaLog("<< _CamRound type: "..tostring(uType)..", size: "..tostring(size).." >>")
 		luaMissionEndCamRound_ext(uType, size)
 
 		if Mission.MissionComplParams.Ent.Dead and (uType == "plane" or uType == "sub" or uType == "ship") then
@@ -10114,11 +10114,11 @@ end
 --[[
 -- Mission fail eseten kell meghivni / uj movcam cucc
 function luaMissionFailedNew(failEnt, failText, movie, noRanking, onlymovie)
--- RELEASE_LOGOFF  	luaHelperLog("luaMissionFailed NEW called...")
+		-- RELEASE_LOGOFF  	luaHelperLog("luaMissionFailed NEW called...")
 
--- RELEASE_LOGOFF  	Assert(type(failText) == "string", "***ERROR: luaMissionFailed requires a string as 'failText'!\n"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(luaIsEntityTable({failEnt}), "***ERROR: luaMissionFailed requires an entity as 'failEnt'!\n"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(Mission ~= nil, "***ERROR: luaMissionFailed requires a Mission running!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(failText) == "string", "***ERROR: luaMissionFailed requires a string as 'failText'!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(luaIsEntityTable({failEnt}), "***ERROR: luaMissionFailed requires an entity as 'failEnt'!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(Mission ~= nil, "***ERROR: luaMissionFailed requires a Mission running!\n"..debug.traceback())
 
 	Mission.MissionStatus = false
 
@@ -10189,7 +10189,7 @@ desc: a luaMissionFailedNew()-ben meghivott kameramozgast vezerlo fv
 function luaMissionFailedNew_CamOnFailEnt()
 	local ent = Mission.MissionFailParams.Ent
 	if TrulyDead(ent) then
--- RELEASE_LOGOFF  		luaHelperLog(" Target entity is cold dead, getting last position")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Target entity is cold dead, getting last position")
 		local pos = ent.LastPosition
 		if pos.y < 2 then
 			pos.y = 2
@@ -10212,7 +10212,7 @@ function luaMissionFailedNew_CamOnFailEnt()
 		local size = ent.Class.Length*1.15
 		Mission.MissionFailParams.Size = size
 		local uType = luaGetType(ent)
--- RELEASE_LOGOFF  		luaLog("<< _CamOnComplEnt type: "..tostring(uType)..", size: "..tostring(size).." >>")
+		-- RELEASE_LOGOFF  		luaLog("<< _CamOnComplEnt type: "..tostring(uType)..", size: "..tostring(size).." >>")
 
 		-- iranybaallitas szamitasai
 		local camPos = GetCameraState().Position
@@ -10358,11 +10358,11 @@ onlymovie: bool, true eseten csak a movie hivodik meg az ingame kamera nem
 ignoreCollision: bool, true eseten kiiktatja a navigator AI elkerulo rutinjait
 ]]
 function luaMissionFailedNew(endEnt, endText, movie, noRanking, onlymovie, ignoreCollision)
--- RELEASE_LOGOFF  	luaHelperLog("luaMissionFailed NEW-NEW called...")
+		-- RELEASE_LOGOFF  	luaHelperLog("luaMissionFailed NEW-NEW called...")
 
--- RELEASE_LOGOFF  	Assert(type(endText) == "string", "***ERROR: luaMissionFailed requires a string as 'endText'!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(endText) == "string", "***ERROR: luaMissionFailed requires a string as 'endText'!\n"..debug.traceback())
 	--Assert(luaIsEntityTable({endEnt}), "***ERROR: luaMissionFailed requires an entity as 'endEnt'!\n"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(Mission ~= nil, "***ERROR: luaMissionFailed requires a Mission running!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(Mission ~= nil, "***ERROR: luaMissionFailed requires a Mission running!\n"..debug.traceback())
 
 	luaInitMissionEnd(endEnt, endText, movie, noRanking, onlymovie, ignoreCollision)
 	luaObj_FailedAll(true)
@@ -10376,12 +10376,12 @@ function luaMissionFailedNew(endEnt, endText, movie, noRanking, onlymovie, ignor
 	--luaMedalCheck()
 
 	if onlymovie then
--- RELEASE_LOGOFF  		luaHelperLog("Blackout with onlymovie")
+		-- RELEASE_LOGOFF  		luaHelperLog("Blackout with onlymovie")
 		Blackout(true, "luaMissionEnd_Movie")
 	else
--- RELEASE_LOGOFF  		luaHelperLog("Blackout")
+		-- RELEASE_LOGOFF  		luaHelperLog("Blackout")
 		Blackout(true, "", false, 0.25)
--- RELEASE_LOGOFF  		luaHelperLog("Narrative")
+		-- RELEASE_LOGOFF  		luaHelperLog("Narrative")
 		MissionNarrative("missionglobals.obj_fail", "luaMissionEnd_CamOnEnt")
 	end
 end
@@ -10402,11 +10402,11 @@ winnerParty: enum, a gyoztes party-ja, PARTY_ALLIED, PARTY_JAPANESE
 ignoreCollision: bool, true eseten kiiktatja a navigator AI elkerulo rutinjait
 ]]
 function luaMissionCompletedNew(endEnt, endText, movie, noRanking, onlymovie, winnerParty, ignoreCollision)
--- RELEASE_LOGOFF  	luaHelperLog("luaMissionCompleted NEW-NEW called...")
+		-- RELEASE_LOGOFF  	luaHelperLog("luaMissionCompleted NEW-NEW called...")
 
--- RELEASE_LOGOFF  	Assert(type(endText) == "string", "***ERROR: luaMissionCompleted requires a string as 'endText'!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(endText) == "string", "***ERROR: luaMissionCompleted requires a string as 'endText'!\n"..debug.traceback())
 	--Assert(luaIsEntityTable({endEnt}), "***ERROR: luaMissionCompleted requires an entity as 'endEnt'!\n"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(Mission ~= nil, "***ERROR: luaMissionCompleted requires a Mission running!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(Mission ~= nil, "***ERROR: luaMissionCompleted requires a Mission running!\n"..debug.traceback())
 
 	luaInitMissionEnd(endEnt, endText, movie, noRanking, onlymovie, ignoreCollision)
 
@@ -10441,13 +10441,13 @@ function luaMissionCompletedNew(endEnt, endText, movie, noRanking, onlymovie, wi
 			local highestindex = 0
 			for slotID, value in pairs (MPlayers) do
 				actplayerscore = Scoring_GetTotalMissionScore(slotID)
--- RELEASE_LOGOFF  				luaHelperLog(" playerindex: "..slotID.." | score: "..actplayerscore)
+		-- RELEASE_LOGOFF  				luaHelperLog(" playerindex: "..slotID.." | score: "..actplayerscore)
 				if actplayerscore > highestplayerscore then
 					highestplayerscore = actplayerscore
 					highestindex = slotID
 				end
 			end
--- RELEASE_LOGOFF  			luaHelperLog(" player "..highestindex.." won")
+		-- RELEASE_LOGOFF  			luaHelperLog(" player "..highestindex.." won")
 			Scoring_SetMissionCompleted(highestindex, true)
 			-- todo: zenet lehet allitani partyra?
 			Mission.CompetitiveWinnerPlayer = highestindex
@@ -10475,13 +10475,13 @@ function luaMissionCompletedNew(endEnt, endText, movie, noRanking, onlymovie, wi
 	if Mission.Multiplayer then
 		if LobbySettings.GameMode ~= "globals.gamemode_competitive" then
 			if winnerParty == PARTY_ALLIED then
--- RELEASE_LOGOFF  				luaHelperLog("-- "..tostring(LobbySettings.GameMode).." playing Allied victory voice-over --")
+		-- RELEASE_LOGOFF  				luaHelperLog("-- "..tostring(LobbySettings.GameMode).." playing Allied victory voice-over --")
 				for i = 1, 8 do
 					local slotID = i - 1
 					DisplayMessage(slotID, "scoremulti_allies_win")
 				end
 			else
--- RELEASE_LOGOFF  				luaHelperLog("-- "..tostring(LobbySettings.GameMode).." playing Japanese victory voice-over --")
+		-- RELEASE_LOGOFF  				luaHelperLog("-- "..tostring(LobbySettings.GameMode).." playing Japanese victory voice-over --")
 				for i = 1, 8 do
 					local slotID = i - 1
 					DisplayMessage(slotID, "scoremulti_japanese_win")
@@ -10514,7 +10514,7 @@ function luaMissionCompletedNew(endEnt, endText, movie, noRanking, onlymovie, wi
 	---------------------------------------
 
 	if noRanking then
--- RELEASE_LOGOFF  		luaHelperLog("Ranking forbidden")
+		-- RELEASE_LOGOFF  		luaHelperLog("Ranking forbidden")
 	else
 		if not Mission.Multiplayer then
 			local medal = luaGetMedalReward()
@@ -10530,9 +10530,9 @@ function luaMissionCompletedNew(endEnt, endText, movie, noRanking, onlymovie, wi
 				end
 				local unlockName = Mission.Name.."_"..medalName
 				Scoring_GrantUnlock(unlockName)
--- RELEASE_LOGOFF  				luaHelperLog("Unlock granted: "..unlockName)
+		-- RELEASE_LOGOFF  				luaHelperLog("Unlock granted: "..unlockName)
 			else
--- RELEASE_LOGOFF  				luaHelperLog("Wrong medal return value, setting it to bronze")
+		-- RELEASE_LOGOFF  				luaHelperLog("Wrong medal return value, setting it to bronze")
 				Scoring_SetRanking(MEDAL_BRONZE)
 				Scoring_GrantUnlock(Mission.Name.."_bronze")
 			end
@@ -10546,7 +10546,7 @@ function luaMissionCompletedNew(endEnt, endText, movie, noRanking, onlymovie, wi
 	end
 
 	if not Mission.Tutorial then
--- RELEASE_LOGOFF  	luaLog("Medal Check is running")
+		-- RELEASE_LOGOFF  	luaLog("Medal Check is running")
 	--luaMedalCheck()
 	end
 	-----------------------------------------------------------------------------------
@@ -10620,7 +10620,7 @@ function luaMissionEnd_CamOnEnt()
 	if ent == nil then
 		luaDelay(luaMissionEnd_FadeAway, Mission.MusicEndTime-GameTime()-2.5)
 	elseif TrulyDead(ent) then
--- RELEASE_LOGOFF  		luaHelperLog(" Target entity is cold dead, getting last position")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Target entity is cold dead, getting last position")
 		local pos = ent.LastPosition
 		if pos.y < 2 then
 			pos.y = 2
@@ -10645,9 +10645,9 @@ function luaMissionEnd_CamOnEnt()
 			}
 --		MovCamNew_AddPosition(movcampos)
 
--- RELEASE_LOGOFF  		luaLog("posx - "..pos.x)
--- RELEASE_LOGOFF  		luaLog("posy - "..pos.y)
--- RELEASE_LOGOFF  		luaLog("posz - "..pos.z)
+		-- RELEASE_LOGOFF  		luaLog("posx - "..pos.x)
+		-- RELEASE_LOGOFF  		luaLog("posy - "..pos.y)
+		-- RELEASE_LOGOFF  		luaLog("posz - "..pos.z)
 
 		movcampos =
 			{
@@ -10712,7 +10712,7 @@ function luaMissionEnd_CamOnEnt()
 
 		Mission.MissionEndParams.Size = size
 		local uType = luaGetType(ent)
--- RELEASE_LOGOFF  --		luaLog("<< _CamOnEnt type: "..tostring(uType)..", size: "..tostring(size).." >>")
+		-- RELEASE_LOGOFF  --		luaLog("<< _CamOnEnt type: "..tostring(uType)..", size: "..tostring(size).." >>")
 
 		-- iranybaallitas szamitasai
 		local camPos = GetCameraState().Position
@@ -10767,8 +10767,8 @@ function luaMissionEnd_CamOnEnt()
 		Mission.MissionEndParams.Angle = angle
 		Mission.MissionEndParams.VertAngle = vertAngle
 
--- RELEASE_LOGOFF  --		luaLog(" MC : size "..tostring(size))
--- RELEASE_LOGOFF  --		luaLog(" MC : type "..tostring(uType))
+		-- RELEASE_LOGOFF  --		luaLog(" MC : size "..tostring(size))
+		-- RELEASE_LOGOFF  --		luaLog(" MC : type "..tostring(uType))
 		--luaLog(" MC : angle "..angle)
 		--luaLog(" MC : vertangle "..vertAngle)
 
@@ -10805,9 +10805,9 @@ function luaMissionEnd_CamOnEnt()
 					["wanderer"] = false
 				}
 			MovCamNew_AddPosition(campos)
--- RELEASE_LOGOFF  			luaLog("Timer stuff calling")
+		-- RELEASE_LOGOFF  			luaLog("Timer stuff calling")
 			Mission.MissionEndParams.EndTimer = luaDelay(luaMissionEnd_FadeAway, Mission.MusicEndTime-GameTime()-2.5, "scriptcall", true)
--- RELEASE_LOGOFF  			luaLog("Timer ID "..Mission.MissionEndParams.EndTimer.ID)
+		-- RELEASE_LOGOFF  			luaLog("Timer ID "..Mission.MissionEndParams.EndTimer.ID)
 		else
 			--luaLog("MC : will not go down")
 			if Mission.Multiplayer then
@@ -10865,7 +10865,7 @@ shortdesc: a luaMissionFailedNew() es luaMissionCompletedNew() fv-ek idozito fv-
 desc: a luaMissionFailed()-ben vagy a luaMissionCompletedNew() meghivott fadelest vezerlo fv
 ]]
 function luaMissionEnd_FadeAway(timerthis)
--- RELEASE_LOGOFF  	luaLog("Fadeaway called!")
+		-- RELEASE_LOGOFF  	luaLog("Fadeaway called!")
 	BlackBars(false)
 	if not Mission.MissionEndParams.FadeCalled then
 		Mission.MissionEndParams.FadeCalled = true
@@ -10873,7 +10873,7 @@ function luaMissionEnd_FadeAway(timerthis)
 	end
 
 	if Mission.MissionEndParams.EndTimer ~= nil and not Mission.MissionEndParams.EndTimer.Dead and timerthis and not timerthis.ParamTable.scriptcall then
--- RELEASE_LOGOFF  		luaLog("Clearing delay "..Mission.MissionEndParams.EndTimer.ID)
+		-- RELEASE_LOGOFF  		luaLog("Clearing delay "..Mission.MissionEndParams.EndTimer.ID)
 		luaClearDelay(Mission.MissionEndParams.EndTimer)
 	end
 end
@@ -10895,7 +10895,7 @@ shortdesc: a luaMissionFailedNew() es luaMissionCompletedNew() fv-ek lezaro fv-e
 desc: a luaMissionFailed()-ben vagy a luaMissionCompletedNew() idozitett scenet terminalo fv
 ]]
 function luaMissionEnd_Finale()
--- RELEASE_LOGOFF  	luaLog("Final end called...")
+		-- RELEASE_LOGOFF  	luaLog("Final end called...")
 	SetSkipMovie()	-- gomblenyomas figyelesenek vege
 	if Mission.MissionEndParams == nil or Mission.MissionEndParams.Movie == nil then
 		luaDelay(luaMissionEnd_EndScene, 2)
@@ -10930,7 +10930,7 @@ end
 function luaMissionCompletedNew_CamOnComplEnt()
 	local ent = Mission.MissionComplParams.Ent
 	if TrulyDead(ent) then
--- RELEASE_LOGOFF  		luaHelperLog(" Target entity is cold dead, getting last position")
+		-- RELEASE_LOGOFF  		luaHelperLog(" Target entity is cold dead, getting last position")
 		local pos = ent.LastPosition
 		if pos.y < 2 then
 			pos.y = 2
@@ -10955,7 +10955,7 @@ function luaMissionCompletedNew_CamOnComplEnt()
 		local size = ent.Class.Length*1.15
 		Mission.MissionComplParams.Size = size
 		local uType = luaGetType(ent)
--- RELEASE_LOGOFF  		luaLog("<< _CamOnComplEnt type: "..tostring(uType)..", size: "..tostring(size).." >>")
+		-- RELEASE_LOGOFF  		luaLog("<< _CamOnComplEnt type: "..tostring(uType)..", size: "..tostring(size).." >>")
 
 		-- iranybaallitas szamitasai
 		local camPos = GetCameraState().Position
@@ -11044,9 +11044,9 @@ function luaMissionCompletedNew_CamOnComplEnt()
 						["wanderer"] = true
 					}
 				MovCamNew_AddPosition(campos)
--- RELEASE_LOGOFF  				luaLog("Timer stuff calling")
+		-- RELEASE_LOGOFF  				luaLog("Timer stuff calling")
 				Mission.MissionComplParams.EndTimer = luaDelay(luaMissionCompletedNew_FadeAway, 20, "scriptcall", true)
--- RELEASE_LOGOFF  				luaLog("Timer ID "..Mission.MissionComplParams.EndTimer.ID)
+		-- RELEASE_LOGOFF  				luaLog("Timer ID "..Mission.MissionComplParams.EndTimer.ID)
 			else
 				--luaLog("MC : will not go down")
 				local campos =
@@ -11082,18 +11082,18 @@ function luaMissionCompletedNew_CamOnComplEnt()
 end
 
 function luaMissionCompletedNew_FadeAway(timerthis)
--- RELEASE_LOGOFF  	luaLog("Fadeaway called!")
+		-- RELEASE_LOGOFF  	luaLog("Fadeaway called!")
 
 	luaFadeAway(luaMissionCompletedNew_End)
 
 	if Mission.MissionComplParams.EndTimer ~= nil and not Mission.MissionComplParams.EndTimer.Dead and timerthis and not timerthis.ParamTable.scriptcall then
--- RELEASE_LOGOFF  		luaLog("Clearing delay "..Mission.MissionComplParams.EndTimer.ID)
+		-- RELEASE_LOGOFF  		luaLog("Clearing delay "..Mission.MissionComplParams.EndTimer.ID)
 		luaClearDelay(Mission.MissionComplParams.EndTimer)
 	end
 end
 
 function luaMissionCompletedNew_End()
--- RELEASE_LOGOFF  	luaLog("Final end called...")
+		-- RELEASE_LOGOFF  	luaLog("Final end called...")
 	if Mission.MissionComplParams.Movie == nil then
 		EndScene()
 	else
@@ -11105,7 +11105,7 @@ end
 --[[
 
 function luaMissionCompletedNew_CamRound()
--- RELEASE_LOGOFF  	luaLog("MC : Camround, camround!")
+		-- RELEASE_LOGOFF  	luaLog("MC : Camround, camround!")
 	if not TrulyDead(Mission.MissionComplParams.Ent) then
 		--MovCam_HandMode_Targeted(Mission.MissionComplParams.Ent, true)
 
@@ -11118,15 +11118,15 @@ function luaMissionCompletedNew_CamRound()
 		local uType = luaGetType(ent)
 		--luaLog("<< _CamRound type: "..tostring(uType)..", size: "..tostring(size).." >>")
 		--luaMissionEndCamRound_ext(uType, size)
--- RELEASE_LOGOFF  		luaLog(" MC : size "..tostring(size))
--- RELEASE_LOGOFF  		luaLog(" MC : type "..tostring(uType))
--- RELEASE_LOGOFF  		luaLog(" MC : angle "..tostring(Mission.MissionComplParams.Angle))
--- RELEASE_LOGOFF  		luaLog(" MC : vertangle "..tostring(Mission.MissionComplParams.VertAngle))
+		-- RELEASE_LOGOFF  		luaLog(" MC : size "..tostring(size))
+		-- RELEASE_LOGOFF  		luaLog(" MC : type "..tostring(uType))
+		-- RELEASE_LOGOFF  		luaLog(" MC : angle "..tostring(Mission.MissionComplParams.Angle))
+		-- RELEASE_LOGOFF  		luaLog(" MC : vertangle "..tostring(Mission.MissionComplParams.VertAngle))
 
 		if Mission.MissionComplParams.Ent.Dead and (uType == "plane" or uType == "sub" or uType == "ship") then
 			--luaDelay(luaMissionFailedNew_CamDown, 0.3)
 			MissionNarrativeUrgent("cam init")
--- RELEASE_LOGOFF  			luaLog("MC : right in, going down")
+		-- RELEASE_LOGOFF  			luaLog("MC : right in, going down")
 			local campos =
 				{
 					["postype"] = "cameraandtarget",
@@ -11150,7 +11150,7 @@ function luaMissionCompletedNew_CamRound()
 				}
 			MovCamNew_AddPosition(campos)
 		else
--- RELEASE_LOGOFF  			luaLog("MC : will not go down")
+		-- RELEASE_LOGOFF  			luaLog("MC : will not go down")
 			local campos =
 				{
 					["postype"] = "cameraandtarget",
@@ -11198,8 +11198,8 @@ function luaMissionCompletedNew_ComplText()
 end
 
 function luaMultiQuit(serverParty, serverQuit, opposingClients)
--- RELEASE_LOGOFF  	luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "luaMultiQuit called in "..tostring(LobbySettings.GameMode).." mode...","u")
--- RELEASE_LOGOFF  	luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " serverParty: "..tostring(serverParty).." | serverQuit: "..tostring(serverQuit).." | opposingClients: "..tostring(opposingClients))
+		-- RELEASE_LOGOFF  	luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "luaMultiQuit called in "..tostring(LobbySettings.GameMode).." mode...","u")
+		-- RELEASE_LOGOFF  	luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " serverParty: "..tostring(serverParty).." | serverQuit: "..tostring(serverQuit).." | opposingClients: "..tostring(opposingClients))
 
 	if not serverQuit and LobbySettings.GameMode == "globals.gamemode_competitive" then
 		luaSetMultiMessages(false, false, true)
@@ -11229,7 +11229,7 @@ function luaMultiQuit(serverParty, serverQuit, opposingClients)
 		--Mission.Objectives.primary[index].ScoreFailed
 		--Mission.PointLimit
 		--------------------------------------------------------
--- RELEASE_LOGOFF  		luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  Mission.PointLimit == "..tostring(Mission.PointLimit).."! ")
+		-- RELEASE_LOGOFF  		luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  Mission.PointLimit == "..tostring(Mission.PointLimit).."! ")
 			local MPlayers = GetPlayerDetails()
 			local actplayerscore = 0
 		local objindex = 0
@@ -11238,10 +11238,10 @@ function luaMultiQuit(serverParty, serverQuit, opposingClients)
 		if Mission.PointLimit ~= 0 then
 			for slotID, value in pairs (MPlayers) do
 				if serverQuit and not value.ai and value.playerindex == 0 then
--- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " calling ClearPlayerScore for player 0")
+		-- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " calling ClearPlayerScore for player 0")
 					ClearPlayerScore(slotID)
 				elseif value.ai and value.playerName ~= "" then
--- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " calling ClearPlayerScore for player "..tostring(slotID))
+		-- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " calling ClearPlayerScore for player "..tostring(slotID))
 					ClearPlayerScore(slotID)
 				end
 				actplayerscore = Scoring_GetTotalMissionScore(slotID)
@@ -11259,9 +11259,9 @@ function luaMultiQuit(serverParty, serverQuit, opposingClients)
 					if Mission.Objectives.primary[objindex].ScoreFailed ~= 0 then
 						Mission.Objectives.primary[objindex].ScoreFailed = luaRound(Mission.Objectives.primary[objindex].ScoreFailed)
 					end
--- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  slot ID: "..tostring(slotID).." | score: "..tostring(Mission.Objectives.primary[objindex].ScoreFailed))
+		-- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  slot ID: "..tostring(slotID).." | score: "..tostring(Mission.Objectives.primary[objindex].ScoreFailed))
 				else
--- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  Mission.Objectives == nil")
+		-- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  Mission.Objectives == nil")
 				end
 			end
 		else
@@ -11275,10 +11275,10 @@ function luaMultiQuit(serverParty, serverQuit, opposingClients)
 			end
 			for slotID, value in pairs (MPlayers) do
 				if serverQuit and not value.ai and value.playerindex == 0 then
--- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " calling ClearPlayerScore for player 0")
+		-- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " calling ClearPlayerScore for player 0")
 					ClearPlayerScore(slotID)
 				elseif value.ai and value.playerName ~= "" then
--- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " calling ClearPlayerScore for player "..tostring(slotID))
+		-- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " calling ClearPlayerScore for player "..tostring(slotID))
 					ClearPlayerScore(slotID)
 				end
 				actplayerscore = Scoring_GetTotalMissionScore(slotID)
@@ -11295,7 +11295,7 @@ function luaMultiQuit(serverParty, serverQuit, opposingClients)
 				if Mission.Objectives.primary[objindex].ScoreFailed ~= 0 then
 					Mission.Objectives.primary[objindex].ScoreFailed = luaRound(Mission.Objectives.primary[objindex].ScoreFailed)
 				end
--- RELEASE_LOGOFF  				luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..tostring(Mission.Objectives.primary[objindex].ID).." | objective.ScoreFailed: "..tostring(Mission.Objectives.primary[objindex].ScoreFailed))
+		-- RELEASE_LOGOFF  				luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..tostring(Mission.Objectives.primary[objindex].ID).." | objective.ScoreFailed: "..tostring(Mission.Objectives.primary[objindex].ScoreFailed))
 			end
 		end
 		if Mission.Objectives ~= nil then
@@ -11303,7 +11303,7 @@ function luaMultiQuit(serverParty, serverQuit, opposingClients)
 				if objtable == Mission.Objectives.primary then
 					for index, objective in pairs (objtable) do
 						if objective.Active and objective.Success == nil then
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
 							local winnerObjID = Mission.CompetitiveWinnerIndex + 1
 							if index == winnerObjID then
 								luaObj_Completed("primary", index)
@@ -11315,14 +11315,14 @@ function luaMultiQuit(serverParty, serverQuit, opposingClients)
 				elseif objtable == Mission.Objectives.secondary then
 					for index, objective in pairs (objtable) do
 						if objective.Active and objective.Success == nil then
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
 							luaObj_Failed("secondary", index)
 						end
 					end
 				elseif objtable == Mission.Objectives.hidden then
 					for index, objective in pairs (objtable) do
 						if objective.Active and objective.Success == nil then
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
 							luaObj_Failed("hidden", index)
 						end
 					end
@@ -11349,12 +11349,12 @@ function luaMultiQuit(serverParty, serverQuit, opposingClients)
 									objective.ScoreFailed = ( objective.ScoreCompleted / Mission.RoundLimit ) * Mission.JapaneseRoundWon
 								end
 							else
--- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  ERROR! Mission.RoundLimit == 0! ")
+		-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  ERROR! Mission.RoundLimit == 0! ")
 							end
 							if objective.ScoreFailed ~= 0 then
 								objective.ScoreFailed = luaRound(objective.ScoreFailed)
 							end
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed | score: "..tostring(objective.ScoreFailed))
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed | score: "..tostring(objective.ScoreFailed))
 							if objective.Party == serverParty then
 								luaObj_Failed("primary", index)
 							else
@@ -11365,21 +11365,21 @@ function luaMultiQuit(serverParty, serverQuit, opposingClients)
 				elseif objtable == Mission.Objectives.secondary then
 					for index, objective in pairs (objtable) do
 						if objective.Active and objective.Success == nil then
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
 							luaObj_Failed("secondary", index)
 						end
 					end
 				elseif objtable == Mission.Objectives.hidden then
 					for index, objective in pairs (objtable) do
 						if objective.Active and objective.Success == nil then
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
 							luaObj_Failed("hidden", index)
 						end
 					end
 				end
 			end
 		else
--- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  Mission.Objectives == nil")
+		-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  Mission.Objectives == nil")
 		end
 	elseif LobbySettings.GameMode == "globals.gamemode_escort" then
 		--ESCORT objektiva pontszamitashoz a kovetkezok kellenek--
@@ -11393,10 +11393,10 @@ function luaMultiQuit(serverParty, serverQuit, opposingClients)
 		if GameTime() > 300 then
 			for slotID, value in pairs (MPlayers) do
 				if serverQuit and not value.ai and value.playerindex == 0 then
--- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " calling ClearPlayerScore for player 0")
+		-- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " calling ClearPlayerScore for player 0")
 					ClearPlayerScore(slotID)
 				elseif value.ai and value.playerName ~= "" then
--- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " calling ClearPlayerScore for player "..tostring(slotID))
+		-- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " calling ClearPlayerScore for player "..tostring(slotID))
 					ClearPlayerScore(slotID)
 				end
 				if slotID <= 3 then
@@ -11423,12 +11423,12 @@ function luaMultiQuit(serverParty, serverQuit, opposingClients)
 									objective.ScoreFailed = ( objective.ScoreCompleted / allplayersscore ) * japplayersscore
 								end
 							else
--- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  ERROR! allplayersscore == 0 or GameTime() < 300! ")
+		-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  ERROR! allplayersscore == 0 or GameTime() < 300! ")
 							end
 							if objective.ScoreFailed ~= 0 then
 								objective.ScoreFailed = luaRound(objective.ScoreFailed)
 							end
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed | score: "..tostring(objective.ScoreFailed))
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed | score: "..tostring(objective.ScoreFailed))
 							if objective.Party == serverParty then
 								luaObj_Failed("primary", index)
 							else
@@ -11439,21 +11439,21 @@ function luaMultiQuit(serverParty, serverQuit, opposingClients)
 				elseif objtable == Mission.Objectives.secondary then
 					for index, objective in pairs (objtable) do
 						if objective.Active and objective.Success == nil then
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
 							luaObj_Failed("secondary", index)
 						end
 					end
 				elseif objtable == Mission.Objectives.hidden then
 					for index, objective in pairs (objtable) do
 						if objective.Active and objective.Success == nil then
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
 							luaObj_Failed("hidden", index)
 						end
 					end
 				end
 			end
 		else
--- RELEASE_LOGOFF  			luaHelperLog("  Mission.Objectives == nil")
+		-- RELEASE_LOGOFF  			luaHelperLog("  Mission.Objectives == nil")
 		end
 	elseif LobbySettings.GameMode == "globals.gamemode_islandcapture" then
 		--ISLAND CAPTURE objektiva pontszamitashoz a kovetkezok kellenek--
@@ -11485,7 +11485,7 @@ function luaMultiQuit(serverParty, serverQuit, opposingClients)
 								if objective.ScoreFailed ~= 0 then
 									objective.ScoreFailed = luaRound(objective.ScoreFailed)
 								end
-	-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." | score: "..tostring(objective.ScoreFailed))
+			-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." | score: "..tostring(objective.ScoreFailed))
 								if objective.Party == serverParty then
 									luaObj_Failed("primary", index)
 								else
@@ -11496,21 +11496,21 @@ function luaMultiQuit(serverParty, serverQuit, opposingClients)
 					elseif objtable == Mission.Objectives.secondary then
 						for index, objective in pairs (objtable) do
 							if objective.Active and objective.Success == nil then
-	-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
+			-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
 								luaObj_Failed("secondary", index)
 							end
 						end
 					elseif objtable == Mission.Objectives.hidden then
 						for index, objective in pairs (objtable) do
 							if objective.Active and objective.Success == nil then
-	-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
+			-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
 								luaObj_Failed("hidden", index)
 							end
 						end
 					end
 				end
 			else
-	-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  Mission.Objectives == nil")
+			-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  Mission.Objectives == nil")
 			end
 		end
 	elseif LobbySettings.GameMode == "globals.gamemode_siege" then
@@ -11535,7 +11535,7 @@ function luaMultiQuit(serverParty, serverQuit, opposingClients)
 							if objective.ScoreFailed ~= 0 then
 								objective.ScoreFailed = luaRound(objective.ScoreFailed)
 							end
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed | score: "..tostring(objective.ScoreFailed))
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed | score: "..tostring(objective.ScoreFailed))
 							if objective.Party == serverParty then
 								luaObj_Failed("primary", index)
 							else
@@ -11546,58 +11546,58 @@ function luaMultiQuit(serverParty, serverQuit, opposingClients)
 				elseif objtable == Mission.Objectives.secondary then
 					for index, objective in pairs (objtable) do
 						if objective.Active and objective.Success == nil then
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
 							luaObj_Failed("secondary", index)
 						end
 					end
 				elseif objtable == Mission.Objectives.hidden then
 					for index, objective in pairs (objtable) do
 						if objective.Active and objective.Success == nil then
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  objective ID: "..objective.ID.." failed ")
 							luaObj_Failed("hidden", index)
 						end
 					end
 				end
 			end
 		else
--- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  Mission.Objectives == nil")
+		-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "  Mission.Objectives == nil")
 		end
 	end
 
 	local MPlayers = Multi_GetPlayers()
 	for playerID, PartyID in pairs (MPlayers) do
--- RELEASE_LOGOFF  		luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
+		-- RELEASE_LOGOFF  		luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
 		for priority, ptable in pairs(Mission.Objectives) do
--- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Checking "..priority.." objectives...")
+		-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Checking "..priority.." objectives...")
 			for num, obj in pairs(ptable) do
--- RELEASE_LOGOFF  				luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " PartyID: "..tostring(PartyID).." | obj.Party: "..tostring(obj.Party))
+		-- RELEASE_LOGOFF  				luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " PartyID: "..tostring(PartyID).." | obj.Party: "..tostring(obj.Party))
 				if obj.Party == PartyID then
 					if luaObj_GetSuccess(priority, num) then
 						if Mission.CompetitiveWinnerIndex == nil or Mission.CompetitiveWinnerIndex ~= nil and obj.PlayerIndex == nil then
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is completed, rewarding by "..obj.ScoreCompleted)
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is completed, rewarding by "..obj.ScoreCompleted)
 							Scoring_SetMissionScore(playerID, obj.ID, luaRound(obj.ScoreCompleted))
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
 						elseif Mission.CompetitiveWinnerIndex ~= nil then
 							local objID = Mission.CompetitiveWinnerIndex + 1
 							local playerObjID = playerID + 1
 							if playerID == Mission.CompetitiveWinnerIndex then
--- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is completed, rewarding by "..obj.ScoreCompleted)
+		-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is completed, rewarding by "..obj.ScoreCompleted)
 								Scoring_SetMissionScore(playerID, obj.ID, luaRound(obj.ScoreCompleted))
--- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
+		-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
 							elseif num == playerObjID then
--- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
+		-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
 								Scoring_SetMissionScore(playerID, obj.ID, luaRound(obj.ScoreFailed))
--- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
+		-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
 							else
--- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by 0")
+		-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by 0")
 								Scoring_SetMissionScore(playerID, obj.ID, 0)
--- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
+		-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
 							end
 						end
 					elseif num == playerID + 1 then
--- RELEASE_LOGOFF  						luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
+		-- RELEASE_LOGOFF  						luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
 						Scoring_SetMissionScore(playerID, obj.ID, luaRound(obj.ScoreFailed))
--- RELEASE_LOGOFF  						luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
+		-- RELEASE_LOGOFF  						luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Index: "..playerID..", "..tostring(PartyID))
 					end
 				end
 			end
@@ -11616,38 +11616,38 @@ function luaMultiQuit(serverParty, serverQuit, opposingClients)
 	local MPlayers = GetPlayerDetails()
 	for slotID, value in pairs (MPlayers) do
 		if value.ai == true then
--- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
+		-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
 			for priority, ptable in pairs(Mission.Objectives) do
--- RELEASE_LOGOFF  				luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Checking "..priority.." objectives...")
+		-- RELEASE_LOGOFF  				luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Checking "..priority.." objectives...")
 				for num, obj in pairs(ptable) do
--- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " value.party: "..tostring(value.party).." | obj.Party: "..tostring(obj.Party))
+		-- RELEASE_LOGOFF  					luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " value.party: "..tostring(value.party).." | obj.Party: "..tostring(obj.Party))
 					if obj.Party == value.party then
 						if luaObj_GetSuccess(priority, num) then
 							if Mission.CompetitiveWinnerIndex == nil or Mission.CompetitiveWinnerIndex ~= nil and obj.PlayerIndex == nil then
--- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is completed, rewarding by "..obj.ScoreCompleted)
+		-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is completed, rewarding by "..obj.ScoreCompleted)
 								Scoring_SetMissionScore(slotID, obj.ID, luaRound(obj.ScoreCompleted))
--- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
+		-- RELEASE_LOGOFF  								luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
 							elseif Mission.CompetitiveWinnerIndex ~= nil then
 								local objID = Mission.CompetitiveWinnerIndex + 1
 								local playerObjID = slotID + 1
 								if slotID == Mission.CompetitiveWinnerIndex then
--- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is completed, rewarding by "..obj.ScoreCompleted)
+		-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is completed, rewarding by "..obj.ScoreCompleted)
 									Scoring_SetMissionScore(slotID, obj.ID, luaRound(obj.ScoreCompleted))
--- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
+		-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
 								elseif num == playerObjID then
--- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
+		-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
 									Scoring_SetMissionScore(slotID, obj.ID, luaRound(obj.ScoreFailed))
--- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
+		-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
 								else
--- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by 0")
+		-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by 0")
 									Scoring_SetMissionScore(slotID, obj.ID, 0)
--- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
+		-- RELEASE_LOGOFF  									luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
 								end
 							end
 						elseif num == slotID + 1 then
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " Objective "..priority..num.."("..obj.ID..") is failed, rewarding by "..obj.ScoreFailed)
 							Scoring_SetMissionScore(slotID, obj.ID, luaRound(obj.ScoreFailed))
--- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
+		-- RELEASE_LOGOFF  							luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "Skirmish AI Index: "..slotID..", "..tostring(value.party))
 						end
 					end
 				end
@@ -11657,12 +11657,12 @@ function luaMultiQuit(serverParty, serverQuit, opposingClients)
 
 	local MPlayers = GetPlayerDetails()
 	for slotID, value in pairs (MPlayers) do
--- RELEASE_LOGOFF  		luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " slotID: "..slotID.." | value.ai: "..tostring(value.ai).." | value.playerName: "..tostring(value.playerName))
+		-- RELEASE_LOGOFF  		luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " slotID: "..slotID.." | value.ai: "..tostring(value.ai).." | value.playerName: "..tostring(value.playerName))
 		if serverQuit and not value.ai and value.playerindex == 0 then
--- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " calling ClearPlayerScore for player 0")
+		-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " calling ClearPlayerScore for player 0")
 			ClearPlayerScore(slotID)
 		elseif value.ai and value.playerName ~= "" then
--- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " calling ClearPlayerScore for player "..tostring(slotID))
+		-- RELEASE_LOGOFF  			luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " calling ClearPlayerScore for player "..tostring(slotID))
 			ClearPlayerScore(slotID)
 		end
 	end
@@ -11673,7 +11673,7 @@ function luaSetMultiMessages(quit, clientsQuit, competitiveClientQuit)
 		return
 	end
 
--- RELEASE_LOGOFF  	luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "luaSetMultiMessages called in "..tostring(LobbySettings.GameMode).." mode...")
+		-- RELEASE_LOGOFF  	luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", "luaSetMultiMessages called in "..tostring(LobbySettings.GameMode).." mode...")
 	if LobbySettings.GameMode == "globals.gamemode_competitive" then
 		if quit then
 			luaSetMultiMessagesQuit(true, false, false)
@@ -11932,7 +11932,7 @@ function luaSetMultiMessages(quit, clientsQuit, competitiveClientQuit)
 end
 
 function luaSetMultiMessagesQuit(server, opposingClient, competitive)
--- RELEASE_LOGOFF  	luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " server: "..tostring(server).." | opposingClient: "..tostring(opposingClient).." | competitive: "..tostring(competitive))
+		-- RELEASE_LOGOFF  	luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " server: "..tostring(server).." | opposingClient: "..tostring(opposingClient).." | competitive: "..tostring(competitive))
 
 	if server then
 		--luaDoCustomLog("luaObj_scoring_"..Mission.Name..".log", " server")
@@ -11998,16 +11998,16 @@ function luaMultiVoiceOverHandler()
 			if highestplayerscore ~= 0 then
 				if highestindex ~= Mission.LeaderIndexVO then
 					if Mission.CompetitiveParty == PARTY_ALLIED then
--- RELEASE_LOGOFF  						luaHelperLog("-- Competitive playing Allied voice-over for new leader: "..tostring(highestindex).." --")
+		-- RELEASE_LOGOFF  						luaHelperLog("-- Competitive playing Allied voice-over for new leader: "..tostring(highestindex).." --")
 						DisplayMessage(highestindex, "scoremulti_score_lead_gained")
--- RELEASE_LOGOFF  						luaHelperLog("-- Competitive playing Allied voice-over for previous leader: "..tostring(Mission.LeaderIndexVO).." --")
+		-- RELEASE_LOGOFF  						luaHelperLog("-- Competitive playing Allied voice-over for previous leader: "..tostring(Mission.LeaderIndexVO).." --")
 						if Mission.LeaderIndexVO ~= 8 then
 							DisplayMessage(Mission.LeaderIndexVO, "scoremulti_score_lead_lost")
 						end
 					else
--- RELEASE_LOGOFF  						luaHelperLog("-- Competitive playing Japanese voice-over for new leader: "..tostring(highestindex).." --")
+		-- RELEASE_LOGOFF  						luaHelperLog("-- Competitive playing Japanese voice-over for new leader: "..tostring(highestindex).." --")
 						DisplayMessage(highestindex, "scoremulti_score_lead_gained") -- egyelore nem kulonboztetjuk meg
--- RELEASE_LOGOFF  						luaHelperLog("-- Competitive playing Japanese voice-over for previous leader: "..tostring(Mission.LeaderIndexVO).." --")
+		-- RELEASE_LOGOFF  						luaHelperLog("-- Competitive playing Japanese voice-over for previous leader: "..tostring(Mission.LeaderIndexVO).." --")
 						if Mission.LeaderIndexVO ~= 8 then
 							DisplayMessage(Mission.LeaderIndexVO, "scoremulti_score_lead_lost") -- egyelore nem kulonboztetjuk meg
 						end
@@ -12021,7 +12021,7 @@ function luaMultiVoiceOverHandler()
 		if Mission.CapturePointLimit ~= 0 then
 			local thresholdVP = Mission.CapturePointLimit * 0.85
 			if Mission.AlliedCapturePoints > thresholdVP and not Mission.AlliedVoiceOverPlayed then
--- RELEASE_LOGOFF  				luaHelperLog("-- IC playing Allied voice-over --")
+		-- RELEASE_LOGOFF  				luaHelperLog("-- IC playing Allied voice-over --")
 				for i = 1, 8 do
 					local slotID = i - 1
 					DisplayMessage(slotID, "scoremulti_allies_to_win")
@@ -12029,7 +12029,7 @@ function luaMultiVoiceOverHandler()
 				Mission.AlliedVoiceOverPlayed = true
 			end
 			if Mission.JapaneseCapturePoints > thresholdVP and not Mission.JapaneseVoiceOverPlayed then
--- RELEASE_LOGOFF  				luaHelperLog("-- IC playing Japanese voice-over --")
+		-- RELEASE_LOGOFF  				luaHelperLog("-- IC playing Japanese voice-over --")
 				for i = 1, 8 do
 					local slotID = i - 1
 					DisplayMessage(slotID, "scoremulti_japanese_to_win")
@@ -12041,7 +12041,7 @@ function luaMultiVoiceOverHandler()
 	--[[elseif LobbySettings.GameMode == "globals.gamemode_siege" then
 		local thresholdRP = Mission.ResourcePoolBase * 0.15
 		if Mission.ResourceUSPool < thresholdRP and not Mission.AlliedVoiceOverPlayed then
--- RELEASE_LOGOFF  			luaHelperLog("-- Siege playing Allied voice-over --")
+		-- RELEASE_LOGOFF  			luaHelperLog("-- Siege playing Allied voice-over --")
 			for i = 1, 8 do
 				local slotID = i - 1
 				DisplayMessage(slotID, "scoremulti_japanese_to_win")
@@ -12049,7 +12049,7 @@ function luaMultiVoiceOverHandler()
 			Mission.AlliedVoiceOverPlayed = true
 		end
 		if Mission.ResourceJapPool < thresholdRP and not Mission.JapaneseVoiceOverPlayed then
--- RELEASE_LOGOFF  			luaHelperLog("-- Siege playing Japanese voice-over --")
+		-- RELEASE_LOGOFF  			luaHelperLog("-- Siege playing Japanese voice-over --")
 			for i = 1, 8 do
 				local slotID = i - 1
 				DisplayMessage(slotID, "scoremulti_allies_to_win")
@@ -12078,37 +12078,37 @@ end
 function luaUnitRedistribution()
 
 	Mission.PlayersTable = GetPlayerDetails()
--- RELEASE_LOGOFF  	luaHelperLog("")
--- RELEASE_LOGOFF  	luaHelperLog("")
--- RELEASE_LOGOFF  	luaHelperLog("")
--- RELEASE_LOGOFF  	luaHelperLog("-- START PLAYERTABLE CHECK --")
--- RELEASE_LOGOFF  	luaHelperLog("")
--- RELEASE_LOGOFF  	luaHelperLog(Mission.PlayersTable)
--- RELEASE_LOGOFF  	luaHelperLog("")
--- RELEASE_LOGOFF  	luaHelperLog("-- END PLAYERTABLE CHECK --")
--- RELEASE_LOGOFF  	luaHelperLog("")
--- RELEASE_LOGOFF  	luaHelperLog("")
--- RELEASE_LOGOFF  	luaHelperLog("")
--- RELEASE_LOGOFF  	luaHelperLog("----- START UNIT TABLE CHECK -----")
--- RELEASE_LOGOFF  	luaHelperLog("")
--- RELEASE_LOGOFF  	luaHelperLog("US UNIT TABLE")
--- RELEASE_LOGOFF  	luaHelperLog(Mission.USCB)
+		-- RELEASE_LOGOFF  	luaHelperLog("")
+		-- RELEASE_LOGOFF  	luaHelperLog("")
+		-- RELEASE_LOGOFF  	luaHelperLog("")
+		-- RELEASE_LOGOFF  	luaHelperLog("-- START PLAYERTABLE CHECK --")
+		-- RELEASE_LOGOFF  	luaHelperLog("")
+		-- RELEASE_LOGOFF  	luaHelperLog(Mission.PlayersTable)
+		-- RELEASE_LOGOFF  	luaHelperLog("")
+		-- RELEASE_LOGOFF  	luaHelperLog("-- END PLAYERTABLE CHECK --")
+		-- RELEASE_LOGOFF  	luaHelperLog("")
+		-- RELEASE_LOGOFF  	luaHelperLog("")
+		-- RELEASE_LOGOFF  	luaHelperLog("")
+		-- RELEASE_LOGOFF  	luaHelperLog("----- START UNIT TABLE CHECK -----")
+		-- RELEASE_LOGOFF  	luaHelperLog("")
+		-- RELEASE_LOGOFF  	luaHelperLog("US UNIT TABLE")
+		-- RELEASE_LOGOFF  	luaHelperLog(Mission.USCB)
 	if luaCountTable(Mission.USCB) == 0 then
--- RELEASE_LOGOFF  		luaHelperLog("WARNING Mission.USCB IS EMPTY")
+		-- RELEASE_LOGOFF  		luaHelperLog("WARNING Mission.USCB IS EMPTY")
 	end
--- RELEASE_LOGOFF  	luaHelperLog("")
--- RELEASE_LOGOFF  	luaHelperLog("JP UNIT TABLE")
--- RELEASE_LOGOFF  	luaHelperLog(Mission.JPCB)
+		-- RELEASE_LOGOFF  	luaHelperLog("")
+		-- RELEASE_LOGOFF  	luaHelperLog("JP UNIT TABLE")
+		-- RELEASE_LOGOFF  	luaHelperLog(Mission.JPCB)
 	if luaCountTable(Mission.JPCB) == 0 then
--- RELEASE_LOGOFF  		luaHelperLog("WARNING Mission.JPCB IS EMPTY")
+		-- RELEASE_LOGOFF  		luaHelperLog("WARNING Mission.JPCB IS EMPTY")
 	end
--- RELEASE_LOGOFF  	luaHelperLog("")
--- RELEASE_LOGOFF  	luaHelperLog("----- START UNIT TABLE CHECK -----")
--- RELEASE_LOGOFF  	luaHelperLog("")
--- RELEASE_LOGOFF  	luaHelperLog("")
--- RELEASE_LOGOFF  	luaHelperLog("")
--- RELEASE_LOGOFF  	luaHelperLog("----- START AI CHECK -----")
--- RELEASE_LOGOFF  	luaHelperLog("")
+		-- RELEASE_LOGOFF  	luaHelperLog("")
+		-- RELEASE_LOGOFF  	luaHelperLog("----- START UNIT TABLE CHECK -----")
+		-- RELEASE_LOGOFF  	luaHelperLog("")
+		-- RELEASE_LOGOFF  	luaHelperLog("")
+		-- RELEASE_LOGOFF  	luaHelperLog("")
+		-- RELEASE_LOGOFF  	luaHelperLog("----- START AI CHECK -----")
+		-- RELEASE_LOGOFF  	luaHelperLog("")
 
 	Mission.USAI = false
 	Mission.JPAI = false
@@ -12117,57 +12117,57 @@ function luaUnitRedistribution()
 	if Mission.PlayersTable[0] ~= nil then
 		if Mission.PlayersTable[0]["ai"] == true then
 			Mission.USAI = true
--- RELEASE_LOGOFF  			luaHelperLog("US is AI")
+		-- RELEASE_LOGOFF  			luaHelperLog("US is AI")
 		end
 	end
 
 	if Mission.PlayersTable[4] ~= nil then
 		if Mission.PlayersTable[4]["ai"] == true then
 			Mission.JPAI = true
--- RELEASE_LOGOFF  			luaHelperLog("JP is AI")
+		-- RELEASE_LOGOFF  			luaHelperLog("JP is AI")
 		end
 	end
 
 	if Mission.USAI == false and Mission.JPAI == false then
 		Mission.NOAI = true
--- RELEASE_LOGOFF  		luaHelperLog("NO AI")
+		-- RELEASE_LOGOFF  		luaHelperLog("NO AI")
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog("")
--- RELEASE_LOGOFF  	luaHelperLog("----- END AI CHECK -----")
--- RELEASE_LOGOFF  	luaHelperLog("")
--- RELEASE_LOGOFF  	luaHelperLog("")
--- RELEASE_LOGOFF  	luaHelperLog("")
--- RELEASE_LOGOFF  	luaHelperLog("----- START CB DISTRIBUTUIN -----")
+		-- RELEASE_LOGOFF  	luaHelperLog("")
+		-- RELEASE_LOGOFF  	luaHelperLog("----- END AI CHECK -----")
+		-- RELEASE_LOGOFF  	luaHelperLog("")
+		-- RELEASE_LOGOFF  	luaHelperLog("")
+		-- RELEASE_LOGOFF  	luaHelperLog("")
+		-- RELEASE_LOGOFF  	luaHelperLog("----- START CB DISTRIBUTUIN -----")
 
 
 	if Mission.JPAI == true then
 		local cbnum = 1
 		local run = luaCountTable(Mission.USCB)
--- RELEASE_LOGOFF  --		luaHelperLog("CB Number "..cbnum)
--- RELEASE_LOGOFF  --		luaHelperLog("RUN Number "..run)
+		-- RELEASE_LOGOFF  --		luaHelperLog("CB Number "..cbnum)
+		-- RELEASE_LOGOFF  --		luaHelperLog("RUN Number "..run)
 		for i = 1, run do
 			for idx, player in pairs(Mission.PlayersTable) do
--- RELEASE_LOGOFF  --				luaHelperLog("Player Party "..player.party)
--- RELEASE_LOGOFF  --				luaHelperLog("Player Slot "..player.playerslot)
+		-- RELEASE_LOGOFF  --				luaHelperLog("Player Party "..player.party)
+		-- RELEASE_LOGOFF  --				luaHelperLog("Player Slot "..player.playerslot)
 				if player.party == 0 then
 					if Mission.USCB[cbnum].Type == "COMMANDBUILDING" then
 						SetCommandBuildingOwnerPlayer(Mission.USCB[cbnum], player.playerslot)
 					else
 						SetRoleAvailable(Mission.USCB[cbnum], EROLF_ALL, player.playerslot)
 					end
--- RELEASE_LOGOFF  					luaHelperLog(Mission.USCB[cbnum].Name.." assigned to player "..player.playerslot)
+		-- RELEASE_LOGOFF  					luaHelperLog(Mission.USCB[cbnum].Name.." assigned to player "..player.playerslot)
 					cbnum = cbnum + 1
--- RELEASE_LOGOFF  --					luaHelperLog("CB Number "..cbnum)
+		-- RELEASE_LOGOFF  --					luaHelperLog("CB Number "..cbnum)
 					if cbnum > luaCountTable(Mission.USCB) then
--- RELEASE_LOGOFF  						luaHelperLog("----- BREAK From Player Cycle -----")
+		-- RELEASE_LOGOFF  						luaHelperLog("----- BREAK From Player Cycle -----")
 						break
 					end
 --					cbnum = cbnum + 1
 				end
 			end
 			if cbnum > luaCountTable(Mission.USCB) then
--- RELEASE_LOGOFF  				luaHelperLog("----- BREAK from CB Cycle -----")
+		-- RELEASE_LOGOFF  				luaHelperLog("----- BREAK from CB Cycle -----")
 				break
 			end
 		end
@@ -12176,30 +12176,30 @@ function luaUnitRedistribution()
 	if Mission.USAI == true then
 		local cbnum = 1
 		local run = luaCountTable(Mission.JPCB)
--- RELEASE_LOGOFF  --		luaHelperLog("CB Number "..cbnum)
--- RELEASE_LOGOFF  --		luaHelperLog("RUN Number "..run)
+		-- RELEASE_LOGOFF  --		luaHelperLog("CB Number "..cbnum)
+		-- RELEASE_LOGOFF  --		luaHelperLog("RUN Number "..run)
 		for i = 1, run do
 			for idx, player in pairs(Mission.PlayersTable) do
--- RELEASE_LOGOFF  --				luaHelperLog("Player Party "..player.party)
--- RELEASE_LOGOFF  --				luaHelperLog("Player Slot "..player.playerslot)
+		-- RELEASE_LOGOFF  --				luaHelperLog("Player Party "..player.party)
+		-- RELEASE_LOGOFF  --				luaHelperLog("Player Slot "..player.playerslot)
 				if player.party == 1 then
 					if Mission.JPCB[cbnum].Type == "COMMANDBUILDING" then
 						SetCommandBuildingOwnerPlayer(Mission.JPCB[cbnum], player.playerslot)
 					else
 						SetRoleAvailable(Mission.JPCB[cbnum], EROLF_ALL, player.playerslot)
 					end
--- RELEASE_LOGOFF  					luaHelperLog(Mission.JPCB[cbnum].Name.." assigned to player "..player.playerslot)
+		-- RELEASE_LOGOFF  					luaHelperLog(Mission.JPCB[cbnum].Name.." assigned to player "..player.playerslot)
 					cbnum = cbnum + 1
--- RELEASE_LOGOFF  --					luaHelperLog("CB Number "..cbnum)
+		-- RELEASE_LOGOFF  --					luaHelperLog("CB Number "..cbnum)
 					if cbnum > luaCountTable(Mission.JPCB) then
--- RELEASE_LOGOFF  						luaHelperLog("----- BREAK From Player Cycle -----")
+		-- RELEASE_LOGOFF  						luaHelperLog("----- BREAK From Player Cycle -----")
 						break
 					end
 --					cbnum = cbnum + 1
 				end
 			end
 			if cbnum > luaCountTable(Mission.JPCB) then
--- RELEASE_LOGOFF  				luaHelperLog("----- BREAK from CB Cycle -----")
+		-- RELEASE_LOGOFF  				luaHelperLog("----- BREAK from CB Cycle -----")
 				break
 			end
 		end
@@ -12208,65 +12208,65 @@ function luaUnitRedistribution()
 	if Mission.NOAI == true then
 		local cbnum = 1
 		local run = luaCountTable(Mission.USCB)
--- RELEASE_LOGOFF  --		luaHelperLog("CB Number "..cbnum)
--- RELEASE_LOGOFF  --		luaHelperLog("RUN Number "..run)
+		-- RELEASE_LOGOFF  --		luaHelperLog("CB Number "..cbnum)
+		-- RELEASE_LOGOFF  --		luaHelperLog("RUN Number "..run)
 		for i = 1, run do
 			for idx, player in pairs(Mission.PlayersTable) do
--- RELEASE_LOGOFF  --				luaHelperLog("Player Party "..player.party)
--- RELEASE_LOGOFF  --				luaHelperLog("Player Slot "..player.playerslot)
+		-- RELEASE_LOGOFF  --				luaHelperLog("Player Party "..player.party)
+		-- RELEASE_LOGOFF  --				luaHelperLog("Player Slot "..player.playerslot)
 				if player.party == 0 then
 					if Mission.USCB[cbnum].Type == "COMMANDBUILDING" then
 						SetCommandBuildingOwnerPlayer(Mission.USCB[cbnum], player.playerslot)
 					else
 						SetRoleAvailable(Mission.USCB[cbnum], EROLF_ALL, player.playerslot)
 					end
--- RELEASE_LOGOFF  					luaHelperLog(Mission.USCB[cbnum].Name.." assigned to player "..player.playerslot)
+		-- RELEASE_LOGOFF  					luaHelperLog(Mission.USCB[cbnum].Name.." assigned to player "..player.playerslot)
 					cbnum = cbnum + 1
--- RELEASE_LOGOFF  --					luaHelperLog("CB Number "..cbnum)
+		-- RELEASE_LOGOFF  --					luaHelperLog("CB Number "..cbnum)
 					if cbnum > luaCountTable(Mission.USCB) then
--- RELEASE_LOGOFF  						luaHelperLog("----- BREAK From Player Cycle -----")
+		-- RELEASE_LOGOFF  						luaHelperLog("----- BREAK From Player Cycle -----")
 						break
 					end
 --					cbnum = cbnum + 1
 				end
 			end
 			if cbnum > luaCountTable(Mission.USCB) then
--- RELEASE_LOGOFF  				luaHelperLog("----- BREAK from CB Cycle -----")
+		-- RELEASE_LOGOFF  				luaHelperLog("----- BREAK from CB Cycle -----")
 				break
 			end
 		end
 		local cbnum = 1
 		local run = luaCountTable(Mission.JPCB)
--- RELEASE_LOGOFF  --		luaHelperLog("CB Number "..cbnum)
--- RELEASE_LOGOFF  --		luaHelperLog("RUN Number "..run)
+		-- RELEASE_LOGOFF  --		luaHelperLog("CB Number "..cbnum)
+		-- RELEASE_LOGOFF  --		luaHelperLog("RUN Number "..run)
 		for i = 1, run do
 			for idx, player in pairs(Mission.PlayersTable) do
--- RELEASE_LOGOFF  --				luaHelperLog("Player Party "..player.party)
--- RELEASE_LOGOFF  --				luaHelperLog("Player Slot "..player.playerslot)
+		-- RELEASE_LOGOFF  --				luaHelperLog("Player Party "..player.party)
+		-- RELEASE_LOGOFF  --				luaHelperLog("Player Slot "..player.playerslot)
 				if player.party == 1 then
 					if Mission.JPCB[cbnum].Type == "COMMANDBUILDING" then
 						SetCommandBuildingOwnerPlayer(Mission.JPCB[cbnum], player.playerslot)
 					else
 						SetRoleAvailable(Mission.JPCB[cbnum], EROLF_ALL, player.playerslot)
 					end
--- RELEASE_LOGOFF  					luaHelperLog(Mission.JPCB[cbnum].Name.." assigned to player "..player.playerslot)
+		-- RELEASE_LOGOFF  					luaHelperLog(Mission.JPCB[cbnum].Name.." assigned to player "..player.playerslot)
 					cbnum = cbnum + 1
--- RELEASE_LOGOFF  --					luaHelperLog("CB Number "..cbnum)
+		-- RELEASE_LOGOFF  --					luaHelperLog("CB Number "..cbnum)
 					if cbnum > luaCountTable(Mission.JPCB) then
--- RELEASE_LOGOFF  						luaHelperLog("----- BREAK From Player Cycle -----")
+		-- RELEASE_LOGOFF  						luaHelperLog("----- BREAK From Player Cycle -----")
 						break
 					end
 --					cbnum = cbnum + 1
 				end
 			end
 			if cbnum > luaCountTable(Mission.JPCB) then
--- RELEASE_LOGOFF  				luaHelperLog("----- BREAK from CB Cycle -----")
+		-- RELEASE_LOGOFF  				luaHelperLog("----- BREAK from CB Cycle -----")
 				break
 			end
 		end
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog("----- END CB DISTRIBUTUIN -----")
+		-- RELEASE_LOGOFF  	luaHelperLog("----- END CB DISTRIBUTUIN -----")
 
 
 end
@@ -12283,7 +12283,7 @@ notLanded:
 num:
 ]]
 function luaRemoveLandedUnitsFromTable(entTable, trg, dist)
--- RELEASE_LOGOFF  	Assert(luaIsEntityTable(entTable), "***ERROR: luaRemoveLandedUnitsFromTable requires an entitylist as argument!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(luaIsEntityTable(entTable), "***ERROR: luaRemoveLandedUnitsFromTable requires an entitylist as argument!"..debug.traceback())
 
 	local notLanded = {}
 
@@ -12298,11 +12298,11 @@ function luaRemoveLandedUnitsFromTable(entTable, trg, dist)
 			else
 				x = false
 			end
--- RELEASE_LOGOFF  			luaLog("tmp "..value.Name..", dist: "..luaGetDistance(value, trg)..", landed: "..tostring(value.LandingStarted)..", OK? - "..tostring(x))
+		-- RELEASE_LOGOFF  			luaLog("tmp "..value.Name..", dist: "..luaGetDistance(value, trg)..", landed: "..tostring(value.LandingStarted)..", OK? - "..tostring(x))
 			-- tmp end
 ]]
 			if value.LandingStarted and luaGetDistance(value, trg) < dist then
--- RELEASE_LOGOFF  				luaHelperLog("unit "..value.Name.." landed")
+		-- RELEASE_LOGOFF  				luaHelperLog("unit "..value.Name.." landed")
 			else
 				table.insert(notLanded, value)
 			end
@@ -12326,12 +12326,12 @@ mParty: enum, a keresett party, (PARTY_ALLIED, PARTY_JAPANESE, PARTY_NEUTRAL)
 units: table, lista melyeben a keresett unitok this tbalai vannak
 ]]
 function luaGetOwnUnits(unittype, mParty)
--- RELEASE_LOGOFF  	luaHelperLog("Getting own units...")
+		-- RELEASE_LOGOFF  	luaHelperLog("Getting own units...")
 
 	local lParty
 
 	if mParty ~= nil then
--- RELEASE_LOGOFF  		Assert(mParty == PARTY_ALLIED or mParty == PARTY_JAPANESE or mParty == PARTY_NEUTRAL, "***ERROR: luaGetOwnUnits party must be PARTY_ALLIED, PARTY_JAPANESE or NIL!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(mParty == PARTY_ALLIED or mParty == PARTY_JAPANESE or mParty == PARTY_NEUTRAL, "***ERROR: luaGetOwnUnits party must be PARTY_ALLIED, PARTY_JAPANESE or NIL!"..debug.traceback())
 		lParty = mParty
 	else
 		lParty = Mission.Party
@@ -12366,14 +12366,14 @@ walktype:
 callback:
 ]]
 function luaStartConvoy(convoy, path, stoppoints, walktype, callback)
--- RELEASE_LOGOFF  	luaHelperLog("luaStartConvoyOnPath initiated...")
--- RELEASE_LOGOFF  	Assert(convoy ~= nil and luaIsEntityTable({convoy}) and luaGetType(convoy) == "vehicle", "***ERROR: luaStartConvoyOnPath needs a convoy as first argument!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaHelperLog("luaStartConvoyOnPath initiated...")
+		-- RELEASE_LOGOFF  	Assert(convoy ~= nil and luaIsEntityTable({convoy}) and luaGetType(convoy) == "vehicle", "***ERROR: luaStartConvoyOnPath needs a convoy as first argument!"..debug.traceback())
 	if stoppoints ~= nil then
--- RELEASE_LOGOFF  		Assert(type(stoppoints) == "table", "***ERROR: luaStartConvoyOnPath' stoppoint argument needs to be a table!"..debug.traceback())
--- RELEASE_LOGOFF  		Assert(luaCountTable(stoppoints) <= luaCountTable(FillPathPoints(path)), "***ERROR: luaStartConvoyOnPath' stoppoints must be less than or equal to the elements of the path!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(type(stoppoints) == "table", "***ERROR: luaStartConvoyOnPath' stoppoint argument needs to be a table!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(luaCountTable(stoppoints) <= luaCountTable(FillPathPoints(path)), "***ERROR: luaStartConvoyOnPath' stoppoints must be less than or equal to the elements of the path!"..debug.traceback())
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog(" Convoy name: "..convoy.Name)
+		-- RELEASE_LOGOFF  	luaHelperLog(" Convoy name: "..convoy.Name)
 
 	LandConvoySetPath(convoy, path)
 	LandConvoySetSpeed(convoy, luaRnd(7, 10))
@@ -12387,7 +12387,7 @@ function luaStartConvoy(convoy, path, stoppoints, walktype, callback)
 		local pathPoints = FillPathPoints(path)
 
 		for key, value in pairs(stoppoints) do
--- RELEASE_LOGOFF  			luaHelperLog("  Setting stoppoint trigger: "..value)
+		-- RELEASE_LOGOFF  			luaHelperLog("  Setting stoppoint trigger: "..value)
 			AddProximityTrigger(convoy, "landconvstop"..convoy.Name..value, "luaStopAndGoConvoy", pathPoints[value], 10)
 			convoy["Triggers"] = {}
 			convoy.Triggers["landconvstop"..convoy.Name..value] = true
@@ -12455,7 +12455,7 @@ desc:
 convoy:
 ]]
 function luaClearConvoyTriggers(convoy)
--- RELEASE_LOGOFF  	luaHelperLog("Clearing triggers on "..convoy.Name)
+		-- RELEASE_LOGOFF  	luaHelperLog("Clearing triggers on "..convoy.Name)
 
 	for key, value in pairs(convoy.Triggers) do
 		RemoveTrigger(convoy, key)
@@ -12466,12 +12466,12 @@ end
 --[[
 -- nehezsegi szintek beallitasa
 function luaSetDifficulty(dif)
--- RELEASE_LOGOFF  	luaHelperLog("Setting difficulty to "..tostring(dif))
+		-- RELEASE_LOGOFF  	luaHelperLog("Setting difficulty to "..tostring(dif))
 
 	if Mission.Party == PARTY_JAPANESE then
 		for key, value in pairs(recon[PARTY_ALLIED].own) do
 			for key2, unit in pairs(value) do
--- RELEASE_LOGOFF  				Log("Difficulty level set on unit: ", unit.Name)
+		-- RELEASE_LOGOFF  				Log("Difficulty level set on unit: ", unit.Name)
 				if dif == DIFF_ROOKIE then
 					SetCrewLevel(unit, 0)
 				elseif dif == DIFF_REGULAR then
@@ -12482,7 +12482,7 @@ function luaSetDifficulty(dif)
 	else
 		for key, value in pairs(recon[PARTY_JAPANESE].own) do
 			for key2, unit in pairs(value) do
--- RELEASE_LOGOFF  				Log("Difficulty level set on unit: ", unit.Name)
+		-- RELEASE_LOGOFF  				Log("Difficulty level set on unit: ", unit.Name)
 
 			end
 		end
@@ -12498,7 +12498,7 @@ desc: a mission initben beallitott diifculty level alapjan visszaadja a scrore s
 diff: number, a szoro erteke
 ]]
 function luaGetDifficultyScoreMultiplier()
--- RELEASE_LOGOFF  	luaHelperLog("Getting difficulty multiplier")
+		-- RELEASE_LOGOFF  	luaHelperLog("Getting difficulty multiplier")
 
 	local diff = GetDifficulty()
 
@@ -12596,37 +12596,37 @@ medal: enmum, a misszio medalja, MEDAL_GOLD, MEDAL_SILVER, MEDAL_BRONZE
 ]]
 function luaGetMedalReward()
 
--- RELEASE_LOGOFF  	Assert(Mission.Objectives ~= nil, "ERROR: in luaGetMedalReward, Mission.Objectives is not defined!")
--- RELEASE_LOGOFF  	Assert(type(Mission.Objectives) == "table", "ERROR: in luaGetMedalReward, Mission.Objectives is not a table!")
--- RELEASE_LOGOFF  	Assert(Mission.Objectives.primary ~= nil, "ERROR: in luaGetMedalReward, Mission.Objectives has no 'primary' index!")
--- RELEASE_LOGOFF  	Assert(Mission.Objectives.secondary ~= nil, "ERROR: in luaGetMedalReward, Mission.Objectives has no 'secondary' index!")
--- RELEASE_LOGOFF  	Assert(Mission.Objectives.hidden ~= nil, "ERROR: in luaGetMedalReward, Mission.Objectives has no 'hidden' index!")
+		-- RELEASE_LOGOFF  	Assert(Mission.Objectives ~= nil, "ERROR: in luaGetMedalReward, Mission.Objectives is not defined!")
+		-- RELEASE_LOGOFF  	Assert(type(Mission.Objectives) == "table", "ERROR: in luaGetMedalReward, Mission.Objectives is not a table!")
+		-- RELEASE_LOGOFF  	Assert(Mission.Objectives.primary ~= nil, "ERROR: in luaGetMedalReward, Mission.Objectives has no 'primary' index!")
+		-- RELEASE_LOGOFF  	Assert(Mission.Objectives.secondary ~= nil, "ERROR: in luaGetMedalReward, Mission.Objectives has no 'secondary' index!")
+		-- RELEASE_LOGOFF  	Assert(Mission.Objectives.hidden ~= nil, "ERROR: in luaGetMedalReward, Mission.Objectives has no 'hidden' index!")
 
 	local secondary = true
 	local hidden = true
 
 	for idx,objtbl in pairs(Mission.Objectives.primary) do
 		if not objtbl.Success then
--- RELEASE_LOGOFF  			luaHelperLog("Primary obj "..tostring(idx).." is not completed!")
+		-- RELEASE_LOGOFF  			luaHelperLog("Primary obj "..tostring(idx).." is not completed!")
 			return false
 		end
 	end
 	for idx, objtbl in pairs(Mission.Objectives.secondary) do
 		if not objtbl.Success then
--- RELEASE_LOGOFF  			luaHelperLog("Secondary obj "..tostring(idx).." is not completed")
+		-- RELEASE_LOGOFF  			luaHelperLog("Secondary obj "..tostring(idx).." is not completed")
 			secondary = false
 			break
 		end
 	end
 	for idx, objtbl in pairs(Mission.Objectives.hidden) do
 		if not objtbl.Success then
--- RELEASE_LOGOFF  			luaHelperLog("Hidden obj "..tostring(idx).." is not completed")
+		-- RELEASE_LOGOFF  			luaHelperLog("Hidden obj "..tostring(idx).." is not completed")
 			hidden = false
 			break
 		end
 	end
 
--- RELEASE_LOGOFF  	luaLog("Objectives: "..tostring(secondary)..", "..tostring(hidden))
+		-- RELEASE_LOGOFF  	luaLog("Objectives: "..tostring(secondary)..", "..tostring(hidden))
 
 	if secondary and hidden then
 		--luaHelperLog("returning MEDAL_GOLD")
@@ -12649,7 +12649,7 @@ end
 
 --[[
 function luaMissionHint()
--- RELEASE_LOGOFF  	luaLog("+ Checking hints...")
+		-- RELEASE_LOGOFF  	luaLog("+ Checking hints...")
 
 	if Mission.MissionStatus ~= nil or Mission.Dead then
 		HideHint("")
@@ -12657,7 +12657,7 @@ function luaMissionHint()
 	end
 
 	if Mission.Hints == nil then
--- RELEASE_LOGOFF  		luaLog("+  Creating Hint table")
+		-- RELEASE_LOGOFF  		luaLog("+  Creating Hint table")
 		Mission.Hints = {}
 		Mission.Hints.PrevUnitType = ""
 		Mission.Hints.PrevShowTime = 0
@@ -12665,7 +12665,7 @@ function luaMissionHint()
 		Mission.Hints.FadeTime = 10
 		Mission.Hints.Cycle = 1
 
--- RELEASE_LOGOFF  		AddWatch("Mission.Hints.Cycle")
+		-- RELEASE_LOGOFF  		AddWatch("Mission.Hints.Cycle")
 	end
 
 	local unit = GetSelectedUnit()
@@ -12694,7 +12694,7 @@ end
 --	a megjelenites/eltuntetes miatt!
 ----------------------------------------------------
 function luaMissionHint_Show(unittype)
--- RELEASE_LOGOFF  	luaLog("+  Showing hint for "..unittype)
+		-- RELEASE_LOGOFF  	luaLog("+  Showing hint for "..unittype)
 
 	if unittype == "BattleShip" then
 		local hintNum = 1
@@ -12829,7 +12829,7 @@ function luaMissionHint_Show(unittype)
 end
 
 function luaMissionHint_Hide(unittype)
--- RELEASE_LOGOFF  	luaLog("+  Hiding hint for "..unittype)
+		-- RELEASE_LOGOFF  	luaLog("+  Hiding hint for "..unittype)
 
 	if unittype == "BattleShip" then
 		local cycle = Mission.Hints.Cycle - 1
@@ -12907,7 +12907,7 @@ function luaMissionHint_Hide(unittype)
 			end
 		end
 	else
--- RELEASE_LOGOFF  		luaLog("+   Empty or unhandled hide...")
+		-- RELEASE_LOGOFF  		luaLog("+   Empty or unhandled hide...")
 	end
 end
 ]]
@@ -12986,9 +12986,9 @@ camTime: number, ennyi ido alatt forog korbe a kamera
 callback: function, ezt a fv-t hivjuk meg
 ]]
 function luaCamGoRound(ent, camTime, callback)
--- RELEASE_LOGOFF  	Assert(ent ~= nil and luaIsEntityTable({ent}), "***ERROR:luaCamGoRound needs an entity (1st param)!\n"..debug.traceback())
--- RELEASE_LOGOFF  	Assert(type(camTime) == "number", "***ERROR:luaCamGoRound's timer (2nd param) must be a number!\n"..debug.traceback())
--- RELEASE_LOGOFF  --	Assert(callback ~= nil, "***ERROR:luaCamGoRound must have a callback function (3rd param)!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(ent ~= nil and luaIsEntityTable({ent}), "***ERROR:luaCamGoRound needs an entity (1st param)!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(camTime) == "number", "***ERROR:luaCamGoRound's timer (2nd param) must be a number!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  --	Assert(callback ~= nil, "***ERROR:luaCamGoRound must have a callback function (3rd param)!\n"..debug.traceback())
 
 	MovCam_SetDeviationFactor(0)
 
@@ -13033,7 +13033,7 @@ function luaGetClassUnits(cID)
 		for key2, ownUnits in pairs(rParty.own) do
 			for uID, unit in pairs(ownUnits) do
 				if unit.Class.ID == cID then
--- RELEASE_LOGOFF  					luaHelperLog("Found a unit with class ID "..cID)
+		-- RELEASE_LOGOFF  					luaHelperLog("Found a unit with class ID "..cID)
 					table.insert(units, unit)
 				end
 			end
@@ -13061,11 +13061,11 @@ damSections: table, lista melynek kulcsai 'Category' ehhez tartoznak a damage sz
 ]]
 function luaGetDamageSections(ent)
 	if ent.ID == nil or ent.Dead then
--- RELEASE_LOGOFF  		luaHelperLog("Bad entity param in luaGetDamageSections")
+		-- RELEASE_LOGOFF  		luaHelperLog("Bad entity param in luaGetDamageSections")
 		return
 	end
 	if luaGetType(ent) ~= "ship" then
--- RELEASE_LOGOFF  		luaHelperLog("Entity is not a ship in luaGetDamageSections")
+		-- RELEASE_LOGOFF  		luaHelperLog("Entity is not a ship in luaGetDamageSections")
 		return
 	end
 
@@ -13100,7 +13100,7 @@ function luaGetDamageSections(ent)
 	--if next(damSections) ~= nil then
 		return damSections
 	--else
--- RELEASE_LOGOFF  	--	luaHelperLog("ERROR: no damage section found in luaGetDamageSections on entity "..ent.Name)
+		-- RELEASE_LOGOFF  	--	luaHelperLog("ERROR: no damage section found in luaGetDamageSections on entity "..ent.Name)
 	--	return nil
 	--end
 end
@@ -13126,7 +13126,7 @@ cb: function, a meghivando callback fv
 delayTime: number, ennyi sec. alatt fut le a fv
 ]]
 function luaJumpToUnit(unit, cb, delayTime)
--- RELEASE_LOGOFF  	Assert(luaIsEntityTable({unit}), "***ERROR: luaJumpToUnit got a non-ent parameter!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(luaIsEntityTable({unit}), "***ERROR: luaJumpToUnit got a non-ent parameter!"..debug.traceback())
 
 	if delayTime then
 		return luaDelay(luaJumpToUnitDelay, delayTime, "unitID", unit.ID, "CB", cb)
@@ -13138,7 +13138,7 @@ function luaJumpToUnit(unit, cb, delayTime)
 	end
 	Mission.Tmp.UnitJump = {}
 	if cb then
--- RELEASE_LOGOFF  		Assert(type(cb) == "string", "***ERROR: luaJumpToUnit must get a string as callback!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(type(cb) == "string", "***ERROR: luaJumpToUnit must get a string as callback!"..debug.traceback())
 		Mission.Tmp.UnitJump.CB = cb
 	end
 
@@ -13172,13 +13172,13 @@ customMusic: enum, ezt a zenefilet jatszuk le, default MUSIC_TENSION, MUSIC_ACTI
 ]]
 --
 function luaCheckMusic(unit, dist, customMusic)
--- RELEASE_LOGOFF  	luaHelperLog("-- MUSIC: Checking music change...")
+		-- RELEASE_LOGOFF  	luaHelperLog("-- MUSIC: Checking music change...")
 
 	--CustomMusic
 	if customMusic then
 		Mission.SuspendMusicCheck = true
 		if customMusic == "MinorVictory" and Mission.CurrentMusic ~= MUSIC_CUSTOM1 and Mission.CurrentMusic ~= MUSIC_CUSTOM2 then
--- RELEASE_LOGOFF  			luaHelperLog("-- MUSIC:  Setting to MinorVictory")
+		-- RELEASE_LOGOFF  			luaHelperLog("-- MUSIC:  Setting to MinorVictory")
 			Music_Control_SetLevel(MUSIC_CUSTOM1)
 			Mission.CurrentMusic = MUSIC_CUSTOM1
 			if Mission.MusicChangeTimer1 then
@@ -13206,11 +13206,11 @@ function luaCheckMusic(unit, dist, customMusic)
 				Mission.MusicChangeTimer3 = luaDelaySet("MusicChangeOnMap", true, 24.30)
 			end
 		elseif customMusic == "MinorVictory" and Mission.CurrentMusic == MUSIC_CUSTOM1 then
--- RELEASE_LOGOFF  			luaHelperLog(" << Change of music to MinorVictory denied, MinorVictory is already playing.")
+		-- RELEASE_LOGOFF  			luaHelperLog(" << Change of music to MinorVictory denied, MinorVictory is already playing.")
 		elseif customMusic == "MinorVictory" and Mission.CurrentMusic == MUSIC_CUSTOM2 then
--- RELEASE_LOGOFF  			luaHelperLog(" << Change of music to MinorVictory denied, MinorDefeat is playing.")
+		-- RELEASE_LOGOFF  			luaHelperLog(" << Change of music to MinorVictory denied, MinorDefeat is playing.")
 		elseif customMusic == "MinorDefeat" and Mission.CurrentMusic ~= MUSIC_CUSTOM2 then
--- RELEASE_LOGOFF  			luaHelperLog("-- MUSIC:  Setting to MinorDefeat")
+		-- RELEASE_LOGOFF  			luaHelperLog("-- MUSIC:  Setting to MinorDefeat")
 			Music_Control_SetLevel(MUSIC_CUSTOM2)
 			Mission.CurrentMusic = MUSIC_CUSTOM2
 			if Mission.MusicChangeTimer1 then
@@ -13238,12 +13238,12 @@ function luaCheckMusic(unit, dist, customMusic)
 				Mission.MusicChangeTimer3 = luaDelaySet("MusicChangeOnMap", true, 25.40)
 			end
 		elseif customMusic == "MinorDefeat" then
--- RELEASE_LOGOFF  			luaHelperLog(" << Change of music to MinorDefeat denied, MinorDefeat is already playing.")
+		-- RELEASE_LOGOFF  			luaHelperLog(" << Change of music to MinorDefeat denied, MinorDefeat is already playing.")
 		end
 	end
 
 	if Mission.SuspendMusicCheck then
--- RELEASE_LOGOFF  		luaHelperLog(" << Change of music denied, custom music is playing.")
+		-- RELEASE_LOGOFF  		luaHelperLog(" << Change of music denied, custom music is playing.")
 		return
 	end
 
@@ -13253,7 +13253,7 @@ function luaCheckMusic(unit, dist, customMusic)
 		end
 		unit = GetSelectedUnit()
 		if unit == nil then
--- RELEASE_LOGOFF  			luaHelperLog("-- MUSIC: no unit selectable, check denied")
+		-- RELEASE_LOGOFF  			luaHelperLog("-- MUSIC: no unit selectable, check denied")
 			return
 		end
 	else
@@ -13261,13 +13261,13 @@ function luaCheckMusic(unit, dist, customMusic)
 	end
 
 	if unit.Dead then
--- RELEASE_LOGOFF  		luaHelperLog("-- MUSIC:  Music unit is DEAD, check denied")
+		-- RELEASE_LOGOFF  		luaHelperLog("-- MUSIC:  Music unit is DEAD, check denied")
 		return
 	end
 
 	local map = IsGUIActive("GUI_map") -- ha a terkepen vagyunk, nem valtunk zenet
 	if map and not Mission.MusicChangeOnMap then
--- RELEASE_LOGOFF  		luaHelperLog("-- MUSIC: On map, check denied")
+		-- RELEASE_LOGOFF  		luaHelperLog("-- MUSIC: On map, check denied")
 		return
 	end
 
@@ -13341,19 +13341,19 @@ function luaCheckMusic(unit, dist, customMusic)
 	end
 
 	if calmReq and Mission.CurrentMusic ~= MUSIC_CALM and GameTime()-Mission.MusicChangedAtTime > Mission.MusicChangeTime then
--- RELEASE_LOGOFF  		luaHelperLog("-- MUSIC:  Setting to calm")
+		-- RELEASE_LOGOFF  		luaHelperLog("-- MUSIC:  Setting to calm")
 		Music_Control_SetLevel(MUSIC_CALM)
 		Mission.CurrentMusic = MUSIC_CALM
 		Mission.MusicChangedAtTime = GameTime()
 		Mission.MusicChangeOnMap = nil
 	elseif tensionReq and Mission.CurrentMusic ~= MUSIC_TENSION and GameTime()-Mission.MusicChangedAtTime > Mission.MusicChangeTime then
--- RELEASE_LOGOFF  		luaHelperLog("-- MUSIC:  Setting to tension")
+		-- RELEASE_LOGOFF  		luaHelperLog("-- MUSIC:  Setting to tension")
 		Music_Control_SetLevel(MUSIC_TENSION)
 		Mission.CurrentMusic = MUSIC_TENSION
 		Mission.MusicChangedAtTime = GameTime()
 		Mission.MusicChangeOnMap = nil
 	elseif actionReq and Mission.CurrentMusic ~= MUSIC_ACTION and GameTime()-Mission.MusicChangedAtTime > Mission.MusicChangeTime then
--- RELEASE_LOGOFF  		luaHelperLog("-- MUSIC:  Setting to action")
+		-- RELEASE_LOGOFF  		luaHelperLog("-- MUSIC:  Setting to action")
 		Music_Control_SetLevel(MUSIC_ACTION)
 		Mission.CurrentMusic = MUSIC_ACTION
 		Mission.MusicChangedAtTime = GameTime()
@@ -13396,9 +13396,9 @@ schoolCount: number, ennyi iskolat general, min 1, max 40, ellenkezo esetben 5
 trgEnt: table, egy entity this tablaja amelyhez kozel rakunk nehany haliskolat
 ]]
 function luaGenerateFishSchool(coordTbl, schoolCount, trgEnt)
--- RELEASE_LOGOFF  	luaHelperLog("luaGenerateFishSchool called")
+		-- RELEASE_LOGOFF  	luaHelperLog("luaGenerateFishSchool called")
 	if coordTbl == nil or type(coordTbl) ~= "table" then
--- RELEASE_LOGOFF  		luaHelperLog("Wrong coordTbl param is luaGenerateFishSChool, setting it to default")
+		-- RELEASE_LOGOFF  		luaHelperLog("Wrong coordTbl param is luaGenerateFishSChool, setting it to default")
 		coordTbl = 	{
 			[1] = {["x"] = -7000, ["y"] = 0, ["z"] = -9000},
 			[2] = {["x"] = 7000, ["y"] = 0, ["z"] = 9000},
@@ -13406,12 +13406,12 @@ function luaGenerateFishSchool(coordTbl, schoolCount, trgEnt)
 	end
 
 	if schoolCount < 1 or schoolCount > 40 then
--- RELEASE_LOGOFF  		luaLog("Wrong count param is luaGenerateFishSChool, setting it to 5")
+		-- RELEASE_LOGOFF  		luaLog("Wrong count param is luaGenerateFishSChool, setting it to 5")
 		schoolCount = 5
 	end
 
 	if trgEnt ~= nil and not luaIsEntityTable({trgEnt}, false) then
--- RELEASE_LOGOFF  		luaHelperLog("Wrong entity given as param in luaGenerateFishSChool, setting it to nil")
+		-- RELEASE_LOGOFF  		luaHelperLog("Wrong entity given as param in luaGenerateFishSChool, setting it to nil")
 		trgEnt = nil
 	end
 
@@ -13423,7 +13423,7 @@ function luaGenerateFishSchool(coordTbl, schoolCount, trgEnt)
 
 		i = i + 1
 		if i == schoolCount * 1.5 then
--- RELEASE_LOGOFF  			luaHelperLog("Hmm ez lehet hogy vegtelenbe futna.")
+		-- RELEASE_LOGOFF  			luaHelperLog("Hmm ez lehet hogy vegtelenbe futna.")
 			break
 		end
 
@@ -13445,25 +13445,25 @@ function luaGenerateFishSchool(coordTbl, schoolCount, trgEnt)
 			local diffZ = schoolPos.z - pos.z
 			local schoolDist = math.sqrt(math.pow(diffX, 2) + math.pow(diffY, 2) + math.pow(diffZ, 2))
 
--- RELEASE_LOGOFF  			luaHelperLog("sDist "..tostring(schoolDist).." dist "..tostring(dist))
+		-- RELEASE_LOGOFF  			luaHelperLog("sDist "..tostring(schoolDist).." dist "..tostring(dist))
 
 
 			if schoolDist < dist then
 				schoolOK = false
--- RELEASE_LOGOFF  				luaHelperLog("School too close")
+		-- RELEASE_LOGOFF  				luaHelperLog("School too close")
 				count = count - 1
 				break
 			end
 			_island = IsLandscape(schoolPos)
 			if  _island~= nil then
 				schoolOK = false
--- RELEASE_LOGOFF  				luaHelperLog("School on island close")
+		-- RELEASE_LOGOFF  				luaHelperLog("School on island close")
 				count = count - 1
 				break
 			end
 		end
 
--- RELEASE_LOGOFF  		luaHelperLog("schoolOK "..tostring(schoolOK))
+		-- RELEASE_LOGOFF  		luaHelperLog("schoolOK "..tostring(schoolOK))
 		if schoolOK then
 			table.insert(schools, pos)
 		end
@@ -13477,7 +13477,7 @@ function luaGenerateFishSchool(coordTbl, schoolCount, trgEnt)
 			InsertFishSchool(luaRnd(1,5),pos)
 	end
 
--- RELEASE_LOGOFF  	luaHelperLog("Inserted "..tostring(table.getn(schools)).." schools")
+		-- RELEASE_LOGOFF  	luaHelperLog("Inserted "..tostring(table.getn(schools)).." schools")
 
 	if trgEnt ~= nil then
 		local pos = GetPosition(trgEnt)
@@ -13559,14 +13559,14 @@ paramExtension: number,
 ]]
 function luaSetNarrativeParam(inputID, paramExtension, secondAxis)
 	if PC and not X360COMP then
--- RELEASE_LOGOFF  		Assert(inputID ~= nil and type(inputID) == "number", "***ERROR: luaSetNarrativeParam needs an InputID as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(inputID ~= nil and type(inputID) == "number", "***ERROR: luaSetNarrativeParam needs an InputID as first param!"..debug.traceback())
 		if paramExtension then
--- RELEASE_LOGOFF  			Assert(type(paramExtension) == "number", "***ERROR: luaSetNarrativeParam needs a number as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  			Assert(type(paramExtension) == "number", "***ERROR: luaSetNarrativeParam needs a number as second param!"..debug.traceback())
 		else
 			paramExtension = ""
 		end
 
--- RELEASE_LOGOFF  		Assert(Control ~= nil and type(Control) == "table" and Control.ControlFunctionNames ~= nil, "***ERROR: luaSetNarrativeParam requires the use of luaLoadControlFunctionNames!"..debug.traceback())
+		-- RELEASE_LOGOFF  		Assert(Control ~= nil and type(Control) == "table" and Control.ControlFunctionNames ~= nil, "***ERROR: luaSetNarrativeParam requires the use of luaLoadControlFunctionNames!"..debug.traceback())
 		if not Control then
 			Control = {}
 		end
@@ -13645,16 +13645,16 @@ function luaInitMissionEnd(endEnt, endText, movie, noRanking, onlymovie, ignoreC
 	-- letiltunk minden warningot
 	if Mission.Multiplayer == nil then
 		EnableMessages(false)
--- RELEASE_LOGOFF  		luaHelperLog("Messages false")
+		-- RELEASE_LOGOFF  		luaHelperLog("Messages false")
 	end
 
 	-- inputtiltas
 	EnableInput(false)
--- RELEASE_LOGOFF  	luaHelperLog("Input false")
+		-- RELEASE_LOGOFF  	luaHelperLog("Input false")
 
 	-- Countdown letiltasa
 	CountdownCancel()
--- RELEASE_LOGOFF  	luaHelperLog("Countdown false")
+		-- RELEASE_LOGOFF  	luaHelperLog("Countdown false")
 
 --	HideUnitHP()
 --	for i = 1,10 do
@@ -13663,28 +13663,28 @@ function luaInitMissionEnd(endEnt, endText, movie, noRanking, onlymovie, ignoreC
 
 	-- mindenkit serthetetlenne teszunk
 	for key, value in pairs(luaGetOwnUnits(nil, PARTY_ALLIED)) do
--- RELEASE_LOGOFF  		luaLog(" Setting invincible allied units: "..value.Name)	-- tmp
+		-- RELEASE_LOGOFF  		luaLog(" Setting invincible allied units: "..value.Name)	-- tmp
 		if not value.Dead then
 			SetInvincible(value, 0.1)
 		end
 	end
 
 	for key, value in pairs(luaGetOwnUnits(nil, PARTY_JAPANESE)) do
--- RELEASE_LOGOFF  		luaLog(" Setting invincible Japanese units: "..value.Name)	-- tmp
+		-- RELEASE_LOGOFF  		luaLog(" Setting invincible Japanese units: "..value.Name)	-- tmp
 		if not value.Dead then
 			SetInvincible(value, 0.1)
 		end
 	end
 
 	for key, value in pairs(luaGetOwnUnits(nil, PARTY_NEUTRAL)) do
--- RELEASE_LOGOFF  		luaLog(" Setting invincible neutral units: "..value.Name)	-- tmp
+		-- RELEASE_LOGOFF  		luaLog(" Setting invincible neutral units: "..value.Name)	-- tmp
 		if not value.Dead then
 			SetInvincible(value, 0.1)
 		end
 	end
 
 	MissionNarrativeClear()
--- RELEASE_LOGOFF  	luaHelperLog("Narrativeclear")
+		-- RELEASE_LOGOFF  	luaHelperLog("Narrativeclear")
 
 	-- aktualis dialogusok kiirtasa
 	-- ezzel csinnyan kell banni mert lehet hogy kellenek zarodialogusok, szoval inkabb akkor hivjuk a completedet, ha ures a queue
@@ -13710,12 +13710,12 @@ function luaInitMissionEnd(endEnt, endText, movie, noRanking, onlymovie, ignoreC
 	Mission.MissionEndParams.Text = endText
 	Mission.MissionEndParams.Ent = endEnt
 	Mission.MissionEndParams.Movie = movie
--- RELEASE_LOGOFF  	luaHelperLog("end of init end")
+		-- RELEASE_LOGOFF  	luaHelperLog("end of init end")
 end
 
 --[[
 function luaCamTeszt()
--- RELEASE_LOGOFF  	luaLog("Cam test")
+		-- RELEASE_LOGOFF  	luaLog("Cam test")
 	if Mission.CamTest == nil then
 		Mission.CamTest = 0
 	else
@@ -13724,11 +13724,11 @@ function luaCamTeszt()
 
 	local cam = GetCameraState().Position
 
--- RELEASE_LOGOFF  	luaLog("-------- CAM POS "..Mission.CamTest.." --------")
--- RELEASE_LOGOFF  	luaLog("Cam X: "..cam.x)
--- RELEASE_LOGOFF  	luaLog("Cam Y: "..cam.y)
--- RELEASE_LOGOFF  	luaLog("Cam Z: "..cam.z)
--- RELEASE_LOGOFF  	luaLog("\n")
+		-- RELEASE_LOGOFF  	luaLog("-------- CAM POS "..Mission.CamTest.." --------")
+		-- RELEASE_LOGOFF  	luaLog("Cam X: "..cam.x)
+		-- RELEASE_LOGOFF  	luaLog("Cam Y: "..cam.y)
+		-- RELEASE_LOGOFF  	luaLog("Cam Z: "..cam.z)
+		-- RELEASE_LOGOFF  	luaLog("\n")
 
 	if Mission.CamTest < 40 then
 		luaDelay(luaCamTeszt, 0.3)
@@ -13747,7 +13747,7 @@ shortdesc:
 desc:
 ]]
 function luaSquadronSupply(unittemplate, num, CB, filter, spawnType, targetEntOrPos, minDist, maxDist, height, angle0, angle1)
--- RELEASE_LOGOFF  	luaLog("-- SquadronSupply: called")
+		-- RELEASE_LOGOFF  	luaLog("-- SquadronSupply: called")
 	if Mission["SquadronSupply"..unittemplate.Name] == nil then
 		Mission["SquadronSupply"..unittemplate.Name] = {}
 	else
@@ -13758,7 +13758,7 @@ function luaSquadronSupply(unittemplate, num, CB, filter, spawnType, targetEntOr
 	end
 
 	if luaCountTable(Mission["SquadronSupply"..unittemplate.Name]) < num then
--- RELEASE_LOGOFF  		luaLog("-- SquadronSupply: spawning squad "..unittemplate.Name)
+		-- RELEASE_LOGOFF  		luaLog("-- SquadronSupply: spawning squad "..unittemplate.Name)
 
 		local unit
 		if spawnType == nil then
@@ -13775,7 +13775,7 @@ function luaSquadronSupply(unittemplate, num, CB, filter, spawnType, targetEntOr
 			CB(unit)
 		end
 	else
--- RELEASE_LOGOFF  		luaLog("-- SquadronSupply: limit reached, spawning denied! +")
+		-- RELEASE_LOGOFF  		luaLog("-- SquadronSupply: limit reached, spawning denied! +")
 	end
 end
 
@@ -13788,7 +13788,7 @@ unit: table, a halalraitel egyseg this tablaja
 delaytime: number, ennyi sec utan oli meg a fv az entitast
 ]]
 function luaKillDelayed(unit, delaytime)
--- RELEASE_LOGOFF  	luaLog("-- luaKillDelayed: initiated")
+		-- RELEASE_LOGOFF  	luaLog("-- luaKillDelayed: initiated")
 
 	if Mission.MissionStatus ~= nil then
 		return
@@ -13805,9 +13805,9 @@ desc: a luaKillDelayed() idozito fv-e amely tenylegesen vegrehajtja a Kill() fv 
 timerthis: table, a luaKillDelayed() atadott valtozok osszesege
 ]]
 function luaKillDelayed_ext(timerthis)
--- RELEASE_LOGOFF  	luaLog("-- luaKillDelayed: timer called")
+		-- RELEASE_LOGOFF  	luaLog("-- luaKillDelayed: timer called")
 	if not TrulyDead(timerthis.ParamTable.unit) then
--- RELEASE_LOGOFF  		luaLog(" -- luaKillDelayed: Kill allowed, Rambo-san: wipe them out!")
+		-- RELEASE_LOGOFF  		luaLog(" -- luaKillDelayed: Kill allowed, Rambo-san: wipe them out!")
 		Kill(timerthis.ParamTable.unit, true)
 	end
 end
@@ -13820,7 +13820,7 @@ desc:
 ]]
 function luaMedalCheck()
 
--- RELEASE_LOGOFF  	Assert(type(Scoring) == "table", "***ERROR: luaMPMedalCheck() requires Scoring table!\n"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(type(Scoring) == "table", "***ERROR: luaMPMedalCheck() requires Scoring table!\n"..debug.traceback())
 
 	local players = Multi_GetPlayers()
 
@@ -13852,7 +13852,7 @@ function luaMedalCheck()
 	local FirstKillLossRatio = false
 
 	for player, pParty in pairs (players) do
--- RELEASE_LOGOFF  		luaLog("Checking player: "..player)
+		-- RELEASE_LOGOFF  		luaLog("Checking player: "..player)
 		Scoring_ForceRefreshScoringTable(player)	-- befrissitjuk a scoring tablat a playerre
 
 		local score = scoring.action_score
@@ -13875,16 +13875,16 @@ function luaMedalCheck()
 		if loss then
 			if loss.OWN then
 				for number, n in pairs (loss.OWN) do
--- RELEASE_LOGOFF  					luaLog("number of losses: " ..tostring(number))
+		-- RELEASE_LOGOFF  					luaLog("number of losses: " ..tostring(number))
 					partyLoss = partyLoss + n
--- RELEASE_LOGOFF  					luaLog("Sum Party losses: " ..tostring(partyLoss))
+		-- RELEASE_LOGOFF  					luaLog("Sum Party losses: " ..tostring(partyLoss))
 				end
 			end
 			if loss.ENEMY then
 				for number, k in pairs (loss.ENEMY) do
--- RELEASE_LOGOFF  					luaLog("number of losses: " ..tostring(number))
+		-- RELEASE_LOGOFF  					luaLog("number of losses: " ..tostring(number))
 					partyKill = partyKill + k
--- RELEASE_LOGOFF  					luaLog("Sum Party kills: " ..tostring(partyLoss))
+		-- RELEASE_LOGOFF  					luaLog("Sum Party kills: " ..tostring(partyLoss))
 				end
 			end
 		end
@@ -13892,31 +13892,31 @@ function luaMedalCheck()
 	-- Talalati pontossagon alapulo medalok
 
 		if shot then
--- RELEASE_LOGOFF  			luaLog("Shots: ")
+		-- RELEASE_LOGOFF  			luaLog("Shots: ")
 			for unitType, t in pairs (shot) do
--- RELEASE_LOGOFF  				luaLog("UnitType: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  				luaLog("UnitType: " ..tostring(unitType))
 
 				-- Ha Cruiser-el lott a jatekos
 
 				if unitType == "cruiser" then
 					for weaponType, w in pairs (shot.cruiser) do
--- RELEASE_LOGOFF  						luaLog("WeaponType: " ..tostring(weaponType))
--- RELEASE_LOGOFF  						luaLog("Player Shots: ")
+		-- RELEASE_LOGOFF  						luaLog("WeaponType: " ..tostring(weaponType))
+		-- RELEASE_LOGOFF  						luaLog("Player Shots: ")
 						-- Ha lott AA-val
 						if weaponType == "AAMACHINEGUN" then
 							for fshots, s in pairs (shot.cruiser.AAMACHINEGUN) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.cruiser.AAMACHINEGUN.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.cruiser.AAMACHINEGUN.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy planes: " ..tostring(unitType))
--- RELEASE_LOGOFF  												luaLog("value"..tostring(t))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy planes: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("value"..tostring(t))
 												if unitType == "divebomber" or unitType == "torpedobomber" or unitType == "levelbomber" or unitType == "fighter" then
 													AAenemyhits = AAenemyhits +t
--- RELEASE_LOGOFF  													luaLog("value"..tostring(t))
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy planes: " ..tostring(AAenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("value"..tostring(t))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy planes: " ..tostring(AAenemyhits))
 												end
 											end
 										end
@@ -13926,16 +13926,16 @@ function luaMedalCheck()
 						-- Ha lott HeavyArtillery-vel
 						elseif weaponType == "HEAVYARTILLERY" then
 							for fshots, s in pairs (shot.cruiser.HEAVYARTILLERY) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.cruiser.HEAVYARTILLERY.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.cruiser.HEAVYARTILLERY.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
 												 if unitType == "destroyer" or unitType == "cruiser"  or unitType == "mothership" or unitType == "submarine" or unitType == "battleship" or unitType == "cargo" then
 													Artilleryenemyhits = Artilleryenemyhits +t
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Artilleryenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Artilleryenemyhits))
 												end
 											end
 										end
@@ -13945,16 +13945,16 @@ function luaMedalCheck()
 						-- Ha lott MediumArtillery-vel
 						elseif weaponType == "MEDIUMARTILLERY" then
 							for fshots, s in pairs (shot.cruiser.MEDIUMARTILLERY) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.cruiser.MEDIUMARTILLERY.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.cruiser.MEDIUMARTILLERY.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
 												if unitType == "destroyer" or unitType == "cruiser"  or unitType == "mothership" or unitType == "submarine" or unitType == "battleship" or unitType == "cargo" then
 													Artilleryenemyhits = Artilleryenemyhits +t
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Artilleryenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Artilleryenemyhits))
 												end
 											end
 										end
@@ -13964,16 +13964,16 @@ function luaMedalCheck()
 						-- Ha lott LightArtillery-vel
 						elseif weaponType == "LIGHTARTILLERY" then
 							for fshots, s in pairs (shot.cruiser.LIGHTARTILLERY) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.cruiser.LIGHTARTILLERY.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.cruiser.LIGHTARTILLERY.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
 												if unitType == "destroyer" or unitType == "cruiser"  or unitType == "mothership" or unitType == "submarine" or unitType == "cargo" then
 													Artilleryenemyhits = Artilleryenemyhits +t
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Artilleryenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Artilleryenemyhits))
 												end
 											end
 										end
@@ -13983,16 +13983,16 @@ function luaMedalCheck()
 						-- Ha lott Torepedo-val
 						elseif weaponType == "TORPEDO" then
 							for fshots, s in pairs (shot.cruiser.TORPEDO) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.cruiser.TORPEDO.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.cruiser.TORPEDO.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
 												if unitType == "battleship" or unitType == "destroyer" or unitType == "cruiser"  or unitType == "mothership" or unitType == "submarine" or unitType == "cargo" then
 													Torpedoenemyhits = Torpedoenemyhits +t
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Torpedoenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Torpedoenemyhits))
 												end
 											end
 										end
@@ -14004,21 +14004,21 @@ function luaMedalCheck()
 				-- Ha Destroyer-el lott a jatekos
 				elseif unitType == "destroyer" then
 					for weaponType, w in pairs (shot.destroyer) do
--- RELEASE_LOGOFF  						luaLog("WeaponType: " ..tostring(weaponType))
--- RELEASE_LOGOFF  						luaLog("Player Shots: ")
+		-- RELEASE_LOGOFF  						luaLog("WeaponType: " ..tostring(weaponType))
+		-- RELEASE_LOGOFF  						luaLog("Player Shots: ")
 						-- Ha lott AA-val a jatekos
 						if weaponType == "AAMACHINEGUN" then
 							for fshots, s in pairs (shot.destroyer.AAMACHINEGUN) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.destroyer.AAMACHINEGUN.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.destroyer.AAMACHINEGUN.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy planes: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy planes: " ..tostring(unitType))
 												if unitType == "divebomber" or unitType == "torpedobomber" or unitType == "levelbomber" or unitType == "fighter" then
 													AAenemyhits = AAenemyhits +t
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy planes" ..tostring(AAenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy planes" ..tostring(AAenemyhits))
 												end
 											end
 										end
@@ -14028,16 +14028,16 @@ function luaMedalCheck()
 							-- Ha lott MediumArtillery-vel
 						elseif weaponType == "MEDIUMARTILLERY" then
 							for fshots, s in pairs (shot.destroyer.MEDIUMARTILLERY) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.destroyer.MEDIUMARTILLERY.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.destroyer.MEDIUMARTILLERY.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
 												if unitType == "destroyer" or unitType == "cruiser"  or unitType == "mothership" or unitType == "submarine" or unitType == "battleship" or unitType == "cargo" then
 													Artilleryenemyhits = Artilleryenemyhits +t
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships" ..tostring(Artilleryenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships" ..tostring(Artilleryenemyhits))
 												end
 											end
 										end
@@ -14047,16 +14047,16 @@ function luaMedalCheck()
 							-- Ha lott LightArtillery-vel
 						elseif weaponType == "LIGHTARTILLERY" then
 							for fshots, s in pairs (shot.destroyer.LIGHTARTILLERY) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.destroyer.LIGHTARTILLERY.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.destroyer.LIGHTARTILLERY.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
 												if unitType == "destroyer" or unitType == "cruiser"  or unitType == "mothership" or unitType == "submarine" or unitType == "cargo" then
 													Artilleryenemyhits = Artilleryenemyhits +t
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships" ..tostring(Artilleryenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships" ..tostring(Artilleryenemyhits))
 												end
 											end
 										end
@@ -14066,16 +14066,16 @@ function luaMedalCheck()
 						-- Ha lott Torepedo-val
 						elseif weaponType == "TORPEDO" then
 							for fshots, s in pairs (shot.destroyer.TORPEDO) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.destroyer.TORPEDO.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.destroyer.TORPEDO.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
 												if unitType == "battleship" or unitType == "destroyer" or unitType == "cruiser"  or unitType == "mothership" or unitType == "submarine" or unitType == "cargo" then
 													Torpedoenemyhits = Torpedoenemyhits +t
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Torpedoenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Torpedoenemyhits))
 												end
 											end
 										end
@@ -14087,21 +14087,21 @@ function luaMedalCheck()
 				-- Ha Battleshipel lott  a jatekos
 				elseif unitType == "battleship" then
 					for weaponType, w in pairs (shot.battleship) do
--- RELEASE_LOGOFF  						luaLog("WeaponType: " ..tostring(weaponType))
--- RELEASE_LOGOFF  						luaLog("Player Shots: ")
+		-- RELEASE_LOGOFF  						luaLog("WeaponType: " ..tostring(weaponType))
+		-- RELEASE_LOGOFF  						luaLog("Player Shots: ")
 						-- Ha lott AA-val
 						if weaponType == "AAMACHINEGUN" then
 							for fshots, s in pairs (shot.battleship.AAMACHINEGUN) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.battleship.AAMACHINEGUN.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.battleship.AAMACHINEGUN.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy planes: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy planes: " ..tostring(unitType))
 												if unitType == "divebomber" or unitType == "torpedobomber" or unitType == "levelbomber" or unitType == "fighter" then
 													AAenemyhits = AAenemyhits +t
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy planes: " ..tostring(AAenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy planes: " ..tostring(AAenemyhits))
 												end
 											end
 										end
@@ -14111,16 +14111,16 @@ function luaMedalCheck()
 						-- Ha lott HeavyArtillery-vel
 						elseif weaponType == "HEAVYARTILLERY" then
 							for fshots, s in pairs (shot.battleship.HEAVYARTILLERY) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.battleship.HEAVYARTILLERY.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.battleship.HEAVYARTILLERY.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
 												if unitType == "destroyer" or unitType == "cruiser"  or unitType == "mothership" or unitType == "submarine" or unitType == "battleship" or unitType == "cargo" then
 													Artilleryenemyhits = Artilleryenemyhits +t
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Artilleryenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Artilleryenemyhits))
 												end
 											end
 										end
@@ -14130,16 +14130,16 @@ function luaMedalCheck()
 						-- Ha lott MediumArtillery-vel
 						elseif weaponType == "MEDIUMARTILLERY" then
 							for fshots, s in pairs (shot.battleship.MEDIUMARTILLERY) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.battleship.MEDIUMARTILLERY.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.battleship.MEDIUMARTILLERY.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
 												if unitType == "destroyer" or unitType == "cruiser"  or unitType == "mothership" or unitType == "submarine" or unitType == "battleship" or unitType == "cargo" then
 													Artilleryenemyhits = Artilleryenemyhits +t
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Artilleryenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Artilleryenemyhits))
 												end
 											end
 										end
@@ -14149,16 +14149,16 @@ function luaMedalCheck()
 						-- Ha lott LightArtillery-vel
 						elseif weaponType == "LIGHTARTILLERY" then
 							for fshots, s in pairs (shot.battleship.LIGHTARTILLERY) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.battleship.LIGHTARTILLERY.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.battleship.LIGHTARTILLERY.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
 												if unitType == "destroyer" or unitType == "cruiser"  or unitType == "mothership" or unitType == "submarine" or unitType == "cargo" then
 													Artilleryenemyhits = Artilleryenemyhits +t
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Artilleryenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Artilleryenemyhits))
 												end
 											end
 										end
@@ -14170,21 +14170,21 @@ function luaMedalCheck()
 				-- Ha Torpedoboat-al lott  a jatekos
 				elseif unitType == "torpedoboat" then
 					for weaponType, w in pairs (shot.torpedoboat) do
--- RELEASE_LOGOFF  						luaLog("WeaponType: " ..tostring(weaponType))
--- RELEASE_LOGOFF  						luaLog("Player Shots: ")
+		-- RELEASE_LOGOFF  						luaLog("WeaponType: " ..tostring(weaponType))
+		-- RELEASE_LOGOFF  						luaLog("Player Shots: ")
 						-- Ha lott AA-val
 						if weaponType == "AAMACHINEGUN" then
 							for fshots, s in pairs (shot.torpedoboat.AAMACHINEGUN) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.torpedoboat.AAMACHINEGUN.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.torpedoboat.AAMACHINEGUN.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy planes: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy planes: " ..tostring(unitType))
 												if unitType == "divebomber" or unitType == "torpedobomber" or unitType == "levelbomber" or unitType == "fighter" then
 													AAenemyhits = AAenemyhits +t
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy planes: " ..tostring(AAenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy planes: " ..tostring(AAenemyhits))
 												end
 											end
 										end
@@ -14194,16 +14194,16 @@ function luaMedalCheck()
 						-- Ha lott Torepedo-val
 						elseif weaponType == "TORPEDO" then
 							for fshots, s in pairs (shot.torpedoboat.TORPEDO) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.torpedoboat.TORPEDO.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.torpedoboat.TORPEDO.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
 												if unitType == "battleship" or unitType == "destroyer" or unitType == "cruiser"  or unitType == "mothership" or unitType == "submarine" or unitType == "cargo" then
 													Torpedoenemyhits = Torpedoenemyhits +t
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Torpedoenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Torpedoenemyhits))
 												end
 											end
 										end
@@ -14215,21 +14215,21 @@ function luaMedalCheck()
 				-- Ha Tengeralattjaroval-al lott  a jatekos
 				elseif unitType == "submarine" then
 					for weaponType, w in pairs (shot.submarine) do
--- RELEASE_LOGOFF  						luaLog("WeaponType: " ..tostring(weaponType))
--- RELEASE_LOGOFF  						luaLog("Player Shots: ")
+		-- RELEASE_LOGOFF  						luaLog("WeaponType: " ..tostring(weaponType))
+		-- RELEASE_LOGOFF  						luaLog("Player Shots: ")
 						-- Ha lott AA-val
 						if weaponType == "AAMACHINEGUN" then
 							for fshots, s in pairs (shot.submarine.AAMACHINEGUN) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.submarine.AAMACHINEGUN.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.submarine.AAMACHINEGUN.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy planes: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy planes: " ..tostring(unitType))
 												if unitType == "divebomber" or unitType == "torpedobomber" or unitType == "levelbomber" or unitType == "fighter" then
 													AAenemyhits = AAenemyhits +t
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy planes: " ..tostring(AAenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy planes: " ..tostring(AAenemyhits))
 												end
 											end
 										end
@@ -14239,16 +14239,16 @@ function luaMedalCheck()
 						-- Ha lott Torepedo-val
 						elseif weaponType == "TORPEDO" then
 							for fshots, s in pairs (shot.submarine.TORPEDO) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.submarine.TORPEDO.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.submarine.TORPEDO.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
 												if unitType == "battleship" or unitType == "destroyer" or unitType == "cruiser"  or unitType == "mothership" or unitType == "submarine" or unitType == "cargo" then
 													Torpedoenemyhits = Torpedoenemyhits +t
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Torpedoenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Torpedoenemyhits))
 												end
 											end
 										end
@@ -14260,21 +14260,21 @@ function luaMedalCheck()
 				--reconplane
 				elseif unitType == "reconplane" then
 					for weaponType, w in pairs (shot.reconplane) do
--- RELEASE_LOGOFF  						luaLog("WeaponType: " ..tostring(weaponType))
--- RELEASE_LOGOFF  						luaLog("Player Shots: ")
+		-- RELEASE_LOGOFF  						luaLog("WeaponType: " ..tostring(weaponType))
+		-- RELEASE_LOGOFF  						luaLog("Player Shots: ")
 						-- Ha lott Torepedo-val
 						if weaponType == "TORPEDO" then
 							for fshots, s in pairs (shot.reconplane.TORPEDO) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.reconplane.TORPEDO.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.reconplane.TORPEDO.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
 												if unitType == "destroyer" or unitType == "cruiser"  or unitType == "mothership" 	 or unitType == "cargo" then
 													Torpedoenemyhits = Torpedoenemyhits +t
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Torpedoenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Torpedoenemyhits))
 												end
 											end
 										end
@@ -14286,21 +14286,21 @@ function luaMedalCheck()
 				-- torpedobomber
 				elseif unitType == "torpedobomber" then
 					for weaponType, w in pairs (shot.torpedobomber) do
--- RELEASE_LOGOFF  						luaLog("WeaponType: " ..tostring(weaponType))
--- RELEASE_LOGOFF  						luaLog("Player Shots: ")
+		-- RELEASE_LOGOFF  						luaLog("WeaponType: " ..tostring(weaponType))
+		-- RELEASE_LOGOFF  						luaLog("Player Shots: ")
 						-- Ha lott Torepedo-val
 						if weaponType == "TORPEDO" then
 							for fshots, s in pairs (shot.torpedobomber.TORPEDO) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.torpedobomber.TORPEDO.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.torpedobomber.TORPEDO.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy ships: " ..tostring(unitType))
 												if unitType == "battleship" or unitType == "destroyer" or unitType == "cruiser"  or unitType == "mothership" or unitType == "cargo" then
 													Torpedoenemyhits = Torpedoenemyhits +t
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Torpedoenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy ships: " ..tostring(Torpedoenemyhits))
 												end
 											end
 										end
@@ -14312,21 +14312,21 @@ function luaMedalCheck()
 					-- Ha Mothership-el lott  a jatekos
 				elseif unitType == "mothership" then
 					for weaponType, w in pairs (shot.mothership) do
--- RELEASE_LOGOFF  						luaLog("WeaponType: " ..tostring(weaponType))
--- RELEASE_LOGOFF  						luaLog("Player Shots: ")
+		-- RELEASE_LOGOFF  						luaLog("WeaponType: " ..tostring(weaponType))
+		-- RELEASE_LOGOFF  						luaLog("Player Shots: ")
 						-- Ha lott AA-val
 						if weaponType == "AAMACHINEGUN" then
 							for fshots, s in pairs (shot.mothership.AAMACHINEGUN) do
--- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
+		-- RELEASE_LOGOFF  								luaLog("FiredShots: " ..tostring(fshots))
 								if fshots == "hits" then
 									for enemyhits, h in pairs (shot.mothership.AAMACHINEGUN.hits) do
--- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
+		-- RELEASE_LOGOFF  										luaLog("Hits on enemy units: " ..tostring(enemyhits))
 										if enemyhits == "ENEMY" then
 											for unitType, t in pairs (shot.mothership.AAMACHINEGUN.hits.ENEMY) do
--- RELEASE_LOGOFF  												luaLog("Hits on enemy planes: " ..tostring(unitType))
+		-- RELEASE_LOGOFF  												luaLog("Hits on enemy planes: " ..tostring(unitType))
 												if unitType == "divebomber" or unitType == "torpedobomber" or unitType == "levelbomber" or unitType == "fighter" then
 													AAenemyhits = AAenemyhits +t
--- RELEASE_LOGOFF  													luaLog("Sum hits on enemy planes: " ..tostring(AAenemyhits))
+		-- RELEASE_LOGOFF  													luaLog("Sum hits on enemy planes: " ..tostring(AAenemyhits))
 												end
 											end
 										end
@@ -14344,68 +14344,68 @@ function luaMedalCheck()
 			-- osszes Killre
 				if  unitType == "destroyer" or unitType == "cruiser"  or unitType == "mothership" or unitType == "submarine" or unitType == "battleship" or unitType == "cargo" or unitType == "fighter" or unitType == "divebomber" or unitType == "torpedobomber" or unitType == "levelbomber" or unitType == "reconplane" then
 						unitKills = unitKills + n
--- RELEASE_LOGOFF  						luaLog("Unitkills: "..tostring(unitKills))
+		-- RELEASE_LOGOFF  						luaLog("Unitkills: "..tostring(unitKills))
 				end
 			end
 		end
 
 		if partyLoss > 0 then
 			KillLossRatio3 = unitKills / partyLoss
--- RELEASE_LOGOFF  			luaLog("KillLossRatio3:" ..tostring(KillLossRatio3))
--- RELEASE_LOGOFF  			luaLog("unitKills:" ..tostring(unitKills))
--- RELEASE_LOGOFF  			luaLog("partyLoss:" ..tostring(partyLoss))
+		-- RELEASE_LOGOFF  			luaLog("KillLossRatio3:" ..tostring(KillLossRatio3))
+		-- RELEASE_LOGOFF  			luaLog("unitKills:" ..tostring(unitKills))
+		-- RELEASE_LOGOFF  			luaLog("partyLoss:" ..tostring(partyLoss))
 		else
 			KillLossRatio3 = unitKills
--- RELEASE_LOGOFF  			luaLog("KillLossRatio3:" ..tostring(KillLossRatio3))
--- RELEASE_LOGOFF  			luaLog("unitKills:" ..tostring(unitKills))
--- RELEASE_LOGOFF  			luaLog("partyLoss:" ..tostring(partyLoss))
+		-- RELEASE_LOGOFF  			luaLog("KillLossRatio3:" ..tostring(KillLossRatio3))
+		-- RELEASE_LOGOFF  			luaLog("unitKills:" ..tostring(unitKills))
+		-- RELEASE_LOGOFF  			luaLog("partyLoss:" ..tostring(partyLoss))
 		end
 		-- Ha magasabb ertek mint az elozo player osszesitett  maximuma akkor felulirja
 
 		if AAenemyhitsMax < AAenemyhits then
 			AAenemyhitsMax = AAenemyhits
--- RELEASE_LOGOFF  			luaLog("AA hit: "..tostring(AAenemyhits))
--- RELEASE_LOGOFF  			luaLog("New AA hit max: "..tostring(AAenemyhits))
+		-- RELEASE_LOGOFF  			luaLog("AA hit: "..tostring(AAenemyhits))
+		-- RELEASE_LOGOFF  			luaLog("New AA hit max: "..tostring(AAenemyhits))
 			playerAAID = player
--- RELEASE_LOGOFF  			luaLog("NewPlayerAAID: " ..tostring(playerAAID))
--- RELEASE_LOGOFF  			luaLog("Player: " ..tostring(player))
+		-- RELEASE_LOGOFF  			luaLog("NewPlayerAAID: " ..tostring(playerAAID))
+		-- RELEASE_LOGOFF  			luaLog("Player: " ..tostring(player))
 		end
 
 		if ArtilleryenemyhitsMax < Artilleryenemyhits then
 			ArtilleryenemyhitsMax = Artilleryenemyhits
--- RELEASE_LOGOFF  			luaLog("Artillery hit: "..tostring(Artilleryenemyhits))
--- RELEASE_LOGOFF  			luaLog("New Artillery hit max: "..tostring(Artilleryenemyhits))
+		-- RELEASE_LOGOFF  			luaLog("Artillery hit: "..tostring(Artilleryenemyhits))
+		-- RELEASE_LOGOFF  			luaLog("New Artillery hit max: "..tostring(Artilleryenemyhits))
 			playerARID = player
--- RELEASE_LOGOFF  			luaLog("NewPlayerARID: " ..tostring(playerARID))
--- RELEASE_LOGOFF  			luaLog("Player: " ..tostring(player))
+		-- RELEASE_LOGOFF  			luaLog("NewPlayerARID: " ..tostring(playerARID))
+		-- RELEASE_LOGOFF  			luaLog("Player: " ..tostring(player))
 		end
 
 		if TorpedoenemyhitsMax < Torpedoenemyhits then
 			TorpedoenemyhitsMax = Torpedoenemyhits
--- RELEASE_LOGOFF  			luaLog("Torpedo hit: "..tostring(Torpedoenemyhits))
--- RELEASE_LOGOFF  			luaLog("New Torpedo hit max: "..tostring(Torpedoenemyhits))
+		-- RELEASE_LOGOFF  			luaLog("Torpedo hit: "..tostring(Torpedoenemyhits))
+		-- RELEASE_LOGOFF  			luaLog("New Torpedo hit max: "..tostring(Torpedoenemyhits))
 			playerTID = player
--- RELEASE_LOGOFF  			luaLog("NewPlayerTID: " ..tostring(playerTID))
--- RELEASE_LOGOFF  			luaLog("Player: " ..tostring(player))
+		-- RELEASE_LOGOFF  			luaLog("NewPlayerTID: " ..tostring(playerTID))
+		-- RELEASE_LOGOFF  			luaLog("Player: " ..tostring(player))
 		end
 
 		if not FirstKillLossRatio then
 			FirstKillLossRatio = true
 			WorstKillLossRatio = KillLossRatio3
--- RELEASE_LOGOFF  			luaLog("FirstKillLossRatio")
--- RELEASE_LOGOFF  			luaLog("value: "..tostring(WorstKillLossRatio))
+		-- RELEASE_LOGOFF  			luaLog("FirstKillLossRatio")
+		-- RELEASE_LOGOFF  			luaLog("value: "..tostring(WorstKillLossRatio))
 			playerPID = player
--- RELEASE_LOGOFF  			luaLog("FirstPlayerPID: " ..tostring(playerPID))
--- RELEASE_LOGOFF  			luaLog("FirstPlayer: " ..tostring(player))
+		-- RELEASE_LOGOFF  			luaLog("FirstPlayerPID: " ..tostring(playerPID))
+		-- RELEASE_LOGOFF  			luaLog("FirstPlayer: " ..tostring(player))
 		end
 
 		if KillLossRatio3 < WorstKillLossRatio then
 			WorstKillLossRatio = KillLossRatio3
--- RELEASE_LOGOFF  			luaLog("WorstKillLossRation: "..tostring(WorstKillLossRatio))
--- RELEASE_LOGOFF  			luaLog("New WorstKillLossRation: "..tostring(KillLossRatio3))
+		-- RELEASE_LOGOFF  			luaLog("WorstKillLossRation: "..tostring(WorstKillLossRatio))
+		-- RELEASE_LOGOFF  			luaLog("New WorstKillLossRation: "..tostring(KillLossRatio3))
 			playerPID = player
--- RELEASE_LOGOFF  			luaLog("NewPlayerPID: " ..tostring(playerPID))
--- RELEASE_LOGOFF  			luaLog("Player: " ..tostring(player))
+		-- RELEASE_LOGOFF  			luaLog("NewPlayerPID: " ..tostring(playerPID))
+		-- RELEASE_LOGOFF  			luaLog("Player: " ..tostring(player))
 		end
 
 	-- Unit usage-n alapulo medalok
@@ -14416,26 +14416,26 @@ function luaMedalCheck()
 			shipUsage = 0
 			subUsage = 0
 			planeUsage = 0
--- RELEASE_LOGOFF  			luaLog("Unit_Usage: ")
+		-- RELEASE_LOGOFF  			luaLog("Unit_Usage: ")
 			for unitType, u in pairs (score.unit_usage) do
--- RELEASE_LOGOFF  				luaLog("unitype:"..tostring(unitType))
--- RELEASE_LOGOFF  				luaLog("value"..tostring(u))
--- RELEASE_LOGOFF  				luaLog("Usage: "..unitType..", "..tostring(u))
+		-- RELEASE_LOGOFF  				luaLog("unitype:"..tostring(unitType))
+		-- RELEASE_LOGOFF  				luaLog("value"..tostring(u))
+		-- RELEASE_LOGOFF  				luaLog("Usage: "..unitType..", "..tostring(u))
 				if unitType == "torpedoboat" or  unitType == "destroyer" or unitType == "cruiser"  or unitType == "mothership" or unitType == "battleship" or unitType == "cargo" then
 					shipUsage = shipUsage + u
--- RELEASE_LOGOFF  					luaLog("SumUsage: " ..tostring(shipUsage))
+		-- RELEASE_LOGOFF  					luaLog("SumUsage: " ..tostring(shipUsage))
 				end
 
 				if unitType == "submarine"  then
--- RELEASE_LOGOFF  					luaLog("unitype:"..tostring(unitType))
--- RELEASE_LOGOFF  					luaLog("value"..tostring(u))
+		-- RELEASE_LOGOFF  					luaLog("unitype:"..tostring(unitType))
+		-- RELEASE_LOGOFF  					luaLog("value"..tostring(u))
 					subUsage = subUsage + u
--- RELEASE_LOGOFF  					luaLog("SumUsage: " ..tostring(subUsage))
+		-- RELEASE_LOGOFF  					luaLog("SumUsage: " ..tostring(subUsage))
 				end
 
 				if unitType == "fighter" or unitType == "divebomber" or unitType == "torpedobomber" or unitType == "levelbomber" or unitType == "reconplane" then
 					planeUsage = planeUsage + u
--- RELEASE_LOGOFF  					luaLog("SumUsage: " ..tostring(planeUsage))
+		-- RELEASE_LOGOFF  					luaLog("SumUsage: " ..tostring(planeUsage))
 				end
 			end
 		end
@@ -14444,27 +14444,27 @@ function luaMedalCheck()
 		-- Ha magasabb mint az elozo akkor folulirja
 		if shipUsageMax < shipUsage then
 			shipUsageMax = shipUsage
--- RELEASE_LOGOFF  			luaLog("ShipUsage: " ..tostring(shipUsage))
--- RELEASE_LOGOFF  			luaLog("NewMaxUsage: " ..tostring(shipUsageMax))
+		-- RELEASE_LOGOFF  			luaLog("ShipUsage: " ..tostring(shipUsage))
+		-- RELEASE_LOGOFF  			luaLog("NewMaxUsage: " ..tostring(shipUsageMax))
 			playershipID = player
--- RELEASE_LOGOFF  			luaLog("NewPlayershipID: " ..tostring(playershipID))
--- RELEASE_LOGOFF  			luaLog("Player: " ..tostring(player))
+		-- RELEASE_LOGOFF  			luaLog("NewPlayershipID: " ..tostring(playershipID))
+		-- RELEASE_LOGOFF  			luaLog("Player: " ..tostring(player))
 		end
 		if subUsageMax < subUsage then
 			subUsageMax = subUsage
--- RELEASE_LOGOFF  			luaLog("subUsage: " ..tostring(subUsage))
--- RELEASE_LOGOFF  			luaLog("NewMaxUsage: " ..tostring(subUsageMax))
+		-- RELEASE_LOGOFF  			luaLog("subUsage: " ..tostring(subUsage))
+		-- RELEASE_LOGOFF  			luaLog("NewMaxUsage: " ..tostring(subUsageMax))
 			playersubID = player
--- RELEASE_LOGOFF  			luaLog("NewPlayersubID: " ..tostring(playersubID))
--- RELEASE_LOGOFF  			luaLog("Player: " ..tostring(player))
+		-- RELEASE_LOGOFF  			luaLog("NewPlayersubID: " ..tostring(playersubID))
+		-- RELEASE_LOGOFF  			luaLog("Player: " ..tostring(player))
 		end
 		if planeUsageMax < planeUsage then
 			planeUsageMax = planeUsage
--- RELEASE_LOGOFF  			luaLog("planeUsage: " ..tostring(planeUsage))
--- RELEASE_LOGOFF  			luaLog("NewMaxUsage: " ..tostring(planeUsageMax))
+		-- RELEASE_LOGOFF  			luaLog("planeUsage: " ..tostring(planeUsage))
+		-- RELEASE_LOGOFF  			luaLog("NewMaxUsage: " ..tostring(planeUsageMax))
 			playerplaneID = player
--- RELEASE_LOGOFF  			luaLog("NewPlayerplaneID: " ..tostring(playerplaneID))
--- RELEASE_LOGOFF  			luaLog("Player: " ..tostring(player))
+		-- RELEASE_LOGOFF  			luaLog("NewPlayerplaneID: " ..tostring(playerplaneID))
+		-- RELEASE_LOGOFF  			luaLog("Player: " ..tostring(player))
 		end
 --]]
 	-- Air 1
@@ -14484,7 +14484,7 @@ function luaMedalCheck()
 					--Scoring_SetActionMedal(player, "AM")
 				else
 					Scoring_SetActionMedal("AM")
--- RELEASE_LOGOFF  					luaLog("Air medal")
+		-- RELEASE_LOGOFF  					luaLog("Air medal")
 				end
 			end
 		end
@@ -14502,7 +14502,7 @@ function luaMedalCheck()
 				--Scoring_SetActionMedal(player, "DFC")
 			else
 				Scoring_SetActionMedal("DFC")
--- RELEASE_LOGOFF  				luaLog("D. Flying Cross")
+		-- RELEASE_LOGOFF  				luaLog("D. Flying Cross")
 			end
 		end
 
@@ -14523,7 +14523,7 @@ function luaMedalCheck()
 					--luaLog("Navy_Distinguished_Service_Medal")
 				else
 					Scoring_SetActionMedal("DSM")
--- RELEASE_LOGOFF  						luaLog("Navy_Distinguished_Service_Medal")
+		-- RELEASE_LOGOFF  						luaLog("Navy_Distinguished_Service_Medal")
 				end
 			end
 		end
@@ -14544,7 +14544,7 @@ function luaMedalCheck()
 				--luaLog("Navy_Cross")
 			else
 				Scoring_SetActionMedal("NC")
--- RELEASE_LOGOFF  				luaLog("Navy_Cross")
+		-- RELEASE_LOGOFF  				luaLog("Navy_Cross")
 			end
 		end
 
@@ -14561,10 +14561,10 @@ function luaMedalCheck()
 			end
 			if scoring.playerIndex ~= nil then
 				Scoring_SetActionMedal(player, "SS")
--- RELEASE_LOGOFF  					luaLog("Silver_Star")
+		-- RELEASE_LOGOFF  					luaLog("Silver_Star")
 			else
 				--Scoring_SetActionMedal("SS")
--- RELEASE_LOGOFF  					luaLog("Silver_Star")
+		-- RELEASE_LOGOFF  					luaLog("Silver_Star")
 			end
 		end
 
@@ -14586,7 +14586,7 @@ function luaMedalCheck()
 			end
 			if scoring.playerIndex ~= nil then
 				Scoring_SetActionMedal(player, "DSC")
--- RELEASE_LOGOFF  				luaLog("Distinguished_Service_Cross")
+		-- RELEASE_LOGOFF  				luaLog("Distinguished_Service_Cross")
 			else
 				--Scoring_SetActionMedal("DFC")
 				--luaLog("Distinguished_Service_Cross")
@@ -14599,7 +14599,7 @@ function luaMedalCheck()
 		if partyKill / partyLoss > Scoring.KillLossRatio1 then
 			if scoring.playerIndex ~= nil then
 				Scoring_SetActionMedal(player, "BS")
--- RELEASE_LOGOFF  				luaLog("Bronze Star")
+		-- RELEASE_LOGOFF  				luaLog("Bronze Star")
 			else
 				--Scoring_SetActionMedal("BS")
 			end
@@ -14616,7 +14616,7 @@ function luaMedalCheck()
 			end
 			if scoring.playerIndex ~= nil then
 				Scoring_SetActionMedal(player, "LoM")
--- RELEASE_LOGOFF  				luaLog("Legion of Merit")
+		-- RELEASE_LOGOFF  				luaLog("Legion of Merit")
 			else
 				--Scoring_SetActionMedal("LoM")
 			end
@@ -14638,55 +14638,55 @@ function luaMedalCheck()
 			end
 			if scoring.playerIndex ~= nil then
 				Scoring_SetActionMedal(player, "MoH")
--- RELEASE_LOGOFF  				luaLog("Medal of Honor")
+		-- RELEASE_LOGOFF  				luaLog("Medal of Honor")
 			else
 				--Scoring_SetActionMedal("MoH")
 			end
 		end
 
--- RELEASE_LOGOFF  		luaLog("ShipUsage: " ..tostring(shipUsage))
--- RELEASE_LOGOFF  		luaLog("ShipUsageLimit: " ..tostring(Scoring.ShipUsageLimit))
--- RELEASE_LOGOFF  		luaLog("playerID: "..tostring(playerID))
+		-- RELEASE_LOGOFF  		luaLog("ShipUsage: " ..tostring(shipUsage))
+		-- RELEASE_LOGOFF  		luaLog("ShipUsageLimit: " ..tostring(Scoring.ShipUsageLimit))
+		-- RELEASE_LOGOFF  		luaLog("playerID: "..tostring(playerID))
 
 		if shipUsage >= Scoring.ShipUsageLimit and shipUsage > subUsage and shipUsage > planeUsage then
 			if scoring.playerIndex ~= nil then
 				Scoring_SetActionMedal(player, "SUSM")
--- RELEASE_LOGOFF  				luaLog("Sea Unit Service Medal")
+		-- RELEASE_LOGOFF  				luaLog("Sea Unit Service Medal")
 			else
 				Scoring_SetActionMedal("SUSM")
--- RELEASE_LOGOFF  				luaLog("Sea Unit Service Medal")
+		-- RELEASE_LOGOFF  				luaLog("Sea Unit Service Medal")
 			end
 		end
 
 				-- Submarine hasznalat alapjan
 
--- RELEASE_LOGOFF  		luaLog("SubUsage: " ..tostring(subUsage))
--- RELEASE_LOGOFF  		luaLog("SubmarineUsageLimit: " ..tostring(Scoring.SubmarineUsageLimit))
--- RELEASE_LOGOFF  		luaLog("playerID: "..tostring(playersID))
+		-- RELEASE_LOGOFF  		luaLog("SubUsage: " ..tostring(subUsage))
+		-- RELEASE_LOGOFF  		luaLog("SubmarineUsageLimit: " ..tostring(Scoring.SubmarineUsageLimit))
+		-- RELEASE_LOGOFF  		luaLog("playerID: "..tostring(playersID))
 
 		if subUsage >= Scoring.SubmarineUsageLimit and subUsage > shipUsage and subUsage > planeUsage then
 			if scoring.playerIndex ~= nil then
 				Scoring_SetActionMedal(player, "SSM")
--- RELEASE_LOGOFF  					luaLog("Submarine Service Medal")
+		-- RELEASE_LOGOFF  					luaLog("Submarine Service Medal")
 			else
 				Scoring_SetActionMedal("SSM")
--- RELEASE_LOGOFF  					luaLog("Submarine Service Medal")
+		-- RELEASE_LOGOFF  					luaLog("Submarine Service Medal")
 			end
 		end
 
 				-- Plane hasznalat alapjan
 
--- RELEASE_LOGOFF  		luaLog("PlaneUsage: " ..tostring(PlaneUsage))
--- RELEASE_LOGOFF  		luaLog("PlaneUsageLimit: " ..tostring(Scoring.PlaneUsageLimit))
--- RELEASE_LOGOFF  		luaLog("playerID: "..tostring(playerpID))
+		-- RELEASE_LOGOFF  		luaLog("PlaneUsage: " ..tostring(PlaneUsage))
+		-- RELEASE_LOGOFF  		luaLog("PlaneUsageLimit: " ..tostring(Scoring.PlaneUsageLimit))
+		-- RELEASE_LOGOFF  		luaLog("playerID: "..tostring(playerpID))
 
 		if planeUsage >= Scoring.PlaneUsageLimit and planeUsage > shipUsage and planeUsage > subUsage then
 			if scoring.playerIndex ~= nil then
 				Scoring_SetActionMedal(player, "AUSM")
--- RELEASE_LOGOFF  				luaLog("Air Unit Service Medal")
+		-- RELEASE_LOGOFF  				luaLog("Air Unit Service Medal")
 			else
 				Scoring_SetActionMedal("AUSM")
--- RELEASE_LOGOFF  				luaLog("Air Unit Service Medal")
+		-- RELEASE_LOGOFF  				luaLog("Air Unit Service Medal")
 			end
 		end
 	end
@@ -14694,49 +14694,49 @@ function luaMedalCheck()
 	-- Medal osztas player indexre (adott player aki a legtobbet ulte az adott unitban vagy adott fegyverrel a legtobb talalatot vitte be)
 	-- Hit Fegyvertipus alapjan
 
--- RELEASE_LOGOFF  		luaLog("AAMaxhit: " ..tostring(AAenemyhitsMax))
--- RELEASE_LOGOFF  		luaLog("AAhitLimit: " ..tostring(Scoring.AAHitLimit))
--- RELEASE_LOGOFF  		luaLog("playerID: "..tostring(playerAAID))
+		-- RELEASE_LOGOFF  		luaLog("AAMaxhit: " ..tostring(AAenemyhitsMax))
+		-- RELEASE_LOGOFF  		luaLog("AAhitLimit: " ..tostring(Scoring.AAHitLimit))
+		-- RELEASE_LOGOFF  		luaLog("playerID: "..tostring(playerAAID))
 
 				--Air to Air gun
 
 		if AAenemyhitsMax >= Scoring.AAHitLimit then
 			if scoring.playerIndex ~= nil then
 				Scoring_SetActionMedal(playerAAID, "AAMS")
--- RELEASE_LOGOFF  				luaLog("AA Marksmanship")
+		-- RELEASE_LOGOFF  				luaLog("AA Marksmanship")
 			else
 				Scoring_SetActionMedal("AAMS")
--- RELEASE_LOGOFF  				luaLog("AA Marksmanship")
+		-- RELEASE_LOGOFF  				luaLog("AA Marksmanship")
 			end
 		end
 
--- RELEASE_LOGOFF  		luaLog("ArtilleryMaxhit: " ..tostring(ArtilleryenemyhitsMax))
--- RELEASE_LOGOFF  		luaLog("ArtilleryHitLimit: " ..tostring(Scoring.ARHitLimit))
--- RELEASE_LOGOFF  		luaLog("playerID: "..tostring(playerARID))
+		-- RELEASE_LOGOFF  		luaLog("ArtilleryMaxhit: " ..tostring(ArtilleryenemyhitsMax))
+		-- RELEASE_LOGOFF  		luaLog("ArtilleryHitLimit: " ..tostring(Scoring.ARHitLimit))
+		-- RELEASE_LOGOFF  		luaLog("playerID: "..tostring(playerARID))
 
 				-- Artillery(light, medium, heavy egyben)
 
 		if ArtilleryenemyhitsMax >= Scoring.ARHitLimit then
 			if scoring.playerIndex ~= nil then
 				Scoring_SetActionMedal(playerARID, "AMS")
--- RELEASE_LOGOFF  				luaLog("Artillery Marksmanship")
+		-- RELEASE_LOGOFF  				luaLog("Artillery Marksmanship")
 			else
 				Scoring_SetActionMedal("AMS")
--- RELEASE_LOGOFF  				luaLog("Artillery Marksmanship")
+		-- RELEASE_LOGOFF  				luaLog("Artillery Marksmanship")
 			end
 		end
 
--- RELEASE_LOGOFF  		luaLog("TorpedohitsMax: " ..tostring(TorpedoenemyhitsMax))
--- RELEASE_LOGOFF  		luaLog("THITLimit: " ..tostring(Scoring.THitLimit))
--- RELEASE_LOGOFF  		luaLog("playerID: "..tostring(playerTID))
+		-- RELEASE_LOGOFF  		luaLog("TorpedohitsMax: " ..tostring(TorpedoenemyhitsMax))
+		-- RELEASE_LOGOFF  		luaLog("THITLimit: " ..tostring(Scoring.THitLimit))
+		-- RELEASE_LOGOFF  		luaLog("playerID: "..tostring(playerTID))
 
 		if TorpedoenemyhitsMax >=  Scoring.THitLimit then
 			if scoring.playerIndex ~= nil then
 				Scoring_SetActionMedal(playerTID, "TMS")
--- RELEASE_LOGOFF  				luaLog("Torpedo Marksmanship")
+		-- RELEASE_LOGOFF  				luaLog("Torpedo Marksmanship")
 			else
 				Scoring_SetActionMedal("TMS")
--- RELEASE_LOGOFF  				luaLog("Torpedo Marksmanship")
+		-- RELEASE_LOGOFF  				luaLog("Torpedo Marksmanship")
 			end
 		end
 
@@ -14746,8 +14746,8 @@ function luaMedalCheck()
 		if WorstKillLossRatio > 0 then
 			if scoring.playerIndex ~= nil then
 				Scoring_SetActionMedal(playerPID, "PH")
--- RELEASE_LOGOFF  				luaLog("Purple Heart")
--- RELEASE_LOGOFF  				luaLog("Player ID: " ..tostring(playerPID))
+		-- RELEASE_LOGOFF  				luaLog("Purple Heart")
+		-- RELEASE_LOGOFF  				luaLog("Player ID: " ..tostring(playerPID))
 			else
 				--Scoring_SetActionMedal("PH")
 			end
@@ -14755,16 +14755,16 @@ function luaMedalCheck()
 
 		-- Osszesitett maximum ertek es az ehhez kapcsolodo player index  kiiratas
 
--- RELEASE_LOGOFF  		luaLog("Player indexre vonatkozo adatok: ")
+		-- RELEASE_LOGOFF  		luaLog("Player indexre vonatkozo adatok: ")
 
--- RELEASE_LOGOFF  		luaLog("Legtobb AA fegyverrel bevitt ertekelheto talalat: "..tostring(AAenemyhitsMax))
--- RELEASE_LOGOFF  		luaLog("Player: "..tostring(playerAAID))
+		-- RELEASE_LOGOFF  		luaLog("Legtobb AA fegyverrel bevitt ertekelheto talalat: "..tostring(AAenemyhitsMax))
+		-- RELEASE_LOGOFF  		luaLog("Player: "..tostring(playerAAID))
 
--- RELEASE_LOGOFF  		luaLog("Legtobb tuzerseggel bevitt ertekelheto talalat: "..tostring(ArtilleryenemyhitsMax))
--- RELEASE_LOGOFF  		luaLog("Player: "..tostring(playerARID))
+		-- RELEASE_LOGOFF  		luaLog("Legtobb tuzerseggel bevitt ertekelheto talalat: "..tostring(ArtilleryenemyhitsMax))
+		-- RELEASE_LOGOFF  		luaLog("Player: "..tostring(playerARID))
 
--- RELEASE_LOGOFF  		luaLog("Legtobb torpedoval bevitt talalat: "..tostring(TorpedoenemyhitsMax))
--- RELEASE_LOGOFF  		luaLog("Player: "..tostring(playerTID))
+		-- RELEASE_LOGOFF  		luaLog("Legtobb torpedoval bevitt talalat: "..tostring(TorpedoenemyhitsMax))
+		-- RELEASE_LOGOFF  		luaLog("Player: "..tostring(playerTID))
 
 end
 
@@ -14791,10 +14791,10 @@ function luaAutomaticReloaderDelayed(timerthis)
 	if not unit.Dead then
 		if luaGetType(unit) == "plane" then
 			PlaneReloadBombPlatforms(unit)
--- RELEASE_LOGOFF  			luaLog("CHEAT: Ammo reloaded on "..unit.Name)
+		-- RELEASE_LOGOFF  			luaLog("CHEAT: Ammo reloaded on "..unit.Name)
 			AddSquadOrdnanceDroppedTrigger(unit, "Reloader_"..tostring(unit), "luaAutomaticReloader")
 		else
--- RELEASE_LOGOFF  			luaLog("CHEAT: Torpedo reloaded on "..unit.Name)
+		-- RELEASE_LOGOFF  			luaLog("CHEAT: Torpedo reloaded on "..unit.Name)
 			ShipSetTorpedoStock(unit, 20)
 			ReloadTorpedoes(unit)
 			luaAutomaticReloader(unit)
@@ -14811,7 +14811,7 @@ shipyardtable: table, lista a shipyardok this tablaival
 reloaddist: number, ilyen messzirol kezdi el a feltoltest, default 350 m
 ]]
 function luaShipyardManagerInit(shipyardtable, reloaddist)
--- RELEASE_LOGOFF  	Assert(type(shipyardtable) == "table", "Error: shipyardtable must be table not "..tostring(type(shipyardtable)))
+		-- RELEASE_LOGOFF  	Assert(type(shipyardtable) == "table", "Error: shipyardtable must be table not "..tostring(type(shipyardtable)))
 	Mission.SManager = CreateScript("luaShipyardManager",shipyardtable, reloaddist)
 end
 
@@ -14827,8 +14827,8 @@ reloaddist: number, ilyen messzirol kezdi el a feltoltest, default 350 m
 function luaShipyardManager(this, shipyardtable, reloaddist)
 	SETLOG(this, true)
 	this.Logfile = "SMlog.txt"
--- RELEASE_LOGOFF  	luaDoCustomLog(this.Logfile,"","u")
--- RELEASE_LOGOFF  	luaDoCustomLog(this.Logfile,"Initiating luaShipyardManager")
+		-- RELEASE_LOGOFF  	luaDoCustomLog(this.Logfile,"","u")
+		-- RELEASE_LOGOFF  	luaDoCustomLog(this.Logfile,"Initiating luaShipyardManager")
 
 	if reloaddist == nil then
 		this.ReloadDistance = 350
@@ -14860,14 +14860,14 @@ function luaShipyardManagerGetUnits(this)
 	--luaDoCustomLog(this.Logfile,"recon")
 	--luaDoCustomLog(this.Logfile,recon[Mission.Party])
 
--- RELEASE_LOGOFF  	luaDoCustomLog(this.Logfile,"Party")
--- RELEASE_LOGOFF  	luaDoCustomLog(this.Logfile,Mission.Party)
+		-- RELEASE_LOGOFF  	luaDoCustomLog(this.Logfile,"Party")
+		-- RELEASE_LOGOFF  	luaDoCustomLog(this.Logfile,Mission.Party)
 
 	--luaDoCustomLog(this.Logfile,"reconplane")
 	--luaDoCustomLog(this.Logfile,recon[Mission.Party].own.reconplane)
 
--- RELEASE_LOGOFF  	luaDoCustomLog(this.Logfile,"torpedoboat")
--- RELEASE_LOGOFF  	luaDoCustomLog(this.Logfile,recon[Mission.Party].own.torpedoboat)
+		-- RELEASE_LOGOFF  	luaDoCustomLog(this.Logfile,"torpedoboat")
+		-- RELEASE_LOGOFF  	luaDoCustomLog(this.Logfile,recon[Mission.Party].own.torpedoboat)
 
 	--reconplanes
 --[[
@@ -14875,7 +14875,7 @@ function luaShipyardManagerGetUnits(this)
 		for idx,unit in pairs(recon[i].own.reconplane) do
 			if not unit.Dead and not luaIsInside(unit, this.ReconPlanes) then
 				table.insert(this.ReconPlanes, unit)
--- RELEASE_LOGOFF  				luaDoCustomLog(this.Logfile,"Found unit "..unit.Name)
+		-- RELEASE_LOGOFF  				luaDoCustomLog(this.Logfile,"Found unit "..unit.Name)
 			end
 		end
 	end
@@ -14887,7 +14887,7 @@ function luaShipyardManagerGetUnits(this)
 		for idx,unit in pairs(recon[i].own.torpedoboat) do
 			if not unit.Dead and not luaIsInside(unit, this.PtBoats) then
 				table.insert(this.PtBoats, unit)
--- RELEASE_LOGOFF  				luaDoCustomLog(this.Logfile,"Found unit "..unit.Name)
+		-- RELEASE_LOGOFF  				luaDoCustomLog(this.Logfile,"Found unit "..unit.Name)
 			end
 		end
 	end
@@ -14905,7 +14905,7 @@ msg: string, a script entitynek atadott message
 ]]
 function luaShipyardManager_think(this, msg)
 	if luaMessageHandler(this, msg) == "killed" then
--- RELEASE_LOGOFF  		luaDoCustomLog(this.Logfile,"luaShipyardManager_think killed")
+		-- RELEASE_LOGOFF  		luaDoCustomLog(this.Logfile,"luaShipyardManager_think killed")
 		return
 	end
 
@@ -14917,7 +14917,7 @@ function luaShipyardManager_think(this, msg)
 	--luaDoCustomLog(this.Logfile,"Checking for dead shipyards")
 	this.Shipyards = luaRemoveDeadsFromTable(this.Shipyards)
 	if not next(this.Shipyards) then
--- RELEASE_LOGOFF  		luaDoCustomLog(this.Logfile,"No more shipyards, quitting")
+		-- RELEASE_LOGOFF  		luaDoCustomLog(this.Logfile,"No more shipyards, quitting")
 		DeleteScript(Mission.SManager)
 		return
 	end
@@ -14938,12 +14938,12 @@ function luaShipyardManager_think(this, msg)
 			if not reconplane.Dead and shipyard.Party == reconplane.Party then
 				reconplane.ammo = GetProperty(reconplane, "ammoType")
 				if reconplane.ammo == 0 then
--- RELEASE_LOGOFF  					luaDoCustomLog(this.Logfile,reconplane.Name.." has no ammo")
+		-- RELEASE_LOGOFF  					luaDoCustomLog(this.Logfile,reconplane.Name.." has no ammo")
 					if luaGetDistance(shipyard,reconplane) <= this.ReloadDistance then
--- RELEASE_LOGOFF  						luaDoCustomLog(this.Logfile,reconplane.Name.." is in reloadrange")
+		-- RELEASE_LOGOFF  						luaDoCustomLog(this.Logfile,reconplane.Name.." is in reloadrange")
 						if GetPosition(reconplane).y < 10 and GetEntitySpeed(reconplane) < 35 then
 							PlaneReloadBombPlatforms(reconplane)
--- RELEASE_LOGOFF  							luaDoCustomLog(this.Logfile,reconplane.Name.." is reloaded")
+		-- RELEASE_LOGOFF  							luaDoCustomLog(this.Logfile,reconplane.Name.." is reloaded")
 						end --position and speed
 					end --distance
 				end --ammo
@@ -14955,12 +14955,12 @@ function luaShipyardManager_think(this, msg)
 			if not ptboat.Dead and shipyard.Party == ptboat.Party then
 				ptboat.TorpedoStock = GetProperty(ptboat, "TorpedoStock")
 				if ptboat.TorpedoStock < ptboat.Class.MaxTorpedoStock then
--- RELEASE_LOGOFF  					luaDoCustomLog(this.Logfile,ptboat.Name.." has fewer torps than maximum, checking for reload conditions")
+		-- RELEASE_LOGOFF  					luaDoCustomLog(this.Logfile,ptboat.Name.." has fewer torps than maximum, checking for reload conditions")
 					if luaGetDistance(shipyard,ptboat) <= this.ReloadDistance then
--- RELEASE_LOGOFF  						luaDoCustomLog(this.Logfile,ptboat.Name.." is in reloadrange")
+		-- RELEASE_LOGOFF  						luaDoCustomLog(this.Logfile,ptboat.Name.." is in reloadrange")
 						if GetEntitySpeed(ptboat) < 3 then
 							ShipSetTorpedoStock(ptboat, ptboat.Class.MaxTorpedoStock)
--- RELEASE_LOGOFF  							luaDoCustomLog(this.Logfile,ptboat.Name.." is reloaded")
+		-- RELEASE_LOGOFF  							luaDoCustomLog(this.Logfile,ptboat.Name.." is reloaded")
 						end--position and speed
 					end --distance
 				end --torpedostock
@@ -15174,8 +15174,8 @@ function luaPlayerAirbaseInit(airbases)
 
 	--Az airbasekbe bele tolti a felkuldheto repuloket prioritas sorrendjeben
 	airbases = luaRemoveDeadsFromTable(airbases)
--- RELEASE_LOGOFF  	Assert(luaIsAirfieldTable(airbases, true), "***ERROR: luaPlayerAirbaseInit needs an airfield/carrier table as first param!"..debug.traceback())
--- RELEASE_LOGOFF  	luaLog("luaPlayerAirbaseInit Called!")
+		-- RELEASE_LOGOFF  	Assert(luaIsAirfieldTable(airbases, true), "***ERROR: luaPlayerAirbaseInit needs an airfield/carrier table as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaLog("luaPlayerAirbaseInit Called!")
 	for i, airbase in pairs (airbases) do
 		local stock = {}
 		airbase.planes = GetProperty(airbase, "planes")
@@ -15201,10 +15201,10 @@ function luaPlayerAirbaseInit(airbases)
 				end
 			end
 		end
--- RELEASE_LOGOFF  		luaLog(airbase.Name.." preference table:")
--- RELEASE_LOGOFF  		luaLog(airbase.PlayerAirbasePlanePreferences)
+		-- RELEASE_LOGOFF  		luaLog(airbase.Name.." preference table:")
+		-- RELEASE_LOGOFF  		luaLog(airbase.PlayerAirbasePlanePreferences)
 	end
--- RELEASE_LOGOFF  	luaLog("luaPlayerAirbaseInit Finished!")
+		-- RELEASE_LOGOFF  	luaLog("luaPlayerAirbaseInit Finished!")
 end
 
 --[[AutoDoc
@@ -15216,11 +15216,11 @@ airbases:
 ]]
 function luaPlayerAirbaseManager(airbases)
 	airbases = luaRemoveDeadsFromTable(airbases)
--- RELEASE_LOGOFF  	Assert(luaIsAirfieldTable(airbases, true), "***ERROR: luaPlayerAirbaseManager needs an airfield/carrier table as first param!"..debug.traceback())
--- RELEASE_LOGOFF  	luaLog("luaPlayerAirbaseManager Called!")
+		-- RELEASE_LOGOFF  	Assert(luaIsAirfieldTable(airbases, true), "***ERROR: luaPlayerAirbaseManager needs an airfield/carrier table as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	luaLog("luaPlayerAirbaseManager Called!")
 	for i, airbase in pairs (airbases) do
--- RELEASE_LOGOFF  		luaLog("========================================")
--- RELEASE_LOGOFF  		luaLog("Airbase: "..airbase.Name)
+		-- RELEASE_LOGOFF  		luaLog("========================================")
+		-- RELEASE_LOGOFF  		luaLog("Airbase: "..airbase.Name)
 		airbase.planes = GetProperty(airbase, "planes")
 		airbase.slots = GetProperty(airbase, "slots")
 		local airbaseMan, airstrikeMode, maxCapNum = GetAirbaseOrders(airbase)
@@ -15258,7 +15258,7 @@ function luaPlayerAirbaseManager(airbases)
 
 			local groupDistance = 4000
 
--- RELEASE_LOGOFF  			luaLog("Checking status...")
+		-- RELEASE_LOGOFF  			luaLog("Checking status...")
 			for idx, slotNum in pairs(airbase.slots) do
 				if slotNum.squadron ~= nil then
 					activePlanes = activePlanes + slotNum.count
@@ -15343,31 +15343,31 @@ function luaPlayerAirbaseManager(airbases)
 				end
 			end
 
--- RELEASE_LOGOFF  			luaLog("----------------------------------------")
--- RELEASE_LOGOFF  			luaLog("stock:")
--- RELEASE_LOGOFF  			luaLog(stock)
--- RELEASE_LOGOFF  			luaLog("airbase.PlayerAirbaseOutOfFighters: "..tostring(airbase.PlayerAirbaseOutOfFighters))
+		-- RELEASE_LOGOFF  			luaLog("----------------------------------------")
+		-- RELEASE_LOGOFF  			luaLog("stock:")
+		-- RELEASE_LOGOFF  			luaLog(stock)
+		-- RELEASE_LOGOFF  			luaLog("airbase.PlayerAirbaseOutOfFighters: "..tostring(airbase.PlayerAirbaseOutOfFighters))
 
 			local _, nextFreeSlot = next(freeSlotTable)
 			local freePlanes = maxPlanes - activePlanes
 
--- RELEASE_LOGOFF  			luaLog("----------------------------------------")
--- RELEASE_LOGOFF  			luaLog("airstrikeMode: "..tostring(airstrikeMode))
--- RELEASE_LOGOFF  			luaLog("maxPlanes: "..tostring(maxPlanes))
--- RELEASE_LOGOFF  			luaLog("activePlanes: "..tostring(activePlanes))
--- RELEASE_LOGOFF  			luaLog("freePlanes: "..tostring(freePlanes))
--- RELEASE_LOGOFF  			luaLog("maxSlots: "..tostring(maxSlots))
--- RELEASE_LOGOFF  			luaLog("activeSlots: "..tostring(activeSlots))
--- RELEASE_LOGOFF  			luaLog("freeSlotTable:")
--- RELEASE_LOGOFF  			luaLog(freeSlotTable)
--- RELEASE_LOGOFF  			luaLog("nextFreeSlot: "..tostring(nextFreeSlot))
--- RELEASE_LOGOFF  			luaLog("maxCapNum: "..tostring(maxCapNum))
--- RELEASE_LOGOFF  			luaLog("activeCapNum: "..tostring(activeCapNum))
--- RELEASE_LOGOFF  			luaLog("activeBombNum: "..tostring(activeBombNum))
--- RELEASE_LOGOFF  			luaLog("activeLevelBombNum: "..tostring(activeLevelBombNum))
--- RELEASE_LOGOFF  			luaLog("activeTorpedoNum: "..tostring(activeTorpedoNum))
--- RELEASE_LOGOFF  			luaLog("activeDCNum: "..tostring(activeDCNum))
--- RELEASE_LOGOFF  			luaLog("activePlayerNum: "..tostring(activePlayerNum))
+		-- RELEASE_LOGOFF  			luaLog("----------------------------------------")
+		-- RELEASE_LOGOFF  			luaLog("airstrikeMode: "..tostring(airstrikeMode))
+		-- RELEASE_LOGOFF  			luaLog("maxPlanes: "..tostring(maxPlanes))
+		-- RELEASE_LOGOFF  			luaLog("activePlanes: "..tostring(activePlanes))
+		-- RELEASE_LOGOFF  			luaLog("freePlanes: "..tostring(freePlanes))
+		-- RELEASE_LOGOFF  			luaLog("maxSlots: "..tostring(maxSlots))
+		-- RELEASE_LOGOFF  			luaLog("activeSlots: "..tostring(activeSlots))
+		-- RELEASE_LOGOFF  			luaLog("freeSlotTable:")
+		-- RELEASE_LOGOFF  			luaLog(freeSlotTable)
+		-- RELEASE_LOGOFF  			luaLog("nextFreeSlot: "..tostring(nextFreeSlot))
+		-- RELEASE_LOGOFF  			luaLog("maxCapNum: "..tostring(maxCapNum))
+		-- RELEASE_LOGOFF  			luaLog("activeCapNum: "..tostring(activeCapNum))
+		-- RELEASE_LOGOFF  			luaLog("activeBombNum: "..tostring(activeBombNum))
+		-- RELEASE_LOGOFF  			luaLog("activeLevelBombNum: "..tostring(activeLevelBombNum))
+		-- RELEASE_LOGOFF  			luaLog("activeTorpedoNum: "..tostring(activeTorpedoNum))
+		-- RELEASE_LOGOFF  			luaLog("activeDCNum: "..tostring(activeDCNum))
+		-- RELEASE_LOGOFF  			luaLog("activePlayerNum: "..tostring(activePlayerNum))
 
 			local airbaseTarget = UnitGetAttackTarget(airbase)
 			if airbaseTarget then
@@ -15376,23 +15376,23 @@ function luaPlayerAirbaseManager(airbases)
 				end
 			end
 
--- RELEASE_LOGOFF  			luaLog("----------------------------------------")
+		-- RELEASE_LOGOFF  			luaLog("----------------------------------------")
 			if airbase.PlayerAirbasePreviousTarget then
--- RELEASE_LOGOFF  				luaLog("airbase.PlayerAirbasePreviousTarget: "..tostring(airbase.PlayerAirbasePreviousTarget.Name))
+		-- RELEASE_LOGOFF  				luaLog("airbase.PlayerAirbasePreviousTarget: "..tostring(airbase.PlayerAirbasePreviousTarget.Name))
 			else
--- RELEASE_LOGOFF  				luaLog("airbase.PlayerAirbasePreviousTarget: "..tostring(airbase.PlayerAirbasePreviousTarget))
+		-- RELEASE_LOGOFF  				luaLog("airbase.PlayerAirbasePreviousTarget: "..tostring(airbase.PlayerAirbasePreviousTarget))
 			end
 			if airbaseTarget then
--- RELEASE_LOGOFF  				luaLog("airbaseTarget: "..tostring(airbaseTarget.Name))
--- RELEASE_LOGOFF  				luaLog("airbaseTarget.Class.Type: "..airbaseTarget.Class.Type)
--- RELEASE_LOGOFF  				luaLog("luaGetType(airbaseTarget): "..tostring(luaGetType(airbaseTarget)))
+		-- RELEASE_LOGOFF  				luaLog("airbaseTarget: "..tostring(airbaseTarget.Name))
+		-- RELEASE_LOGOFF  				luaLog("airbaseTarget.Class.Type: "..airbaseTarget.Class.Type)
+		-- RELEASE_LOGOFF  				luaLog("luaGetType(airbaseTarget): "..tostring(luaGetType(airbaseTarget)))
 			else
--- RELEASE_LOGOFF  				luaLog("airbaseTarget:"..tostring(airbaseTarget))
+		-- RELEASE_LOGOFF  				luaLog("airbaseTarget:"..tostring(airbaseTarget))
 			end
 
 			if activeCapNum < maxCapNum and table.getn(capInLandTable) ~= 0 then
--- RELEASE_LOGOFF  				luaLog("----------------------------------------")
--- RELEASE_LOGOFF  				luaLog("Ordering capInLand - > cap")
+		-- RELEASE_LOGOFF  				luaLog("----------------------------------------")
+		-- RELEASE_LOGOFF  				luaLog("Ordering capInLand - > cap")
 				local sortedCapInLandTable = {}
 				for index, slot in pairs (capInLandTable) do
 					if table.getn(sortedCapInLandTable) == 0 then
@@ -15411,17 +15411,17 @@ function luaPlayerAirbaseManager(airbases)
 				end
 				for index, slot in pairs (sortedCapInLandTable) do
 					if not IsPlayerControlled(slot.Ent) then
--- RELEASE_LOGOFF  						luaLog("Success, move orders received")
+		-- RELEASE_LOGOFF  						luaLog("Success, move orders received")
 						PilotMoveTo(slot.Ent, airbase)
 						UnitSetFireStance(slot.Ent, STANCE_FREE_FIRE)
 						activeCapNum = activeCapNum + 1
 						table.insert(capTable, slot)
 						if activeCapNum == maxCapNum then
--- RELEASE_LOGOFF  							luaLog("Break, maxCapNum reached")
+		-- RELEASE_LOGOFF  							luaLog("Break, maxCapNum reached")
 							break
 						end
 					else
--- RELEASE_LOGOFF  						luaLog("Skip, slot player controlled")
+		-- RELEASE_LOGOFF  						luaLog("Skip, slot player controlled")
 					end
 				end
 
@@ -15429,8 +15429,8 @@ function luaPlayerAirbaseManager(airbases)
 
 			--TODO: leellenorizni, hogy jo-e
 			if activeCapNum < maxCapNum and table.getn(attackersInLandTable) ~= 0 then
--- RELEASE_LOGOFF  				luaLog("----------------------------------------")
--- RELEASE_LOGOFF  				luaLog("Ordering attackersInLand -> cap")
+		-- RELEASE_LOGOFF  				luaLog("----------------------------------------")
+		-- RELEASE_LOGOFF  				luaLog("Ordering attackersInLand -> cap")
 				local sortedAttackersInLandTable = {}
 				local sortedIndexTable = {}
 				for index, slot in pairs (attackersInLandTable) do
@@ -15453,7 +15453,7 @@ function luaPlayerAirbaseManager(airbases)
 				end
 				for index, slot in pairs (sortedAttackersInLandTable) do
 					if not IsPlayerControlled(slot.Ent) and slot.Ent.ammo == AMMO_NONE and (slot.Ent.Class.Type == "Fighter" or airbase.PlayerAirbaseOutOfFighters) then
--- RELEASE_LOGOFF  						luaLog("Succes, "..slot.Ent.Class.Type.." without ammo received move orders")
+		-- RELEASE_LOGOFF  						luaLog("Succes, "..slot.Ent.Class.Type.." without ammo received move orders")
 						PilotMoveTo(slot.Ent, airbase)
 						UnitSetFireStance(slot.Ent, STANCE_FREE_FIRE)
 						slot.Ent.PlayerAirbaseCap = true
@@ -15461,11 +15461,11 @@ function luaPlayerAirbaseManager(airbases)
 						table.insert(capTable, slot)
 						table.remove(attackersInLandTable, sortedIndexTable[index])
 						if activeCapNum == maxCapNum then
--- RELEASE_LOGOFF  							luaLog("Break, maxCapNum reached")
+		-- RELEASE_LOGOFF  							luaLog("Break, maxCapNum reached")
 							break
 						end
 					elseif not IsPlayerControlled(slot.Ent) and slot.Ent.ammo == AMMO_BOMB and (slot.Ent.Class.Type == "Fighter") then
--- RELEASE_LOGOFF  						luaLog("Succes, Fighter dropped ordnance and received move orders")
+		-- RELEASE_LOGOFF  						luaLog("Succes, Fighter dropped ordnance and received move orders")
 						SquadronForceRelease(slot.Ent)
 						PilotMoveTo(slot.Ent, airbase)
 						UnitSetFireStance(slot.Ent, STANCE_FREE_FIRE)
@@ -15474,21 +15474,21 @@ function luaPlayerAirbaseManager(airbases)
 						table.insert(capTable, slot)
 						table.remove(attackersInLandTable, sortedIndexTable[index])
 						if activeCapNum == maxCapNum then
--- RELEASE_LOGOFF  							luaLog("Break, maxCapNum reached")
+		-- RELEASE_LOGOFF  							luaLog("Break, maxCapNum reached")
 							break
 						end
 					elseif slot.Ent.Class.Type ~= "Fighter" then
--- RELEASE_LOGOFF  						luaLog("Skip, "..slot.Ent.Class.Type.." class")
+		-- RELEASE_LOGOFF  						luaLog("Skip, "..slot.Ent.Class.Type.." class")
 					elseif IsPlayerControlled(slot.Ent) then
--- RELEASE_LOGOFF  						luaLog("Skip, slot player controlled")
+		-- RELEASE_LOGOFF  						luaLog("Skip, slot player controlled")
 					end
 				end
 			end
 
 			--TODO: leellenorizni, hogy jo-e
 			if activeCapNum < maxCapNum and table.getn(attackersTable) ~= 0 and airbase.PlayerAirbasePreviousTarget == airbaseTarget and not airbaseTarget then
--- RELEASE_LOGOFF  				luaLog("----------------------------------------")
--- RELEASE_LOGOFF  				luaLog("Ordering attackers -> cap")
+		-- RELEASE_LOGOFF  				luaLog("----------------------------------------")
+		-- RELEASE_LOGOFF  				luaLog("Ordering attackers -> cap")
 				local sortedAttackersTable = {}
 				local sortedIndexTable = {}
 				for index, slot in pairs (attackersTable) do
@@ -15511,7 +15511,7 @@ function luaPlayerAirbaseManager(airbases)
 				end
 				for index, slot in pairs (sortedAttackersTable) do
 					if not IsPlayerControlled(slot.Ent) and slot.Ent.ammo == AMMO_NONE and (slot.Ent.Class.Type == "Fighter" or airbase.PlayerAirbaseOutOfFighters) then
--- RELEASE_LOGOFF  						luaLog("Succes, "..slot.Ent.Class.Type.." without ammo received move orders")
+		-- RELEASE_LOGOFF  						luaLog("Succes, "..slot.Ent.Class.Type.." without ammo received move orders")
 						PilotMoveTo(slot.Ent, airbase)
 						UnitSetFireStance(slot.Ent, STANCE_FREE_FIRE)
 						slot.Ent.PlayerAirbaseCap = true
@@ -15519,11 +15519,11 @@ function luaPlayerAirbaseManager(airbases)
 						table.insert(capTable, slot)
 						table.remove(attackersTable, sortedIndexTable[index])
 						if activeCapNum == maxCapNum then
--- RELEASE_LOGOFF  							luaLog("Break, maxCapNum reached")
+		-- RELEASE_LOGOFF  							luaLog("Break, maxCapNum reached")
 							break
 						end
 					elseif not IsPlayerControlled(slot.Ent) and slot.Ent.ammo == AMMO_BOMB and (slot.Ent.Class.Type == "Fighter") then
--- RELEASE_LOGOFF  						luaLog("Succes, Fighter dropped ordnance and received move orders")
+		-- RELEASE_LOGOFF  						luaLog("Succes, Fighter dropped ordnance and received move orders")
 						SquadronForceRelease(slot.Ent)
 						PilotMoveTo(slot.Ent, airbase)
 						UnitSetFireStance(slot.Ent, STANCE_FREE_FIRE)
@@ -15532,30 +15532,30 @@ function luaPlayerAirbaseManager(airbases)
 						table.insert(capTable, slot)
 						table.remove(attackersTable, sortedIndexTable[index])
 						if activeCapNum == maxCapNum then
--- RELEASE_LOGOFF  							luaLog("Break, maxCapNum reached")
+		-- RELEASE_LOGOFF  							luaLog("Break, maxCapNum reached")
 							break
 						end
 					elseif slot.Ent.Class.Type ~= "Fighter" then
--- RELEASE_LOGOFF  						luaLog("Skip, "..slot.Ent.Class.Type.." class")
+		-- RELEASE_LOGOFF  						luaLog("Skip, "..slot.Ent.Class.Type.." class")
 					elseif IsPlayerControlled(slot.Ent) then
--- RELEASE_LOGOFF  						luaLog("Skip, slot player controlled")
+		-- RELEASE_LOGOFF  						luaLog("Skip, slot player controlled")
 					end
 				end
 			end
 
 			if IsReadyToSendPlanes(airbase) and activeCapNum < maxCapNum and nextFreeSlot and freePlanes > 0 and airbase.PlayerAirbasePlanePreferences.Fighter then
--- RELEASE_LOGOFF  				luaLog("----------------------------------------")
--- RELEASE_LOGOFF  				luaLog("Ordering cap launch")
+		-- RELEASE_LOGOFF  				luaLog("----------------------------------------")
+		-- RELEASE_LOGOFF  				luaLog("Ordering cap launch")
 				for idx, planeTemplate in pairs (airbase.PlayerAirbasePlanePreferences.Fighter) do
 					if stock[planeTemplate.ClassID] ~= nil then
 						if stock[planeTemplate.ClassID] > 0 then
 							local availablePlanes = math.min(math.min(3, stock[planeTemplate.ClassID]), freePlanes)
--- RELEASE_LOGOFF  							luaLog("planeTemplate.ClassID: "..tostring(planeTemplate.ClassID))
--- RELEASE_LOGOFF  							luaLog("availablePlanes: "..tostring(availablePlanes))
--- RELEASE_LOGOFF  							luaLog("planeTemplate.EquipmentID: "..tostring(planeTemplate.EquipmentID))
+		-- RELEASE_LOGOFF  							luaLog("planeTemplate.ClassID: "..tostring(planeTemplate.ClassID))
+		-- RELEASE_LOGOFF  							luaLog("availablePlanes: "..tostring(availablePlanes))
+		-- RELEASE_LOGOFF  							luaLog("planeTemplate.EquipmentID: "..tostring(planeTemplate.EquipmentID))
 							SetAirBaseSlot(airbase, nextFreeSlot, planeTemplate.ClassID, availablePlanes, planeTemplate.EquipmentID)
 							local planeEnt = LaunchAirBaseSlot(airbase, nextFreeSlot)
--- RELEASE_LOGOFF  							luaLog("Success, launched")
+		-- RELEASE_LOGOFF  							luaLog("Success, launched")
 							planeEnt.PlayerAirbaseCap = true
 							--[[
 							STANCE_HOLD_FIRE   = 0, // hold fire, hold move
@@ -15576,8 +15576,8 @@ function luaPlayerAirbaseManager(airbases)
 			end
 
 			if activeCapNum > maxCapNum then
--- RELEASE_LOGOFF  				luaLog("----------------------------------------")
--- RELEASE_LOGOFF  				luaLog("Ordering cap land")
+		-- RELEASE_LOGOFF  				luaLog("----------------------------------------")
+		-- RELEASE_LOGOFF  				luaLog("Ordering cap land")
 				local sortedCapTable = {}
 				for index, slot in pairs (capTable) do
 					if table.getn(sortedCapTable) == 0 then
@@ -15603,62 +15603,62 @@ function luaPlayerAirbaseManager(airbases)
 							table.insert(capInLandTable, slot)
 							activeCapNum = activeCapNum - 1
 							if activeCapNum == maxCapNum then
--- RELEASE_LOGOFF  								luaLog("Break, maxCapNum reached")
+		-- RELEASE_LOGOFF  								luaLog("Break, maxCapNum reached")
 								break
 							end
 						else
--- RELEASE_LOGOFF  							luaLog("Skip, cap target is selected by player")
+		-- RELEASE_LOGOFF  							luaLog("Skip, cap target is selected by player")
 						end
 					elseif not slot.Target then
--- RELEASE_LOGOFF  							luaLog("Skip, cap target is selected by player")
+		-- RELEASE_LOGOFF  							luaLog("Skip, cap target is selected by player")
 					else
--- RELEASE_LOGOFF  							luaLog("Skip, slot player controlled")
+		-- RELEASE_LOGOFF  							luaLog("Skip, slot player controlled")
 					end
 				end
 			end
 
 			local planeCommand = function(planeEnt, airbase, airbaseTarget, groupDistance, pendingPlaneEntTable)
 				if not airstrikeMode then
--- RELEASE_LOGOFF  					luaLog("Success, target set")
+		-- RELEASE_LOGOFF  					luaLog("Success, target set")
 					luaSetScriptTarget(planeEnt, airbaseTarget)
 					UnitSetFireStance(planeEnt, STANCE_HOLD_FIRE)
 				elseif GetSquadFlyTime(planeEnt) < 15 then
--- RELEASE_LOGOFF  					luaLog("Skip, newborn slot")
+		-- RELEASE_LOGOFF  					luaLog("Skip, newborn slot")
 					--Skip
 				elseif luaGetDistance(planeEnt, airbase) >= groupDistance then
--- RELEASE_LOGOFF  					luaLog("Success, squad is away, target set")
+		-- RELEASE_LOGOFF  					luaLog("Success, squad is away, target set")
 					luaSetScriptTarget(planeEnt, airbaseTarget)
 					UnitSetFireStance(planeEnt, STANCE_HOLD_FIRE)
 				elseif luaGetDistance(planeEnt, airbase) < groupDistance then
--- RELEASE_LOGOFF  					luaLog("Skip, squad is in range, pending")
+		-- RELEASE_LOGOFF  					luaLog("Skip, squad is in range, pending")
 					table.insert(pendingPlaneEntTable, planeEnt)
 				end
 			end
 			if airbase.PlayerAirbasePreviousTarget == airbaseTarget and airbaseTarget then
 				if table.getn(capInLandTable) ~= 0 then
--- RELEASE_LOGOFF  					luaLog("----------------------------------------")
--- RELEASE_LOGOFF  					luaLog("Ordering capInLand -> attackersInLand")
+		-- RELEASE_LOGOFF  					luaLog("----------------------------------------")
+		-- RELEASE_LOGOFF  					luaLog("Ordering capInLand -> attackersInLand")
 					for index, slot in pairs (capInLandTable) do
 						if not IsPlayerControlled(slot.Ent) then
 							if tostring(luaGetType(airbaseTarget)) == "plane" or airbaseTarget.Class.Type == "TorpedoBoat" or airbaseTarget.Class.Type == "LandingShip" or airbaseTarget.Class.Type == "Cargo" then
--- RELEASE_LOGOFF  								luaLog("Success, target is vulnerable for machinegun")
+		-- RELEASE_LOGOFF  								luaLog("Success, target is vulnerable for machinegun")
 								slot.Ent.PlayerAirbaseCap = false
 								slot.Ent.PlayerAirbaseAttacker = true
 								table.insert(attackersInLandTable, slot)
 							else
--- RELEASE_LOGOFF  								luaLog("Skip, target is invulnerable for machinegun")
+		-- RELEASE_LOGOFF  								luaLog("Skip, target is invulnerable for machinegun")
 							end
 						else
--- RELEASE_LOGOFF  							luaLog("Skip, slot player controlled")
+		-- RELEASE_LOGOFF  							luaLog("Skip, slot player controlled")
 						end
 					end
 				end
 				if table.getn(attackersInLandTable) ~= 0 then
--- RELEASE_LOGOFF  					luaLog("----------------------------------------")
--- RELEASE_LOGOFF  					luaLog("Ordering attackersInLand to attack")
+		-- RELEASE_LOGOFF  					luaLog("----------------------------------------")
+		-- RELEASE_LOGOFF  					luaLog("Ordering attackersInLand to attack")
 					for index, slot in pairs (attackersInLandTable) do
--- RELEASE_LOGOFF  						luaLog("slot.Ent.Class.Type: "..tostring(slot.Ent.Class.Type))
--- RELEASE_LOGOFF  						luaLog("slot.Ent.ammo: "..tostring(slot.Ent.ammo))
+		-- RELEASE_LOGOFF  						luaLog("slot.Ent.Class.Type: "..tostring(slot.Ent.Class.Type))
+		-- RELEASE_LOGOFF  						luaLog("slot.Ent.ammo: "..tostring(slot.Ent.ammo))
 						if not IsPlayerControlled(slot.Ent) and slot.Ent.ammo == AMMO_NONE then
 							if slot.Ent.Class.Type == "Fighter" and (tostring(luaGetType(airbaseTarget)) == "plane" or airbaseTarget.Class.Type == "TorpedoBoat" or airbaseTarget.Class.Type == "LandingShip" or airbaseTarget.Class.Type == "Cargo") then
 								planeCommand(slot.Ent, airbase, airbaseTarget, groupDistance, pendingPlaneEntTable)
@@ -15673,22 +15673,22 @@ function luaPlayerAirbaseManager(airbases)
 							end
 						elseif not IsPlayerControlled(slot.Ent) and slot.Ent.ammo == AMMO_DEPTHCHARGE then
 							if tostring(luaGetType(airbaseTarget)) == "sub" then
--- RELEASE_LOGOFF  								luaLog("Success, target set")
+		-- RELEASE_LOGOFF  								luaLog("Success, target set")
 								luaSetScriptTarget(slot.Ent, airbaseTarget)
 								UnitSetFireStance(slot.Ent, STANCE_HOLD_FIRE)
 							end
 						elseif IsPlayerControlled(slot.Ent) then
--- RELEASE_LOGOFF  							luaLog("Skip, slot player controlled")
+		-- RELEASE_LOGOFF  							luaLog("Skip, slot player controlled")
 						end
 					end
 				end
 				if table.getn(attackersTable) ~= 0 then
--- RELEASE_LOGOFF  					luaLog("----------------------------------------")
--- RELEASE_LOGOFF  					luaLog("Ordering attackers to attack")
+		-- RELEASE_LOGOFF  					luaLog("----------------------------------------")
+		-- RELEASE_LOGOFF  					luaLog("Ordering attackers to attack")
 					local landTable = {}
 					for index, slot in pairs (attackersTable) do
--- RELEASE_LOGOFF  						luaLog("slot.Ent.Class.Type: "..tostring(slot.Ent.Class.Type))
--- RELEASE_LOGOFF  						luaLog("slot.Ent.ammo: "..tostring(slot.Ent.ammo))
+		-- RELEASE_LOGOFF  						luaLog("slot.Ent.Class.Type: "..tostring(slot.Ent.Class.Type))
+		-- RELEASE_LOGOFF  						luaLog("slot.Ent.ammo: "..tostring(slot.Ent.ammo))
 						local attackerTargetID = luaGetScriptTarget(slot.Ent)
 						if attackerTargetID then
 							attackerTargetID = attackerTargetID.ID
@@ -15698,16 +15698,16 @@ function luaPlayerAirbaseManager(airbases)
 								planeCommand(slot.Ent, airbase, airbaseTarget, groupDistance, pendingPlaneEntTable)
 							elseif tostring(luaGetType(airbaseTarget)) == "sub" then
 								if not luaGetScriptTarget(slot.Ent) then
--- RELEASE_LOGOFF  									luaLog("Skip, target is a sub, regrouping at the base")
+		-- RELEASE_LOGOFF  									luaLog("Skip, target is a sub, regrouping at the base")
 									--TODO: csak egyszer kene kiadni
 									PilotMoveTo(slot.Ent, airbase)
 									UnitSetFireStance(slot.Ent, STANCE_FREE_FIRE)
 								else
--- RELEASE_LOGOFF  									luaLog("Skip, target is a sub, executing previous orders")
+		-- RELEASE_LOGOFF  									luaLog("Skip, target is a sub, executing previous orders")
 								end
 								table.insert(landTable, slot.Ent)
 							else
--- RELEASE_LOGOFF  								luaLog("Land, squadron is unable to attack target")
+		-- RELEASE_LOGOFF  								luaLog("Land, squadron is unable to attack target")
 								PilotLand(slot.Ent, airbase)
 								UnitSetFireStance(slot.Ent, STANCE_HOLD_FIRE)
 							end
@@ -15716,16 +15716,16 @@ function luaPlayerAirbaseManager(airbases)
 								planeCommand(slot.Ent, airbase, airbaseTarget, groupDistance, pendingPlaneEntTable)
 							elseif tostring(luaGetType(airbaseTarget)) == "sub" then
 								if not luaGetScriptTarget(slot.Ent) then
--- RELEASE_LOGOFF  									luaLog("Skip, target is a sub, regrouping at the base")
+		-- RELEASE_LOGOFF  									luaLog("Skip, target is a sub, regrouping at the base")
 									--TODO: csak egyszer kene kiadni
 									PilotMoveTo(slot.Ent, airbase)
 									UnitSetFireStance(slot.Ent, STANCE_HOLD_FIRE)
 								else
--- RELEASE_LOGOFF  									luaLog("Skip, target is a sub, executing previous orders")
+		-- RELEASE_LOGOFF  									luaLog("Skip, target is a sub, executing previous orders")
 								end
 								table.insert(landTable, slot.Ent)
 							else
--- RELEASE_LOGOFF  								luaLog("Land, squadron is unable to attack target")
+		-- RELEASE_LOGOFF  								luaLog("Land, squadron is unable to attack target")
 								PilotLand(slot.Ent, airbase)
 								UnitSetFireStance(slot.Ent, STANCE_HOLD_FIRE)
 							end
@@ -15734,34 +15734,34 @@ function luaPlayerAirbaseManager(airbases)
 								planeCommand(slot.Ent, airbase, airbaseTarget, groupDistance, pendingPlaneEntTable)
 							elseif tostring(luaGetType(airbaseTarget)) == "sub" then
 								if not luaGetScriptTarget(slot.Ent) then
--- RELEASE_LOGOFF  									luaLog("Skip, target is a sub, regrouping at the base")
+		-- RELEASE_LOGOFF  									luaLog("Skip, target is a sub, regrouping at the base")
 									--TODO: csak egyszer kene kiadni
 									PilotMoveTo(slot.Ent, airbase)
 									UnitSetFireStance(slot.Ent, STANCE_HOLD_FIRE)
 								else
--- RELEASE_LOGOFF  									luaLog("Skip, target is a sub, executing previous orders")
+		-- RELEASE_LOGOFF  									luaLog("Skip, target is a sub, executing previous orders")
 								end
 								table.insert(landTable, slot.Ent)
 							else
--- RELEASE_LOGOFF  								luaLog("Land, squadron is unable to attack target")
+		-- RELEASE_LOGOFF  								luaLog("Land, squadron is unable to attack target")
 								PilotLand(slot.Ent, airbase)
 								UnitSetFireStance(slot.Ent, STANCE_HOLD_FIRE)
 							end
 						elseif not IsPlayerControlled(slot.Ent) and slot.Ent.ammo == AMMO_DEPTHCHARGE and attackerTargetID ~= airbaseTarget.ID then
 							if tostring(luaGetType(airbaseTarget)) == "sub" then
--- RELEASE_LOGOFF  								luaLog("Success, target set")
+		-- RELEASE_LOGOFF  								luaLog("Success, target set")
 								luaSetScriptTarget(slot.Ent, airbaseTarget)
 								UnitSetFireStance(slot.Ent, STANCE_HOLD_FIRE)
 								landTable = {}
 							else
--- RELEASE_LOGOFF  								luaLog("Land, squadron is unable to attack target")
+		-- RELEASE_LOGOFF  								luaLog("Land, squadron is unable to attack target")
 								PilotLand(slot.Ent, airbase)
 								UnitSetFireStance(slot.Ent, STANCE_HOLD_FIRE)
 							end
 						elseif IsPlayerControlled(slot.Ent) then
--- RELEASE_LOGOFF  							luaLog("Skip, slot player controlled")
+		-- RELEASE_LOGOFF  							luaLog("Skip, slot player controlled")
 						elseif attackerTargetID ~= airbaseTarget.ID then
--- RELEASE_LOGOFF  							luaLog("Skip, target remains the same")
+		-- RELEASE_LOGOFF  							luaLog("Skip, target remains the same")
 						end
 					end
 					if table.getn(attackersInLandTable) == 0 and not landingInProgress and activeDCNum < 1 and (not nextFreeSlot or freePlanes < 1) then
@@ -15776,25 +15776,25 @@ function luaPlayerAirbaseManager(airbases)
 							end
 						end
 						if landingEnt then
--- RELEASE_LOGOFF  							luaLog("Land command received: "..landingEnt.Name)
+		-- RELEASE_LOGOFF  							luaLog("Land command received: "..landingEnt.Name)
 							PilotLand(landingEnt, airbase)
 							UnitSetFireStance(landingEnt, STANCE_HOLD_FIRE)
 						end
 					end
 				end
 				if IsReadyToSendPlanes(airbase) and nextFreeSlot and freePlanes > 0 and (tostring(luaGetType(airbaseTarget)) == "plane" or airbaseTarget.Class.Type == "TorpedoBoat" or airbaseTarget.Class.Type == "LandingShip") and airbase.PlayerAirbasePlanePreferences.Fighter then
--- RELEASE_LOGOFF  					luaLog("----------------------------------------")
--- RELEASE_LOGOFF  					luaLog("Ordering the launch of a fighter")
+		-- RELEASE_LOGOFF  					luaLog("----------------------------------------")
+		-- RELEASE_LOGOFF  					luaLog("Ordering the launch of a fighter")
 					for idx, planeTemplate in pairs (airbase.PlayerAirbasePlanePreferences.Fighter) do
 						if stock[planeTemplate.ClassID] ~= nil then
 							if stock[planeTemplate.ClassID] > 0 then
 								local availablePlanes = math.min(math.min(3, stock[planeTemplate.ClassID]), freePlanes)
--- RELEASE_LOGOFF  								luaLog("planeTemplate.ClassID: "..tostring(planeTemplate.ClassID))
--- RELEASE_LOGOFF  								luaLog("availablePlanes: "..tostring(availablePlanes))
--- RELEASE_LOGOFF  								luaLog("planeTemplate.EquipmentID: "..tostring(planeTemplate.EquipmentID))
+		-- RELEASE_LOGOFF  								luaLog("planeTemplate.ClassID: "..tostring(planeTemplate.ClassID))
+		-- RELEASE_LOGOFF  								luaLog("availablePlanes: "..tostring(availablePlanes))
+		-- RELEASE_LOGOFF  								luaLog("planeTemplate.EquipmentID: "..tostring(planeTemplate.EquipmentID))
 								SetAirBaseSlot(airbase, nextFreeSlot, planeTemplate.ClassID, availablePlanes, planeTemplate.EquipmentID)
 								local planeEnt = LaunchAirBaseSlot(airbase, nextFreeSlot)
--- RELEASE_LOGOFF  								luaLog("Success, launched")
+		-- RELEASE_LOGOFF  								luaLog("Success, launched")
 								planeEnt.PlayerAirbaseAttacker = true
 								--[[
 								STANCE_HOLD_FIRE   = 0, // hold fire, hold move
@@ -15803,11 +15803,11 @@ function luaPlayerAirbaseManager(airbases)
 								STANCE_MOVE_ONLY   = 3,  // hold fire, free move
 								]]
 								if not airstrikeMode then
--- RELEASE_LOGOFF  									luaLog("Success, target set")
+		-- RELEASE_LOGOFF  									luaLog("Success, target set")
 									luaSetScriptTarget(planeEnt, airbaseTarget)
 									UnitSetFireStance(planeEnt, STANCE_HOLD_FIRE)
 								elseif airstrikeMode then
--- RELEASE_LOGOFF  									luaLog("Skip, airstrikeMode waiting for successful take off")
+		-- RELEASE_LOGOFF  									luaLog("Skip, airstrikeMode waiting for successful take off")
 									--table.insert(pendingPlaneEntTable, planeEnt)
 								end
 								activePlanes = activePlanes + availablePlanes
@@ -15820,18 +15820,18 @@ function luaPlayerAirbaseManager(airbases)
 					end
 				end
 				if IsReadyToSendPlanes(airbase) and nextFreeSlot and freePlanes > 0 and tostring(luaGetType(airbaseTarget)) == "sub" and airbase.PlayerAirbasePlanePreferences.DC and activeDCNum < 1 and airbase.PlayerAirbasePreviousDCNum2 < 1 then
--- RELEASE_LOGOFF  					luaLog("----------------------------------------")
--- RELEASE_LOGOFF  					luaLog("Ordering the launch of a DC squad")
+		-- RELEASE_LOGOFF  					luaLog("----------------------------------------")
+		-- RELEASE_LOGOFF  					luaLog("Ordering the launch of a DC squad")
 					for idx, planeTemplate in pairs (airbase.PlayerAirbasePlanePreferences.DC) do
 						if stock[planeTemplate.ClassID] ~= nil then
 							if stock[planeTemplate.ClassID] > 0 then
 								local availablePlanes = math.min(math.min(2, stock[planeTemplate.ClassID]), freePlanes)
--- RELEASE_LOGOFF  								luaLog("planeTemplate.ClassID: "..tostring(planeTemplate.ClassID))
--- RELEASE_LOGOFF  								luaLog("availablePlanes: "..tostring(availablePlanes))
--- RELEASE_LOGOFF  								luaLog("planeTemplate.EquipmentID: "..tostring(planeTemplate.EquipmentID))
+		-- RELEASE_LOGOFF  								luaLog("planeTemplate.ClassID: "..tostring(planeTemplate.ClassID))
+		-- RELEASE_LOGOFF  								luaLog("availablePlanes: "..tostring(availablePlanes))
+		-- RELEASE_LOGOFF  								luaLog("planeTemplate.EquipmentID: "..tostring(planeTemplate.EquipmentID))
 								SetAirBaseSlot(airbase, nextFreeSlot, planeTemplate.ClassID, availablePlanes, planeTemplate.EquipmentID)
 								local planeEnt = LaunchAirBaseSlot(airbase, nextFreeSlot)
--- RELEASE_LOGOFF  								luaLog("Success, launched")
+		-- RELEASE_LOGOFF  								luaLog("Success, launched")
 								planeEnt.PlayerAirbaseAttacker = true
 								--[[
 								STANCE_HOLD_FIRE   = 0, // hold fire, hold move
@@ -15839,7 +15839,7 @@ function luaPlayerAirbaseManager(airbases)
 								STANCE_FREE_ATTACK = 2, // free fire, free move
 								STANCE_MOVE_ONLY   = 3,  // hold fire, free move
 								]]
--- RELEASE_LOGOFF  								luaLog("Succes, target set")
+		-- RELEASE_LOGOFF  								luaLog("Succes, target set")
 								luaSetScriptTarget(planeEnt, airbaseTarget)
 								UnitSetFireStance(planeEnt, STANCE_HOLD_FIRE)
 								activePlanes = activePlanes + availablePlanes
@@ -15853,8 +15853,8 @@ function luaPlayerAirbaseManager(airbases)
 					end
 				end
 				if IsReadyToSendPlanes(airbase) and nextFreeSlot and freePlanes > 0 and (tostring(luaGetType(airbaseTarget)) == "ship" or tostring(luaGetType(airbaseTarget)) == "landfort" or airbaseTarget.Class.Type == "AirField" or airbaseTarget.Class.Type == "Shipyard") and (airbase.PlayerAirbasePlanePreferences.TorpedoBomber or airbase.PlayerAirbasePlanePreferences.DiveBomber or airbase.PlayerAirbasePlanePreferences.LevelBomber) then
--- RELEASE_LOGOFF  					luaLog("----------------------------------------")
--- RELEASE_LOGOFF  					luaLog("Ordering the launch of an attack squad")
+		-- RELEASE_LOGOFF  					luaLog("----------------------------------------")
+		-- RELEASE_LOGOFF  					luaLog("Ordering the launch of an attack squad")
 					local availableTorpedoBombers = 0
 					local availableDiveBombers = 0
 					local availableLevelBombers = 0
@@ -15886,12 +15886,12 @@ function luaPlayerAirbaseManager(airbases)
 						end
 					end
 
--- RELEASE_LOGOFF  					luaLog("availableTorpedoBombers: "..tostring(availableTorpedoBombers))
--- RELEASE_LOGOFF  					luaLog("availableDiveBombers: "..tostring(availableDiveBombers))
--- RELEASE_LOGOFF  					luaLog("availableLevelBombers: "..tostring(availableLevelBombers))
+		-- RELEASE_LOGOFF  					luaLog("availableTorpedoBombers: "..tostring(availableTorpedoBombers))
+		-- RELEASE_LOGOFF  					luaLog("availableDiveBombers: "..tostring(availableDiveBombers))
+		-- RELEASE_LOGOFF  					luaLog("availableLevelBombers: "..tostring(availableLevelBombers))
 
 					local calculateWeight = function(classType)
--- RELEASE_LOGOFF  						luaLog("Calculating weight...")
+		-- RELEASE_LOGOFF  						luaLog("Calculating weight...")
 						local torpedoBomberWeight = 0
 						local diveBomberWeight = 0
 						local levelBomberWeight = 0
@@ -15905,15 +15905,15 @@ function luaPlayerAirbaseManager(airbases)
 							levelBomberWeight = Mission.PlayerAirbaseTacticalPreferences[classType][3]
 						end
 						if torpedoBomberWeight == 1 and (diveBomberWeight ~= 0 or levelBomberWeight ~= 0) then
--- RELEASE_LOGOFF  							luaLog("torpedoBomberWeight reduced to 0")
+		-- RELEASE_LOGOFF  							luaLog("torpedoBomberWeight reduced to 0")
 							torpedoBomberWeight = 0
 						end
 						if diveBomberWeight == 1 and (torpedoBomberWeight ~= 0 or levelBomberWeight ~= 0) then
--- RELEASE_LOGOFF  							luaLog("diveBomberWeight reduced to 0")
+		-- RELEASE_LOGOFF  							luaLog("diveBomberWeight reduced to 0")
 							diveBomberWeight = 0
 						end
 						if levelBomberWeight == 1 and (torpedoBomberWeight ~= 0 or levelBomberWeight ~= 0) then
--- RELEASE_LOGOFF  							luaLog("levelBomberWeight reduced to 0")
+		-- RELEASE_LOGOFF  							luaLog("levelBomberWeight reduced to 0")
 							levelBomberWeight = 0
 						end
 						return torpedoBomberWeight, diveBomberWeight, levelBomberWeight
@@ -15933,20 +15933,20 @@ function luaPlayerAirbaseManager(airbases)
 					if airbaseTarget.Class.Type == "MotherShip" or airbaseTarget.Class.Type == "BattleShip" or airbaseTarget.Class.Type == "Cruiser" or airbaseTarget.Class.Type == "Cargo" or airbaseTarget.Class.Type == "Destroyer" or airbaseTarget.Class.Type == "LandFort" or airbaseTarget.Class.Type == "Shipyard" or airbaseTarget.Class.Type == "AirField" then
 						local torpedoBomberWeight, diveBomberWeight, levelBomberWeight = calculateWeight(airbaseTarget.Class.Type)
 						--TODO: opcionalisan figyelembe venni az eddigi tamadokat a sulyozasnal
--- RELEASE_LOGOFF  						luaLog("TypeWeight: "..torpedoBomberWeight..", "..diveBomberWeight..", "..levelBomberWeight)
+		-- RELEASE_LOGOFF  						luaLog("TypeWeight: "..torpedoBomberWeight..", "..diveBomberWeight..", "..levelBomberWeight)
 						if torpedoBomberWeight + diveBomberWeight + levelBomberWeight > 0 then
 							local attackType = luaPickInRange("TorpedoBomber", torpedoBomberWeight, "DiveBomber", diveBomberWeight, "LevelBomber", levelBomberWeight)
--- RELEASE_LOGOFF  							luaLog("ChosenTypet: "..attackType)
+		-- RELEASE_LOGOFF  							luaLog("ChosenTypet: "..attackType)
 							for idx, planeTemplate in pairs (airbase.PlayerAirbasePlanePreferences[attackType]) do
 								if stock[planeTemplate.ClassID] ~= nil then
 									if stock[planeTemplate.ClassID] > 0 then
 										local availablePlanes = math.min(math.min(3, stock[planeTemplate.ClassID]), freePlanes)
--- RELEASE_LOGOFF  										luaLog("planeTemplate.ClassID: "..tostring(planeTemplate.ClassID))
--- RELEASE_LOGOFF  										luaLog("availablePlanes: "..tostring(availablePlanes))
--- RELEASE_LOGOFF  										luaLog("planeTemplate.EquipmentID: "..tostring(planeTemplate.EquipmentID))
+		-- RELEASE_LOGOFF  										luaLog("planeTemplate.ClassID: "..tostring(planeTemplate.ClassID))
+		-- RELEASE_LOGOFF  										luaLog("availablePlanes: "..tostring(availablePlanes))
+		-- RELEASE_LOGOFF  										luaLog("planeTemplate.EquipmentID: "..tostring(planeTemplate.EquipmentID))
 										SetAirBaseSlot(airbase, nextFreeSlot, planeTemplate.ClassID, availablePlanes, planeTemplate.EquipmentID)
 										local planeEnt = LaunchAirBaseSlot(airbase, nextFreeSlot)
--- RELEASE_LOGOFF  										luaLog("Success, launched")
+		-- RELEASE_LOGOFF  										luaLog("Success, launched")
 										planeEnt.PlayerAirbaseAttacker = true
 										--[[
 										STANCE_HOLD_FIRE   = 0, // hold fire, hold move
@@ -15955,11 +15955,11 @@ function luaPlayerAirbaseManager(airbases)
 										STANCE_MOVE_ONLY   = 3,  // hold fire, free move
 										]]
 										if not airstrikeMode then
--- RELEASE_LOGOFF  											luaLog("Success, target set")
+		-- RELEASE_LOGOFF  											luaLog("Success, target set")
 											luaSetScriptTarget(planeEnt, airbaseTarget)
 											UnitSetFireStance(planeEnt, STANCE_HOLD_FIRE)
 										elseif airstrikeMode then
--- RELEASE_LOGOFF  											luaLog("Skip, airstrikeMode waiting for successful take off")
+		-- RELEASE_LOGOFF  											luaLog("Skip, airstrikeMode waiting for successful take off")
 											--table.insert(pendingPlaneEntTable, planeEnt)
 										end
 										activePlanes = activePlanes + availablePlanes
@@ -15978,40 +15978,40 @@ function luaPlayerAirbaseManager(airbases)
 								end
 							end
 						else
--- RELEASE_LOGOFF  							luaLog("Warning! No attack planes in stock")
+		-- RELEASE_LOGOFF  							luaLog("Warning! No attack planes in stock")
 						end
 					else
--- RELEASE_LOGOFF  						luaLog("Warning! Invalid type: "..tostring(airbaseTarget.Class.Type))
+		-- RELEASE_LOGOFF  						luaLog("Warning! Invalid type: "..tostring(airbaseTarget.Class.Type))
 					end
 				end
 				--TODO: ezt finomitani, hogy ha tobb attacker van a levegoben mint amennyi maradna Cap noveles miatt akkor azok ne menjenek el attackolni.
--- RELEASE_LOGOFF  				luaLog("----------------------------------------")
--- RELEASE_LOGOFF  				luaLog("Ordering pending units")
--- RELEASE_LOGOFF  				luaLog("table.getn(pendingPlaneEntTable): "..tostring(table.getn(pendingPlaneEntTable)))
--- RELEASE_LOGOFF  				luaLog("maxSlots: "..tostring(maxSlots))
--- RELEASE_LOGOFF  				luaLog("activeCapNum: "..tostring(activeCapNum))
--- RELEASE_LOGOFF  				luaLog("activePlayerNum: "..tostring(activePlayerNum))
+		-- RELEASE_LOGOFF  				luaLog("----------------------------------------")
+		-- RELEASE_LOGOFF  				luaLog("Ordering pending units")
+		-- RELEASE_LOGOFF  				luaLog("table.getn(pendingPlaneEntTable): "..tostring(table.getn(pendingPlaneEntTable)))
+		-- RELEASE_LOGOFF  				luaLog("maxSlots: "..tostring(maxSlots))
+		-- RELEASE_LOGOFF  				luaLog("activeCapNum: "..tostring(activeCapNum))
+		-- RELEASE_LOGOFF  				luaLog("activePlayerNum: "..tostring(activePlayerNum))
 				if (table.getn(pendingPlaneEntTable) >= (maxSlots - activeCapNum - activePlayerNum)) or (nextFreeSlot and IsReadyToSendPlanes(airbase)) then
--- RELEASE_LOGOFF  					luaLog("Initiating Attack...")
+		-- RELEASE_LOGOFF  					luaLog("Initiating Attack...")
 					for idx, planeEnt in pairs (pendingPlaneEntTable) do
--- RELEASE_LOGOFF  						luaLog("Success, target set")
+		-- RELEASE_LOGOFF  						luaLog("Success, target set")
 						luaSetScriptTarget(planeEnt, airbaseTarget)
 						UnitSetFireStance(planeEnt, STANCE_HOLD_FIRE)
 					end
 				elseif table.getn(pendingPlaneEntTable) > 0 then
--- RELEASE_LOGOFF  					luaLog("Waiting for more before attack...")
+		-- RELEASE_LOGOFF  					luaLog("Waiting for more before attack...")
 				else
--- RELEASE_LOGOFF  					luaLog("No pending units")
+		-- RELEASE_LOGOFF  					luaLog("No pending units")
 				end
 			elseif airbase.PlayerAirbasePreviousTarget == airbaseTarget then
--- RELEASE_LOGOFF  				luaLog("----------------------------------------")
--- RELEASE_LOGOFF  				luaLog("Ordering squads to regroup")
+		-- RELEASE_LOGOFF  				luaLog("----------------------------------------")
+		-- RELEASE_LOGOFF  				luaLog("Ordering squads to regroup")
 				airbase.slots = GetProperty(airbase, "slots")
 				for index, slot in pairs (attackersTable) do
 					if not IsPlayerControlled(slot.Ent) then
 						if airbase.slots[slot.SlotNum].state ~= PLANES_RETURN then
 							if not slot.Ent.TargetIsHome then
--- RELEASE_LOGOFF  								luaLog("Success, move orders received")
+		-- RELEASE_LOGOFF  								luaLog("Success, move orders received")
 								PilotMoveTo(slot.Ent, airbase)
 								if slot.Ent.ammo == AMMO_NONE then
 									UnitSetFireStance(slot.Ent, STANCE_FREE_FIRE)
@@ -16019,13 +16019,13 @@ function luaPlayerAirbaseManager(airbases)
 									UnitSetFireStance(slot.Ent, STANCE_HOLD_FIRE)
 								end
 							else
--- RELEASE_LOGOFF  								luaLog("Skip, slot already got move orders")
+		-- RELEASE_LOGOFF  								luaLog("Skip, slot already got move orders")
 							end
 						else
--- RELEASE_LOGOFF  							luaLog("Skip, slot in land state")
+		-- RELEASE_LOGOFF  							luaLog("Skip, slot in land state")
 						end
 					else
--- RELEASE_LOGOFF  						luaLog("Skip, slot player controlled")
+		-- RELEASE_LOGOFF  						luaLog("Skip, slot player controlled")
 					end
 				end
 			end
@@ -16035,7 +16035,7 @@ function luaPlayerAirbaseManager(airbases)
 			airbase.PlayerAirbasePreviousDCNum = activeDCNum
 		end
 	end
--- RELEASE_LOGOFF  	luaLog("luaPlayerAirbaseManager Finished!")
+		-- RELEASE_LOGOFF  	luaLog("luaPlayerAirbaseManager Finished!")
 end
 
 --[[AutoDoc
@@ -16048,7 +16048,7 @@ function luaReloadHelpers()
 	DoFileOutsideMPAK("scripts/global/commandhelpers.lua")
 	--DoFile("scripts/global/checkpointsystem.lua")
 	--DoFile("scripts/global/missionhelpers.lua")
--- RELEASE_LOGOFF  	LogToConsole("Success: Helper scripts are reloaded.")
+		-- RELEASE_LOGOFF  	LogToConsole("Success: Helper scripts are reloaded.")
 end
 
 --[[AutoDoc
@@ -16062,17 +16062,17 @@ function luaReloadMission()
 		if type(Mission.ScriptFile) == "string" then
 			local scriptFile = io.open(Mission.ScriptFile, "r")
 			if scriptFile == nil then
--- RELEASE_LOGOFF  				LogToConsole("Error: "..tostring(Mission.ScriptFile).." doesn't exists!")
+		-- RELEASE_LOGOFF  				LogToConsole("Error: "..tostring(Mission.ScriptFile).." doesn't exists!")
 			else
 				scriptFile:close()
 				DoFileOutsideMPAK(Mission.ScriptFile)
--- RELEASE_LOGOFF  				LogToConsole("Success: "..Mission.ScriptFile.." is reloaded.")
+		-- RELEASE_LOGOFF  				LogToConsole("Success: "..Mission.ScriptFile.." is reloaded.")
 			end
 		else
--- RELEASE_LOGOFF  			LogToConsole("Error: ScriptFile is not a string!")
+		-- RELEASE_LOGOFF  			LogToConsole("Error: ScriptFile is not a string!")
 		end
 	else
--- RELEASE_LOGOFF  		LogToConsole("Error: ScriptFile is not defined!")
+		-- RELEASE_LOGOFF  		LogToConsole("Error: ScriptFile is not defined!")
 	end
 end
 
@@ -16081,16 +16081,16 @@ usage: luaDumpLocals([useLogFile])
 category: Debug
 shortdesc: Lokalis valtozok lekerdezese.
 desc: Egy aktiv debug ciklusban a fuggveny kiirja a kulonbozo szinteken definialt local valtozokat alapertelmezesbol a consolera. Tablak logolasa maximum 3-as melysegig tortenik.
--- RELEASE_LOGOFF  useLogFile: Ha nem nil, akkor luaLog-ot hasznal egyebkent logToConsole-t.
+		-- RELEASE_LOGOFF  useLogFile: Ha nem nil, akkor luaLog-ot hasznal egyebkent logToConsole-t.
 ]]
 function luaDumpLocals(useLogFile)
 	if not useLogFile then
--- RELEASE_LOGOFF  		LogToConsole("================================================================================")
--- RELEASE_LOGOFF  		LogToConsole("***Dump Locals***")
--- RELEASE_LOGOFF  		LogToConsole("================================================================================")
+		-- RELEASE_LOGOFF  		LogToConsole("================================================================================")
+		-- RELEASE_LOGOFF  		LogToConsole("***Dump Locals***")
+		-- RELEASE_LOGOFF  		LogToConsole("================================================================================")
 		local level = 4
 		while debug.getinfo(level) do
--- RELEASE_LOGOFF  			LogToConsole("***Name: "..tostring(debug.getinfo(level, "n").name)..", Source: "..tostring(debug.getinfo(level).source)..", Current Line: "..tostring(debug.getinfo(level).currentline).."***")
+		-- RELEASE_LOGOFF  			LogToConsole("***Name: "..tostring(debug.getinfo(level, "n").name)..", Source: "..tostring(debug.getinfo(level).source)..", Current Line: "..tostring(debug.getinfo(level).currentline).."***")
 			local varIndex = 1
 			local headingPrinted
 			while true do
@@ -16098,13 +16098,13 @@ function luaDumpLocals(useLogFile)
 				if varKey then
 					if varKey:sub(1, 1) ~= "(" then
 						if not headingPrinted then
--- RELEASE_LOGOFF  							LogToConsole("================================================================================")
+		-- RELEASE_LOGOFF  							LogToConsole("================================================================================")
 							headingPrinted = true
 						end
--- RELEASE_LOGOFF  						LogToConsole("local "..tostring(varKey))
--- RELEASE_LOGOFF  						LogToConsole("------------------------------------------------------------------------------------------")
--- RELEASE_LOGOFF  						LogToConsole(varValue)
--- RELEASE_LOGOFF  						LogToConsole("================================================================================")
+		-- RELEASE_LOGOFF  						LogToConsole("local "..tostring(varKey))
+		-- RELEASE_LOGOFF  						LogToConsole("------------------------------------------------------------------------------------------")
+		-- RELEASE_LOGOFF  						LogToConsole(varValue)
+		-- RELEASE_LOGOFF  						LogToConsole("================================================================================")
 					end
 				else
 					break
@@ -16114,13 +16114,13 @@ function luaDumpLocals(useLogFile)
 			level = level + 1
 		end
 	else
--- RELEASE_LOGOFF  		LogToConsole("***Dump Locals***")
--- RELEASE_LOGOFF  		luaLog("================================================================================")
--- RELEASE_LOGOFF  		luaLog("***Dump Locals***")
--- RELEASE_LOGOFF  		luaLog("================================================================================")
+		-- RELEASE_LOGOFF  		LogToConsole("***Dump Locals***")
+		-- RELEASE_LOGOFF  		luaLog("================================================================================")
+		-- RELEASE_LOGOFF  		luaLog("***Dump Locals***")
+		-- RELEASE_LOGOFF  		luaLog("================================================================================")
 		local level = 4
 		while debug.getinfo(level) do
--- RELEASE_LOGOFF  			luaLog("***Name: "..tostring(debug.getinfo(level, "n").name)..", Source: "..tostring(debug.getinfo(level).source)..", Current Line: "..tostring(debug.getinfo(level).currentline).."***")
+		-- RELEASE_LOGOFF  			luaLog("***Name: "..tostring(debug.getinfo(level, "n").name)..", Source: "..tostring(debug.getinfo(level).source)..", Current Line: "..tostring(debug.getinfo(level).currentline).."***")
 			--luaLog(debug.getinfo(level))
 			local varIndex = 1
 			local headingPrinted
@@ -16129,13 +16129,13 @@ function luaDumpLocals(useLogFile)
 				if varKey then
 					if varKey:sub(1, 1) ~= "(" then
 						if not headingPrinted then
--- RELEASE_LOGOFF  							luaLog("================================================================================")
+		-- RELEASE_LOGOFF  							luaLog("================================================================================")
 							headingPrinted = true
 						end
--- RELEASE_LOGOFF  						luaLog("local "..tostring(varKey))
--- RELEASE_LOGOFF  						luaLog("--------------------------------------------------------------------------------")
--- RELEASE_LOGOFF  						luaLog(varValue)
--- RELEASE_LOGOFF  						luaLog("================================================================================")
+		-- RELEASE_LOGOFF  						luaLog("local "..tostring(varKey))
+		-- RELEASE_LOGOFF  						luaLog("--------------------------------------------------------------------------------")
+		-- RELEASE_LOGOFF  						luaLog(varValue)
+		-- RELEASE_LOGOFF  						luaLog("================================================================================")
 					end
 				else
 					break
@@ -16152,7 +16152,7 @@ function luaSetUnlockLvl(num)
 	if type(num) == "number" and (num >=1 and num <=3) then
 		Mission.UnlockLvl = num
 	else
--- RELEASE_LOGOFF  		luaHelperLog("SetUnlockLvl got a wrong param")
+		-- RELEASE_LOGOFF  		luaHelperLog("SetUnlockLvl got a wrong param")
 	end
 end
 
@@ -16173,14 +16173,14 @@ function luaSetPartyInvincible(...)
 
 	--luaLog("------ luaSetPartyInvincible Start -------")
 	if (arg[1] == nil) then
--- RELEASE_LOGOFF  		luaHelperLog("(luaSetAllInvincible): The first parameter is a nil. Function terminated.")
+		-- RELEASE_LOGOFF  		luaHelperLog("(luaSetAllInvincible): The first parameter is a nil. Function terminated.")
 		return 1
 	elseif (arg[1] ~= 0) and (arg[1] ~= 1) then
--- RELEASE_LOGOFF  		luaHelperLog("(luaSetAllInvincible): The first paramater must be 0 or 1. Function terminated.")
+		-- RELEASE_LOGOFF  		luaHelperLog("(luaSetAllInvincible): The first paramater must be 0 or 1. Function terminated.")
 		return 2
 	end
 	if (arg[2] ~= nil) and (arg[2] ~= PARTY_ALLIED) and (arg[2] ~= PARTY_JAPANESE) then
--- RELEASE_LOGOFF  		luaHelperLog("The second parameter must be nil, PARTY_ALLIED or PARTY_JAPANESE. Function terminated.")
+		-- RELEASE_LOGOFF  		luaHelperLog("The second parameter must be nil, PARTY_ALLIED or PARTY_JAPANESE. Function terminated.")
 		return 3
 	end
 	--luaLog("arg[1] = "..arg[1])
@@ -16296,16 +16296,16 @@ function luaRegisterCheckpointData(category, tablename, data)
 
 	if not Mission.Checkpoint[category] then
 		Mission.Checkpoint[category] = {}
--- RELEASE_LOGOFF  		luaLog(Mission.ChckLogPrefix.."Registering category: "..category)
+		-- RELEASE_LOGOFF  		luaLog(Mission.ChckLogPrefix.."Registering category: "..category)
 	end
 	if not Mission.Checkpoint[category][tablename] then
 		Mission.Checkpoint[category][tablename] = {}
--- RELEASE_LOGOFF  		luaLog(Mission.ChckLogPrefix.."Registering table: "..tablename.." under category: "..category)
+		-- RELEASE_LOGOFF  		luaLog(Mission.ChckLogPrefix.."Registering table: "..tablename.." under category: "..category)
 	end
 
 	table.insert(Mission.Checkpoint[category][tablename], data)
 
--- RELEASE_LOGOFF  	luaLog("\n")
+		-- RELEASE_LOGOFF  	luaLog("\n")
 end
 
 function luaGetCheckpointData(category, tablename)
@@ -16406,7 +16406,7 @@ le kell tarolni:
 		if unit and luaIsAirfieldTable({unit}) and luaIsRegisteredAirfield(unit) == false and not unit.Dead then
 
 			local AFTable = {["Stock"] = {}}
--- RELEASE_LOGOFF  			luaLog(Mission.ChckLogPrefix.."Found an airfield unit: "..unit.Name.." "..tostring(unit.Party))
+		-- RELEASE_LOGOFF  			luaLog(Mission.ChckLogPrefix.."Found an airfield unit: "..unit.Name.." "..tostring(unit.Party))
 			local slot,squad = luaGetSlotsAndSquads(unit)
 			local stock = GetProperty(unit, "Stock")
 
@@ -16417,13 +16417,13 @@ le kell tarolni:
 					local classID = squadron.Class.ID
 					--local tbl = {} -- mit erdemel... :))
 
--- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."classID "..classID)
+		-- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."classID "..classID)
 
 					for idx3,stockTbl in pairs(stock) do
 						--luaLog(Mission.ChckLogPrefix.."classTBL")
 						--luaLog(stockTbl)
 						if stockTbl.classid == classID then
--- RELEASE_LOGOFF  							luaLog(Mission.ChckLogPrefix.."Found a stock with same class ID")
+		-- RELEASE_LOGOFF  							luaLog(Mission.ChckLogPrefix.."Found a stock with same class ID")
 							table.insert(tbl, idx3)
 						end
 					end
@@ -16434,15 +16434,15 @@ le kell tarolni:
 					if table.getn(tbl) >= 1 then
 						if i < table.getn(tbl) then
 							stock[tbl[i]].count = stock[tbl[i]].count + 3
--- RELEASE_LOGOFF  							luaLog(Mission.ChckLogPrefix.."Adding plane to airfield stock "..unit.Name.." to stock "..tbl[1])
+		-- RELEASE_LOGOFF  							luaLog(Mission.ChckLogPrefix.."Adding plane to airfield stock "..unit.Name.." to stock "..tbl[1])
 							i = i + 1
 						elseif table.getn(tbl) == 1 then
 							i = 1
 							stock[tbl[i]].count = stock[tbl[i]].count + 3
--- RELEASE_LOGOFF  							luaLog(Mission.ChckLogPrefix.."Adding plane to airfield stock "..unit.Name.." to stock "..tbl[i])
+		-- RELEASE_LOGOFF  							luaLog(Mission.ChckLogPrefix.."Adding plane to airfield stock "..unit.Name.." to stock "..tbl[i])
 						end
 					elseif table.getn(tbl) == 0 then
--- RELEASE_LOGOFF  						luaLog(Mission.ChckLogPrefix.."No such class, perhaps ai scripted airfield?")
+		-- RELEASE_LOGOFF  						luaLog(Mission.ChckLogPrefix.."No such class, perhaps ai scripted airfield?")
 					end
 
 				end
@@ -16451,8 +16451,8 @@ le kell tarolni:
 			AFTable["Stock"] = stock
 			AFTable["Name"] = unit.Name
 			luaRegisterCheckpointData("Airfields", "Stock", AFTable)
--- RELEASE_LOGOFF  			luaLog(Mission.ChckLogPrefix.."Writing airfield data")
--- RELEASE_LOGOFF  			luaLog(Mission.ChckLogPrefix.."registering airfield "..unit.Name.." with party "..tostring(unit.Party))
+		-- RELEASE_LOGOFF  			luaLog(Mission.ChckLogPrefix.."Writing airfield data")
+		-- RELEASE_LOGOFF  			luaLog(Mission.ChckLogPrefix.."registering airfield "..unit.Name.." with party "..tostring(unit.Party))
 
 		elseif unit and (luaGetType(unit) == "ship" or luaGetType(unit) == "sub") then
 
@@ -16465,7 +16465,7 @@ le kell tarolni:
 		end
 	end
 
--- RELEASE_LOGOFF  	luaLog("\n")
+		-- RELEASE_LOGOFF  	luaLog("\n")
 
 	luaCheckSaveFunctions()
 
@@ -16476,24 +16476,24 @@ end
 function luaIsRegisteredAirfield(unit)
 	local AFTbl = luaGetCheckpointData("Airfields", "Stock")
 
--- RELEASE_LOGOFF  	luaLog(Mission.ChckLogPrefix.."luaIsRegisteredAirfield")
--- RELEASE_LOGOFF  	luaLog(Mission.ChckLogPrefix.."Checking "..unit.Name)
+		-- RELEASE_LOGOFF  	luaLog(Mission.ChckLogPrefix.."luaIsRegisteredAirfield")
+		-- RELEASE_LOGOFF  	luaLog(Mission.ChckLogPrefix.."Checking "..unit.Name)
 
 	if not AFTbl then
--- RELEASE_LOGOFF  		luaLog(Mission.ChckLogPrefix.."AFTable is not registered yet")
+		-- RELEASE_LOGOFF  		luaLog(Mission.ChckLogPrefix.."AFTable is not registered yet")
 		return false
 	end
 
 	for idx,af in pairs(AFTbl) do
--- RELEASE_LOGOFF  		luaLog(Mission.ChckLogPrefix.."Registered unit "..af.Name)
+		-- RELEASE_LOGOFF  		luaLog(Mission.ChckLogPrefix.."Registered unit "..af.Name)
 		if unit.Name == af.Name then
--- RELEASE_LOGOFF  			luaLog(Mission.ChckLogPrefix.."AF is already registered")
--- RELEASE_LOGOFF  			luaLog(Mission.ChckLogPrefix.."valami el van baszva megen a recontablaban")
--- RELEASE_LOGOFF  			luaLog("\n")
+		-- RELEASE_LOGOFF  			luaLog(Mission.ChckLogPrefix.."AF is already registered")
+		-- RELEASE_LOGOFF  			luaLog(Mission.ChckLogPrefix.."valami el van baszva megen a recontablaban")
+		-- RELEASE_LOGOFF  			luaLog("\n")
 			return true
 		end
 	end
--- RELEASE_LOGOFF  	luaLog("\n")
+		-- RELEASE_LOGOFF  	luaLog("\n")
 	return false
 end
 
@@ -16514,8 +16514,8 @@ function luaGetJapUnits()
 			end
 		end
 	end
--- RELEASE_LOGOFF  	luaLog(Mission.ChckLogPrefix.."Getting jap units")
--- RELEASE_LOGOFF  	luaLog("\n")
+		-- RELEASE_LOGOFF  	luaLog(Mission.ChckLogPrefix.."Getting jap units")
+		-- RELEASE_LOGOFF  	luaLog("\n")
 	return z
 end
 
@@ -16533,8 +16533,8 @@ function luaGetAlliedUnits()
 			end
 		end
 	end
--- RELEASE_LOGOFF  	luaLog(Mission.ChckLogPrefix.."Getting usn units")
--- RELEASE_LOGOFF  	luaLog("\n")
+		-- RELEASE_LOGOFF  	luaLog(Mission.ChckLogPrefix.."Getting usn units")
+		-- RELEASE_LOGOFF  	luaLog("\n")
 	return z
 end
 
@@ -16552,8 +16552,8 @@ function luaGetNeutralUnits()
 			end
 		end
 	end
--- RELEASE_LOGOFF  	luaLog(Mission.ChckLogPrefix.."Getting neutral units")
--- RELEASE_LOGOFF  	luaLog("\n")
+		-- RELEASE_LOGOFF  	luaLog(Mission.ChckLogPrefix.."Getting neutral units")
+		-- RELEASE_LOGOFF  	luaLog("\n")
 	return z
 end
 
@@ -16574,7 +16574,7 @@ function luaLoadCheckpoint()
 
 	local num = luaGetCheckpointData("CheckPoint", "Num")
 
--- RELEASE_LOGOFF  	luaLog(Mission.ChckLogPrefix.." loading checkpoint "..tostring(num[1]))
+		-- RELEASE_LOGOFF  	luaLog(Mission.ChckLogPrefix.." loading checkpoint "..tostring(num[1]))
 
 	--phase
 	local phaseTbl = luaGetCheckpointData("Phase", "MissionPhase")
@@ -16582,10 +16582,10 @@ function luaLoadCheckpoint()
 	--powerups
 	local pwupTbl = luaGetCheckpointData("Powerups", "PowerupTable")[1]
 	if pwupTbl then
--- RELEASE_LOGOFF  		luaLog("-----------PWUP----------------")
+		-- RELEASE_LOGOFF  		luaLog("-----------PWUP----------------")
 		for idx,tbl in pairs(pwupTbl) do
--- RELEASE_LOGOFF  			luaLog(tbl)
--- RELEASE_LOGOFF  			luaLog(Mission.ChckLogPrefix.."Adding powerup "..tbl)
+		-- RELEASE_LOGOFF  			luaLog(tbl)
+		-- RELEASE_LOGOFF  			luaLog(Mission.ChckLogPrefix.."Adding powerup "..tbl)
 			AddPowerup({
 				["classID"] = tbl,
 				["useLimit"] = 1,
@@ -16603,7 +16603,7 @@ function luaLoadCheckpoint()
 
 			for idx2,tbl2 in pairs(tbl)	do
 				if not luaObj_IsActive(tbl2[1], tbl2[2]) then
--- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."Setting objective "..tbl2[1].." "..tbl2[2].." to active")
+		-- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."Setting objective "..tbl2[1].." "..tbl2[2].." to active")
 					---oh faszom
 					--[[
 					if tbl2[1] == "primary" then
@@ -16624,7 +16624,7 @@ function luaLoadCheckpoint()
 					]]
 					luaObj_Add(tbl2[1],tbl2[2],nil,true)
 				else
--- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."Objective "..tbl2[1].." "..tbl2[2].." is already active")
+		-- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."Objective "..tbl2[1].." "..tbl2[2].." is already active")
 				end
 			end
 
@@ -16634,11 +16634,11 @@ function luaLoadCheckpoint()
 				if not luaObj_IsActive(tbl2[1], tbl2[2]) then
 					luaObj_Add(tbl2[1], tbl2[2], nil, true)
 					luaObj_Completed(tbl2[1], tbl2[2], nil, true)
--- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."Setting objective "..tbl2[1].." "..tbl2[2].." to completed")
+		-- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."Setting objective "..tbl2[1].." "..tbl2[2].." to completed")
 				else
 					if luaObj_GetSuccess(tbl2[1], tbl2[2]) == nil then
 						luaObj_Completed(tbl2[1], tbl2[2], nil, true)
--- RELEASE_LOGOFF  						luaLog(Mission.ChckLogPrefix.."Setting objective "..tbl2[1].." "..tbl2[2].." to completed")
+		-- RELEASE_LOGOFF  						luaLog(Mission.ChckLogPrefix.."Setting objective "..tbl2[1].." "..tbl2[2].." to completed")
 					end
 				end
 			end
@@ -16649,11 +16649,11 @@ function luaLoadCheckpoint()
 				if not luaObj_IsActive(tbl2[1], tbl2[2]) then
 					luaObj_Add(tbl2[1], tbl2[2], nil, true)
 					luaObj_Failed(tbl2[1], tbl2[2], nil, true)
--- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."Setting objective "..tbl2[1].." "..tbl2[2].." to failed")
+		-- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."Setting objective "..tbl2[1].." "..tbl2[2].." to failed")
 				else
 					if luaObj_GetSuccess(tbl2[1], tbl2[2]) == nil then
 						luaObj_Failed(tbl2[1], tbl2[2], nil, true)
--- RELEASE_LOGOFF  						luaLog(Mission.ChckLogPrefix.."Setting objective "..tbl2[1].." "..tbl2[2].." to failed")
+		-- RELEASE_LOGOFF  						luaLog(Mission.ChckLogPrefix.."Setting objective "..tbl2[1].." "..tbl2[2].." to failed")
 					end
 				end
 			end
@@ -16661,7 +16661,7 @@ function luaLoadCheckpoint()
 		end
 	end
 
--- RELEASE_LOGOFF  	luaLog("\n")
+		-- RELEASE_LOGOFF  	luaLog("\n")
 	luaRestoreLandforts()
 
 	ForceRecon() --hgy meglegyen a sok SetParty a reconban
@@ -16670,7 +16670,7 @@ function luaLoadCheckpoint()
 	luaRestoreHints()
 
 	Mission.MissionPhase = phaseTbl[1]
--- RELEASE_LOGOFF  	luaLog(Mission.ChckLogPrefix.."Missionphase: "..tostring(Mission.MissionPhase))
+		-- RELEASE_LOGOFF  	luaLog(Mission.ChckLogPrefix.."Missionphase: "..tostring(Mission.MissionPhase))
 
 	luaCheckLoadFunctions()
 
@@ -16689,8 +16689,8 @@ function luaRestoreHints()
 		if type(str) == "string" then
 			--RemoveStoredHint(tbl[1])
 			AddStoredHint(str)
--- RELEASE_LOGOFF  			luaLog("\n")
--- RELEASE_LOGOFF  			luaLog(Mission.ChckLogPrefix.."Hint found setting it to inactive"..str)
+		-- RELEASE_LOGOFF  			luaLog("\n")
+		-- RELEASE_LOGOFF  			luaLog(Mission.ChckLogPrefix.."Hint found setting it to inactive"..str)
 		end
 	end
 end
@@ -16719,7 +16719,7 @@ end
 
 function luaRestorePlanesAndStocks()
 
--- RELEASE_LOGOFF  	luaLog(Mission.ChckLogPrefix.."luaRestorePlanesAndStocks")
+		-- RELEASE_LOGOFF  	luaLog(Mission.ChckLogPrefix.."luaRestorePlanesAndStocks")
 	--bespawnolni a repterek fole egy vadasz squadot
 	local AFTbl = luaGetCheckpointData("Airfields", "Stock")
 
@@ -16739,9 +16739,9 @@ function luaRestorePlanesAndStocks()
 			end
 
 			if Mission.Checkpoint.CapID and unit.Party == luaGetNmiParty() then
--- RELEASE_LOGOFF  				luaLog(Mission.ChckLogPrefix.." spawning fighter cap to AF "..unit.Name)
--- RELEASE_LOGOFF  				luaLog(Mission.ChckLogPrefix..unit.Name.." party "..tostring(unit.Party))
--- RELEASE_LOGOFF  				luaLog(Mission.ChckLogPrefix.."enemy party "..tostring(luaGetNmiParty()))
+		-- RELEASE_LOGOFF  				luaLog(Mission.ChckLogPrefix.." spawning fighter cap to AF "..unit.Name)
+		-- RELEASE_LOGOFF  				luaLog(Mission.ChckLogPrefix..unit.Name.." party "..tostring(unit.Party))
+		-- RELEASE_LOGOFF  				luaLog(Mission.ChckLogPrefix.."enemy party "..tostring(luaGetNmiParty()))
 				luaAddFighter(unit, Mission.Checkpoint.CapID)
 			end
 
@@ -16756,7 +16756,7 @@ function luaRestorePlanesAndStocks()
 		end
 	end
 
--- RELEASE_LOGOFF  	luaLog("\n")
+		-- RELEASE_LOGOFF  	luaLog("\n")
 end
 
 function luaGetNmiParty()
@@ -16847,19 +16847,19 @@ function luaRestoreLandforts()
 			--if luaGetType(unit) ~= "ship" and luaGetType(unit) ~= "plane" and luaGetType(unit) ~= "sub" then
 
 				local found = false
--- RELEASE_LOGOFF  				luaLog(unit.Name.." "..tostring(unit.Dead))
+		-- RELEASE_LOGOFF  				luaLog(unit.Name.." "..tostring(unit.Dead))
 
 				for idx2,unitTbl in pairs(japUnits[1]) do
 					unit2 = FindEntity(unitTbl[1])
 					--if unit2 and not unit2.Dead and (luaGetType(unit2) == "vehicle" or luaGetType(unit2) == "landfort" or luaGetType(unit2) == "commandbuilding" or luaGetType(unit2) == "airfield" or luaGetType(unit2) == "shipyard" ) then
 					if unit2 and not unit2.Dead and (luaGetType(unit2) ~= "ship" and luaGetType(unit2) ~= "plane" and luaGetType(unit2) ~= "sub") then
 						if unit.Name == unit2.Name then
--- RELEASE_LOGOFF  							luaLog(Mission.ChckLogPrefix.."Landfort found in jap units checking party: "..unit.Name)
+		-- RELEASE_LOGOFF  							luaLog(Mission.ChckLogPrefix.."Landfort found in jap units checking party: "..unit.Name)
 							if unit.Party ~= PARTY_JAPANESE then
 								SetParty(unit, PARTY_JAPANESE)
--- RELEASE_LOGOFF  								luaLog(Mission.ChckLogPrefix.."Party doesnt match, setting it to japanese: "..unit.Name)
--- RELEASE_LOGOFF  								luaLog(Mission.ChckLogPrefix.."Party is now: "..unit.Party)
--- RELEASE_LOGOFF  								luaLog("\n")
+		-- RELEASE_LOGOFF  								luaLog(Mission.ChckLogPrefix.."Party doesnt match, setting it to japanese: "..unit.Name)
+		-- RELEASE_LOGOFF  								luaLog(Mission.ChckLogPrefix.."Party is now: "..unit.Party)
+		-- RELEASE_LOGOFF  								luaLog("\n")
 							end
 							found = true
 							break
@@ -16868,8 +16868,8 @@ function luaRestoreLandforts()
 				end
 
 				if not found then
--- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."Landfort not found in japanese saved data: "..unit.Name)
--- RELEASE_LOGOFF  					luaLog("\n")
+		-- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."Landfort not found in japanese saved data: "..unit.Name)
+		-- RELEASE_LOGOFF  					luaLog("\n")
 				end
 
 				if not found then --megnezzuk usaban
@@ -16878,12 +16878,12 @@ function luaRestoreLandforts()
 						--if unit2 and not unit2.Dead and (luaGetType(unit2) == "vehicle" or luaGetType(unit2) == "landfort" or luaGetType(unit2) == "commandbuilding" or luaGetType(unit2) == "airfield" or luaGetType(unit2) == "shipyard" ) then
 						if unit2 and not unit2.Dead and (luaGetType(unit2) ~= "ship" and luaGetType(unit2) ~= "plane" and luaGetType(unit2) ~= "sub") then
 							if unit.Name == unit2.Name then
--- RELEASE_LOGOFF  								luaLog(Mission.ChckLogPrefix.."Landfort found in usn units checking party: "..unit.Name)
+		-- RELEASE_LOGOFF  								luaLog(Mission.ChckLogPrefix.."Landfort found in usn units checking party: "..unit.Name)
 								if unit.Party ~= PARTY_ALLIED then
 									SetParty(unit, PARTY_ALLIED)
--- RELEASE_LOGOFF  									luaLog(Mission.ChckLogPrefix.."Party is now: "..unit.Party)
--- RELEASE_LOGOFF  									luaLog(Mission.ChckLogPrefix.."Party doesnt match, setting it to allied: "..unit.Name)
--- RELEASE_LOGOFF  									luaLog("\n")
+		-- RELEASE_LOGOFF  									luaLog(Mission.ChckLogPrefix.."Party is now: "..unit.Party)
+		-- RELEASE_LOGOFF  									luaLog(Mission.ChckLogPrefix.."Party doesnt match, setting it to allied: "..unit.Name)
+		-- RELEASE_LOGOFF  									luaLog("\n")
 								end
 								found = true
 								break
@@ -16893,8 +16893,8 @@ function luaRestoreLandforts()
 				end
 
 				if not found then
--- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."Landfort not found in usn saved data: "..unit.Name)
--- RELEASE_LOGOFF  					luaLog("\n")
+		-- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."Landfort not found in usn saved data: "..unit.Name)
+		-- RELEASE_LOGOFF  					luaLog("\n")
 				end
 
 				if not found then --megnezzuk neutralban
@@ -16903,12 +16903,12 @@ function luaRestoreLandforts()
 						--if unit2 and not unit2.Dead and (luaGetType(unit2) == "vehicle" or luaGetType(unit2) == "landfort" or luaGetType(unit2) == "commandbuilding" or luaGetType(unit2) == "airfield" or luaGetType(unit2) == "shipyard" ) then
 						if unit2 and not unit2.Dead and (luaGetType(unit2) ~= "ship" and luaGetType(unit2) ~= "plane" and luaGetType(unit2) ~= "sub") then
 							if unit.Name == unit2.Name then
--- RELEASE_LOGOFF  								luaLog(Mission.ChckLogPrefix.."Landfort found in neutral units checking party: "..unit.Name)
+		-- RELEASE_LOGOFF  								luaLog(Mission.ChckLogPrefix.."Landfort found in neutral units checking party: "..unit.Name)
 								if unit.Party ~= PARTY_NEUTRAL then
 									SetParty(unit, PARTY_NEUTRAL)
--- RELEASE_LOGOFF  									luaLog(Mission.ChckLogPrefix.."Party doesnt match, setting it to neutral: "..unit.Name)
--- RELEASE_LOGOFF  									luaLog(Mission.ChckLogPrefix.."Party is now: "..unit.Party)
--- RELEASE_LOGOFF  									luaLog("\n")
+		-- RELEASE_LOGOFF  									luaLog(Mission.ChckLogPrefix.."Party doesnt match, setting it to neutral: "..unit.Name)
+		-- RELEASE_LOGOFF  									luaLog(Mission.ChckLogPrefix.."Party is now: "..unit.Party)
+		-- RELEASE_LOGOFF  									luaLog("\n")
 								end
 								found = true
 								break
@@ -16918,8 +16918,8 @@ function luaRestoreLandforts()
 				end
 
 				if not found then
--- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."Landfort not found in neutral saved data: "..unit.Name)
--- RELEASE_LOGOFF  					luaLog("\n")
+		-- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."Landfort not found in neutral saved data: "..unit.Name)
+		-- RELEASE_LOGOFF  					luaLog("\n")
 				end
 
 				if not found then
@@ -16928,28 +16928,28 @@ function luaRestoreLandforts()
 					else
 						Kill(unit, true)
 					end
--- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."Landfort not found, killing: "..unit.Name)
--- RELEASE_LOGOFF  					luaLog("\n")
+		-- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."Landfort not found, killing: "..unit.Name)
+		-- RELEASE_LOGOFF  					luaLog("\n")
 				end
 
 			else
--- RELEASE_LOGOFF  				luaLog("Dead unit "..unit.Name)
--- RELEASE_LOGOFF  				luaLog("\n")
+		-- RELEASE_LOGOFF  				luaLog("Dead unit "..unit.Name)
+		-- RELEASE_LOGOFF  				luaLog("\n")
 			end
 
 		--end
 
 	end
--- RELEASE_LOGOFF  	luaLog("\n")
+		-- RELEASE_LOGOFF  	luaLog("\n")
 end
 
 function luaCheckSavedCheckpoint()
 	Mission.SavedCheckpoint = LoadCheckpoint()
 	if Mission.SavedCheckpoint then
--- RELEASE_LOGOFF  		luaLog("Checkpoint system: \tCheckpoint found, loading")
+		-- RELEASE_LOGOFF  		luaLog("Checkpoint system: \tCheckpoint found, loading")
 		luaLoadCheckpoint()
 	else
--- RELEASE_LOGOFF  		luaLog("Checkpoint system: \tCheckpoint not found")
+		-- RELEASE_LOGOFF  		luaLog("Checkpoint system: \tCheckpoint not found")
 	end
 end
 
@@ -16960,19 +16960,19 @@ function luaCheckCheckpointLoad()
 	local chckpointfile = io.open(filename, "r")
 
 	if chckpointfile then
--- RELEASE_LOGOFF  		luaLog("Checkpoint system: \tCheckpoint found, loading")
+		-- RELEASE_LOGOFF  		luaLog("Checkpoint system: \tCheckpoint found, loading")
 		io.close(chckpointfile)
 		luaLoadCheckpoint()
 	else
--- RELEASE_LOGOFF  		luaLog("Checkpoint system: \tCheckpoint not found")
+		-- RELEASE_LOGOFF  		luaLog("Checkpoint system: \tCheckpoint not found")
 	end
--- RELEASE_LOGOFF  	luaLog("\n")
+		-- RELEASE_LOGOFF  	luaLog("\n")
 
 	if Mission.SavedCheckpoint then
--- RELEASE_LOGOFF  		luaLog("Checkpoint system: \tCheckpoint found, loading")
+		-- RELEASE_LOGOFF  		luaLog("Checkpoint system: \tCheckpoint found, loading")
 		luaLoadCheckpoint()
 	else
--- RELEASE_LOGOFF  		luaLog("Checkpoint system: \tCheckpoint not found")
+		-- RELEASE_LOGOFF  		luaLog("Checkpoint system: \tCheckpoint not found")
 	end
 end
 ]]
@@ -17110,7 +17110,7 @@ function luaAddSeagulls()
 			["Position"] = pos,
 		})
 	end
--- RELEASE_LOGOFF  	luaLog("Added "..tostring(idx).." seagull anims")
+		-- RELEASE_LOGOFF  	luaLog("Added "..tostring(idx).." seagull anims")
 end
 
 function luaShot(target, relative)
@@ -17160,7 +17160,7 @@ function luaCamShotCB()
 		Mission.CamShotTarget = GetSelectedUnit()
 	else
 		if Mission.CamShotTarget.Dead then
--- RELEASE_LOGOFF  			luaLog("SHOOTER: ERROR: Halott a target, ebbol meg baj lehet")
+		-- RELEASE_LOGOFF  			luaLog("SHOOTER: ERROR: Halott a target, ebbol meg baj lehet")
 		else
 
 			if not Mission.CamShotType then
@@ -17183,9 +17183,9 @@ function luaCamShotCB()
 		end
 	end
 
--- RELEASE_LOGOFF  	luaLog("---------------SHARPSHOOTER-------------")
--- RELEASE_LOGOFF  	luaLog("{[\"postype\"] = \"cameraandtarget\",[\"position\"] = {[\"pos\"] = {[\"x\"]="..tostring(Mission.CamShotPos.x)..",[\"y\"]="..tostring(Mission.CamShotPos.y)..",[\"z\"]="..tostring(Mission.CamShotPos.z).."},[\"parent\"] = FindEntity(\""..Mission.CamShotTarget.Name.."\"),},[\"moveTime\"] = 0,[\"transformtype\"] = \""..camType.."\",},")
--- RELEASE_LOGOFF  	luaLog("-----------SHARPSHOOTER END--------------")
+		-- RELEASE_LOGOFF  	luaLog("---------------SHARPSHOOTER-------------")
+		-- RELEASE_LOGOFF  	luaLog("{[\"postype\"] = \"cameraandtarget\",[\"position\"] = {[\"pos\"] = {[\"x\"]="..tostring(Mission.CamShotPos.x)..",[\"y\"]="..tostring(Mission.CamShotPos.y)..",[\"z\"]="..tostring(Mission.CamShotPos.z).."},[\"parent\"] = FindEntity(\""..Mission.CamShotTarget.Name.."\"),},[\"moveTime\"] = 0,[\"transformtype\"] = \""..camType.."\",},")
+		-- RELEASE_LOGOFF  	luaLog("-----------SHARPSHOOTER END--------------")
 end
 
 ---- NEW FUNCTIONS ----

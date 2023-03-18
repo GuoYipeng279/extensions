@@ -555,8 +555,8 @@ Robots =
 		{
 			-- torpedozas parameterek
 			["TorpReleaseAlt"]         = 12,         -- M -- ilyen magasrol dobja a torpedot
-			["TorpReleaseDistNear"]    = 450,        -- M -- bator ledobasi tavolsag. ha nem talaljak el tamadas kozben, akkor innen probal oldani
-			["TorpReleaseDistFar"]     = 650,        -- M -- gyava ledobasi tavolsag. ha eltalaljak tamdas kozben, akkor innen fog oldani
+			["TorpReleaseDistNear"]    = 2.0*450,        -- M -- bator ledobasi tavolsag. ha nem talaljak el tamadas kozben, akkor innen probal oldani
+			["TorpReleaseDistFar"]     = 2.0*650,        -- M -- gyava ledobasi tavolsag. ha eltalaljak tamdas kozben, akkor innen fog oldani
 			["TorpReleaseDropCloserMul"] = 0.7,      -- F -- a torpedo ledobasi tavolsag arra az esetre vonatkozik, ha oldalba kapjuk a celpontot. ha szembol/hatulrol akarjuk megtorpedozni, akkor a torpedo oldasi tavolsag az ennyiszeresere csokken.
 			["TorpFlikFlakTime"]       = { 12, 22 }, -- S -- a ketto kozotti idonkent beszur egy flik-flak manovert menekules kozben, hogy nehezebben talaljak el.
 			["TorpTargetHError"]       = 10,         -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
@@ -565,7 +565,7 @@ Robots =
 			["TorpTargetPointSelectPrec"] = 0.9,     -- F -- ekkora szorassal valaszt tamadhato pontot a celponton, a kozepehez kepest. 0-1 kozott. 0-nal a kozepet valasztja ki mindig
 			["TorpThrowMul"]              = 1.0,     -- F -- a kilott torpedo szorasat megszorozza ezzel
 			-- divebomb parameterek
-			["DiveBombReleaseAlt"]         = { 350, 450 }, -- M -- regi tipusu, leboritos bumbazasnal a bomba oldasi magassag valahol a ketto kozott
+			["DiveBombReleaseAlt"]         = { 2.0*350, 2.0*450 }, -- M -- regi tipusu, leboritos bumbazasnal a bomba oldasi magassag valahol a ketto kozott
 			["DiveBombNewReleaseMul"]      = 0.6,          -- F -- ha nem leboritott manoverrel bombaz, csak siman rarepulve, akkor a fenti ReleaseAlt erteket ennyivel megszorozva hasznalja
 			["DiveBombTargetHError"]       = 10,           -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
 			["DiveBombTargetVError"]       = 5,           -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengely menten
@@ -587,8 +587,8 @@ Robots =
 			["DiveBombFueltankWeight"] = 0.5,              -- F -- ha szekciot celoz, akkor az fueltank celzas sulya
 			
 			-- levelbomb parameterek
-			["LevelBombTargetHError"]       = 20,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
-			["LevelBombTargetVError"]       = 50,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengely menten
+			["LevelBombTargetHError"]       = 4*20,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
+			["LevelBombTargetVError"]       = 4*50,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengely menten
 			["LevelBombCalcTargetPosError"] = 10,    -- S -- a becsapodasig hatralevo becsult ido plusz random ennyi ido mulva ahol elvileg lesz a celpont, oda celoz
 			["LevelBombTargetPointSelectPrec"] = 0.9,-- F -- ekkora szorassal valaszt tamadhato pontot a celponton, a kozepehez kepest. 0-1 kozott. 0-nal a kozepet valasztja ki mindig
 			["LevelBombThrowMul"]           = 1.0,          -- F -- a kilott bomba szorasat megszorozza ezzel
@@ -694,8 +694,8 @@ Robots =
 		{
 			-- torpedozasi tavolsagok
 			["TorpReleaseAlt"]         = 10,       -- M -- ilyen magasrol dobja a torpedot
-			["TorpReleaseDistNear"]    = 480,      -- M -- bator ledobasi tavolsag
-			["TorpReleaseDistFar"]     = 1000,      -- M -- gyava ledobasi tavolsag
+			["TorpReleaseDistNear"]    = 2.0*480,      -- M -- bator ledobasi tavolsag
+			["TorpReleaseDistFar"]     = 2.0*1000,      -- M -- gyava ledobasi tavolsag
 			["TorpReleaseDropCloserMul"] = 0.7,      -- F -- a torpedo ledobasi tavolsag arra az esetre vonatkozik, ha oldalba kapjuk a celpontot. ha szembol/hatulrol akarjuk megtorpedozni, akkor a torpedo oldasi tavolsag az ennyiszeresere csokken.
 			["TorpFlikFlakTime"]       = { 5, 8 }, -- S -- a ketto kozotti idonkent beszur egy flik-flak manovert menekules kozben, hogy nehezebben talaljak el.
 			["TorpTargetHError"]       = 5,        -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
@@ -704,7 +704,7 @@ Robots =
 			["TorpTargetPointSelectPrec"] = 0.9,   -- F -- ekkora szorassal valaszt tamadhato pontot a celponton, a kozepehez kepest. 0-1 kozott. 0-nal a kozepet valasztja ki mindig
 			["TorpThrowMul"]              = 1.0,     -- F -- a kilott torpedo szorasat megszorozza ezzel
 			-- divebomb parameterek
-			["DiveBombReleaseAlt"]         = { 250, 300 }, -- M -- regi tipusu, leboritos bumbazasnal a bomba oldasi magassag valahol a ketto kozott
+			["DiveBombReleaseAlt"]         = { 2.0*250, 2.0*300 }, -- M -- regi tipusu, leboritos bumbazasnal a bomba oldasi magassag valahol a ketto kozott
 			["DiveBombNewReleaseMul"]      = 0.6,          -- F -- ha nem leboritott manoverrel bombaz, csak siman rarepulve, akkor a fenti ReleaseAlt erteket ennyivel megszorozva hasznalja
 			["DiveBombTargetHError"]       = 25,            -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
 			["DiveBombTargetVError"]       = 4,           -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengely menten
@@ -725,8 +725,8 @@ Robots =
 			["DiveBombMagazineWeight"] = 0.5,              -- F -- ha szekciot celoz, akkor az magazine celzas sulya
 			["DiveBombFueltankWeight"] = 0.5,              -- F -- ha szekciot celoz, akkor az fueltank celzas sulya
 			-- levelbomb parameterek
-			["LevelBombTargetHError"]       = 15,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
-			["LevelBombTargetVError"]       = 40,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengely menten
+			["LevelBombTargetHError"]       = 4*15,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
+			["LevelBombTargetVError"]       = 4*40,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengely menten
 			["LevelBombCalcTargetPosError"] = 5,     -- S -- a becsapodasig hatralevo becsult ido plusz random ennyi ido mulva ahol elvileg lesz a celpont, oda celoz
 			["LevelBombTargetPointSelectPrec"] = 0.8,-- F -- ekkora szorassal valaszt tamadhato pontot a celponton, a kozepehez kepest. 0-1 kozott. 0-nal a kozepet valasztja ki mindig
 			["LevelBombThrowMul"]           = 1.0,          -- F -- a kilott bomba szorasat megszorozza ezzel
@@ -831,8 +831,8 @@ Robots =
 		{
 			-- torpedozasi tavolsagok
 			["TorpReleaseAlt"]         = 10,       -- M -- ilyen magasrol dobja a torpedot
-			["TorpReleaseDistNear"]    = 800,      -- M -- bator ledobasi tavolsag
-			["TorpReleaseDistFar"]     = 1200,      -- M -- gyava ledobasi tavolsag
+			["TorpReleaseDistNear"]    = 2.0*800,      -- M -- bator ledobasi tavolsag
+			["TorpReleaseDistFar"]     = 2.0*1200,      -- M -- gyava ledobasi tavolsag
 			["TorpReleaseDropCloserMul"] = 0.7,      -- F -- a torpedo ledobasi tavolsag arra az esetre vonatkozik, ha oldalba kapjuk a celpontot. ha szembol/hatulrol akarjuk megtorpedozni, akkor a torpedo oldasi tavolsag az ennyiszeresere csokken.
 			["TorpFlikFlakTime"]       = { 5, 8 }, -- S -- a ketto kozotti idonkent beszur egy flik-flak manovert menekules kozben, hogy nehezebben talaljak el.
 			["TorpTargetHError"]       = 25,        -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
@@ -841,7 +841,7 @@ Robots =
 			["TorpTargetPointSelectPrec"] = 0.8,   -- F -- ekkora szorassal valaszt tamadhato pontot a celponton, a kozepehez kepest. 0-1 kozott. 0-nal a kozepet valasztja ki mindig
 			["TorpThrowMul"]              = 1.0,     -- F -- a kilott torpedo szorasat megszorozza ezzel
 			-- divebomb parameterek
-			["DiveBombReleaseAlt"]         = { 250, 300 }, -- M -- regi tipusu, leboritos bumbazasnal a bomba oldasi magassag valahol a ketto kozott
+			["DiveBombReleaseAlt"]         = { 2.0*250, 2.0*300 }, -- M -- regi tipusu, leboritos bumbazasnal a bomba oldasi magassag valahol a ketto kozott
 			["DiveBombNewReleaseMul"]      = 0.6,          -- F -- ha nem leboritott manoverrel bombaz, csak siman rarepulve, akkor a fenti ReleaseAlt erteket ennyivel megszorozva hasznalja
 			["DiveBombTargetHError"]       = 25,            -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
 			["DiveBombTargetVError"]       = 0,           -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengely menten
@@ -862,8 +862,8 @@ Robots =
 			["DiveBombMagazineWeight"] = 0.5,              -- F -- ha szekciot celoz, akkor az magazine celzas sulya
 			["DiveBombFueltankWeight"] = 0.5,              -- F -- ha szekciot celoz, akkor az fueltank celzas sulya
 			-- levelbomb parameterek
-			["LevelBombTargetHError"]       = 15,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
-			["LevelBombTargetVError"]       = 40,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengely menten
+			["LevelBombTargetHError"]       = 4*15,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
+			["LevelBombTargetVError"]       = 4*40,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengely menten
 			["LevelBombCalcTargetPosError"] = 5,     -- S -- a becsapodasig hatralevo becsult ido plusz random ennyi ido mulva ahol elvileg lesz a celpont, oda celoz
 			["LevelBombTargetPointSelectPrec"] = 0.4,-- F -- ekkora szorassal valaszt tamadhato pontot a celponton, a kozepehez kepest. 0-1 kozott. 0-nal a kozepet valasztja ki mindig
 			["LevelBombThrowMul"]           = 1.0,          -- F -- a kilott bomba szorasat megszorozza ezzel
@@ -969,8 +969,8 @@ Robots =
 		{
 			-- torpedozasi tavolsagok
 			["TorpReleaseAlt"]         = 10,       -- M -- ilyen magasrol dobja a torpedot
-			["TorpReleaseDistNear"]    = 800,      -- M -- bator ledobasi tavolsag
-			["TorpReleaseDistFar"]     = 1200,      -- M -- gyava ledobasi tavolsag
+			["TorpReleaseDistNear"]    = 2.0*800,      -- M -- bator ledobasi tavolsag
+			["TorpReleaseDistFar"]     = 2.0*1200,      -- M -- gyava ledobasi tavolsag
 			["TorpReleaseDropCloserMul"] = 0.6,      -- F -- a torpedo ledobasi tavolsag arra az esetre vonatkozik, ha oldalba kapjuk a celpontot. ha szembol/hatulrol akarjuk megtorpedozni, akkor a torpedo oldasi tavolsag az ennyiszeresere csokken.
 			["TorpFlikFlakTime"]       = { 5, 8 }, -- S -- a ketto kozotti idonkent beszur egy flik-flak manovert menekules kozben, hogy nehezebben talaljak el.
 			["TorpTargetHError"]       = 3,        -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
@@ -979,7 +979,7 @@ Robots =
 			["TorpTargetPointSelectPrec"] = 0.5,   -- F -- ekkora szorassal valaszt tamadhato pontot a celponton, a kozepehez kepest. 0-1 kozott. 0-nal a kozepet valasztja ki mindig
 			["TorpThrowMul"]              = 1.0,     -- F -- a kilott torpedo szorasat megszorozza ezzel
 			-- divebomb parameterek
-			["DiveBombReleaseAlt"]         = { 250, 300 }, -- M -- regi tipusu, leboritos bumbazasnal a bomba oldasi magassag valahol a ketto kozott
+			["DiveBombReleaseAlt"]         = { 2.0*250, 2.0*300 }, -- M -- regi tipusu, leboritos bumbazasnal a bomba oldasi magassag valahol a ketto kozott
 			["DiveBombNewReleaseMul"]      = 0.6,          -- F -- ha nem leboritott manoverrel bombaz, csak siman rarepulve, akkor a fenti ReleaseAlt erteket ennyivel megszorozva hasznalja
 			["DiveBombTargetHError"]       = 5,            -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
 			["DiveBombTargetVError"]       = 2,           -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengely menten
@@ -1000,8 +1000,8 @@ Robots =
 			["DiveBombMagazineWeight"] = 1.0,              -- F -- ha szekciot celoz, akkor az magazine celzas sulya
 			["DiveBombFueltankWeight"] = 1.0,              -- F -- ha szekciot celoz, akkor az fueltank celzas sulya
 			-- levelbomb parameterek
-			["LevelBombTargetHError"]       = 8,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
-			["LevelBombTargetVError"]       = 18,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengely menten
+			["LevelBombTargetHError"]       = 4*8,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
+			["LevelBombTargetVError"]       = 4*18,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengely menten
 			["LevelBombCalcTargetPosError"] = 4,     -- S -- a becsapodasig hatralevo becsult ido plusz random ennyi ido mulva ahol elvileg lesz a celpont, oda celoz
 			["LevelBombTargetPointSelectPrec"] = 0.4,-- F -- ekkora szorassal valaszt tamadhato pontot a celponton, a kozepehez kepest. 0-1 kozott. 0-nal a kozepet valasztja ki mindig
 			["LevelBombThrowMul"]           = 1.0,          -- F -- a kilott bomba szorasat megszorozza ezzel
@@ -1107,8 +1107,8 @@ Robots =
 		{
 			-- torpedozasi tavolsagok
 			["TorpReleaseAlt"]         = 5,       -- M -- ilyen magasrol dobja a torpedot
-			["TorpReleaseDistNear"]    = 800,      -- M -- bator ledobasi tavolsag
-			["TorpReleaseDistFar"]     = 1200,      -- M -- gyava ledobasi tavolsag
+			["TorpReleaseDistNear"]    = 2.0*800,      -- M -- bator ledobasi tavolsag
+			["TorpReleaseDistFar"]     = 2.0*1200,      -- M -- gyava ledobasi tavolsag
 			["TorpReleaseDropCloserMul"] = 0.5,    -- F -- a torpedo ledobasi tavolsag arra az esetre vonatkozik, ha oldalba kapjuk a celpontot. ha szembol/hatulrol akarjuk megtorpedozni, akkor a torpedo oldasi tavolsag az ennyiszeresere csokken.
 			["TorpFlikFlakTime"]       = { 5, 8 }, -- S -- a ketto kozotti idonkent beszur egy flik-flak manovert menekules kozben, hogy nehezebben talaljak el.
 			["TorpTargetHError"]       = 0,        -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
@@ -1117,7 +1117,7 @@ Robots =
 			["TorpTargetPointSelectPrec"] = 0.25,   -- F -- ekkora szorassal valaszt tamadhato pontot a celponton, a kozepehez kepest. 0-1 kozott. 0-nal a kozepet valasztja ki mindig
 			["TorpThrowMul"]              = 1.0,     -- F -- a kilott torpedo szorasat megszorozza ezzel
 			-- divebomb parameterek
-			["DiveBombReleaseAlt"]         = { 250, 300 }, -- M -- regi tipusu, leboritos bumbazasnal a bomba oldasi magassag valahol a ketto kozott
+			["DiveBombReleaseAlt"]         = { 2.0*250, 2.0*300 }, -- M -- regi tipusu, leboritos bumbazasnal a bomba oldasi magassag valahol a ketto kozott
 			["DiveBombNewReleaseMul"]      = 0.6,          -- F -- ha nem leboritott manoverrel bombaz, csak siman rarepulve, akkor a fenti ReleaseAlt erteket ennyivel megszorozva hasznalja
 			["DiveBombTargetHError"]       = 0,            -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
 			["DiveBombTargetVError"]       = 0,            -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengely menten
@@ -1138,8 +1138,8 @@ Robots =
 			["DiveBombMagazineWeight"] = 1.0,              -- F -- ha szekciot celoz, akkor az magazine celzas sulya
 			["DiveBombFueltankWeight"] = 1.0,              -- F -- ha szekciot celoz, akkor az fueltank celzas sulya
 			-- levelbomb parameterek
-			["LevelBombTargetHError"]       = 0,       -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
-			["LevelBombTargetVError"]       = 0,      -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengely menten
+			["LevelBombTargetHError"]       = 4*0,       -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
+			["LevelBombTargetVError"]       = 4*0,      -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengely menten
 			["LevelBombCalcTargetPosError"] = 5,       -- S -- a becsapodasig hatralevo becsult ido plusz random ennyi ido mulva ahol elvileg lesz a celpont, oda celoz
 			["LevelBombTargetPointSelectPrec"] = 0.7,  -- F -- ekkora szorassal valaszt tamadhato pontot a celponton, a kozepehez kepest. 0-1 kozott. 0-nal a kozepet valasztja ki mindig
 			["LevelBombThrowMul"]           = 1.0,          -- F -- a kilott bomba szorasat megszorozza ezzel
@@ -1245,8 +1245,8 @@ Robots =
 		{
 			-- torpedozas parameterek
 			["TorpReleaseAlt"]         = 12,         -- M -- ilyen magasrol dobja a torpedot
-			["TorpReleaseDistNear"]    = 350,        -- M -- bator ledobasi tavolsag. ha nem talaljak el tamadas kozben, akkor innen probal oldani
-			["TorpReleaseDistFar"]     = 600,        -- M -- gyava ledobasi tavolsag. ha eltalaljak tamdas kozben, akkor innen fog oldani
+			["TorpReleaseDistNear"]    = 2.0*350,        -- M -- bator ledobasi tavolsag. ha nem talaljak el tamadas kozben, akkor innen probal oldani
+			["TorpReleaseDistFar"]     = 2.0*600,        -- M -- gyava ledobasi tavolsag. ha eltalaljak tamdas kozben, akkor innen fog oldani
 			["TorpReleaseDropCloserMul"] = 0.7,      -- F -- a torpedo ledobasi tavolsag arra az esetre vonatkozik, ha oldalba kapjuk a celpontot. ha szembol/hatulrol akarjuk megtorpedozni, akkor a torpedo oldasi tavolsag az ennyiszeresere csokken.
 			["TorpFlikFlakTime"]       = { 20, 30 }, -- S -- a ketto kozotti idonkent beszur egy flik-flak manovert menekules kozben, hogy nehezebben talaljak el.
 			["TorpTargetHError"]       = 200,         -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
@@ -1255,7 +1255,7 @@ Robots =
 			["TorpTargetPointSelectPrec"] = 0.1,     -- F -- ekkora szorassal valaszt tamadhato pontot a celponton, a kozepehez kepest. 0-1 kozott. 0-nal a kozepet valasztja ki mindig
 			["TorpThrowMul"]              = 1.0,     -- F -- a kilott torpedo szorasat megszorozza ezzel
 			-- divebomb parameterek
-			["DiveBombReleaseAlt"]         = { 350, 450 }, -- M -- regi tipusu, leboritos bumbazasnal a bomba oldasi magassag valahol a ketto kozott
+			["DiveBombReleaseAlt"]         = { 2.0*350, 2.0*450 }, -- M -- regi tipusu, leboritos bumbazasnal a bomba oldasi magassag valahol a ketto kozott
 			["DiveBombNewReleaseMul"]      = 0.6,          -- F -- ha nem leboritott manoverrel bombaz, csak siman rarepulve, akkor a fenti ReleaseAlt erteket ennyivel megszorozva hasznalja
 			["DiveBombTargetHError"]       = 100,           -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
 			["DiveBombTargetVError"]       = 150,           -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengely menten
@@ -1276,8 +1276,8 @@ Robots =
 			["DiveBombMagazineWeight"] = 0.1,              -- F -- ha szekciot celoz, akkor az magazine celzas sulya
 			["DiveBombFueltankWeight"] = 0.1,              -- F -- ha szekciot celoz, akkor az fueltank celzas sulya
 			-- levelbomb parameterek
-			["LevelBombTargetHError"]       = 100,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
-			["LevelBombTargetVError"]       = 200,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengely menten
+			["LevelBombTargetHError"]       = 4*100,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengelyere merolegesen
+			["LevelBombTargetVError"]       = 4*200,    -- M -- az elvileg jo celponttol random ennyivel arrebb celoz, a celpont hossztengely menten
 			["LevelBombCalcTargetPosError"] = 30,    -- S -- a becsapodasig hatralevo becsult ido plusz random ennyi ido mulva ahol elvileg lesz a celpont, oda celoz
 			["LevelBombTargetPointSelectPrec"] = 0.1,-- F -- ekkora szorassal valaszt tamadhato pontot a celponton, a kozepehez kepest. 0-1 kozott. 0-nal a kozepet valasztja ki mindig
 			["LevelBombThrowMul"]           = 1.0,          -- F -- a kilott bomba szorasat megszorozza ezzel

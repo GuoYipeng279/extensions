@@ -28081,7 +28081,7 @@ entity "USNReinforcement" (NavPoint) {
   }
 }
 entity "Haruna" (DestroyerGen) {
-  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -15701.2192 -0.0001 16940.4604 1.0000 ;
+  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -15238.2192 -0.0001 16099.4604 1.0000 ;
   template "Japan\SEA\Kongo-class Battleship" ;
 
   properties (Common, GameUnit, Ship, Command)  {
@@ -28104,7 +28104,7 @@ entity "Haruna" (DestroyerGen) {
   }
 }
 entity "Fuso-class Battleship 01" (DestroyerGen) {
-  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -13413.2192 -0.0001 14913.4604 1.0000 ;
+  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -14106.2192 -0.0001 15113.4604 1.0000 ;
   template "Japan\SEA\Kongo-class Battleship" ;
 
   properties (Common, GameUnit, Ship, Command)  {
@@ -28148,7 +28148,7 @@ entity "Yamato-class 01" (DestroyerGen) {
   }
 }
 entity "Takao-class 01" (DestroyerGen) {
-  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -13525.3120 -0.0007 16940.1709 1.0000 ;
+  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -15318.3120 -0.0007 15030.1709 1.0000 ;
   template "Japan\SEA\Tone-class" ;
 
   properties (Common, Command, GameUnit, Ship)  {
@@ -28168,7 +28168,7 @@ entity "Takao-class 01" (DestroyerGen) {
   }
 }
 entity "Tone-class 02" (DestroyerGen) {
-  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -15864.7495 -0.0008 14765.2246 1.0000 ;
+  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -14169.7495 -0.0008 16019.2246 1.0000 ;
   template "Japan\SEA\Tone-class" ;
 
   properties (Common, Command, GameUnit, Ship)  {
@@ -28188,7 +28188,7 @@ entity "Tone-class 02" (DestroyerGen) {
   }
 }
 entity "Kuma-class 01" (DestroyerGen) {
-  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -14037.7495 -0.0008 14376.2246 1.0000 ;
+  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -14431.7495 -0.0008 14833.2246 1.0000 ;
   template "Japan\SEA\Kuma-class" ;
 
   properties (Common, Command, GameUnit, Ship)  {
@@ -28229,7 +28229,7 @@ entity "Takao-class 02" (DestroyerGen) {
   }
 }
 entity "Hiryu-class 01" (MotherShipGen) {
-  localframe -0.6820 0.0000 -0.7314 0.0000 0.0000 1.0000 0.0000 0.0000 0.7314 0.0000 -0.6820 0.0000 -14028.4805 0.0002 15629.9131 1.0000 ;
+  localframe -0.6820 0.0000 -0.7314 0.0000 0.0000 1.0000 0.0000 0.0000 0.7314 0.0000 -0.6820 0.0000 -14328.4805 0.0002 15371.9131 1.0000 ;
   template "Japan\SEA\Hiryu-class" ;
 
   properties (Common, GameUnit, Ship, Command, MotherShipPlanes)  {
@@ -28303,7 +28303,7 @@ entity "Hiryu-class 01" (MotherShipGen) {
   }
 }
 entity "Soryu" (MotherShipGen) {
-  localframe -0.6820 0.0000 -0.7314 0.0000 0.0000 1.0000 0.0000 0.0000 0.7314 0.0000 -0.6820 0.0000 -14736.4805 0.0002 16451.9131 1.0000 ;
+  localframe -0.6820 0.0000 -0.7314 0.0000 0.0000 1.0000 0.0000 0.0000 0.7314 0.0000 -0.6820 0.0000 -14833.4805 0.0002 15958.9131 1.0000 ;
   template "Japan\SEA\Soryu-class" ;
 
   properties (Common, GameUnit, Ship, Command, MotherShipPlanes)  {
@@ -28451,7 +28451,7 @@ entity "Akagi" (MotherShipGen) {
   }
 }
 entity "Kaga-class 01" (MotherShipGen) {
-  localframe -0.7193 0.0000 -0.6947 0.0000 0.0000 1.0000 0.0000 0.0000 0.6947 0.0000 -0.7193 0.0000 -15361.2236 0.0001 15914.4819 1.0000 ;
+  localframe -0.7193 0.0000 -0.6947 0.0000 0.0000 1.0000 0.0000 0.0000 0.6947 0.0000 -0.7193 0.0000 -15158.2236 0.0001 15678.4819 1.0000 ;
   template "Japan\SEA\Kaga-class" ;
 
   properties (Common, GameUnit, Ship, Command, MotherShipPlanes)  {
@@ -28567,7 +28567,7 @@ entity "Japan Troop Transport 02" (DestroyerGen) {
   }
 }
 entity "Fubuki-class 11" (DestroyerGen) {
-  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -14781.0239 -0.0025 14231.1113 1.0000 ;
+  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -14786.0239 -0.0025 14767.1113 1.0000 ;
   template "Japan\SEA\Fubuki-class" ;
 
   properties (Common, GameUnit, Ship, Command)  {
@@ -28587,7 +28587,7 @@ entity "Fubuki-class 11" (DestroyerGen) {
   }
 }
 entity "Fubuki-class 21" (DestroyerGen) {
-  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -13154.0239 -0.0025 15685.1113 1.0000 ;
+  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -13986.0239 -0.0025 15482.1113 1.0000 ;
   template "Japan\SEA\Fubuki-class" ;
 
   properties (Common, GameUnit, Ship, Command)  {
@@ -28607,7 +28607,7 @@ entity "Fubuki-class 21" (DestroyerGen) {
   }
 }
 entity "Fubuki-class 31" (DestroyerGen) {
-  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -14608.0239 -0.0025 17311.1113 1.0000 ;
+  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -14701.0239 -0.0025 16281.1113 1.0000 ;
   template "Japan\SEA\Fubuki-class" ;
 
   properties (Common, GameUnit, Ship, Command)  {
@@ -28627,7 +28627,7 @@ entity "Fubuki-class 31" (DestroyerGen) {
   }
 }
 entity "Fubuki-class 41" (DestroyerGen) {
-  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -16235.0239 -0.0025 15858.1113 1.0000 ;
+  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -15500.0239 -0.0025 15567.1113 1.0000 ;
   template "Japan\SEA\Fubuki-class" ;
 
   properties (Common, GameUnit, Ship, Command)  {

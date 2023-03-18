@@ -2103,6 +2103,156 @@ youli:addSkill(xinkong)
 youli:addSkill(naobo)
 youli:addSkill(bossguimei)
 
+--OL王荣
+-- ol_wangrong = sgs.General(extension, "ol_wangrong", "qun", 3, false)
+
+-- fengzi = sgs.CreateTriggerSkill{
+-- name = "fengzi",
+-- events = sgs.CardUsed,
+-- on_trigger = function(self, event, player, data, room)
+--     if player:getPhase() ~= sgs.Player_Play or player:getMark("fengzi_Used-PlayClear") > 0 then return false end
+--     local use = data:toCardUse()
+--     if not use.card:isKindOf("BasicCard") and not use.card:isNDTrick() then return false end
+--     if not player:canDiscard(player, "h") then return false end
+--     local typee = (use.card:isKindOf("BasicCard") and "BasicCard") or "TrickCard"
+--     local card = room:askForCard(player, ""..typee .. "|.|.|hand", "@fengzi-discard:" .. use.card:getType() .. "::" .. use.card:objectName(), data, self:objectName())
+--     if not card then return false end
+--     room:broadcastSkillInvoke(self)
+--     player:addMark("fengzi_Used-PlayClear")
+--     room:setCardFlag(use.card, "fengzi_double")
+--     return false
+-- end
+-- }
+
+-- fengziDouble = sgs.CreateTriggerSkill{
+-- name = "#fengziDouble",
+-- events = sgs.CardFinished,
+-- can_trigger = function(self, player)
+--     return player and player:isAlive()
+-- end,
+-- on_trigger = function(self, event, player, data, room)
+--     local use = data:toCardUse()
+--     if not use.card:isKindOf("BasicCard") and not use.card:isNDTrick() then return false end
+--     if not use.card:hasFlag("fengzi_double") then return false end
+--     room:setCardFlag(use.card, "-fengzi_double")
+--     --if use.card:hasPreAction() then end
+--     if use.card:isKindOf("Slash") then  --【杀】需要单独处理
+--         for _,p in sgs.qlist(use.to) do
+--             local se = sgs.SlashEffectStruct()
+--             se.from = use.from
+--             se.to = p
+--             se.slash = use.card
+--             se.nullified = table.contains(use.nullified_list, "_ALL_TARGETS") or table.contains(use.nullified_list, p:objectName())
+--             se.no_offset = table.contains(use.no_offset_list, "_ALL_TARGETS") or table.contains(use.no_offset_list, p:objectName())
+--             se.no_respond = table.contains(use.no_respond_list, "_ALL_TARGETS") or table.contains(use.no_respond_list, p:objectName())
+--             se.multiple = use.to:length() > 1
+--             se.nature = sgs.DamageStruct_Normal
+--             if use.card:objectName() == "fire_slash" then
+--                 se.nature = sgs.DamageStruct_Fire
+--             elseif use.card:objectName() == "thunder_slash" then
+--                 se.nature = sgs.DamageStruct_Thunder
+--             elseif use.card:objectName() == "ice_slash" then
+--                 se.nature = sgs.DamageStruct_Ice
+--             end
+--             if use.from:getMark("drank") > 0 then
+--                 room:setCardFlag(use.card, "drank")
+--                 use.card:setTag("drank", sgs.QVariant(use.from:getMark("drank")))
+--             end
+--             se.drank = use.card:getTag("drank"):toInt()
+--             room:slashEffect(se)
+--         end
+--     else
+--         use.card:use(room, use.from, use.to)
+--     end
+--     return false
+-- end
+-- }
+
+-- jizhanw = sgs.CreatePhaseChangeSkill{
+-- name = "jizhanw",
+-- on_phasechange = function(self, player)
+--     if player:getPhase() ~= sgs.Player_Draw or not player:askForSkillInvoke(self) then return false end
+--     local room = player:getRoom()
+--     room:broadcastSkillInvoke(self)
+    
+--     local gets = sgs.IntList()
+--     local ids = room:showDrawPile(player, 1, self:objectName())
+--     gets:append(ids:first())
+--     local num = sgs.Sanguosha:getEngineCard(ids:first()):getNumber()
+    
+--     while player:isAlive() do
+--         local choices = {}
+--         table.insert(choices, "more=" .. num)
+--         table.insert(choices, "less=" .. num)
+--         table.insert(choices, "cancel")
+--         local choice = room:askForChoice(player, self:objectName(), table.concat(choices, "+"), sgs.QVariant(num))
+--         if choice == "cancel" then break end
+        
+--         ids = room:showDrawPile(player, 1, self:objectName())
+--         gets:append(ids:first())
+--         local next_num = sgs.Sanguosha:getEngineCard(ids:first()):getNumber()
+--         if (next_num == num) or (next_num > num and choice:startsWith("less")) or (next_num < num and choice:startsWith("more")) then break end
+--         num = next_num
+--     end
+    
+--     local slash = sgs.Sanguosha:cloneCard("slash")
+--     slash:deleteLater()
+--     for _,id in sgs.qlist(gets) do
+--         if room:getCardPlace(id) ~= sgs.Player_PlaceTable then continue end
+--         slash:addSubcard(id)
+--     end
+    
+--     if slash:subcardsLength() > 0 then
+--         if player:isDead() then
+--             local reason = sgs.CardMoveReason(sgs.CardMoveReason_S_REASON_NATURAL_ENTER, player:objectName(), self:objectName(), "")
+--             room:throwCard(slash, reason, nil)
+--             return true
+--         end
+--         room:obtainCard(player, slash)
+--     end
+--     return true
+-- end
+-- }
+
+-- fusong = sgs.CreateTriggerSkill{
+-- name = "fusong",
+-- events = sgs.Death,
+-- can_trigger = function(self, player)
+--     return player and player:hasSkill(self)
+-- end,
+-- on_trigger = function(self, event, player, data, room)
+--     local death = data:toDeath()
+--     if death.who:objectName() ~= player:objectName() then return false end
+    
+--     local players = sgs.SPlayerList()
+--     local max_hp = player:getMaxHp()
+--     for _,p in sgs.qlist(room:getOtherPlayers(player)) do
+--         if p:getMaxHp() <= max_hp then continue end
+--         players:append(p)
+--     end
+    
+--     if players:isEmpty() then return false end
+--     local target = room:askForPlayerChosen(player, players, self:objectName(), "@fusong-invoke", true, true)
+--     if not target then return false end
+--     room:broadcastSkillInvoke(self)
+    
+--     local skills = {}
+--     if not target:hasSkill("fengzi", true) then table.insert(skills, "fengzi") end
+--     if not target:hasSkill("jizhanw", true) then table.insert(skills, "jizhanw") end
+--     if #skills == 0 then return false end
+--     local skill = room:askForChoice(target, self:objectName(), table.concat(skills, "+"))
+--     room:acquireSkill(target, skill)
+--     return false
+-- end
+-- }
+
+-- ol_wangrong:addSkill(fengzi)
+-- ol_wangrong:addSkill(fengziDouble)
+-- ol_wangrong:addSkill(jizhanw)
+-- ol_wangrong:addSkill(fusong)
+-- extension:insertRelatedSkills("fengzi", "#fengziDouble")
+
+
 sgs.LoadTranslationTable{
     ["kuangshouren"] = "狂兽人",
     ["kuangshou"] = "狂兽",
@@ -2262,6 +2412,26 @@ sgs.LoadTranslationTable{
     [":shijiu"] = "<font color=\"blue\"><b>锁定技</b></font>，你的红桃手牌视为【酒】。",
     ["dummy"] = "训练假人",
     ["idle"] = "标靶",
+    ["ol_wangrong"] = "OL王荣",
+    ["&ol_wangrong"] = "王荣",
+    ["illustrator:ol_wangrong"] = "",
+    ["fengzi"] = "丰姿",
+    [":fengzi"] = "出牌阶段限一次，你使用基本牌或非延时类锦囊牌时，可以弃置一张同类型的手牌，令此牌的效果结算两次。",
+    ["@fengzi-discard"] = "你可以弃置一张 %src 令 %arg 结算两次",
+    ["jizhanw"] = "吉占",
+    [":jizhanw"] = "摸牌阶段开始时，你可以放弃摸牌，展示牌堆顶的一张牌，猜测牌堆顶的下一张牌点数大于或小于此牌，然后展示之，若猜对你可重复此流程，最后你获得以此法展示的牌。",
+    ["jizhanw:more"] = "点数大于%src",
+    ["jizhanw:less"] = "点数小于%src",
+    ["fusong"] = "赋颂",
+    [":fusong"] = "当你死亡时，你可令一名体力上限大于你的角色选择获得“丰姿”或“吉占”。",
+    ["@fusong-invoke"] = "你可以发动“赋颂”",
+    ["$fengzi1"] = "丰姿秀丽，礼法不失",
+    ["$fengzi2"] = "倩影姿态，悄然入心",
+    ["$jizhanw1"] = "得吉占之兆，言福运之气",
+    ["$jizhanw2"] = "吉占逢时，化险为夷",
+    ["$fusong1"] = "陛下垂爱，妾身方有此位",
+    ["$fusong2"] = "长情颂，君王恩",
+    ["~ol_wangrong"] = "只求吾儿一生平安",
     ["chongxue"] = "御蟲少女",
     ["#chongxue"] = "御蟲�?",
     ["duoyin"] = "堕淫",
