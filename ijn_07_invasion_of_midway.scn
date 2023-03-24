@@ -29149,7 +29149,7 @@ entity "CatalinaPath" (Path) {
   }
 }
 entity "PBY Catalina 01" (PlaneSquadronGen) {
-  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 5057.9600 800.0000 -3026.0300 1.0000 ;
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 -13026.0300 800.0000 15057.9600 1.0000 ;
   template "USA\AIR\PBY Catalina" ;
 
   properties (Common, GameUnit, PlaneSquadronWNavpoint, Command)  {

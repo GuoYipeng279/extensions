@@ -290,9 +290,9 @@ function luaInitJM7(this)
 	--Mission.Airfield3.Active = false
 	--Mission.AirfieldActiveFlagChange = 300
 
-	Mission.Airfield1.Maxplanes = 24*2
-	Mission.Airfield2.Maxplanes = 36*2
-	Mission.Airfield3.Maxplanes = 24*2
+	Mission.Airfield1.Maxplanes = 24*3
+	Mission.Airfield2.Maxplanes = 36*3
+	Mission.Airfield3.Maxplanes = 24*3
 
 	luaJM7InitalSkillzLower({Mission.Airfield1, Mission.Airfield2, Mission.Airfield3})
 
@@ -353,7 +353,7 @@ function luaInitJM7(this)
 			},
 			[4] = {
 				["ID"] = "CarriersSurvive",
-				["Text"] = "Kido Butai must survive",
+				["Text"] = "Kido Butai must survive!",
 				["Active"] = false,
 				["Success"] = nil,
 				["Target"] = {},
@@ -391,16 +391,6 @@ function luaInitJM7(this)
 				["ScoreCompleted"] = 1000 * OBJ_HIDDEN_MULTIPLIER,
 				["ScoreFailed"] = 0,
 				["TextCompleted"] = "ijn07.obj_h1_completed",
-			},
-			[2] = {
-				["ID"] = "ProtectAkagi",
-				["Text"] = "ijn07.obj_h1",
-				["Active"] = false,
-				["Success"] = nil,
-				["Target"] = {},
-				["ScoreCompleted"] = 1000 * OBJ_HIDDEN_MULTIPLIER,
-				["ScoreFailed"] = 0,
-				["TextCompleted"] = "Kido Butai flagship Akagi must survive!",
 			},
 		}
 	}
@@ -613,10 +603,11 @@ function luaInitJM7(this)
 	luaAddCVHitListener(Mission.Hiryu,"Hiryu")
 
 	luaJM7InitalSkillz({Mission.Akagi, Mission.Soryu, Mission.Kaga, Mission.Hiryu})
-	luaJM7SpawnFirstCVFleet()
+	local randomDelay = random(120, 600)
+	luaDelay(luaJM7SpawnFirstCVFleet, randomDelay)
 	---test---
 	if not Mission.USNReinfCalled then
-		luaJM7SpawnUSNReinf()
+		luaDelay(luaJM7SpawnUSNReinf, 1)--randomDelay + random(-60,60))
 		-- luaDelay(luaJM7SpawnFirstCVFleet, 5)
 		Mission.USNReinfCalled = true
 	end
@@ -1081,15 +1072,6 @@ function luaAddCVHitListener(carrier, name)
 
 end
 
-function luaCVHitAkagi()
-	Mission.Akagi.takeFire = true
-end
-function luaCVHitKaga()
-	Mission.Kaga.takeFire = true
-end
-function luaCVHitSoryu()
-	Mission.Soryu.takeFire = true
-end
 function luaCVHit1(target, targetDevice, attacker, attackType, attackerPlayerIndex, damageCaused, fireCaused, leakCaused)
 	luaLog(damageCaused)
 	-- AddDamage(Mission.Akagi, damageCaused*10)
@@ -1100,22 +1082,14 @@ function luaCVHit1(target, targetDevice, attacker, attackType, attackerPlayerInd
 	-- Kill(Mission.Hiryu, true)
 	local threshold = math.pow(damageCaused/300, 0.5) * 100
 	local rnd = random(1,100)
-	if attackType == "HEAVYARTILLERY" or attackType == "BOMB" or attackType == "TORPEDO" or rnd < threshold then
+	-- SetInvincible(target, true)
+	if attackType == "HEAVYARTILLERY" or (attackType == "BOMB" and damageCaused > 50) or attackType == "TORPEDO" or rnd < threshold then
 		target.takeFire = true
 		if target.enablehithint then
 			MissionNarrativePlayer(0, target.hithint.." is at fire.")
 			target.enablehithint = false
 		end
 	end
-end
-function luaCVHitYorktown()
-	Mission.Yorktown.takeFire = true
-end
-function luaCVHitEnterprise()
-	Mission.Enterprise.takeFire = true
-end
-function luaCVHitHornet()
-	Mission.Hornet.takeFire = true
 end
 
 function luaExpl(unit)
@@ -1170,30 +1144,43 @@ function luaDitching(params)
 	local p = params.ParamTable.sq
 	local burn = params.ParamTable.burn
 	if not p or p.Dead then return end
-	p.landing = false
 	p.fuel = p.fuel-burn
 	SquadronSetTravelAlt(p, 0)
 	SquadronSetTravelSpeed(p, 0)
 	PilotStop(p)
-	if p.fuel > 0.0 then
+	if luaHasFuel(p) then
 		luaDelay(luaDitching, 1, "sq", p, "burn", burn)
 	else
+		MissionNarrativePlayer(0, "squadron ditched "..p.Class.Name)
 		Kill(p)
 	end
+end
+
+function luaIsLowFuel(plane)
+	if not plane.fuel then return false end
+	return plane.fuel <= 8.0
+end
+
+function luaHasFuel(plane)
+	if not plane.fuel then return true end
+	return plane.fuel > 0.0
 end
 
 function luaFuel(params)
 	local p = params.ParamTable.sq
 	local burn = params.ParamTable.burn
 	local carrier = params.ParamTable.carrier
-	if not p or p.landing then return end
+	if not p or p.Dead then return end
 	p.fuel = p.fuel-burn
-	if not carrier or carrier.Dead then p.landing = false end
-	if p.fuel <= 8.0 and (not carrier or carrier.Dead) then
-		-- SquadronSetTravelAlt(p, 0)
-		-- SquadronSetTravelSpeed(p, 0)
+	-- SetCheatTurbo(p,2)
+	RemoveTrigger(p, "Reloader_"..tostring(p))
+	if luaIsLowFuel(p) and (not carrier or carrier.Dead) or not luaHasFuel(p) and GetFailure(carrier, "RunwayFailure") then
 		luaDelay(luaDitching, 1, "sq", p, "burn", burn)
 	else
+		if (GetPlaneIsReloading(p) or p.fuel < 15.0) and carrier and not carrier.Dead and carrier.Class.Type == "MotherShip" then
+			p.landing = true
+			PilotLand(p,carrier)
+		end
 		luaDelay(luaFuel, 1, "sq", p, "carrier", carrier, "burn", burn)
 	end
 end
@@ -1203,8 +1190,6 @@ function luaBomberLanding(carrier)
 		-- SetFailure(carrier, "RunwayFailure", 180)
 		-- SetFailure(carrier, "explosion", DAM_ENGINEROOM, 0, 100, 200, 154)
 		-- SetFailure(carrier, "EngineJam", 10)
-		local checkHp = GetHpPercentage(carrier)
-		SetShipMaxSpeed(carrier, math.max(math.min(checkHp+0.3,1.0), 0.3) * carrier.Class.MaxSpeed)
 
 		if carrier.takeFire then
 			carrier.takeFire = false
@@ -1216,24 +1201,24 @@ function luaBomberLanding(carrier)
 
 		-- Effect("ExplosionBigShip", pos)
 		local _, sq = luaGetSlotsAndSquads(carrier)
+		local haveLanding = false
 		if sq then
-			-- PilotRetreat(sq)
 			for _,p in pairs(sq) do
+				-- SetCheatTurbo(p,5)
 				if not p.fuelCount then
 					p.fuel = 100.0
 					local burn = random(14,16)/100
 					luaDelay(luaFuel, 1, "sq", p, "carrier", carrier, "burn", burn)
 					p.fuelCount = true
 				end
-				local needReload = true
-				if not GetPlaneIsReloading(p) then needReload = false end
-				if needReload or p.fuel < 15.0 then
-					p.landing = true
-					PilotLand(p,carrier)
-				end
+				if p.landing and not GetFailure(carrier,"RunwayFailure") then haveLanding = true end
 				-- if not GetPlaneIsReloading(p) then needReload = false break end
 			end
 		end
+		local speedLimit = 999
+		if haveLanding and carrier.maxLandSpeed then speedLimit = carrier.maxLandSpeed end
+		local checkHp = GetHpPercentage(carrier)
+		SetShipMaxSpeed(carrier, math.min(speedLimit, math.max(math.min(checkHp+0.3,1.0), 0.3) * carrier.Class.MaxSpeed))
 	end
 end
 
@@ -1259,16 +1244,24 @@ function luaSeaPlaneManager(ship)
 				-- SquadronSetTravelSpeed(seaplane, KMH(0))
 				-- SquadronSetTravelAlt(seaplane, -100)
 			elseif seaplane.flew == 1 then
-				if seaplane.fuel < 15.0 then seaplane.flew = 2 end
+				SquadronSetTravelAlt(seaplane, 1500)
+				-- SetCheatTurbo(seaplane, 5)
+				-- Mission.Akagi.takeFire = true
+				-- if luaIsLowFuel(seaplane) then seaplane.flew = 2 end
+				if seaplane.fuel <= 15.0 then seaplane.flew = 2 end
 			elseif seaplane.flew == 2 then
 				PilotMoveTo(seaplane, ship)
+				SquadronSetTravelAlt(seaplane, 1500)
 				local distance = math.sqrt(math.pow(GetPosition(seaplane).x-GetPosition(ship).x, 2)+math.pow(GetPosition(seaplane).z-GetPosition(ship).z, 2))
-				if distance < 300 then seaplane.flew = 3 end
+				-- Mission.Akagi.takeFire = true
+				if distance < 500 then seaplane.flew = 3 end
 			elseif seaplane.flew == 3 then
+				-- Mission.Kaga.takeFire = true
 				SquadronSetTravelSpeed(seaplane, KMH(0))
 				SquadronSetTravelAlt(seaplane, -100)
 				PilotMoveTo(seaplane, ship)
 				if GetEntitySpeed(seaplane) < 13 then
+					PilotStop(seaplane)
 					luaDelay(luaRecoverSeaplane, 5, "seaplane", seaplane, "ship", ship)
 					-- seaplane.flew = 4
 				end
@@ -1650,9 +1643,7 @@ function luaJM7CheckUSNCarrierFleet1()
 				end
 			-- Mission.Yorktown.takeFire = true
 			-- LaunchSquadron(Mission.Yorktown,fighterClassIDs[1],5)
-			luaAirfieldManager(Mission.Yorktown, fighterClassIDs, otherClassIDs, targetList, 1500, 3)
-			
-			-- Kill(Mission.Yorktown, true)
+			luaAirfieldManager1(Mission.Yorktown, fighterClassIDs, otherClassIDs, targetList, 1500, 3)
 		end
 	end
 
@@ -2191,6 +2182,9 @@ function luaJM7USNReinfFleetSpawned(...)
 			luaAddCVHitListener(Mission.Enterprise, "Enterprise")
 			luaAddCVHitListener(Mission.Hornet, "Hornet")
 			--JoinFormation(unit, leader)
+		else
+			Mission.Enterprise.maxLandSpeed = 10
+			Mission.Hornet.maxLandSpeed = 10
 		end
 	end
 
@@ -2205,6 +2199,392 @@ function luaJM7USNReinfFleetSpawned(...)
 	NavigatorMoveOnPath(leader, FindEntity("USNReinfPath"), PATH_FM_CIRCLE, PATH_SM_JOIN)
 
 end
+
+function luaAirfieldManager(airfield, fighterClassIDs, otherClassIDs, targetList, travelAlt, wingCount)
+		-- RELEASE_LOGOFF  	luaHelperLog("luaAirfieldManager Called!")
+		-- RELEASE_LOGOFF  	Assert(luaIsAirfieldTable({airfield}), "***ERROR: luaAirfieldManager needs an airfield/carrier as first param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(fighterClassIDs ~= nil and luaIsNumberTable(fighterClassIDs), "***ERROR: luaAirfieldManager needs a classID table as second param!"..debug.traceback())
+		-- RELEASE_LOGOFF  	Assert(otherClassIDs ~= nil and luaIsNumberTable(otherClassIDs), "***ERROR: luaAirfieldManager needs a classID table as third param!"..debug.traceback())
+	if targetList then
+		-- RELEASE_LOGOFF  		Assert(luaIsEntityTable(targetList, true), "***ERROR: luaAirfieldManager's targetList must be a unitlist!"..debug.traceback())
+	else
+		targetList = {}
+	end
+	if travelAlt then
+		-- RELEASE_LOGOFF  		Assert(type(travelAlt) == "number", "***ERROR: luaAirfieldManager's travelAlt must be a number!"..debug.traceback())
+	end
+	if wingCount then
+		-- RELEASE_LOGOFF  		Assert(wingCount == 1 or wingCount == 2 or wingCount == 3, "***ERROR: luaAirfieldManager's wingCount must be 1, 2 or 3!"..debug.traceback())
+	else
+		wingCount = 3
+	end
+
+	local slotSetting = GetProperty(airfield, "NumSlots")
+	--luaLog("slotsetting "..tostring(slotsetting))
+	local activeSquads = 0
+	local planeEntTable = {}
+	local slotIndex
+	activeSquads, planeEntTable = luaGetSlotsAndSquads(airfield)
+	--luaHelperLog("active squads: "..tostring(activeSquads))
+	if activeSquads == 0 and IsReadyToSendPlanes(airfield) then
+		local i = luaRnd(1,table.getn(fighterClassIDs))
+		if VehicleClass[fighterClassIDs[i]].Type == "Kamikaze" then
+			slotIndex = LaunchSquadron(airfield,fighterClassIDs[i],wingCount)
+		else
+			slotIndex = LaunchSquadron(airfield,fighterClassIDs[i],wingCount)
+		end
+		airfield.slots = GetProperty(airfield, "slots")
+		planeEntTable = {}
+		table.insert(planeEntTable, thisTable[tostring(airfield.slots[slotIndex].squadron)])
+		
+		if Mission.AirfieldManagerFunctionFighterTable and type(Mission.AirfieldManagerFunctionFighterTable) == "table" then
+		
+			table.insert(Mission.AirfieldManagerFunctionFighterTable, thisTable[tostring(airfield.slots[slotIndex].squadron)])
+			
+		end
+		
+		-- RELEASE_LOGOFF  		luaHelperLog("luaAirfieldManager Generated:"..planeEntTable[table.getn(planeEntTable)].Name)
+	elseif activeSquads < slotSetting and IsReadyToSendPlanes(airfield) then
+		if table.getn(luaTypeFilter(planeEntTable, "Fighter")) == 0 then
+			local i = luaRnd(1,table.getn(fighterClassIDs))
+			if VehicleClass[fighterClassIDs[i]].Type == "Kamikaze" then
+				slotIndex = LaunchSquadron(airfield,fighterClassIDs[i],wingCount)
+			else
+				slotIndex = LaunchSquadron(airfield,fighterClassIDs[i],wingCount)
+			end
+			airfield.slots = GetProperty(airfield, "slots")
+			table.insert(planeEntTable, thisTable[tostring(airfield.slots[slotIndex].squadron)])
+			
+			if Mission.AirfieldManagerFunctionFighterTable and type(Mission.AirfieldManagerFunctionFighterTable) == "table" then
+			
+				table.insert(Mission.AirfieldManagerFunctionFighterTable, thisTable[tostring(airfield.slots[slotIndex].squadron)])
+				
+			end
+			
+		-- RELEASE_LOGOFF  			luaHelperLog("luaAirfieldManager Generated:"..planeEntTable[table.getn(planeEntTable)].Name)
+		else
+			local i = luaRnd(1,table.getn(otherClassIDs))
+			if VehicleClass[otherClassIDs[i]].Type == "Kamikaze" then
+				slotIndex = LaunchSquadron(airfield,otherClassIDs[i],wingCount)
+			else
+				slotIndex = LaunchSquadron(airfield,otherClassIDs[i],wingCount)
+			end
+			airfield.slots = GetProperty(airfield, "slots")
+			table.insert(planeEntTable, thisTable[tostring(airfield.slots[slotIndex].squadron)])
+			
+			if Mission.AirfieldManagerFunctionBomberTable and type(Mission.AirfieldManagerFunctionBomberTable) == "table" then
+			
+				table.insert(Mission.AirfieldManagerFunctionBomberTable, thisTable[tostring(airfield.slots[slotIndex].squadron)])
+				
+			end
+			
+		-- RELEASE_LOGOFF  			luaHelperLog("luaAirfieldManager Generated:"..planeEntTable[table.getn(planeEntTable)].Name)
+		end
+	elseif activeSquads >= slotSetting then
+		-- RELEASE_LOGOFF  		luaHelperLog("luaAirfieldManager Status: There isn't any free slots!"..airfield.Name)
+	else
+		-- RELEASE_LOGOFF  		luaHelperLog("luaAirfieldManager Status: Airfield occupied!"..airfield.Name)
+	end
+
+	if not planeEntTable then
+		return
+	end
+
+	for index, unit in pairs (planeEntTable) do
+		unit.ammo = GetProperty(unit, "ammoType")
+		if unit.Class.Type == "Fighter" then
+		-- RELEASE_LOGOFF  			luaHelperLog("Unit on patrol:"..unit.Name)
+		elseif ( UnitGetAttackTarget(unit) == nil ) and (unit.ammo ~= 0 or unit.Class.Type == "Kamikaze") then
+		-- RELEASE_LOGOFF  			luaHelperLog("Unit searching for new target:"..unit.Name)
+			--luaHelperLog("targetList")
+			--luaHelperLog(targetList)
+			local filteredTargetList = {}
+			if unit.ammo == AMMO_TORPEDO and next(targetList) then
+				local tempTargetList = {}
+				local filtered = false
+				for index, target in pairs (targetList) do
+					if target.Class.Type == "MotherShip" or target.Class.Type == "BattleShip" or target.Class.Type == "Cruiser" or target.Class.Type == "Cargo" or target.Class.Type == "Destroyer" then
+						table.insert(tempTargetList, target)
+					else
+						filtered = true
+					end
+				end
+				if filtered and table.getn(tempTargetList) == 0 then
+		-- RELEASE_LOGOFF  					luaHelperLog("There is no valid torpedo target in targetList!")
+				elseif filtered then
+		-- RELEASE_LOGOFF  					luaHelperLog("Invalid torpedo targets removed from targetList!")
+				end
+				filteredTargetList = tempTargetList
+			else
+		-- RELEASE_LOGOFF  				luaHelperLog("There is no need for target filtering for this unit!")
+				filteredTargetList = targetList
+			end
+			--luaHelperLog("filteredTargetList")
+			--luaHelperLog(filteredTargetList)
+
+			local shipsAround
+			local number
+			if not filteredTargetList or not next(filteredTargetList) then
+				shipsAround, number = luaGetShipsAround(airfield, 10000, "enemy")
+				if shipsAround and (unit.ammo == AMMO_TORPEDO or unit.Class.Type == "Kamikaze") then
+					local tempShipsAround = {}
+					local filtered = false
+					for index, target in pairs (shipsAround) do
+						if target.Class.Type == "MotherShip" or target.Class.Type == "BattleShip" or target.Class.Type == "Cruiser" or target.Class.Type == "Cargo" or target.Class.Type == "Destroyer" then
+							table.insert(tempShipsAround, target)
+						else
+							filtered = true
+						end
+					end
+					if filtered and table.getn(tempShipsAround) == 0 then
+		-- RELEASE_LOGOFF  						luaHelperLog("There isn't any valid torpedo/kamikaze target in range!")
+						shipsAround = nil
+					elseif filtered then
+						shipsAround = tempShipsAround
+					end
+				end
+			end
+
+			if shipsAround then
+				local preferedTargets = luaTypeFilter(shipsAround, "MotherShip")
+				if table.getn(preferedTargets) == 0 then
+					preferedTargets = shipsAround
+				end
+				---luaLogElementNames(preferedTargets, "preferedTargets")
+
+				local currentTarget
+				local distance
+				currentTarget, distance = luaSortByDistance(unit, preferedTargets, true)
+		-- RELEASE_LOGOFF  				luaHelperLog("Targeting... "..tostring(currentTarget.Name))
+				PilotSetTarget(unit, currentTarget)
+				if unit.ammo == AMMO_BOMB and travelAlt then
+					SquadronSetTravelAlt(unit, travelAlt)
+					SquadronSetAttackAlt(unit, travelAlt)
+				end
+				unit.AirfieldManager = nil
+		-- RELEASE_LOGOFF  				luaHelperLog("Orders received, Target confirmed:"..unit.Name..currentTarget.Name)
+			elseif filteredTargetList and next(filteredTargetList) then
+				--luaLogElementNames(filteredTargetList, " Designated target ")
+		-- RELEASE_LOGOFF  				luaHelperLog("Choosing one from the designated targets...")
+				local currentTarget = luaPickRnd(filteredTargetList)
+		-- RELEASE_LOGOFF  				luaHelperLog(" Chosen target: "..currentTarget.Name)
+				PilotSetTarget(unit, currentTarget)
+				if unit.ammo == AMMO_BOMB and travelAlt then
+					SquadronSetTravelAlt(unit, travelAlt)
+					SquadronSetAttackAlt(unit, travelAlt)
+				end
+				unit.AirfieldManager = nil
+			else
+				if unit.AirfieldManager == nil then
+					PilotMoveToRange(unit,airfield,2000)
+					unit.AirfieldManager = "PilotMoveToRange"
+		-- RELEASE_LOGOFF  					luaHelperLog("No tangos in sight! Returning for patrol!"..unit.Name..GetProperty(unit, "unitcommand"))
+				else
+		-- RELEASE_LOGOFF  					luaHelperLog("No tangos in sight! Continuing patrol!"..unit.Name..GetProperty(unit, "unitcommand"))
+				end
+			end
+		elseif unit.ammo ~= 0 or unit.Class.Type == "Kamikaze" then
+		-- RELEASE_LOGOFF  			luaHelperLog("Unit with ammo and active target:"..unit.Name..GetProperty(unit, "unitcommand")..GetPrimaryTarget(unit).Name)
+		end
+	end
+end
+
+function luaAirfieldManager1(airfield, fighterClassIDs, otherClassIDs, targetList, travelAlt, wingCount)
+	-- RELEASE_LOGOFF  	luaHelperLog("luaAirfieldManager Called!")
+	-- RELEASE_LOGOFF  	Assert(luaIsAirfieldTable({airfield}), "***ERROR: luaAirfieldManager needs an airfield/carrier as first param!"..debug.traceback())
+	-- RELEASE_LOGOFF  	Assert(fighterClassIDs ~= nil and luaIsNumberTable(fighterClassIDs), "***ERROR: luaAirfieldManager needs a classID table as second param!"..debug.traceback())
+	-- RELEASE_LOGOFF  	Assert(otherClassIDs ~= nil and luaIsNumberTable(otherClassIDs), "***ERROR: luaAirfieldManager needs a classID table as third param!"..debug.traceback())
+	if targetList then
+		-- RELEASE_LOGOFF  		Assert(luaIsEntityTable(targetList, true), "***ERROR: luaAirfieldManager's targetList must be a unitlist!"..debug.traceback())
+	else
+		targetList = {}
+	end
+	if travelAlt then
+		-- RELEASE_LOGOFF  		Assert(type(travelAlt) == "number", "***ERROR: luaAirfieldManager's travelAlt must be a number!"..debug.traceback())
+	end
+	if wingCount then
+		-- RELEASE_LOGOFF  		Assert(wingCount == 1 or wingCount == 2 or wingCount == 3, "***ERROR: luaAirfieldManager's wingCount must be 1, 2 or 3!"..debug.traceback())
+	else
+		wingCount = 3
+	end
+
+	local slotSetting = GetProperty(airfield, "NumSlots")
+	--luaLog("slotsetting "..tostring(slotsetting))
+	local activeSquads = 0
+	local planeEntTable = {}
+	local slotIndex
+	activeSquads, planeEntTable = luaGetSlotsAndSquads(airfield)
+	--luaHelperLog("active squads: "..tostring(activeSquads))
+	if activeSquads == 0 and IsReadyToSendPlanes(airfield) then
+		local i = luaRnd(1,table.getn(fighterClassIDs))
+		if VehicleClass[fighterClassIDs[i]].Type == "Kamikaze" then
+			slotIndex = LaunchSquadron(airfield,fighterClassIDs[i],wingCount)
+		else
+			slotIndex = LaunchSquadron(airfield,fighterClassIDs[i],wingCount)
+		end
+		airfield.slots = GetProperty(airfield, "slots")
+		planeEntTable = {}
+		table.insert(planeEntTable, thisTable[tostring(airfield.slots[slotIndex].squadron)])
+		
+		if Mission.AirfieldManagerFunctionFighterTable and type(Mission.AirfieldManagerFunctionFighterTable) == "table" then
+		
+			table.insert(Mission.AirfieldManagerFunctionFighterTable, thisTable[tostring(airfield.slots[slotIndex].squadron)])
+			
+		end
+		
+		-- RELEASE_LOGOFF  		luaHelperLog("luaAirfieldManager Generated:"..planeEntTable[table.getn(planeEntTable)].Name)
+	elseif activeSquads < slotSetting and IsReadyToSendPlanes(airfield) then
+		if table.getn(luaTypeFilter(planeEntTable, "Fighter")) == 0 then
+			local i = luaRnd(1,table.getn(fighterClassIDs))
+			if VehicleClass[fighterClassIDs[i]].Type == "Kamikaze" then
+				slotIndex = LaunchSquadron(airfield,fighterClassIDs[i],wingCount)
+			else
+				slotIndex = LaunchSquadron(airfield,fighterClassIDs[i],wingCount)
+			end
+			airfield.slots = GetProperty(airfield, "slots")
+			table.insert(planeEntTable, thisTable[tostring(airfield.slots[slotIndex].squadron)])
+			
+			if Mission.AirfieldManagerFunctionFighterTable and type(Mission.AirfieldManagerFunctionFighterTable) == "table" then
+			
+				table.insert(Mission.AirfieldManagerFunctionFighterTable, thisTable[tostring(airfield.slots[slotIndex].squadron)])
+				
+			end
+			
+		-- RELEASE_LOGOFF  			luaHelperLog("luaAirfieldManager Generated:"..planeEntTable[table.getn(planeEntTable)].Name)
+		else
+			local i = luaRnd(1,table.getn(otherClassIDs))
+			if VehicleClass[otherClassIDs[i]].Type == "Kamikaze" then
+				slotIndex = LaunchSquadron(airfield,otherClassIDs[i],wingCount)
+			else
+				slotIndex = LaunchSquadron(airfield,otherClassIDs[i],wingCount)
+			end
+			airfield.slots = GetProperty(airfield, "slots")
+			table.insert(planeEntTable, thisTable[tostring(airfield.slots[slotIndex].squadron)])
+			
+			if Mission.AirfieldManagerFunctionBomberTable and type(Mission.AirfieldManagerFunctionBomberTable) == "table" then
+			
+				table.insert(Mission.AirfieldManagerFunctionBomberTable, thisTable[tostring(airfield.slots[slotIndex].squadron)])
+				
+			end
+			
+		-- RELEASE_LOGOFF  			luaHelperLog("luaAirfieldManager Generated:"..planeEntTable[table.getn(planeEntTable)].Name)
+		end
+	elseif activeSquads >= slotSetting then
+		-- RELEASE_LOGOFF  		luaHelperLog("luaAirfieldManager Status: There isn't any free slots!"..airfield.Name)
+	else
+		-- RELEASE_LOGOFF  		luaHelperLog("luaAirfieldManager Status: Airfield occupied!"..airfield.Name)
+	end
+
+	if not planeEntTable then
+		return
+	end
+
+	for index, unit in pairs (planeEntTable) do
+		unit.ammo = GetProperty(unit, "ammoType")
+		if unit.Class.Type == "Fighter" then
+		-- RELEASE_LOGOFF  			luaHelperLog("Unit on patrol:"..unit.Name)
+		elseif ( UnitGetAttackTarget(unit) == nil ) and (unit.ammo ~= 0 or unit.Class.Type == "Kamikaze") then
+		-- RELEASE_LOGOFF  			luaHelperLog("Unit searching for new target:"..unit.Name)
+			--luaHelperLog("targetList")
+			--luaHelperLog(targetList)
+			local filteredTargetList = {}
+			if unit.ammo == AMMO_TORPEDO and next(targetList) then
+				local tempTargetList = {}
+				local filtered = false
+				for index, target in pairs (targetList) do
+					if target.Class.Type == "MotherShip" or target.Class.Type == "BattleShip" or target.Class.Type == "Cruiser" or target.Class.Type == "Cargo" or target.Class.Type == "Destroyer" then
+						table.insert(tempTargetList, target)
+					else
+						filtered = true
+					end
+				end
+				if filtered and table.getn(tempTargetList) == 0 then
+		-- RELEASE_LOGOFF  					luaHelperLog("There is no valid torpedo target in targetList!")
+				elseif filtered then
+		-- RELEASE_LOGOFF  					luaHelperLog("Invalid torpedo targets removed from targetList!")
+				end
+				filteredTargetList = tempTargetList
+			else
+		-- RELEASE_LOGOFF  				luaHelperLog("There is no need for target filtering for this unit!")
+				filteredTargetList = targetList
+			end
+			--luaHelperLog("filteredTargetList")
+			--luaHelperLog(filteredTargetList)
+
+			local shipsAround
+			local number
+			if not filteredTargetList or not next(filteredTargetList) then
+				shipsAround, number = luaGetShipsAround(airfield, 10000, "enemy")
+				if shipsAround and (unit.ammo == AMMO_TORPEDO or unit.Class.Type == "Kamikaze") then
+					local tempShipsAround = {}
+					local filtered = false
+					for index, target in pairs (shipsAround) do
+						if target.Class.Type == "MotherShip" or target.Class.Type == "BattleShip" or target.Class.Type == "Cruiser" or target.Class.Type == "Cargo" or target.Class.Type == "Destroyer" then
+							table.insert(tempShipsAround, target)
+						else
+							filtered = true
+						end
+					end
+					if filtered and table.getn(tempShipsAround) == 0 then
+		-- RELEASE_LOGOFF  						luaHelperLog("There isn't any valid torpedo/kamikaze target in range!")
+						shipsAround = nil
+					elseif filtered then
+						shipsAround = tempShipsAround
+					end
+				end
+			end
+
+			if shipsAround then
+				local preferedTargets = luaTypeFilter(shipsAround, "MotherShip")
+				if table.getn(preferedTargets) == 0 then
+					preferedTargets = shipsAround
+				end
+				---luaLogElementNames(preferedTargets, "preferedTargets")
+
+				local currentTarget
+				local distance
+				currentTarget, distance = luaSortByDistance(unit, preferedTargets, true)
+		-- RELEASE_LOGOFF  				luaHelperLog("Targeting... "..tostring(currentTarget.Name))
+				-- PilotSetTarget(unit, currentTarget)
+				local alt = 1100
+				if unit.ammo == AMMO_TORPEDO then alt = 300 end
+				-- MissionNarrativePlayer(0, type(preferedTargets))
+				luaDelay(luaPlaneManeuver, 1, "plane",unit,"trg",currentTarget,"attackAlt",alt,"attackAng",0,"distance",5000,"designated",preferedTargets)
+				if unit.ammo == AMMO_BOMB and travelAlt then
+					-- SetCheatTurbo(unit, 5)
+					-- luaDelay(luaPlaneManeuver, 1, "plane",unit,"trg",currentTarget,"attackAlt",1500,"attackAng",0)
+				end
+				unit.AirfieldManager = nil
+		-- RELEASE_LOGOFF  				luaHelperLog("Orders received, Target confirmed:"..unit.Name..currentTarget.Name)
+			elseif filteredTargetList and next(filteredTargetList) then
+				--luaLogElementNames(filteredTargetList, " Designated target ")
+		-- RELEASE_LOGOFF  				luaHelperLog("Choosing one from the designated targets...")
+				local currentTarget = luaPickRnd(filteredTargetList)
+		-- RELEASE_LOGOFF  				luaHelperLog(" Chosen target: "..currentTarget.Name)
+				local alt = 1100
+				if unit.ammo == AMMO_TORPEDO then alt = 300 end
+				-- MissionNarrativePlayer(0, type(filteredTargetList))
+				luaDelay(luaPlaneManeuver, 1, "plane",unit,"trg",currentTarget,"attackAlt",alt,"attackAng",0,"distance",5000,"designated",filteredTargetList)
+				if unit.ammo == AMMO_BOMB and travelAlt then
+					-- SetCheatTurbo(unit, 2)
+					-- luaDelay(luaPlaneManeuver, 1, "plane",unit,"trg",currentTarget,"attackAlt",1500,"attackAng",0)
+				end
+				unit.AirfieldManager = nil
+			else
+				if unit.AirfieldManager == nil then
+					PilotMoveToRange(unit,airfield,2000)
+					unit.AirfieldManager = "PilotMoveToRange"
+		-- RELEASE_LOGOFF  					luaHelperLog("No tangos in sight! Returning for patrol!"..unit.Name..GetProperty(unit, "unitcommand"))
+				else
+		-- RELEASE_LOGOFF  					luaHelperLog("No tangos in sight! Continuing patrol!"..unit.Name..GetProperty(unit, "unitcommand"))
+				end
+			end
+		elseif unit.ammo ~= 0 or unit.Class.Type == "Kamikaze" then
+		-- RELEASE_LOGOFF  			luaHelperLog("Unit with ammo and active target:"..unit.Name..GetProperty(unit, "unitcommand")..GetPrimaryTarget(unit).Name)
+		end
+	end
+end
+
 
 function luaJM7CheckUSNCarrierFleet2()
 	if Mission.Fleet2CarriersDead or not Mission.USNReinfIn then
@@ -2242,10 +2622,11 @@ function luaJM7CheckUSNCarrierFleet2()
 				targetList = luaJM7GetUnits(nil,PARTY_JAPANESE)
 			end
 		if not Mission.Hornet.Dead then
-			luaAirfieldManager(Mission.Hornet, fighterClassIDs, otherClassIDs, targetList, 1500, 3)
+			luaAirfieldManager1(Mission.Hornet, fighterClassIDs, otherClassIDs, targetList, 1500, 3)
 		end
 		if not Mission.Enterprise.Dead then
-			luaAirfieldManager(Mission.Enterprise, fighterClassIDs, otherClassIDs, targetList, 1500, 3)
+			-- luaLaunchAirstrike1()
+			luaAirfieldManager1(Mission.Enterprise, fighterClassIDs, otherClassIDs, targetList, 1500, 3)
 		end
 		luaJM7ScreenTargeting(Mission.USNReinforcements,2)
 	end
@@ -3258,11 +3639,11 @@ function luaLaunchAirstrike1(phase, stopPhase, airfields, classIDs, entities, nu
 				end
 				i=i+1
 			end
-			if numberOfUsedSlots > 3 then
+			if numberOfUsedSlots > 999 then
 		-- RELEASE_LOGOFF  				luaHelperLog("luaLaunchAirstrike Warning: The following airfield has no available slots! "..airfield.Name)
 				--luaLog("luaLaunchAirstrike Warning: The following airfield has no available slots! "..airfield.Name)
 				airfieldWarning = airfieldWarning + 1
-			elseif numberOfUsedSlots < 4 then
+			elseif numberOfUsedSlots < 999 then
 				if IsReadyToSendPlanes(airfield) then
 					local i = math.mod(phase-1,table.getn(classIDs))+1
 					local slotIndex
@@ -3299,6 +3680,77 @@ function luaLaunchAirstrike1(phase, stopPhase, airfields, classIDs, entities, nu
 	end
 end
 
+function luaPlaneManeuver(params)
+	local plane = params.ParamTable.plane
+	local trg = params.ParamTable.trg
+	local attackAlt = params.ParamTable.attackAlt
+	local attackAng = params.ParamTable.attackAng
+	local distance = params.ParamTable.distance
+	local designated = params.ParamTable.designated
+	-- Kill(Mission.Akagi)
+	if not plane or plane.Dead or not trg or trg.Dead or not luaHasFuel(plane) or (plane.planed and attackAng == 0) then plane.planed = false return end
+	plane.planed = true
+	-- SetCheatTurbo(plane, 2)
+	RemoveTrigger(plane, "Reloader_"..tostring(plane))
+	local dist = math.sqrt(math.pow(GetPosition(plane).x-GetPosition(trg).x, 2)+math.pow(GetPosition(plane).z-GetPosition(trg).z, 2))
+	if dist > distance+100 and dist >= 3500 then
+		local enm = GetPosition(trg)
+		SquadronSetTravelAlt(plane,attackAlt)
+		-- SetCheatTurbo(plane, 5)
+		local deg
+		if attackAng > 0 then deg = attackAng
+		else deg = random(1,360)/180*math.pi end
+		local inc_x = math.cos(deg)*distance
+		local inc_z = math.sin(deg)*distance
+		enm.x = enm.x + inc_x
+		enm.z = enm.z + inc_z
+		PilotMoveTo(plane, enm)
+		luaDelay(luaPlaneManeuver, 1, "plane",plane,"trg",trg,"attackAlt",attackAlt,"attackAng",deg,"distance",distance,"designated",designated)
+	elseif dist < 3000 then
+		if not plane.lockedUpTarget then
+			plane.lockedUpTarget = true
+			local sel = GetPosition(plane)
+			local enm = GetPosition(trg)
+			local ori = trg
+			local enm_sel_x = sel.x - enm.x
+			local enm_sel_z = sel.z - enm.z
+			local enm_sel = math.sqrt(math.pow(enm_sel_x,2)+math.pow(enm_sel_z,2))
+			local curcos = 0.8
+			-- MissionNarrativePlayer(0, plane.Class.Name.." enter attack "..trg.Class.Name)
+			for _, pos in pairs(designated) do
+				-- MissionNarrativePlayer(0, plane.Class.Name.." enter attack "..trg.Class.Name)
+				local dist2 = math.sqrt(math.pow(GetPosition(plane).x-GetPosition(pos).x, 2)+math.pow(GetPosition(plane).z-GetPosition(pos).z, 2))
+				if dist > dist2 then
+					local pos1 = GetPosition(pos)
+					local enm_pos_x = pos1.x - enm.x
+					local enm_pos_z = pos1.z - enm.z
+					local enm_pos = math.sqrt(math.pow(enm_pos_x,2)+math.pow(enm_pos_z,2))
+					local cosine = (enm_sel_x*enm_pos_x+enm_sel_z*enm_pos_z)/enm_sel/enm_pos
+					if cosine > 0.8 and cosine > curcos then
+						trg = pos
+						curcos = cosine
+					end
+				end
+			end
+			MissionNarrativePlayer(0, plane.Class.Name.." enter attack "..trg.Class.Name.." instead "..ori.Class.Name)
+			PilotSetTarget(plane, trg)
+		end
+	else
+		local enm = GetPosition(trg)
+		SquadronSetTravelAlt(plane,attackAlt)
+		-- SetCheatTurbo(plane, 5)
+		local deg
+		if attackAng > 0 then deg = attackAng
+		else deg = random(1,360)/180*math.pi end
+		local inc_x = math.cos(deg)*distance*0.7
+		local inc_z = math.sin(deg)*distance*0.7
+		enm.x = enm.x + inc_x
+		enm.z = enm.z + inc_z
+		PilotMoveTo(plane, enm)
+		luaDelay(luaPlaneManeuver, 0.1, "plane",plane,"trg",trg,"attackAlt",attackAlt,"attackAng",deg,"distance",math.min(distance,dist)*0.8,"designated",designated)
+	end
+end
+
 function luaJM7AF_Think(this, msg)
 
 	if luaMessageHandler (this, msg) == "killed" then
@@ -3322,7 +3774,7 @@ function luaJM7AF_Think(this, msg)
 			luaDelay(luaJM7PauseAirstrike, random(60,180))
 			Mission.AFPauseReset = true
 		end
-		return
+		-- return
 	end
 
 	--airfield1
@@ -3396,8 +3848,9 @@ function luaJM7AF_Think(this, msg)
 						--lualog(squadron)
 						local ammo = GetProperty(squadron, "ammoType")
 						if ammo ~= 0 then
-							luaSetScriptTarget(squadron, trg)
-							PilotSetTarget(squadron, trg)
+							luaDelay(luaPlaneManeuver, 1, "plane",squadron,"trg",trg,"attackAlt",1500,"attackAng",0,"distance",5000,"designated",targetList)
+							-- luaSetScriptTarget(squadron, trg)
+							-- PilotSetTarget(squadron, trg)
 						end
 					end
 				end
@@ -3440,7 +3893,7 @@ function luaJM7AF_Think(this, msg)
 				end
 			end
 
-			if Mission.Airfield3Phase == 3 then --5
+			if Mission.Airfield3Phase == 8 then --5
 
 				--luaLog("phase "..tostring(phase))
 				--luaLog("errorLvl "..tostring(errorLvl))
@@ -3467,17 +3920,18 @@ function luaJM7AF_Think(this, msg)
 						--lualog(squadron)
 						local ammo = GetProperty(squadron, "ammoType")
 						if ammo ~= 0 then
-							luaSetScriptTarget(squadron, trg)
-							PilotSetTarget(squadron, trg)
+							luaDelay(luaPlaneManeuver, 1, "plane",squadron,"trg",trg,"attackAlt",1500,"attackAng",0,"distance",5000,"designated",targetList)
+							-- luaSetScriptTarget(squadron, trg)
+							-- PilotSetTarget(squadron, trg)
 						end
 					end
 				end
 
 				Mission.Airfield3StrikeOngoing = true
 
-			elseif Mission.Airfield3Phase < 3 then --5
+			elseif Mission.Airfield3Phase < 8 then --5
 
-				Mission.Airfield3Phase, Mission.Airfield3Ents, errorLvl = luaLaunchAirstrike1(Mission.Airfield3Phase, 3, {Mission.Airfield3}, otherClassIDs, Mission.Airfield3Ents, 5) --5
+				Mission.Airfield3Phase, Mission.Airfield3Ents, errorLvl = luaLaunchAirstrike1(Mission.Airfield3Phase, 8, {Mission.Airfield3}, otherClassIDs, Mission.Airfield3Ents, 1) --5
 				Mission.Airfield3StrikeOngoing = false
 
 			end
@@ -3651,6 +4105,8 @@ function luaJM7USNCVFleetSpawned(...)
 	for idx,unit in pairs(Mission.USNFleet1) do
 		if unit.ID ~= Mission.Yorktown.ID then
 			JoinFormation(unit, Mission.Yorktown)
+		else
+			Mission.Yorktown.maxLandSpeed = 10
 		end
 	end
 	
