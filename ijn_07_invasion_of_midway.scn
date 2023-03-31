@@ -503,8 +503,8 @@ header {
             SoundEffect = S "" ;
           }
           "Calm" {
-            Channel = S "calm" ;
-            FileName = S "JP_calm_tension_action.fsb" ;
+            Channel = S "" ;
+            FileName = S "NationJPN03.fsb" ;
             SoundEffect = S "" ;
           }
           "Custom1" {

@@ -1,0 +1,1262 @@
+header {
+  uniqueID 7;
+  NextUID 2;
+  properties {
+    AffterEffects = S "" ;
+    "Cloud" {
+      "Area00" {
+        BigWeight = F 0.0000 ;
+        BoxMaxX = F 0.0000 ;
+        BoxMaxY = F 0.0000 ;
+        BoxMaxZ = F 0.0000 ;
+        BoxMinX = F 0.0000 ;
+        BoxMinY = F 0.0000 ;
+        BoxMinZ = F 0.0000 ;
+        MediumWeight = F 0.0000 ;
+        Num = I 0 ;
+        SmallWeight = F 0.0000 ;
+      }
+      "Area01" {
+        BigWeight = F 0.0000 ;
+        BoxMaxX = F 0.0000 ;
+        BoxMaxY = F 0.0000 ;
+        BoxMaxZ = F 0.0000 ;
+        BoxMinX = F 0.0000 ;
+        BoxMinY = F 0.0000 ;
+        BoxMinZ = F 0.0000 ;
+        MediumWeight = F 0.0000 ;
+        Num = I 0 ;
+        SmallWeight = F 0.0000 ;
+      }
+      "Area02" {
+        BigWeight = F 0.0000 ;
+        BoxMaxX = F 0.0000 ;
+        BoxMaxY = F 0.0000 ;
+        BoxMaxZ = F 0.0000 ;
+        BoxMinX = F 0.0000 ;
+        BoxMinY = F 0.0000 ;
+        BoxMinZ = F 0.0000 ;
+        MediumWeight = F 0.0000 ;
+        Num = I 0 ;
+        SmallWeight = F 0.0000 ;
+      }
+      "Area03" {
+        BigWeight = F 0.0000 ;
+        BoxMaxX = F 0.0000 ;
+        BoxMaxY = F 0.0000 ;
+        BoxMaxZ = F 0.0000 ;
+        BoxMinX = F 0.0000 ;
+        BoxMinY = F 0.0000 ;
+        BoxMinZ = F 0.0000 ;
+        MediumWeight = F 0.0000 ;
+        Num = I 0 ;
+        SmallWeight = F 0.0000 ;
+      }
+    }
+    CompetitiveModeParty = E Party : Allied  ;
+    FileSystemLua = S "" ;
+    GameMode = E GameMode : Single  ;
+    GroundCollision = B true ;
+    "IdleCameraPos" {
+      "Capture1" {
+        "Allied" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+        "Japanese" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+      }
+      "Capture2" {
+        "Allied" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+        "Japanese" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+      }
+      "Capture3" {
+        "Allied" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+        "Japanese" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+      }
+      "Capture4" {
+        "Allied" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+        "Japanese" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+      }
+      "Competitive" {
+        "Allied" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+        "Japanese" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+      }
+      "Duel" {
+        "Allied" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+        "Japanese" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+      }
+      "Escort" {
+        "Allied" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+        "Japanese" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+      }
+      "Siege" {
+        "Allied" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+        "Japanese" {
+          "Pair01" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair02" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair03" {
+            From = R "" ;
+            To = R "" ;
+          }
+          "Pair04" {
+            From = R "" ;
+            To = R "" ;
+          }
+        }
+      }
+    }
+    LocKitPaths = S "missionglobals" ;
+    "Map" {
+      BorderSizeX = F 40000.0000 ;
+      BorderSizeY = F 40000.0000 ;
+      "MultiPlayMapSizes" {
+        Competitive_nw = V3 -100.0000 0.0000 -100.0000 ;
+        Competitive_se = V3 100.0000 0.0000 100.0000 ;
+        Duel_nw = V3 -100.0000 0.0000 -100.0000 ;
+        Duel_se = V3 100.0000 0.0000 100.0000 ;
+        Escort_nw = V3 -100.0000 0.0000 -100.0000 ;
+        Escort_se = V3 100.0000 0.0000 100.0000 ;
+        IslandCapture1v1_nw = V3 -100.0000 0.0000 -100.0000 ;
+        IslandCapture1v1_se = V3 100.0000 0.0000 100.0000 ;
+        IslandCapture2v2_nw = V3 -100.0000 0.0000 -100.0000 ;
+        IslandCapture2v2_se = V3 100.0000 0.0000 100.0000 ;
+        IslandCapture3v3_nw = V3 -100.0000 0.0000 -100.0000 ;
+        IslandCapture3v3_se = V3 100.0000 0.0000 100.0000 ;
+        IslandCapture4v4_nw = V3 -100.0000 0.0000 -100.0000 ;
+        IslandCapture4v4_se = V3 100.0000 0.0000 100.0000 ;
+        Siege_nw = V3 -100.0000 0.0000 -100.0000 ;
+        Siege_se = V3 100.0000 0.0000 100.0000 ;
+      }
+    }
+    MaxPlayerNum = I 8 ;
+    "Multiplay" {
+      "Player1" {
+        Party = E Party : Japanese  ;
+        Race = E Races : Japan  ;
+      }
+      "Player2" {
+        Party = E Party : Japanese  ;
+        Race = E Races : Japan  ;
+      }
+      "Player3" {
+        Party = E Party : Allied  ;
+        Race = E Races : USA  ;
+      }
+      "Player4" {
+        Party = E Party : Japanese  ;
+        Race = E Races : Japan  ;
+      }
+      "Player5" {
+        Party = E Party : Allied  ;
+        Race = E Races : USA  ;
+      }
+      "Player6" {
+        Party = E Party : Japanese  ;
+        Race = E Races : Japan  ;
+      }
+      "Player7" {
+        Party = E Party : Allied  ;
+        Race = E Races : USA  ;
+      }
+      "Player8" {
+        Party = E Party : Japanese  ;
+        Race = E Races : Japan  ;
+      }
+    }
+    "Sound" {
+      "Ambient" {
+        "Air" {
+          Distance = F 50.0000 ;
+          Distance2 = F 800.0000 ;
+          FileName = S "environment_smoothwind.fsb" ;
+        }
+        "Ocean" {
+          Distance = F 15.0000 ;
+          FileName = S "environment_ocean.fsb" ;
+        }
+        "Underwater" {
+          FileName = S "environment_underwater.fsb" ;
+        }
+      }
+      "Music" {
+        "Party0" {
+          "Action" {
+            Channel = S "action" ;
+            FileName = S "US_calm_tension_action.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Calm" {
+            Channel = S "" ;
+            FileName = S "" ;
+            SoundEffect = S "" ;
+          }
+          "Custom1" {
+            Channel = S "" ;
+            FileName = S "" ;
+            SoundEffect = S "" ;
+          }
+          "Custom2" {
+            Channel = S "" ;
+            FileName = S "" ;
+            SoundEffect = S "" ;
+          }
+          "Custom3" {
+            Channel = S "" ;
+            FileName = S "" ;
+            SoundEffect = S "" ;
+          }
+          "Default" {
+            Channel = S "tension" ;
+            FileName = S "US_calm_tension_action.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Defeat" {
+            Channel = S "" ;
+            FileName = S "US_defeat.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Tension" {
+            Channel = S "tension" ;
+            FileName = S "US_calm_tension_action.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Victory" {
+            Channel = S "" ;
+            FileName = S "US_victory.fsb" ;
+            SoundEffect = S "" ;
+          }
+        }
+        "Party1" {
+          "Action" {
+            Channel = S "action" ;
+            FileName = S "JP_calm_tension_action.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Calm" {
+            Channel = S "calm" ;
+            FileName = S "JP_calm_tension_action.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Custom1" {
+            Channel = S "" ;
+            FileName = S "JP_Victory_Short.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Custom2" {
+            Channel = S "" ;
+            FileName = S "JP_Defeat_Short.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Custom3" {
+            Channel = S "" ;
+            FileName = S "" ;
+            SoundEffect = S "" ;
+          }
+          "Default" {
+            Channel = S "tension" ;
+            FileName = S "JP_calm_tension_action.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Defeat" {
+            Channel = S "" ;
+            FileName = S "JP_defeat.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Tension" {
+            Channel = S "tension" ;
+            FileName = S "JP_calm_tension_action.fsb" ;
+            SoundEffect = S "" ;
+          }
+          "Victory" {
+            Channel = S "" ;
+            FileName = S "JP_victory.fsb" ;
+            SoundEffect = S "" ;
+          }
+        }
+      }
+    }
+    StageScript = S "Ijn\\JM07" ;
+    StageScriptCompetiton = S "" ;
+    StageScriptDuel = S "" ;
+    StageScriptEscort = S "" ;
+    StageScriptIslandCapture = S "" ;
+    StageScriptSiege = S "" ;
+    "TerritoryMap" {
+      FileName = S "" ;
+    }
+    Title = S "error!notitle!" ;
+    "g_Environment" {
+      CloudShadowDir = F 0.0000 ;
+      CloudShadowMap = S "white.tga" ;
+      CloudShadowSize = F 1000.0000 ;
+      CloudShadowVelocity = F 10.0000 ;
+      "Lights" {
+        "Ambient" {
+          B = F 0.6863 ;
+          G = F 0.8510 ;
+          L = F 2.0000 ;
+          R = F 0.9255 ;
+        }
+        "AmbientCube" {
+          "HDR" {
+            "Back" {
+              B = F 0.7255 ;
+              G = F 0.6549 ;
+              L = F 1.0000 ;
+              R = F 0.6000 ;
+            }
+            "Bottom" {
+              B = F 0.5059 ;
+              G = F 0.4275 ;
+              L = F 0.5000 ;
+              R = F 0.3255 ;
+            }
+            "Front" {
+              B = F 0.7608 ;
+              G = F 0.7059 ;
+              L = F 1.0000 ;
+              R = F 0.6588 ;
+            }
+            "Left" {
+              B = F 0.8157 ;
+              G = F 0.8706 ;
+              L = F 1.0000 ;
+              R = F 0.9059 ;
+            }
+            "Right" {
+              B = F 0.8784 ;
+              G = F 0.8471 ;
+              L = F 1.0000 ;
+              R = F 0.8392 ;
+            }
+            "Top" {
+              B = F 0.6353 ;
+              G = F 0.6353 ;
+              L = F 1.0000 ;
+              R = F 0.6353 ;
+            }
+          }
+        }
+        AmbientLumOffset = F 0.0000 ;
+        AmbientLumScale = F 1.0000 ;
+        "Angles" {
+          HorizontalAngle = F 130.0000 ;
+          VerticalAngle = F 45.0000 ;
+        }
+        BushDiffuseFactor = F 0.3000 ;
+        BushNormalAllowed = B true ;
+        BushShadowAllowed = B true ;
+        BushTextureName = S "foliageatlas.dds" ;
+        "Diffuse" {
+          B = F 1.0000 ;
+          G = F 1.0000 ;
+          Luminance = F 4.0000 ;
+          R = F 1.0000 ;
+        }
+        ForceDisableDynShadow = B false ;
+        ParticleMultiplier = F 1.0000 ;
+        "Specular" {
+          B = F 1.0000 ;
+          G = F 1.0000 ;
+          Luminance = F 20.0000 ;
+          R = F 1.0000 ;
+        }
+        "UWAmbient" {
+          B = F 1.0000 ;
+          G = F 1.0000 ;
+          L = F 0.7000 ;
+          R = F 1.0000 ;
+        }
+        "UWDiffuse" {
+          B = F 1.0000 ;
+          G = F 1.0000 ;
+          L = F 0.7000 ;
+          R = F 1.0000 ;
+        }
+        "WaterTracerColor" {
+          A = F 1.0000 ;
+          B = F 1.0000 ;
+          G = F 1.0000 ;
+          R = F 1.0000 ;
+        }
+      }
+      ReflCubemap = S "RCS_ijn_07_invasion.dds" ;
+      Skybox = S "sky_064" ;
+      SkyboxLuminance = F 2.0000 ;
+      SkyboxRotate = F 320.0000 ;
+      Sun = S "SunDayTime" ;
+      ThunderStorm = S "" ;
+    }
+    "g_Ocean" {
+      0_SimpleOcean = B false ;
+      "Beam" {
+        "Color" {
+          A = F 0.0000 ;
+          B = F 0.6118 ;
+          G = F 0.4549 ;
+          R = F 0.2118 ;
+        }
+        NumBeams = I 100 ;
+        Speed = F 0.5000 ;
+        Tex00 = F 300.0000 ;
+        Tex01 = F 9.0000 ;
+        Tex02 = F 30.0000 ;
+        Tex03 = F 2.0000 ;
+        Tex04 = F 0.0000 ;
+        Tex05 = F 2.0000 ;
+        Tex06 = F 50.0000 ;
+        Tex07 = F 2.0000 ;
+        Tex08 = F 0.0800 ;
+        Tex09 = F 0.9000 ;
+        Tex10 = F 0.9500 ;
+        Tex11 = F 0.9900 ;
+        Tex12 = F 0.5000 ;
+        Tex13 = F 0.1000 ;
+        Tex14 = F 0.1000 ;
+        Tex15 = F 0.1000 ;
+        TextureFile = S "stripes4.tga" ;
+      }
+      "Caustics" {
+        "CausticsColor" {
+          B = F 0.5686 ;
+          G = F 0.4863 ;
+          R = F 0.3569 ;
+        }
+        CausticsScale = F 0.2000 ;
+        CausticsType = E CausticsTypes : CausticsDayLight  ;
+      }
+      "Foam" {
+        FadeRange = F 4.0000 ;
+        Height = F 1.2000 ;
+        NoiseScale = F 500.0000 ;
+        NoiseScrollSpeed = F 5.0000 ;
+        NoiseTexture = S "foam_noise02.tga" ;
+        Scale = F 20.0000 ;
+        ScrollSpeed = F 3.0000 ;
+        Texture = S "foam_f02.tga" ;
+        UseFoam = B true ;
+      }
+      "Fog" {
+        UWExpDistMaxdist = F 1200.0000 ;
+        UWExpDistMinvalue = F 100.0000 ;
+        UWExpHeightCutdepth = F -90.0000 ;
+        UWExpHeightMaxdepth = F -90.0000 ;
+        UWExpHeightMaxvalue = F 99.5000 ;
+        "UWFogColor" {
+          B = F 0.1804 ;
+          G = F 0.1216 ;
+          L = F 1.0000 ;
+          MaxDarken = F 0.5000 ;
+          R = F 0.0941 ;
+        }
+      }
+      "NormalMaps" {
+        Texture = S "oceannormalmap02.tga" ;
+        layer0_Scale = F 500.0000 ;
+        layer0_ScrollSpeed = F 3.0000 ;
+        layer1_Scale = F 250.0000 ;
+        layer1_ScrollSpeed = F 2.0000 ;
+        layer2_Scale = F 20.0000 ;
+        layer2_ScrollSpeed = F 1.0000 ;
+      }
+      "Optics" {
+        "1LocalReflectionTint" {
+          B = F 0.3216 ;
+          G = F 0.3216 ;
+          R = F 0.3216 ;
+        }
+        "1ReflectionTint" {
+          B = F 0.3882 ;
+          G = F 0.3216 ;
+          R = F 0.2392 ;
+        }
+        "1RefractionTint" {
+          B = F 0.6588 ;
+          G = F 0.5804 ;
+          R = F 0.4431 ;
+        }
+        "1SprayTintColor" {
+          B = F 1.0000 ;
+          G = F 1.0000 ;
+          R = F 1.0000 ;
+        }
+        "1UWRefractionTint" {
+          B = F 1.0000 ;
+          G = F 1.0000 ;
+          R = F 1.0000 ;
+        }
+        2DeepWaterRefractionExponent = F 50.0000 ;
+        2DeepWaterRefractionTintPower = F 2.0000 ;
+        2RefractionTintExponent = F 1.0000 ;
+        2RefractionTintPower = F 10.0000 ;
+        3RefractionDepthFadeRange = F 20.0000 ;
+        3RefractionMaxDepth = F 50.0000 ;
+        4FresnelExponent = F 12.0000 ;
+        4FresnelOffset = F 0.2000 ;
+        4FresnelScale = F 1.5000 ;
+        5ShoreFadeDepth = F 2.0000 ;
+        5ShoreFadePower = F 1.0000 ;
+        5ShoreFadeRange = F 2.0000 ;
+        6FinalMultiplier = F 2.0000 ;
+        6ReflectionMultiplier = F 1.0000 ;
+        7SkyReflBaseFact = F 3.0000 ;
+        7SkyReflDesatFact = F 0.2000 ;
+        7SkyReflPowDiv = F 1000.0000 ;
+        7SkyReflPowExp = F 1.0000 ;
+        8UWBaseGlowStrength = F 1000.0000 ;
+        8UWSkyGlowStrength = F 2.0000 ;
+        8UWSunSpotStrength = F 50.0000 ;
+        9ShadowStrength = F 0.8000 ;
+        "RefrSpecularColor" {
+          B = F 0.6275 ;
+          G = F 0.0000 ;
+          R = F 0.0000 ;
+        }
+        UnderWaterRefrIndex = F 0.9000 ;
+      }
+      "WaterParticle" {
+        "Color" {
+          A = F 0.5000 ;
+          B = F 0.2549 ;
+          G = F 0.2157 ;
+          R = F 0.1608 ;
+        }
+        NumParticles = I 5000 ;
+        Speed = F 2.0000 ;
+        Tex00 = F 0.1000 ;
+        Tex01 = F 0.1000 ;
+        Tex02 = F 0.1000 ;
+        Tex03 = F 10000.0000 ;
+        Tex04 = F 0.1000 ;
+        Tex05 = F 0.1000 ;
+        Tex06 = F 0.1000 ;
+        Tex07 = F 0.0000 ;
+        Tex08 = F -100.0000 ;
+        Tex09 = F -100.0000 ;
+        Tex10 = F -100.0000 ;
+        Tex11 = F 1.0000 ;
+        Tex12 = F 200.0000 ;
+        Tex13 = F 200.0000 ;
+        Tex14 = F 200.0000 ;
+        Tex15 = F 1.0000 ;
+        TextureFile = S "lampea128dxt5.tga" ;
+      }
+      "Waves" {
+        1WaveDampModel = S "" ;
+        1WaveDampeningDepth = F 60.0000 ;
+        1WaveDampeningPower = F 1.5000 ;
+        1WaveDampeningScale = F 1.0000 ;
+        ChoppyWavesFactor = F 2.0000 ;
+        Falloff = F 0.3000 ;
+        HeightScale = F 2.0000 ;
+        LayerScale = F 125.0000 ;
+        TimeScale = F 0.6000 ;
+        WaveHeight = F 200.0000 ;
+        WindDirection = F 0.4000 ;
+        WindSpeed = F 1.0000 ;
+      }
+    }
+    "g_PostProcess" {
+      "Colorize" {
+        TextureName = S "volume_IJN_07.dds" ;
+        TextureNameOldFilm = S "volume_technicolor_002.tga" ;
+        TextureNameOldFilmUW = S "volume_remap_UW.tga" ;
+        TextureNameUW = S "ColourRemap_uw.tga" ;
+      }
+      "HDR" {
+        AdaptationPercent = F 5.0000 ;
+        AntiBandingON = B false ;
+        BloomScale = F 0.3000 ;
+        BrightPassOffset = F 6.0000 ;
+        BrightPassTreshold = F 2.0000 ;
+        MaxLuminance = F 1.0000 ;
+        MiddleGray = F 0.8000 ;
+        MinLuminance = F 0.2000 ;
+        NewHDRParam0 = F 3.0000 ;
+        NewHDRParam1 = F 10.0000 ;
+        ParticleLuminanceMul = F 1.0000 ;
+      }
+      "MotionBlur" {
+        Divider = F 600.0000 ;
+        MaxBlur = F 100.0000 ;
+        MaxVelocity = F 0.6000 ;
+        MinSpeed = F 100.0000 ;
+        VelocityScale = F 0.3000 ;
+      }
+      "UnderWaterWave" {
+        HorizAmplitude = F 1.5000 ;
+        HorizPhase = F 1.0000 ;
+        HorizScale = F 50.0000 ;
+        HorizSpeed = F 5.0000 ;
+        VertAmplitude = F 0.0000 ;
+        VertPhase = F 0.0000 ;
+        VertScale = F 0.0000 ;
+        VertSpeed = F 0.0000 ;
+      }
+    }
+    "g_Terrain" {
+      a_UW_Coral_Sand_Delta = F 0.4000 ;
+      a_UW_Coral_Sand_Slope = F 0.1500 ;
+      ab_UW_Sand_Rock_Delta = F 0.4000 ;
+      ab_UW_Sand_Rock_Slope = F 0.8000 ;
+      b_SHORE_Sand_Rock_Delta = F 0.3000 ;
+      c_GROUND_Grass_Dirt_Delta = F 0.1500 ;
+      c_GROUND_Grass_Dirt_Slope = F 0.3500 ;
+      cb_GROUND_Dirt_Rock_Delta = F 0.1500 ;
+      cb_GROUND_Dirt_Rock_Slope = F 0.7500 ;
+      d_Dirt_Height = F 30.0000 ;
+      d_Shore_Height = F 5.0000 ;
+      e_MaskUV_Scale = F 10.0000 ;
+      e_TerrSlope_Scale = F 0.7000 ;
+      e_UV_Scale = F 2.0000 ;
+      eb_UW_TerrSlope_Scale = F 0.1000 ;
+      eb_UW_UV_Scale = F 4.0000 ;
+      f_NmPower_Coral = F 0.3000 ;
+      f_NmPower_Dirt = F 0.5000 ;
+      f_NmPower_Grass = F 0.1000 ;
+      f_NmPower_Rock = F 0.5000 ;
+      f_NmPower_Sand = F 0.2000 ;
+      g_DiffAtlas = S "a_guadal_terr_atl.dds" ;
+      g_MaskTexture = S "terrain_uw_mask02.tga" ;
+      g_NoiseTexture = S "terrain_uw_mask02.tga" ;
+      g_NormAtlas = S "a_guadal_terr_atl_nrm.dds" ;
+      g_StaticShadowTexture = S "s_ijn07.dds" ;
+      ga_StaticShadowShotOffsetX = F 0.0000 ;
+      ga_StaticShadowShotOffsetZ = F 0.0000 ;
+      ga_StaticShadowShotSize = F 10000.0000 ;
+      "h_UW_Color0" {
+        B = F 0.4275 ;
+        G = F 0.7020 ;
+        R = F 0.3490 ;
+      }
+      "h_UW_Color1" {
+        B = F 0.7922 ;
+        G = F 0.5176 ;
+        R = F 0.1843 ;
+      }
+      "h_UW_Color2" {
+        B = F 0.2000 ;
+        G = F 0.1255 ;
+        R = F 0.0902 ;
+      }
+      "i_GROUND_subtypes" {
+        "dirt_subtypes" {
+          d0_width = F 20.0000 ;
+          d0d1_delta = F 20.0000 ;
+          d1_width = F 20.0000 ;
+          d1d2_delta = F 20.0000 ;
+          d2_width = F 20.0000 ;
+        }
+        "grass_subtypes" {
+          g0_width = F 25.0000 ;
+          g0g1_delta = F 25.0000 ;
+          g1_width = F 0.0000 ;
+          g1g2_delta = F 25.0000 ;
+          g2_width = F 20.0000 ;
+        }
+        "rock_subtypes" {
+          r0_width = F 20.0000 ;
+          r0r1_delta = F 25.0000 ;
+          r1_width = F 25.0000 ;
+          r1r2_delta = F 25.0000 ;
+          r2_width = F 25.0000 ;
+        }
+      }
+      "i_SHORE_subtypes" {
+        "rock_subtypes" {
+          r0_width = F 20.0000 ;
+          r0r1_delta = F 25.0000 ;
+          r1_width = F 25.0000 ;
+          r1r2_delta = F 25.0000 ;
+          r2_width = F 25.0000 ;
+        }
+      }
+      "i_UW_subtypes" {
+        "coral_subtypes" {
+          c0_width = F 20.0000 ;
+          c0c1_delta = F 20.0000 ;
+          c1_width = F 20.0000 ;
+          c1c2_delta = F 20.0000 ;
+          c2_width = F 20.0000 ;
+        }
+        "rock_subtypes" {
+          r0_width = F 20.0000 ;
+          r0r1_delta = F 30.0000 ;
+          r1_width = F 30.0000 ;
+          r1r2_delta = F 10.0000 ;
+          r2_width = F 10.0000 ;
+        }
+      }
+      x_Height_Noise_Divisor = F 3.0000 ;
+      x_Height_Noise_Scaler = F 0.3000 ;
+      x_Noise_UVmul = F 5.0000 ;
+      x_Slope_Noise_Divisor = F 3.0000 ;
+      x_Slope_Noise_Scaler = F 0.2000 ;
+    }
+    "g_Weather" {
+      "CloudLights" {
+        "Ambient" {
+          B = F 0.6549 ;
+          G = F 0.6431 ;
+          R = F 0.5137 ;
+        }
+        "Bottom" {
+          B = F 0.0784 ;
+          G = F 0.0196 ;
+          R = F 0.0431 ;
+        }
+        "Sun" {
+          B = F 0.6902 ;
+          G = F 0.6039 ;
+          R = F 0.6000 ;
+        }
+      }
+      CloudsAffectedByWind = B false ;
+      "Fog" {
+        "DirFogColor" {
+          "Back" {
+            B = F 0.7922 ;
+            G = F 0.5765 ;
+            L = F 0.7000 ;
+            R = F 0.3765 ;
+          }
+          "Front" {
+            B = F 0.4549 ;
+            G = F 0.3216 ;
+            L = F 0.6000 ;
+            R = F 0.2471 ;
+          }
+          "Left" {
+            B = F 0.4706 ;
+            G = F 0.3059 ;
+            L = F 0.6000 ;
+            R = F 0.1961 ;
+          }
+          "Right" {
+            B = F 0.6667 ;
+            G = F 0.3765 ;
+            L = F 0.6500 ;
+            R = F 0.2510 ;
+          }
+        }
+        "FogColor" {
+          B = F 0.3725 ;
+          G = F 0.2784 ;
+          L = F 0.5000 ;
+          R = F 0.2196 ;
+        }
+        LinFogDistDensity = F 1.0000 ;
+        LinFogDistEnd = F 18000.0000 ;
+        LinFogDistStart = F 1500.0000 ;
+        LinFogHeightDensity = F 0.0000 ;
+        LinFogHeightEnd = F 20.0000 ;
+        LinFogUWHeightEnd = F -120.0000 ;
+        ObjectRenderClip = F 8000.0000 ;
+        ReflectRenderClip = F 5000.0000 ;
+        RefractRenderClip = F 5000.0000 ;
+        ShadowRenderClip = F 4000.0000 ;
+        xFoliageLowResDist = F 4500.0000 ;
+        xFoliageRenderClip = F 5000.0000 ;
+      }
+      "Rain" {
+        IsRain = B false ;
+        "RainColor" {
+          A = I 128 ;
+          B = I 255 ;
+          G = I 208 ;
+          R = I 208 ;
+        }
+        RainDropLengthMax = F 1.0500 ;
+        RainDropLengthMin = F 0.1500 ;
+        RainDropNum = I 1400 ;
+        "RainSpeed" {
+          X = F 6.0000 ;
+          Y = F -12.0000 ;
+          Z = F 3.0000 ;
+        }
+      }
+    }
+  }
+}
+
+traffic {
+  item "IJN07TraficPath01" {
+    path = "Landscape 01\IJN07Traficpath01"
+    properties {
+      HP = F 0.0000 ;
+      "anims" {
+      }
+      columnDev = F 0.0000 ;
+      columnGap = F 10.0000 ;
+      columns = I 1 ;
+      cyclic = B true ;
+      endPt = I 34 ;
+      randomFactor = F 0.0000 ;
+      rowCount = I 0 ;
+      rowDev = F 0.0000 ;
+      rowGap = F 400.0000 ;
+      speed = F 10.0000 ;
+      startPt = I 0 ;
+      "templates" {
+        Us_AAhalftruck = F 1.0000 ;
+        Us_ambulance = F 1.0000 ;
+        Us_jeep = F 1.0000 ;
+        Us_truck = F 1.0000 ;
+      }
+    }
+  }
+  item "IJN07TraficPath02" {
+    path = "Landscape 01\IJN07Traficpath02"
+    properties {
+      HP = F 0.0000 ;
+      "anims" {
+      }
+      columnDev = F 0.0000 ;
+      columnGap = F 10.0000 ;
+      columns = I 1 ;
+      cyclic = B false ;
+      endPt = I 114 ;
+      randomFactor = F 0.0000 ;
+      rowCount = I 0 ;
+      rowDev = F 0.0000 ;
+      rowGap = F 800.0000 ;
+      speed = F 10.0000 ;
+      startPt = I 0 ;
+      "templates" {
+        Us_apc = F 1.0000 ;
+        Us_jeep = F 1.0000 ;
+        Us_truck = F 1.0000 ;
+      }
+    }
+  }
+  item "IJN07Traficpath03" {
+    path = "Landscape 01\IJN01TraficPath03"
+    properties {
+      HP = F 0.0000 ;
+      "anims" {
+      }
+      columnDev = F 0.0000 ;
+      columnGap = F 10.0000 ;
+      columns = I 1 ;
+      cyclic = B false ;
+      endPt = I 36 ;
+      randomFactor = F 0.0000 ;
+      rowCount = I 0 ;
+      rowDev = F 0.0000 ;
+      rowGap = F 400.0000 ;
+      speed = F 10.0000 ;
+      startPt = I 0 ;
+      "templates" {
+        Jap_jeep = F 1.0000 ;
+        Jap_tank = F 1.0000 ;
+        Us_ambulance = F 1.0000 ;
+      }
+    }
+  }
+  item "IJN07TreaficPathAirfield01" {
+    path = "Landscape 01\IJN07TraficpathAirfield01"
+    properties {
+      HP = F 0.0000 ;
+      "anims" {
+        us_marine_run_gun = F 1.0000 ;
+      }
+      columnDev = F 0.0000 ;
+      columnGap = F 10.0000 ;
+      columns = I 1 ;
+      cyclic = B false ;
+      endPt = I 44 ;
+      randomFactor = F 0.0000 ;
+      rowCount = I 0 ;
+      rowDev = F 0.0000 ;
+      rowGap = F 90.0000 ;
+      speed = F 3.0000 ;
+      startPt = I 0 ;
+      "templates" {
+        USMarine_shiptraffic = F 1.0000 ;
+      }
+    }
+  }
+  item "IJN07TreaficPathAirfield02" {
+    path = "Landscape 01\IJN07TraficpathAirfield02"
+    properties {
+      HP = F 0.0000 ;
+      "anims" {
+        us_marine_run_gun = F 1.0000 ;
+      }
+      columnDev = F 0.0000 ;
+      columnGap = F 10.0000 ;
+      columns = I 1 ;
+      cyclic = B false ;
+      endPt = I 34 ;
+      randomFactor = F 0.0000 ;
+      rowCount = I 0 ;
+      rowDev = F 0.0000 ;
+      rowGap = F 90.0000 ;
+      speed = F 3.0000 ;
+      startPt = I 0 ;
+      "templates" {
+        USMarine_shiptraffic = F 1.0000 ;
+      }
+    }
+  }
+}
+groups {
+  group {
+    GroupName = "USNAirfieldLandingPoints"
+    Index = 1
+  }
+  group {
+    GroupName = "USNShipyardLandingPoints"
+    Index = 2
+  }
+}
+SceneBrowserGroups {
+  BrowserGroup {
+    GroupName = "USNShipyards"
+    GroupID = 2
+    Parent = "$SceneRoot"
+  }
+  BrowserGroup {
+    GroupName = "Airfield"
+    GroupID = 4
+    Parent = "Landscape 01"
+  }
+  BrowserGroup {
+    GroupName = "USNAirfieldLandingPoints"
+    GroupID = 5
+    Parent = "$SceneRoot"
+  }
+  BrowserGroup {
+    GroupName = "USNShipyardLandingPoints"
+    GroupID = 6
+    Parent = "$SceneRoot"
+  }
+  BrowserGroup {
+    GroupName = "IJNPlayerFleet"
+    GroupID = 7
+    Parent = "$SceneRoot"
+  }
+  BrowserGroup {
+    GroupName = "IJNInvasionFleet"
+    GroupID = 8
+    Parent = "$SceneRoot"
+  }
+  BrowserGroup {
+    GroupName = "USN_Reinforcement"
+    GroupID = 11
+    Parent = "$SceneRoot"
+  }
+  BrowserGroup {
+    GroupName = "USNFleet"
+    GroupID = 13
+    Parent = "$SceneRoot"
+  }
+  BrowserGroup {
+    GroupName = "ShipyardDefense"
+    GroupID = 14
+    Parent = "Landscape 01"
+  }
+  BrowserGroup {
+    GroupName = "AirfieldDefense"
+    GroupID = 15
+    Parent = "Landscape 01"
+  }
+  BrowserGroup {
+    GroupName = "AvoidZones"
+    GroupID = 17
+    Parent = "Landscape 01"
+  }
+  BrowserGroup {
+    GroupName = "AirfieldLandingPointPaths"
+    GroupID = 20
+    Parent = "Landscape 01"
+  }
+  BrowserGroup {
+    GroupName = "USNLandingPaths"
+    GroupID = 22
+    Parent = "Landscape 01"
+  }
+  BrowserGroup {
+    GroupName = "AirfieldStationaryStuff"
+    GroupID = 25
+    Parent = "Landscape 01"
+  }
+  BrowserGroup {
+    GroupName = "LandingOpsStuff"
+    GroupID = 27
+    Parent = "Landscape 01"
+  }
+  BrowserGroup {
+    GroupName = "OtherBuildings"
+    GroupID = 28
+    Parent = "Landscape 01"
+  }
+  BrowserGroup {
+    GroupName = "Paths"
+    GroupID = 30
+    Parent = "$SceneRoot"
+  }
+  BrowserGroup {
+    GroupName = "Clouds"
+    GroupID = 32
+    Parent = "$SceneRoot"
+  }
+}
