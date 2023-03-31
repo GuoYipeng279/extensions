@@ -1775,7 +1775,7 @@ function luaJM7CheckUSNCarrierFleet1()
 			luaJM7CheckMaxplanes(Mission.Yorktown)
 
 			local fighterClassIDs = {101}
-			local otherClassIDs = {108,113}
+			local otherClassIDs = {108,112}
 			local targetList = {}
 				if next(luaJM7GetUnits("mothership",PARTY_JAPANESE)) ~= nil then
 					--luaLog("Getting motherships")
@@ -1811,7 +1811,7 @@ function luaJM7CheckUSNCarrierFleet1()
 
 			luaJM7CheckMaxplanes(Mission.Enterprise)
 			local fighterClassIDs = {101}
-			local otherClassIDs = {108,113}
+			local otherClassIDs = {108,112}
 			local targetList = {}
 				if next(luaJM7GetUnits("destroyer",PARTY_JAPANESE)) ~= nil then
 					--luaLog("Getting destroyers")
@@ -2563,7 +2563,7 @@ function luaAirfieldManager1(airfield, fighterClassIDs, otherClassIDs, targetLis
 	local slotIndex
 	activeSquads, planeEntTable = luaGetSlotsAndSquads(airfield)
 	if math.floor(GameTime()) % 15 == 0 then
-		MissionNarrativePlayer(0,airfield.Name.." active squads: "..tostring(activeSquads))
+		-- MissionNarrativePlayer(0,airfield.Name.." active squads: "..tostring(activeSquads))
 	end
 	if airfield.FighterCount == nil then airfield.FighterCount = 0 end
 	if (activeSquads == 0 or airfield.FighterCount < 2) and IsReadyToSendPlanes(airfield) then
@@ -2759,7 +2759,7 @@ function luaJM7CheckUSNCarrierFleet2()
 						-- RELEASE_LOGOFF  		luaLog("Enterprise dead")
 	else
 		local fighterClassIDs = {101}
-		local otherClassIDs = {108,113}
+		local otherClassIDs = {108,112}
 		local targetList = {}
 			if next(luaJM7GetUnits("mothership",PARTY_JAPANESE)) ~= nil then
 				--luaLog("Getting motherships")
@@ -3985,7 +3985,7 @@ function luaJM7AF_Think(this, msg)
 		else
 			luaJM7CheckMaxplanes(Mission.Airfield2)
 			local fighterClassIDs = {133}
-			local otherClassIDs = {108,113,108,113}
+			local otherClassIDs = {108,112,108,112}
 
 			if Mission.Airfield2StrikeOngoing then
 				Mission.Airfield2Ents = luaRemoveDeadsFromTable(Mission.Airfield2Ents)
@@ -4041,7 +4041,7 @@ function luaJM7AF_Think(this, msg)
 	--airfield3
 	if not Mission.Airfield3.HiddenDisabled then
 		if math.floor(GameTime()) % 10 == 0 then
-			MissionNarrativePlayer(0,"Airfields has "..Mission.Airfield1.Maxplanes.." "..Mission.Airfield2.Maxplanes.." "..Mission.Airfield3.Maxplanes.." planes")
+			-- MissionNarrativePlayer(0,"Airfields has "..Mission.Airfield1.Maxplanes.." "..Mission.Airfield2.Maxplanes.." "..Mission.Airfield3.Maxplanes.." planes")
 		end
 		if Mission.Airfield3.Dead or luaJM7IsDisabled(Mission.Airfield3) or not Mission.Airfield3.Active then
 			if Mission.Airfield3.Maxplanes <= 0 then
@@ -4057,7 +4057,7 @@ function luaJM7AF_Think(this, msg)
 		else
 			luaJM7CheckMaxplanes(Mission.Airfield3)
 			local fighterClassIDs = {116}
-			local otherClassIDs = {116,116,116,116}
+			local otherClassIDs = {118,116,118,116}
 
 			if Mission.Airfield3StrikeOngoing then
 				--luaLog("itt")

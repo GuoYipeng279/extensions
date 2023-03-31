@@ -1186,7 +1186,7 @@ entity "Landscape 01" (Landscape) {
       "PlaneStock 3" {
         Count = E PlaneCount : 20  ;
         SquadLimit = E MaxSquadSize : 3  ;
-        Type = E PlaneClasses : Avenger  ;
+        Type = E PlaneClasses : Devastator  ;
       }
       "PlaneStock 4" {
         Count = E PlaneCount : 20  ;
@@ -1311,7 +1311,7 @@ entity "Landscape 01" (Landscape) {
       "PlaneStock 3" {
         Count = E PlaneCount : 20  ;
         SquadLimit = E MaxSquadSize : 3  ;
-        Type = E PlaneClasses : Avenger  ;
+        Type = E PlaneClasses : Devastator  ;
       }
       "PlaneStock 4" {
         Count = E PlaneCount : 20  ;
@@ -1431,7 +1431,7 @@ entity "Landscape 01" (Landscape) {
       "PlaneStock 2" {
         Count = E PlaneCount : 20  ;
         SquadLimit = E MaxSquadSize : 3  ;
-        Type = E PlaneClasses : FlyingFortress  ;
+        Type = E PlaneClasses : Mitchell  ;
       }
       "PlaneStock 3" {
         Count = E PlaneCount : 20  ;
@@ -28755,7 +28755,7 @@ entity "Yorktown-class 03" (MotherShipGen) {
     "PlaneStock 2" {
       Count = E PlaneCount : 10  ;
       SquadLimit = E MaxSquadSize : 5  ;
-      Type = E PlaneClasses : Avenger  ;
+      Type = E PlaneClasses : Devastator  ;
     }
     "PlaneStock 3" {
       Count = E PlaneCount : 10  ;
@@ -28775,7 +28775,7 @@ entity "Yorktown-class 03" (MotherShipGen) {
     "Slot 2" {
       Arm = E EquipmentIndex : 1  ;
       Count = E PlaneCount :" 3" ;
-      Type = E PlaneClasses : Avenger  ;
+      Type = E PlaneClasses : Devastator  ;
     }
     "Slot 3" {
       Arm = E EquipmentIndex : 1  ;
@@ -31461,7 +31461,7 @@ entity "SDB Dauntless 03" (PlaneSquadronGen) {
 }
 entity "TBF Avenger 01" (PlaneSquadronGen) {
   localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 6697.3916 150.0000 -4762.9229 1.0000 ;
-  template "USA\AIR\TBF Avenger" ;
+  template "USA\AIR\TBD Devastator" ;
 
   properties (Common, GameUnit, PlaneSquadronWNavpoint, Command)  {
     "Command" {
@@ -31473,13 +31473,13 @@ entity "TBF Avenger 01" (PlaneSquadronGen) {
     }
     Race = E Races : USA  ;
     SubType = E UnitCategories : Torpedobomber  ;
-    Type = E PlaneClasses : Avenger  ;
+    Type = E PlaneClasses : Devastator  ;
     Velocity = F 400.0000 ;
   }
 }
 entity "TBF Avenger 02" (PlaneSquadronGen) {
   localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 6630.1016 150.0000 -4761.0820 1.0000 ;
-  template "USA\AIR\TBF Avenger" ;
+  template "USA\AIR\TBD Devastator" ;
 
   properties (Common, GameUnit, PlaneSquadronWNavpoint, Command)  {
     "Command" {
@@ -31491,13 +31491,13 @@ entity "TBF Avenger 02" (PlaneSquadronGen) {
     }
     Race = E Races : USA  ;
     SubType = E UnitCategories : Torpedobomber  ;
-    Type = E PlaneClasses : Avenger  ;
+    Type = E PlaneClasses : Devastator  ;
     Velocity = F 400.0000 ;
   }
 }
 entity "TBF Avenger 03" (PlaneSquadronGen) {
   localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 6576.0332 150.0000 -4759.5000 1.0000 ;
-  template "USA\AIR\TBF Avenger" ;
+  template "USA\AIR\TBD Devastator" ;
 
   properties (Common, GameUnit, PlaneSquadronWNavpoint, Command)  {
     "Command" {
@@ -31509,7 +31509,7 @@ entity "TBF Avenger 03" (PlaneSquadronGen) {
     }
     Race = E Races : USA  ;
     SubType = E UnitCategories : Torpedobomber  ;
-    Type = E PlaneClasses : Avenger  ;
+    Type = E PlaneClasses : Devastator  ;
     Velocity = F 400.0000 ;
   }
 }
