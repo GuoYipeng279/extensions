@@ -344,7 +344,8 @@ function luaInitJM7(this)
 		--	},
 			[3] = {
 				["ID"] = "Carriers",
-				["Text"] = "ijn07.obj_p3",
+				-- ["Text"] = "ijn07.obj_p3",
+				["Text"] = "Sink at least 2 enemy carriers!",
 				["Active"] = false,
 				["Success"] = nil,
 				["Target"] = {},
@@ -437,6 +438,12 @@ function luaInitJM7(this)
 				},
 				{
 					["message"] = "dlg2b",
+				},
+				{
+					["message"] = "dlg2c",
+				},
+				{
+					["message"] = "dlg2d",
 				},
 			},
 		},
@@ -724,6 +731,42 @@ function luaJM7_think(this, msg)
 	end
 end
 
+function hintAkagi()
+	if GetSelectedUnit() == Mission.Akagi then
+		ShowHint("IJN07_Hint07")
+	end
+end
+
+function hintKaga()
+	if GetSelectedUnit() == Mission.Kaga then
+		ShowHint("IJN07_Hint08")
+	end
+end
+
+function hintSoryu()
+	if GetSelectedUnit() == Mission.Soryu then
+		ShowHint("IJN07_Hint09")
+	end
+end
+
+function hintHiryu()
+	if GetSelectedUnit() == Mission.Hiryu then
+		ShowHint("IJN07_Hint10")
+	end
+end
+
+function detailHints()
+	if GetSelectedUnit() == Mission.Akagi then
+		luaDelay(hintAkagi, 10)
+	elseif GetSelectedUnit() == Mission.Kaga then
+		luaDelay(hintKaga, 10)
+	elseif GetSelectedUnit() == Mission.Soryu then
+		luaDelay(hintSoryu, 10)
+	elseif GetSelectedUnit() == Mission.Hiryu then
+		luaDelay(hintHiryu, 10)
+	end
+end
+
 --objectives
 function luaJM7CheckObjectives()
 	-- Mission.MissionPhase = 99
@@ -794,6 +837,7 @@ function luaJM7CheckObjectives()
 		end
 
 		if Mission.AFMovieOK then
+			detailHints()
 			if not luaObj_IsActive("secondary",2) then
 				luaObj_Add("secondary",2)
 				Mission.PilotLoss = 0
@@ -1124,6 +1168,7 @@ function luaCVHit1(target, targetDevice, attacker, attackType, attackerPlayerInd
 	-- Kill(Mission.Hiryu, true)
 	local threshold = math.pow(damageCaused/300, 0.5) * 100
 	local rnd = random(1,100)
+	ShowHint("IJN07_Hint15")
 	-- SetInvincible(target, true) and damageCaused > 50
 	if attackType == "HEAVYARTILLERY" or (attackType == "BOMB" and damageCaused > 20) or attackType == "TORPEDO" or rnd < threshold then
 		if attackType == "BOMB" and target.vulnerable > 0 then
@@ -2171,6 +2216,89 @@ function luaJM7GetInvasionFleetLeader()
 	return Mission.IJNInvasionFleet[1]
 end
 
+
+function antiAirFormation(fleet, center)
+	-- SetFormationShape
+	-- MissionNarrativePlayer(0, "Start formation")
+	-- MissionNarrativePlayer(0, "Get position")
+	core = {}
+	heavy = {}
+	medium = {}
+	light = {}
+	distance_mul = 250.0
+	-- MissionNarrativePlayer(0, "Start formation")
+	for idx,unit in pairs(fleet.groupMembers) do
+		-- LeaveFormation(unit)
+		if unit.Class == "MotherShip" or unit.Class == "Cargo" then
+			table.insert(core, unit)
+		elseif unit.Class == "BattleShip" then
+			table.insert(heavy, unit)
+		elseif unit.Class == "Cruiser" then
+			table.insert(medium, unit)
+		else table.insert(light, unit)
+		end
+	end
+	core_cir = 2*math.pi/(#core)
+	heavy_cir = 2*math.pi/(#heavy)
+	medium_cir = 2*math.pi/(#medium)
+	light_cir = 2*math.pi/(#light)
+	core_mul = distance_mul*math.sqrt(#core-1)
+	heavy_mul = core_mul+1.0*distance_mul*math.sqrt(#heavy)
+	medium_mul = heavy_mul+0.4*distance_mul*math.sqrt(#medium)
+	light_mul = medium_mul+0.3*distance_mul*math.sqrt(#light)
+	core_start = random(1,100)/100*2*math.pi
+	heavy_start = random(1,100)/100*2*math.pi
+	medium_start = random(1,100)/100*2*math.pi
+	light_start = random(1,100)/100*2*math.pi
+	-- MissionNarrativePlayer(0, "End Calc")
+	poslist = {}
+	for idx,unit in pairs(core) do
+		coo = {["x"] = center.x+core_mul*math.cos(core_start+idx*core_cir), ["y"] = 0, ["z"] = center.z+core_mul*math.sin(core_start+idx*core_cir)}
+		unit.coo = coo
+	end
+	for idx,unit in pairs(heavy) do
+		coo = {["x"] = center.x+heavy_mul*math.cos(heavy_start+idx*heavy_cir), ["y"] = 0, ["z"] = center.z+heavy_mul*math.sin(heavy_start+idx*heavy_cir)}
+		unit.coo = coo
+	end
+	for idx,unit in pairs(medium) do
+		coo = {["x"] = center.x+medium_mul*math.cos(medium_start+idx*medium_cir), ["y"] = 0, ["z"] = center.z+medium_mul*math.sin(medium_start+idx*medium_cir)}
+		unit.coo = coo
+	end
+	for idx,unit in pairs(light) do
+		coo = {["x"] = center.x+light_mul*math.cos(light_start+idx*light_cir), ["y"] = 0, ["z"] = center.z+light_mul*math.sin(light_start+idx*light_cir)}
+		unit.coo = coo
+	end
+	for idx,unit in pairs(fleet.groupMembers) do
+		SpawnNew({
+			["party"] = fleet.party,
+			["groupMembers"] = { unit },
+			["area"] = {
+				["refPos"] = unit.coo,
+				["angleRange"] = fleet.area.angleRange,
+				["lookAt"] = fleet.area.lookAt,
+			},
+			["excludeRadiusOverride"] = fleet.excludeRadiusOverride,
+			["callback"] = fleet.callback,
+			["id"] = fleet.id,
+		})
+	end
+	return poslist
+end
+
+function destroyerAntiSub(destroyer, subs)
+	if not destroyer or destroyer.Dead then return end
+	for _,s in pairs(sub) do
+		
+
+function callbackSpawnUSNReinf(...)
+	if not Mission.reinf_ready then Mission.reinf_ready = {} end
+	table.insert(Mission.reinf_ready, arg[1])
+	if #(Mission.reinf_ready) == Mission.reinf_total then
+		luaJM7USNReinfFleetSpawned(unpack(Mission.reinf_ready))
+	end
+end
+
+
 --spawnsecond--
 ---USNreinf
 function luaJM7SpawnUSNReinf()
@@ -2191,115 +2319,126 @@ function luaJM7SpawnUSNReinf()
 	pos.x = possible_positions[rnd]
 	pos.z = possible_positions[rnd+1]
 	-- pos.x = pos.x + 5000
-	SpawnNew({
-	["party"] = PARTY_ALLIED,
-	["groupMembers"] = {
-		{
-			["Type"] = 19,
-			["Name"] = "Northampton1",
-			["Crew"] = Mission.SkillLower,
-			["Race"] = USA,
-		},
-		{
-			["Type"] = 2,
-			["Name"] = "Yorktown1",
-			["Crew"] = Mission.SkillLevel,
-			["Race"] = USA,
-			["NumSlots"] = 4,
-			["MaxInAirPlanes"] = 12,
-			["PlaneStock 1"] = {
-				["Type"] = 101,
-				["Count"] = 20,
-				["SquadLimit"] = 5,
+	fleet = {
+		["party"] = PARTY_ALLIED,
+		["groupMembers"] = {
+			{
+				["Type"] = 2,
+				["Name"] = "Yorktown1",
+				["Crew"] = Mission.SkillLevel,
+				["Race"] = USA,
+				["NumSlots"] = 4,
+				["MaxInAirPlanes"] = 12,
+				["PlaneStock 1"] = {
+					["Type"] = 101,
+					["Count"] = 20,
+					["SquadLimit"] = 5,
+				},
+				["Slot 1"] = {
+					["Type"] = 101,
+					["Arm"] = 0,
+					["Count"] = 3,
+				},
+				["Class"] = "MotherShip",
 			},
-			["Slot 1"] = {
-				["Type"] = 101,
-				["Arm"] = 0,
-				["Count"] = 3,
+			{
+				["Type"] = 2,
+				["Name"] = "Yorktown2",
+				["Crew"] = Mission.SkillLevel,
+				["Race"] = USA,
+				["NumSlots"] = 4,
+				["MaxInAirPlanes"] = 12,
+				["PlaneStock 1"] = {
+					["Type"] = 101,
+					["Count"] = 20,
+					["SquadLimit"] = 5,
+				},
+				["Slot 1"] = {
+					["Type"] = 101,
+					["Arm"] = 0,
+					["Count"] = 3,
+				},
+				["Class"] = "MotherShip",
+			},
+			{
+				["Type"] = 19,
+				["Name"] = "Northampton1",
+				["Crew"] = Mission.SkillLower,
+				["Race"] = USA,
+				["Class"] = "Cruiser",
+			},
+			{
+				["Type"] = 19,
+				["Name"] = "Northampton2",
+				["Crew"] = Mission.SkillLower,
+				["Race"] = USA,
+				["Class"] = "Cruiser",
+			},
+			{
+				["Type"] = 19,
+				["Name"] = "Northampton3",
+				["Crew"] = Mission.SkillLower,
+				["Race"] = USA,
+				["Class"] = "Cruiser",
+			},
+			{
+				["Type"] = 23,
+				["Name"] = "Fletcher1",
+				["Crew"] = Mission.SkillLower,
+				["Race"] = USA,
+				["Class"] = "Destroyer",
+			},
+			{
+				["Type"] = 23,
+				["Name"] = "Fletcher2",
+				["Crew"] = Mission.SkillLower,
+				["Race"] = USA,
+				["Class"] = "Destroyer",
+			},
+			{
+				["Type"] = 23,
+				["Name"] = "Fletcher3",
+				["Crew"] = Mission.SkillLower,
+				["Race"] = USA,
+				["Class"] = "Destroyer",
+			},
+			{
+				["Type"] = 23,
+				["Name"] = "Fletcher4",
+				["Crew"] = Mission.SkillLower,
+				["Race"] = USA,
+				["Class"] = "Destroyer",
+			},
+			{
+				["Type"] = 23,
+				["Name"] = "Fletcher5",
+				["Crew"] = Mission.SkillLower,
+				["Race"] = USA,
+				["Class"] = "Destroyer",
 			},
 		},
-		{
-			["Type"] = 2,
-			["Name"] = "Yorktown2",
-			["Crew"] = Mission.SkillLevel,
-			["Race"] = USA,
-			["NumSlots"] = 4,
-			["MaxInAirPlanes"] = 12,
-			["PlaneStock 1"] = {
-				["Type"] = 101,
-				["Count"] = 20,
-				["SquadLimit"] = 5,
-			},
-			["Slot 1"] = {
-				["Type"] = 101,
-				["Arm"] = 0,
-				["Count"] = 3,
-			},
+		["area"] = {
+			-- ["refPos"] = GetPosition(Mission.USNReinforcementSPawnPoint),
+			["refPos"] = pos,
+			["angleRange"] = { luaJM7RAD(0), luaJM7RAD(180)},
+			["lookAt"] = GetPosition(Mission.ShipyardLandingPoint),
 		},
-		{
-			["Type"] = 19,
-			["Name"] = "Northampton2",
-			["Crew"] = Mission.SkillLower,
-			["Race"] = USA,
+		["excludeRadiusOverride"] = {
+			["ownHorizontal"] = 50,
+			["enemyHorizontal"] = 200,
+			["ownVertical"] = 75,
+			["enemyVertical"] = 150,
+			["formationHorizontal"] = 100,
 		},
-		{
-			["Type"] = 19,
-			["Name"] = "Northampton3",
-			["Crew"] = Mission.SkillLower,
-			["Race"] = USA,
-		},
-		{
-			["Type"] = 23,
-			["Name"] = "Fletcher1",
-			["Crew"] = Mission.SkillLower,
-			["Race"] = USA,
-		},
-		{
-			["Type"] = 23,
-			["Name"] = "Fletcher2",
-			["Crew"] = Mission.SkillLower,
-			["Race"] = USA,
-		},
-		{
-			["Type"] = 23,
-			["Name"] = "Fletcher3",
-			["Crew"] = Mission.SkillLower,
-			["Race"] = USA,
-		},
-		{
-			["Type"] = 23,
-			["Name"] = "Fletcher4",
-			["Crew"] = Mission.SkillLower,
-			["Race"] = USA,
-		},
-		{
-			["Type"] = 23,
-			["Name"] = "Fletcher5",
-			["Crew"] = Mission.SkillLower,
-			["Race"] = USA,
-		},
-	},
-	["area"] = {
-		-- ["refPos"] = GetPosition(Mission.USNReinforcementSPawnPoint),
-		["refPos"] = pos,
-		["angleRange"] = { luaJM7RAD(0), luaJM7RAD(180)},
-		["lookAt"] = GetPosition(Mission.ShipyardLandingPoint),
-	},
-	["excludeRadiusOverride"] = {
-		["ownHorizontal"] = 50,
-		["enemyHorizontal"] = 200,
-		["ownVertical"] = 75,
-		["enemyVertical"] = 150,
-		["formationHorizontal"] = 100,
-	},
-	["callback"] = "luaJM7USNReinfFleetSpawned",
-	["id"] = Mission.USNReinfReq,
-})
+		["callback"] = "callbackSpawnUSNReinf",
+		["id"] = Mission.USNReinfReq,
+	}
+	Mission.reinf_total = #(fleet.groupMembers)
+	antiAirFormation(fleet, pos)
 end
 
 function luaJM7USNReinfFleetSpawned(...)
 	local leader
-	Mission.USNReinfIn = true
 	for idx,unit in ipairs(arg) do
 		-- SetSkillLevel(unit, Mission.SkillLevel)
 		table.insert(Mission.USNReinforcements, unit)
@@ -2321,18 +2460,21 @@ function luaJM7USNReinfFleetSpawned(...)
 			end
 		end
 	end
+	
+	-- antiAirFormation(Mission.USNReinforcements)
 
+	Mission.USNReinfIn = true
 	for idx,unit in pairs(Mission.USNReinforcements) do
 		if unit.ID ~= Mission.Enterprise.ID then
 		--if unit.ID ~= leader.ID then
 			JoinFormation(unit, Mission.Enterprise)
 			JoinFormation(unit, Mission.Hornet)
-			luaAddCVHitListener(Mission.Enterprise, "Enterprise")
-			luaAddCVHitListener(Mission.Hornet, "Hornet")
 			--JoinFormation(unit, leader)
 		else
 			Mission.Enterprise.maxLandSpeed = 10
 			Mission.Hornet.maxLandSpeed = 10
+			luaAddCVHitListener(Mission.Enterprise, "Enterprise")
+			luaAddCVHitListener(Mission.Hornet, "Hornet")
 		end
 	end
 
@@ -2342,6 +2484,9 @@ function luaJM7USNReinfFleetSpawned(...)
 		RepairEnable(unit, false)
 		SetNumbering(unit, Mission.USNReinfFleetNames[idx][2])
 	end
+	
+	-- SetFormationShape(Mission.Enterprise, 1)
+	-- if true then return end
 
 	--NavigatorMoveOnPath(Mission.Hornet, FindEntity("USNReinfPath"), PATH_FM_CIRCLE, PATH_SM_JOIN)
 	NavigatorMoveOnPath(leader, FindEntity("USNReinfPath"), PATH_FM_CIRCLE, PATH_SM_JOIN)
@@ -2701,7 +2846,7 @@ function luaAirfieldManager1(airfield, fighterClassIDs, otherClassIDs, targetLis
 				local alt = 1100
 				if unit.ammo == AMMO_TORPEDO then alt = 300 end
 				-- MissionNarrativePlayer(0, type(preferedTargets))
-				luaDelay(luaPlaneManeuver, 1, "plane",unit,"trg",currentTarget,"attackAlt",alt,"attackAng",0,"distance",5000,"designated",preferedTargets)
+				luaDelay(luaPlaneManeuver, 1, "plane",unit,"trg",currentTarget,"attackAlt",alt,"attackAng",0,"distance",5000,"designated",preferedTargets,"skirmish",luaJM7GetUnits(nil, PARTY_JAPANESE))
 				if unit.ammo == AMMO_BOMB and travelAlt then
 					-- SetCheatTurbo(unit, 5)
 					-- luaDelay(luaPlaneManeuver, 1, "plane",unit,"trg",currentTarget,"attackAlt",1500,"attackAng",0)
@@ -2716,7 +2861,7 @@ function luaAirfieldManager1(airfield, fighterClassIDs, otherClassIDs, targetLis
 				local alt = 1100
 				if unit.ammo == AMMO_TORPEDO then alt = 300 end
 				-- MissionNarrativePlayer(0, type(filteredTargetList))
-				luaDelay(luaPlaneManeuver, 1, "plane",unit,"trg",currentTarget,"attackAlt",alt,"attackAng",0,"distance",5000,"designated",filteredTargetList)
+				luaDelay(luaPlaneManeuver, 1, "plane",unit,"trg",currentTarget,"attackAlt",alt,"attackAng",0,"distance",5000,"designated",filteredTargetList,"skirmish",luaJM7GetUnits(nil, PARTY_JAPANESE))
 				if unit.ammo == AMMO_BOMB and travelAlt then
 					-- SetCheatTurbo(unit, 2)
 					-- luaDelay(luaPlaneManeuver, 1, "plane",unit,"trg",currentTarget,"attackAlt",1500,"attackAng",0)
@@ -3152,6 +3297,23 @@ end
 
 ----
 function luaJM7ISPlayerInRecon()
+	-- local script = [[
+	-- Set Sound = CreateObject("WMPlayer.OCX.7")
+	-- Sound.URL = Wscript.Arguments(0)
+	-- Sound.Controls.play
+	-- do while Sound.currentmedia.duration = 0
+	-- 	wscript.sleep 100
+	-- loop
+	-- wscript.sleep Sound.currentmedia.duration*1000+100
+	-- ]]
+	-- local f = io.open("sound.vbs", "w")
+	-- f:write(script)
+	-- f:close()
+
+	-- local file = "wuuf.wav"
+	-- os.execute('wscript sound.vbs "'..file..'"')
+	-- Effect("Warning Dive DIVE Dive", ORIGO, Mission.Akagi)
+	-- os.execute("echo \a")
 	for idx,unitTbl in pairs(recon[PARTY_ALLIED].enemy) do
 		for idx2,unit in pairs(unitTbl) do
 			if unit and unit.Class.Type ~= "SmallReconPlane" then -- luaGetType(unit) == "ship" then
@@ -3367,6 +3529,10 @@ end
 
 function luaJM7CAPHint()
 	ShowHint("IJN07_Hint03")
+	ShowHint("IJN07_Hint11")
+	ShowHint("IJN07_Hint12")
+	ShowHint("IJN07_Hint13")
+	ShowHint("IJN07_Hint14")
 	Mission.CAPHintOk = true
 end
 
@@ -3839,10 +4005,11 @@ function luaPlaneManeuver(params)
 	local attackAng = params.ParamTable.attackAng
 	local distance = params.ParamTable.distance
 	local designated = params.ParamTable.designated
+	local skirmish = params.ParamTable.skirmish
 	-- Kill(Mission.Akagi)
 	if not plane or plane.Dead or not luaHasFuel(plane) or (plane.planed and attackAng == 0) or plane.landing then return end
 	if plane.hasTarget then
-		luaDelay(luaPlaneManeuver, 1, "plane",plane,"trg",trg,"attackAlt",attackAlt,"attackAng",deg,"distance",distance,"designated",designated)
+		luaDelay(luaPlaneManeuver, 1, "plane",plane,"trg",trg,"attackAlt",attackAlt,"attackAng",deg,"distance",distance,"designated",designated, "skirmish",skirmish)
 		if not trg or trg.Dead then
 			plane.hasTarget = false
 		end
@@ -3852,8 +4019,26 @@ function luaPlaneManeuver(params)
 	if #designated == 0 and Mission.Airfield3 and not Mission.Airfield3.Dead then PilotLand(plane, Mission.Airfield3) end
 	if not trg or trg.Dead then trg = designated[1] end
 	plane.planed = true
+	if skirmish and not plane.hasTarget then
+		new_skirmish = {}
+		for _, pot in pairs(skirmish) do
+			if pot and not pot.Dead and 
+				(GetProperty(plane, "ammoType") == AMMO_TORPEDO and (pot.Class.Type == "MotherShip" or pot.Class.Type == "BattleShip" or pot.Class.Type == "Cargo")
+				or GetProperty(plane, "ammoType") == AMMO_BOMB) then
+					table.insert(new_skirmish, pot)
+			end
+		end
+		local closestDesignated, closestd = luaSortByDistance2(plane, designated, true)
+		local closestSkirmish, closests = luaSortByDistance2(plane, new_skirmish, true)
+		if closests < 2500 and closestd > 5000 then
+			trg = closestSkirmish
+			luaDelay(luaPlaneManeuver, 1, "plane",plane,"trg",trg,"attackAlt",attackAlt,"attackAng",deg,"distance",distance,"designated",designated, "skirmish",skirmish)
+			plane.hasTarget = true
+			PilotSetTarget(plane, closestSkirmish)
+			return
+		end
+	end
 	-- SetCheatTurbo(plane, 5)
-	RemoveTrigger(plane, "Reloader_"..tostring(plane))
 	local dist = math.sqrt(math.pow(GetPosition(plane).x-GetPosition(trg).x, 2)+math.pow(GetPosition(plane).z-GetPosition(trg).z, 2))
 	if dist > distance+100 and dist >= 3500 then
 		local enm = GetPosition(trg)
@@ -3867,7 +4052,7 @@ function luaPlaneManeuver(params)
 		enm.x = enm.x + inc_x
 		enm.z = enm.z + inc_z
 		PilotMoveTo(plane, enm)
-		luaDelay(luaPlaneManeuver, 1, "plane",plane,"trg",trg,"attackAlt",attackAlt,"attackAng",deg,"distance",distance,"designated",designated)
+		luaDelay(luaPlaneManeuver, 1, "plane",plane,"trg",trg,"attackAlt",attackAlt,"attackAng",deg,"distance",distance,"designated",designated, "skirmish",skirmish)
 	elseif dist < 3000 then
 		if not plane.lockedUpTarget then
 			plane.lockedUpTarget = true
@@ -3897,7 +4082,7 @@ function luaPlaneManeuver(params)
 			-- MissionNarrativePlayer(0, plane.Class.Name.." enter attack "..trg.Class.Name.." instead "..ori.Class.Name)
 			PilotSetTarget(plane, trg)
 			plane.hasTarget = true
-			luaDelay(luaPlaneManeuver, 1, "plane",plane,"trg",trg,"attackAlt",attackAlt,"attackAng",deg,"distance",distance,"designated",designated)
+			luaDelay(luaPlaneManeuver, 1, "plane",plane,"trg",trg,"attackAlt",attackAlt,"attackAng",deg,"distance",distance,"designated",designated, "skirmish",skirmish)
 		end
 	else
 		local enm = GetPosition(trg)
@@ -3911,7 +4096,7 @@ function luaPlaneManeuver(params)
 		enm.x = enm.x + inc_x
 		enm.z = enm.z + inc_z
 		PilotMoveTo(plane, enm)
-		luaDelay(luaPlaneManeuver, 0.1, "plane",plane,"trg",trg,"attackAlt",attackAlt,"attackAng",deg,"distance",math.min(distance,dist)*0.8,"designated",designated)
+		luaDelay(luaPlaneManeuver, 0.1, "plane",plane,"trg",trg,"attackAlt",attackAlt,"attackAng",deg,"distance",math.min(distance,dist)*0.8,"designated",designated, "skirmish",skirmish)
 	end
 end
 
@@ -4068,7 +4253,7 @@ function luaJM7AF_Think(this, msg)
 				end
 			end
 
-			if Mission.Airfield3Phase == 4 then --5
+			if Mission.Airfield3Phase == 6 then --5
 
 				--luaLog("phase "..tostring(phase))
 				--luaLog("errorLvl "..tostring(errorLvl))
@@ -4105,9 +4290,9 @@ function luaJM7AF_Think(this, msg)
 
 				Mission.Airfield3StrikeOngoing = true
 
-			elseif Mission.Airfield3Phase < 4 then --5
+			elseif Mission.Airfield3Phase < 6 then --5
 
-				Mission.Airfield3Phase, Mission.Airfield3Ents, errorLvl = luaLaunchAirstrike1(Mission.Airfield3Phase, 4, {Mission.Airfield3}, otherClassIDs, Mission.Airfield3Ents, 1) --5
+				Mission.Airfield3Phase, Mission.Airfield3Ents, errorLvl = luaLaunchAirstrike1(Mission.Airfield3Phase, 6, {Mission.Airfield3}, otherClassIDs, Mission.Airfield3Ents, 1) --5
 				Mission.Airfield3StrikeOngoing = false
 
 			end
@@ -4137,100 +4322,117 @@ function luaJM7SpawnFirstCVFleet()
 	pos.x = possible_positions[rnd]
 	pos.z = possible_positions[rnd+1]
 	-- pos.x = pos.x + 5000
-	SpawnNew({
-	["party"] = PARTY_ALLIED,
-	["groupMembers"] = {
-		{
-			["Type"] = 19,
-			["Name"] = "Northampton1",
-			["Crew"] = Mission.SkillLevel,
-			["Race"] = USA,
-		},
-		{
-			["Type"] = 2,
-			["Name"] = "Yorktown0",
-			["Crew"] = Mission.SkillLevel,
-			["Race"] = USA,
-			["NumSlots"] = 4,
-			["MaxInAirPlanes"] = 12,
-			["PlaneStock 1"] = {
-				["Type"] = 101,
-				["Count"] = 20,
-				["SquadLimit"] = 5,
+	fleet = {
+		["party"] = PARTY_ALLIED,
+		["groupMembers"] = {
+			{
+				["Type"] = 19,
+				["Name"] = "Northampton1",
+				["Crew"] = Mission.SkillLevel,
+				["Race"] = USA,
+				["Class"] = "Cruiser",
 			},
-			["Slot 1"] = {
-				["Type"] = 101,
-				["Arm"] = 0,
-				["Count"] = 3,
+			{
+				["Type"] = 2,
+				["Name"] = "Yorktown0",
+				["Crew"] = Mission.SkillLevel,
+				["Race"] = USA,
+				["NumSlots"] = 4,
+				["MaxInAirPlanes"] = 12,
+				["PlaneStock 1"] = {
+					["Type"] = 101,
+					["Count"] = 20,
+					["SquadLimit"] = 5,
+				},
+				["Slot 1"] = {
+					["Type"] = 101,
+					["Arm"] = 0,
+					["Count"] = 3,
+				},
+				["Class"] = "MotherShip",
+			},
+			--[[ FPS balta
+			{
+				["Type"] = 2,
+				["Name"] = "Yorktown2",
+				["Crew"] = Mission.SkillLevel,
+				["Race"] = USA,
+				["NumSlots"] = 4,
+				["MaxInAirPlanes"] = 12,
+				["PlaneStock 1"] = {
+					["Type"] = 101,
+					["Count"] = 20,
+					["SquadLimit"] = 5,
+				},
+				["Slot 1"] = {
+					["Type"] = 101,
+					["Arm"] = 0,
+					["Count"] = 3,
+				},
+			},
+			]]
+			{
+				["Type"] = 23,
+				["Name"] = "Fletcher1",
+				["Crew"] = Mission.SkillLower,
+				["Race"] = USA,
+				["Class"] = "Destroyer",
+			},
+			{
+				["Type"] = 23,
+				["Name"] = "Fletcher2",
+				["Crew"] = Mission.SkillLower,
+				["Race"] = USA,
+				["Class"] = "Destroyer",
+			},
+			{
+				["Type"] = 23,
+				["Name"] = "Fletcher3",
+				["Crew"] = Mission.SkillLower,
+				["Race"] = USA,
+				["Class"] = "Destroyer",
+			},
+			{
+				["Type"] = 23,
+				["Name"] = "Fletcher4",
+				["Crew"] = Mission.SkillLower,
+				["Race"] = USA,
+				["Class"] = "Destroyer",
+			},
+			{
+				["Type"] = 19,
+				["Name"] = "Northampton2",
+				["Crew"] = Mission.SkillLower,
+				["Race"] = USA,
+				["Class"] = "Cruiser",
 			},
 		},
-		--[[ FPS balta
-		{
-			["Type"] = 2,
-			["Name"] = "Yorktown2",
-			["Crew"] = Mission.SkillLevel,
-			["Race"] = USA,
-			["NumSlots"] = 4,
-			["MaxInAirPlanes"] = 12,
-			["PlaneStock 1"] = {
-				["Type"] = 101,
-				["Count"] = 20,
-				["SquadLimit"] = 5,
-			},
-			["Slot 1"] = {
-				["Type"] = 101,
-				["Arm"] = 0,
-				["Count"] = 3,
-			},
+		["area"] = {
+			-- ["refPos"] = GetPosition(FindEntity("CVSpawn")),
+			["refPos"] = pos,
+			["angleRange"] = { luaJM7RAD(0), luaJM7RAD(180)},
+			["lookAt"] = GetPosition(FindEntity("CVSpawnLookAt")),
 		},
-		]]
-		{
-			["Type"] = 23,
-			["Name"] = "Fletcher1",
-			["Crew"] = Mission.SkillLower,
-			["Race"] = USA,
+		["excludeRadiusOverride"] = {
+			["ownHorizontal"] = 50,
+			["enemyHorizontal"] = 200,
+			["ownVertical"] = 75,
+			["enemyVertical"] = 150,
+			["formationHorizontal"] = 100,
 		},
-		{
-			["Type"] = 23,
-			["Name"] = "Fletcher2",
-			["Crew"] = Mission.SkillLower,
-			["Race"] = USA,
-		},
-		{
-			["Type"] = 23,
-			["Name"] = "Fletcher3",
-			["Crew"] = Mission.SkillLower,
-			["Race"] = USA,
-		},
-		{
-			["Type"] = 23,
-			["Name"] = "Fletcher4",
-			["Crew"] = Mission.SkillLower,
-			["Race"] = USA,
-		},
-		{
-			["Type"] = 19,
-			["Name"] = "Northampton2",
-			["Crew"] = Mission.SkillLower,
-			["Race"] = USA,
-		},
-	},
-	["area"] = {
-		-- ["refPos"] = GetPosition(FindEntity("CVSpawn")),
-		["refPos"] = pos,
-		["angleRange"] = { luaJM7RAD(0), luaJM7RAD(180)},
-		["lookAt"] = GetPosition(FindEntity("CVSpawnLookAt")),
-	},
-	["excludeRadiusOverride"] = {
-		["ownHorizontal"] = 50,
-		["enemyHorizontal"] = 200,
-		["ownVertical"] = 75,
-		["enemyVertical"] = 150,
-		["formationHorizontal"] = 100,
-	},
-	["callback"] = "luaJM7USNCVFleetSpawned",
-	["id"] = "USNFirstFleet",
-})
+		["callback"] = "callbackSpawnUSNCVFleet",
+		["id"] = "USNFirstFleet",
+	}
+	Mission.cv_total = #(fleet.groupMembers)
+	antiAirFormation(fleet, pos)
+end
+
+function callbackSpawnUSNCVFleet(...)
+	if not Mission.cv_ready then Mission.cv_ready = {} end
+	table.insert(Mission.cv_ready, arg[1])
+	if #(Mission.cv_ready) == Mission.cv_total then
+		luaJM7USNCVFleetSpawned(unpack(Mission.cv_ready))
+	end
 end
 
 function luaJM7USNCVFleetSpawned(...)

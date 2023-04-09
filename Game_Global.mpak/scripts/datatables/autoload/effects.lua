@@ -124066,4 +124066,19 @@ Effects =
 		["Name"] = "Huge Battery Open for DL content",
 		["Type"] = "Effect",
 	},
+	-- [999] = 
+	-- {
+	-- 	[1] = 
+	-- 	{
+	-- 		["Autostart"] = true,
+	-- 		["Category"] = "3DEffect",
+	-- 		["Persistent"] = false,
+	-- 		["Sample"] = "environment_warning_oxigen.fsb",
+	-- 		["SoundType"] = "AirSpecial",
+	-- 		["Type"] = "Sound",
+	-- 	},
+	-- 	["Comment"] = "New Event 20mm Bradley Like",
+	-- 	["Name"] = "Warning Dive DIVE Dive",
+	-- 	["Type"] = "Sound",
+	-- },
 }

@@ -2480,7 +2480,7 @@ HintSystemMessages = {
 				["id"] = "IJN07_Hint05",
 				["Title"] = "ijn07.hint_05_title",
 				["Type"] = "hints.gameplay_ijn07_hint",
-				["Description"] = "The most elite pilots in the world are onboard Akagi, Kaga, Soryu, and Hiryu. They are precious for Imperial Navy.",
+				["Description"] = "The most skillful pilots in the world are onboard your 4 carriers. They are precious for Imperial Navy.",
 				["critical"] = false,
 				["storingrule"] = "missionunique",
 				-- unique: 		only once in a player's life
@@ -2500,6 +2500,177 @@ HintSystemMessages = {
 				["Title"] = "ijn07.hint_06_title",
 				["Type"] = "hints.gameplay_ijn07_hint",
 				["Description"] = "There are backup plane materials on carriers for repairing/replacement. Also, a just in time assembling is possible.",
+				["critical"] = false,
+				["storingrule"] = "missionunique",
+				-- unique: 		only once in a player's life
+				-- missionunique: 	only once per a mission
+				-- repeatable:		every time an event ocures
+				-- cooldown:		can reocure after defined time
+				["missionspecific"] = true,
+				["cooldowntime"] = 6,	-- secundum
+				["duration"] = -1,
+				-- 12:			after 12 sec the hint will autodisappear
+				-- 0:			won't autodisppear
+				-- -1:			code will count the disappear-time
+			},
+
+			["IJN07_AkagiHint"] = {
+				["id"] = "IJN07_Hint07",
+				["Title"] = "ijn07.hint_07_title",
+				["Type"] = "hints.gameplay_ijn07_hint",
+				["Description"] = "Convert from a battlecruiser, Akagi is an old but fast carrier, she carries 54 aircrafts. Akagi is the flagship of the Kido Butai and the First Carrier Fleet.",
+				["critical"] = false,
+				["storingrule"] = "missionunique",
+				-- unique: 		only once in a player's life
+				-- missionunique: 	only once per a mission
+				-- repeatable:		every time an event ocures
+				-- cooldown:		can reocure after defined time
+				["missionspecific"] = true,
+				["cooldowntime"] = 6,	-- secundum
+				["duration"] = -1,
+				-- 12:			after 12 sec the hint will autodisappear
+				-- 0:			won't autodisppear
+				-- -1:			code will count the disappear-time
+			},
+
+			["IJN07_KagaHint"] = {
+				["id"] = "IJN07_Hint08",
+				["Title"] = "ijn07.hint_08_title",
+				["Type"] = "hints.gameplay_ijn07_hint",
+				["Description"] = "The enormous battleship hull makes Kaga the slowest and least maneuverable in the fleet, but also brings her a good strength and stability, so as a larger hanger volume.",
+				["critical"] = false,
+				["storingrule"] = "missionunique",
+				-- unique: 		only once in a player's life
+				-- missionunique: 	only once per a mission
+				-- repeatable:		every time an event ocures
+				-- cooldown:		can reocure after defined time
+				["missionspecific"] = true,
+				["cooldowntime"] = 6,	-- secundum
+				["duration"] = -1,
+				-- 12:			after 12 sec the hint will autodisappear
+				-- 0:			won't autodisppear
+				-- -1:			code will count the disappear-time
+			},
+
+			["IJN07_SoryuHint"] = {
+				["id"] = "IJN07_Hint09",
+				["Title"] = "ijn07.hint_09_title",
+				["Type"] = "hints.gameplay_ijn07_hint",
+				["Description"] = "Soryu is a mordern carrier. She is very fast and agile, lighter, while carrying no less aircraft than Akagi and Kaga, but she is the most lightly armoured carrier in the fleet.",
+				["critical"] = false,
+				["storingrule"] = "missionunique",
+				-- unique: 		only once in a player's life
+				-- missionunique: 	only once per a mission
+				-- repeatable:		every time an event ocures
+				-- cooldown:		can reocure after defined time
+				["missionspecific"] = true,
+				["cooldowntime"] = 6,	-- secundum
+				["duration"] = -1,
+				-- 12:			after 12 sec the hint will autodisappear
+				-- 0:			won't autodisppear
+				-- -1:			code will count the disappear-time
+			},
+
+			["IJN07_HiryuHint"] = {
+				["id"] = "IJN07_Hint10",
+				["Title"] = "ijn07.hint_10_title",
+				["Type"] = "hints.gameplay_ijn07_hint",
+				["Description"] = "Hiryu is a mordern carrier. She is a bit better armoured than her sister Soryu, while as agile as Soryu. Hiryu is the flagship of Second Carrier Fleet.",
+				["critical"] = false,
+				["storingrule"] = "missionunique",
+				-- unique: 		only once in a player's life
+				-- missionunique: 	only once per a mission
+				-- repeatable:		every time an event ocures
+				-- cooldown:		can reocure after defined time
+				["missionspecific"] = true,
+				["cooldowntime"] = 6,	-- secundum
+				["duration"] = -1,
+				-- 12:			after 12 sec the hint will autodisappear
+				-- 0:			won't autodisppear
+				-- -1:			code will count the disappear-time
+			},
+
+			["IJN07_FireHint"] = {
+				["id"] = "IJN07_Hint11",
+				["Title"] = "ijn07.hint_11_title",
+				["Type"] = "hints.gameplay_ijn07_hint",
+				["Description"] = "Your carriers are formidable but fragile war machines. Fires can suspend their flight deck. Launching aircraft makes them even more vulnerable as fuel and ammo are dispatching. But this is the same for your enemy!",
+				["critical"] = false,
+				["storingrule"] = "missionunique",
+				-- unique: 		only once in a player's life
+				-- missionunique: 	only once per a mission
+				-- repeatable:		every time an event ocures
+				-- cooldown:		can reocure after defined time
+				["missionspecific"] = true,
+				["cooldowntime"] = 6,	-- secundum
+				["duration"] = -1,
+				-- 12:			after 12 sec the hint will autodisappear
+				-- 0:			won't autodisppear
+				-- -1:			code will count the disappear-time
+			},
+
+			["IJN07_LevelBomberHint"] = {
+				["id"] = "IJN07_Hint12",
+				["Title"] = "ijn07.hint_12_title",
+				["Type"] = "hints.gameplay_ijn07_hint",
+				["Description"] = "Level bombers usually create scary carpet bombing, but usually lack of accuracy due to their altitude.",
+				["critical"] = false,
+				["storingrule"] = "missionunique",
+				-- unique: 		only once in a player's life
+				-- missionunique: 	only once per a mission
+				-- repeatable:		every time an event ocures
+				-- cooldown:		can reocure after defined time
+				["missionspecific"] = true,
+				["cooldowntime"] = 6,	-- secundum
+				["duration"] = -1,
+				-- 12:			after 12 sec the hint will autodisappear
+				-- 0:			won't autodisppear
+				-- -1:			code will count the disappear-time
+			},
+
+			["IJN07_TorpedoBomberHint"] = {
+				["id"] = "IJN07_Hint13",
+				["Title"] = "ijn07.hint_13_title",
+				["Type"] = "hints.gameplay_ijn07_hint",
+				["Description"] = "According to torpedo bombers, the most uncomfortable attack angle, is from the stern...",
+				["critical"] = false,
+				["storingrule"] = "missionunique",
+				-- unique: 		only once in a player's life
+				-- missionunique: 	only once per a mission
+				-- repeatable:		every time an event ocures
+				-- cooldown:		can reocure after defined time
+				["missionspecific"] = true,
+				["cooldowntime"] = 6,	-- secundum
+				["duration"] = -1,
+				-- 12:			after 12 sec the hint will autodisappear
+				-- 0:			won't autodisppear
+				-- -1:			code will count the disappear-time
+			},
+
+			["IJN07_DiveBomberHint"] = {
+				["id"] = "IJN07_Hint14",
+				["Title"] = "ijn07.hint_14_title",
+				["Type"] = "hints.gameplay_ijn07_hint",
+				["Description"] = "Dive bombers are lighter than level/torpedo bombers. But they often achieve surprise. Watch out your head.",
+				["critical"] = false,
+				["storingrule"] = "missionunique",
+				-- unique: 		only once in a player's life
+				-- missionunique: 	only once per a mission
+				-- repeatable:		every time an event ocures
+				-- cooldown:		can reocure after defined time
+				["missionspecific"] = true,
+				["cooldowntime"] = 6,	-- secundum
+				["duration"] = -1,
+				-- 12:			after 12 sec the hint will autodisappear
+				-- 0:			won't autodisppear
+				-- -1:			code will count the disappear-time
+			},
+
+			["IJN07_EnemyHint"] = {
+				["id"] = "IJN07_Hint15",
+				["Title"] = "ijn07.hint_15_title",
+				["Type"] = "hints.gameplay_ijn07_hint",
+				["Description"] = "Enemy attacks all focus on carriers. They seem ignoring your Kongo class battleships, prove them a mistake!",
 				["critical"] = false,
 				["storingrule"] = "missionunique",
 				-- unique: 		only once in a player's life

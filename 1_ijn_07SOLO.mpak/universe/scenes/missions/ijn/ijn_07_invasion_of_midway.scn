@@ -365,8 +365,8 @@ header {
     }
     LocKitPaths = S "missionglobals" ;
     "Map" {
-      BorderSizeX = F 40000.0000 ;
-      BorderSizeY = F 40000.0000 ;
+      BorderSizeX = F 60000.0000 ;
+      BorderSizeY = F 60000.0000 ;
       BorderZoneEC = E Party : Neutral  ;
       BorderZoneEN = E Party : Neutral  ;
       BorderZoneES = E Party : Neutral  ;
