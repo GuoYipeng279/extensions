@@ -1,0 +1,1724 @@
+enum VehicleClasses
+{
+
+
+        AI_B29 =386
+
+        TroopTransUS_DLC1 =429
+        Higgins_DLC1 =430
+
+	Daihatsu_DLC3 =431
+	TroopTransJ_DLC3 =432
+
+        CargoTransJ_DLC3 =437
+        FleetOilerJ_DLC3 =438
+
+
+
+
+
+        dlcmontana =1000
+        dlcsuperyamato =1001
+        dlcalaska =1002
+        dlckuma =1003
+        dlcliz =1004
+        dlcp51 =1005
+        Yamato1944 =801
+	LexingtonCL =1007
+        Musashi1944 = 802
+        Nagato =803
+        Northcarolina =804
+        Washington =805
+        Zuikaku =806
+        Yamato1945 =807
+        Cleveland1945 =808
+        Me262 =809
+        B52 =810
+
+
+
+        Bismarck =2001
+        Hood =2002
+        Littorio =2003
+        Deutschland =2004
+        Nelson =2005
+        scharnhorst =2007
+        QueenElizabeth =2008
+        Colorado =2010
+        Brooklyn =2011
+
+
+        blackjack =2012
+        Typhoon =2013
+        3M54E =2014
+        KH55 =2015
+        FenrirJP =2016
+        FenrirUS =2017
+        A10 =2018
+        SU25 =2019
+        Gripen =2020
+        MIGMFI =2021
+        FA18 =2022
+        B52 =2023
+
+	None			=0
+	Lexington			=1
+	Yorktown			=2
+	Hermes				=3
+	Kaiten			=4
+	ShootingStar		=5
+	SouthDakota		=7
+	I400			=8
+	KingGeorge		=9
+	Renown			=10
+	AllenMSumner		=11
+	LSM	 		=12
+	NewYork			=13
+	Akizuki			=14
+	Iowa		=15
+
+
+
+	Atlanta			=17
+	Cleveland		=18
+	Northampton		=19
+	DeRuyter		=20
+	York			=21
+	Fletcher		=23
+	ASWFletcher		=48
+	Bogue		=24
+	Clemson			=25
+	Hellcat			=26
+	Elco	     		= 27
+	Elco_PTRace	 	= 242
+	DutchPT     		= 28
+	TarawaHiggins = 29
+
+	Gato			=30
+	Narwhal			=31
+	Seiran			=34
+	FleetOilerUS		=35
+	TroopTransUS		=36
+	TroopTransUS_light	=234
+	CargoTransUS		=37
+	Helldiver		=38
+	Hospitalship =39
+	Higgins			=40
+	LST			=41
+	Kamikazeboat		=43
+	SpawnPoint		=684
+
+	Akagi			=50
+	Kaga			=51
+	Hiryu			=52
+	Soryu			=53
+	Unryu			=54
+	Taiho			=55
+	Shinano			=56
+	Zuiho			=57
+	Shimakaze		=58
+	Yamato			=59
+
+
+	Kongo			=60
+	Fuso			=61
+
+	Mogami			=67
+	Tone			=68
+
+	Takao			=69
+	Kuma			=70
+	Agano			=71
+
+	Fubuki			=73
+
+
+	Minekaze			=75
+
+	JapPT			=77
+
+	SenToku			=80
+	TypeB	=81
+	TypeB_Jake	=93
+	TypeKD			=82
+	Minisub			=83
+
+	FleetOilerJ		=85
+	TroopTransJ		=86
+	CargoTransJ		=87
+	TroopTransJ_light = 224
+
+	Daihatsu			=90
+	Type1			=91
+	Junk			=92
+	Fishingboat		=246
+	Motorboat		=94
+	Yacht			=95
+	Rescue			=96
+	Jap_LST_light 	= 226
+	Type1_QA = 235
+	LSM_QA = 238
+	LST_QA = 239
+	LSM_QAS7 = 247
+	LST_QAS7 = 248
+	Yacht_Puffin	= 780
+	Junk_little = 628
+
+	Kontener			=98
+
+	Wildcat			=101
+	Corsair 			=102
+
+	Lightning			=104
+	Aircobra			=105
+
+
+	Dauntless		=108
+	Swordfish			=109
+	TesztBomber		=110
+	TesztBomberJP	=277
+
+	Devastator		=112
+	Avenger			=113
+	AvengerTinyTim = 16
+
+	FlyingFortress		=116
+	Superfortress		=117
+	Mitchell			=118
+
+	Kingfisher			=121
+	TypeB_Tutorial			=124
+	Catalina			=125
+
+	Buffalo			=133
+	Hurricane			=134
+	Warhawk			=135
+	PHWarhawk		=274
+
+	DouglasC47		=136
+	DakotaElite = 22
+	TransBomber1		=137
+	TransBomber2		=138
+
+	Zero			=150
+	PHZero = 354
+	KamikazeZero = 45
+	KamikazeZero_light = 203
+	Raiden			=151
+	Gekko			=152
+	Frances			=153
+	Oscar 			=154
+	KamikazeOscar = 100
+	Okha	=156
+
+	Val			=158
+	PHVal	= 355
+	KamikazeVal = 46
+	KamikazeVal_light = 204
+	Judy			=159
+	KamikazeJudy = 103
+
+	Kate			=162
+	PHKate	= 356
+	Jill			=163
+
+	Nell			=166
+	Betty			=167
+	BettyOhka =32
+
+	Pete			=171
+	Jake			=172
+
+	Mavis			=174
+	Emily			=175
+
+	Baka			=179
+	Kikka		=183
+
+	DouglasL2D		=186
+	TransBomber1J		=187
+	TransBomber2J		=188
+	Shinden	= 189
+	GermanType7		=193
+	PHAtlanta 			=194
+	PHCleveland	= 353
+	JapLightPT			=240
+	Arizona			=243
+	PHClemson 		=270
+	PHCalifornia 		=271
+	PHTanker 		=272
+	PHCargo			=273
+	BossYamato		=425
+	BossIowa		=426
+	SpecYorktown		=427
+	TestPlane		=777
+}
+
+enum ShipClasses
+{
+
+
+
+
+
+
+
+
+        TroopTransUS_DLC1 =429
+        Higgins_DLC1 =430
+
+	Daihatsu_DLC3 =431
+	TroopTransJ_DLC3 =432
+
+        CargoTransJ_DLC3 =437
+        FleetOilerJ_DLC3 =438
+
+
+
+        dlcmontana =1000
+        dlcsuperyamato =1001
+        dlcalaska =1002
+        dlckuma =1003
+        Yamato1944 =801
+	LexingtonCL =1007
+        Musashi1944 = 802
+        Nagato =803
+        Northcarolina =804
+        Washington =805
+        Zuikaku =806
+        Yamato1945 =807
+        Cleveland1945 =808
+        Me262 =809
+        B52 =810
+
+
+        Bismarck =2001
+        Hood =2002
+        Littorio =2003
+        Deutschland =2004
+        Nelson =2005
+        scharnhorst =2007
+        QueenElizabeth =2008
+        Colorado =2010
+        Brooklyn=2011
+        Typhoon =2013
+
+
+
+
+	Lexington		=1
+	Yorktown		=2
+
+	Hermes			=3
+	Kaiten			=4
+	SouthDakota		=7
+	I400			=8
+	KingGeorge		=9
+	Mission_IJN02_KingGeorge = 195
+	Renown			=10
+	Mission_IJN02_Renown = 196
+	AllenMSumner		=11
+	LSM	 		=12
+	NewYork			=13
+	Akizuki			=14
+	Iowa		=15
+	Atlanta			=17
+	Cleveland			=18
+	Northampton		=19
+	Mission_IJN03_Northampton		=198
+	DeRuyter			=20
+	Mission_IJN03_DeRuyter			=199
+	York			=21
+	Fletcher			=23
+	ASWFletcher		=48
+	Bogue		=24
+	Clemson			=25
+	Mission_IJN03_Clemson = 197
+
+	Elco	     		= 27
+	Elco_PTRace	 	= 242
+	DutchPT     		= 28
+	TarawaHiggins = 29
+
+	Gato			=30
+	Narwhal			=31
+
+	FleetOilerUS		=35
+	TroopTransUS		=36
+	TroopTransUS_light	=234
+	CargoTransUS		=37
+	Hospitalship =39
+
+
+	Higgins			=40
+	LST			=41
+	Kamikazeboat		=43
+
+	Akagi			=50
+	Kaga			=51
+	Hiryu			=52
+	Soryu			=53
+	Unryu			=54
+	Taiho			=55
+	Shinano			=56
+	Zuiho			=57
+	Shimakaze		=58
+	Yamato			=59
+	Kongo			=60
+	Fuso			=61
+
+
+	Mogami			=67
+	Tone			=68
+
+	Takao			=69
+	Kuma			=70
+	Agano			=71
+
+	Fubuki			=73
+	Minekaze			=75
+
+	JapPT			=77
+
+	SenToku			=80
+	TypeB			=81
+	TypeB_Jake	=93
+	TypeKD			=82
+	Minisub			=83
+
+	FleetOilerJ		=85
+	TroopTransJ		=86
+	CargoTransJ		=87
+	CargoTransJTutorial	=88
+	TroopTransJ_light = 224
+
+	Daihatsu			=90
+	Type1			=91
+	Junk			=92
+	Fishingboat		=246
+	Motorboat		=94
+	Yacht			=95
+	Rescue			=96
+	PHAtlanta 			=194
+	PHCleveland	= 353
+	Jap_LST_light 	=226
+	Type1_QA = 235
+	LSM_QA = 238
+	LST_QA = 239
+	LSM_QAS7 = 247
+	LST_QAS7 = 248
+	PHClemson 			=270
+	PHCalifornia 			=271
+	PHTanker			=272
+	PHCargo	= 273
+	Yacht_Puffin	=780
+
+	Kontener			=98
+	TypeB_Tutorial			=124
+	GermanType7		=193
+	JapLightPT			=240
+	Arizona			=243
+	BossYamato		=425
+	BossIowa		=426
+	SpecYorktown		=427
+	Junk_little = 628
+}
+
+enum PlaneClasses
+{
+
+
+
+        AI_B29 =386
+
+
+
+
+
+        dlcliz =1004
+        dlcp51 =1005
+
+
+        blackjack =2012
+        3M54E =2014
+        KH55 =2015
+        FenrirJP =2016
+        FenrirUS =2017
+        A10 =2018
+        SU25 =2019
+        Gripen =2020
+        MIGMFI =2021
+        FA18 =2022
+        B52 =2023
+
+
+	ShootingStar 		=5
+	Hellcat			=26
+	Seiran			=34
+	Helldiver		=38
+	Wildcat			=101
+	Corsair 			=102
+	Lightning			=104
+	Aircobra			=105
+
+	Dauntless		=108
+	Swordfish			=109
+	TesztBomber		=110
+	TesztBomberJP	=277
+
+	Devastator		=112
+	Avenger			=113
+	AvengerTinyTim = 16
+
+	FlyingFortress		=116
+	Superfortress		=117
+	Mitchell			=118
+
+	Kingfisher			=121
+	Catalina			=125
+
+	Buffalo			=133
+	Hurricane			=134
+	Warhawk			=135
+	PHWarhawk		=274
+
+	DouglasC47		=136
+	DakotaElite = 22
+	TransBomber1		=137
+	TransBomber2		=138
+
+	Zero			=150
+	PHZero = 354
+	KamikazeZero = 45
+	KamikazeZero_light = 203
+	Raiden			=151
+	Gekko			=152
+	Frances			=153
+	Oscar 			=154
+	KamikazeOscar 			=100
+	Okha	=156
+
+	Val			=158
+	PHVal = 355
+	KamikazeVal			= 46
+	KamikazeVal_light = 204
+	Judy			=159
+	KamikazeJudy			=103
+
+	Kate			=162
+	PHKate	= 356
+	Jill			=163
+
+	Nell			=166
+	Betty			=167
+	BettyOhka =32
+
+	Pete			=171
+	Jake			=172
+
+	Mavis			=174
+	Emily			=175
+
+	Baka			=179
+	Kikka		=183
+
+	DouglasL2D		=186
+	TransBomber1J		=187
+	TransBomber2J		=188
+	Shinden			=189
+
+	ContentPlane1		=601
+	ContentPlane2 		=602
+	ContentPlane3		=603
+	ContentPlane4		=604
+	ContentPlane5		=605
+	ContentPlane6		=606
+	ContentPlane7		=607
+	ContentPlane8		=608
+	ContentPlane9		=609
+
+	TestPlane		=777
+
+}
+
+enum LandVehicleClasses
+{
+	None			= -1
+
+	Stat_Wildcat		= 210
+	Stat_Avenger		= 211
+
+	Us_truck		= 250
+	Us_ambulance		= 251
+	Us_jeep			= 252
+	Us_tank			= 253
+	Us_amphibtank		= 254
+	Us_AAhalftruck		= 255
+	Us_amphibian		= 256
+	Us_apc			= 257
+	Us_spgun		= 258
+
+	Jap_ambulance		= 259
+	Jap_apc			= 260
+	Jap_jeep		= 261
+	Jap_amphibtank		= 262
+	Jap_spgun		= 263
+	Jap_truck		= 264
+	Jap_AAtruck		= 265
+	Jap_tank		= 266
+	Steam_Train_Engine = 142
+	Steam_Train_Wagon = 145
+	Steam_Train_Wagon_Turret = 237
+	Steam_Train_Wagon_Static = 378
+
+}
+
+enum LandFortClasses
+{
+
+	//figyelem ezek bent vannak meg 1x stationarykent is!!!
+
+	//jarmuvek
+	Us_truck		= 250
+	Us_ambulance		= 251
+	Us_jeep			= 252
+	Us_tank			= 253
+	Us_amphibtank		= 254
+	Us_AAhalftruck		= 255
+	Us_amphibian		= 256
+	Us_apc			= 257
+	Us_spgun		= 258
+
+	Jap_ambulance		= 259
+	Jap_apc			= 260
+	Jap_jeep		= 261
+	Jap_amphibtank		= 262
+	Jap_spgun		= 263
+	Jap_truck		= 264
+	Jap_AAtruck		= 265
+	Jap_tank		= 266
+	Steam_Train_Engine = 142
+	Steam_Train_Wagon = 145
+	Steam_Train_Wagon_Turret = 237
+	Steam_Train_Wagon_Static = 378
+
+	buoy = 212
+
+	Def_light			= 300
+	Def_medium		= 301
+	Def_heavy			= 302
+	Def_flak			= 303
+	Def_aa			= 304
+	Def_CoastalFlak	= 305
+	Def_jap_aa		= 306
+
+	ProbarakkFort		= 310
+	Barakk2Fort		= 311
+	HangarFort		= 312
+	Olajtartaly1Fort	= 313
+	Barakk3Fort		= 314
+	BarakkD = 49
+	BarakkE = 54
+
+	//uj epuletek
+
+	// command buildingek
+	CommandStation	= 6
+	CommandCenter = 408
+        Dora = 9000
+	Headquarter	= 97
+	Headquarter_S3	= 241
+	commandbuilding-tarawa = 33
+	commandbuilding-tarawafake = 47
+	commandbuilding-radarstation = 99
+	commandbuilding-controltower = 106
+	CommandPost = 88
+
+	Pagoda = 144
+	Train_bridge = 143
+	Train_bridge_ramp = 236
+
+	//bunkerek
+	bunker-big		= 400
+	bunker-hatchway	= 401
+	bunker-little		= 402
+	bunker-med		= 403
+	newbunker-big1		= 139
+	newbunker-med2		= 140
+	newbunker-med3		= 141
+	weakbunker-med1		= 231
+	weakbunker-med2		= 232
+	weakbunker-big1		= 233
+	//bunker-stairway	= 404 ez stationary
+	bunker-tunnel		= 405
+	watchtower		= 564
+	radiotower		= 565
+	radarstation		= 570
+	jap_aa_truck		= 453
+	capture_post = 206
+	fortress		= 406
+	fort_denison		= 137
+	fortress_heavy	= 407
+	fortress_small = 63
+	fortress_medium = 64
+	fortress_large = 65
+	fortress_long = 66
+	fortress_main = 72
+	fortress_bended = 76
+	fortress_round = 78
+	fortress_round_side = 79
+	fortress_small_tower = 80
+	fortress_high_tower = 82
+	fortress_left_tower = 84
+	fortress_right_tower = 89
+
+	fortress_main_S7 = 267
+	fortress_long_S7 = 249
+	fortress_left_tower_S7 = 268
+
+	//PEARL HARBOR SHIPS
+	phtexas			= 566
+	phtexas_dam		= 573
+	phatlanta			= 567
+	phatlanta_dam		= 574
+	phclemson			= 568
+	phclemson_dam		= 569
+	phneosho			= 578
+	pharizona			= 244
+	phcalifornia	= 245
+
+	//partvedelmi agyuk, legvedelem
+	coastal_gun_jap		= 450
+	light_aa_jap		= 451
+	light_aa_jap_sandbag		= 630
+	heavy_aa_jap		= 452
+	heavy_aa_jap_bigplatform		= 74
+	coastal_gun_us		= 460
+	light_aa_us		= 461
+	light_aa_us_sandbag		= 629
+	heavy_aa_us		= 462
+	heavy_aa_cb		= 463
+	heavy_aa_us_bigplatform		= 62
+	battery_turret = 227
+	battery_open = 228
+
+	//hazak, epuletek
+	hospital			= 575
+	civ-house1		= 500
+	civ-house1b		= 501
+	civ-house1-EMELETES	= 502
+
+	civ-house2		= 503
+	civ-house2b		= 504
+	civ-house2b1		= 505
+	civ-house2b2		= 506
+	civ-house2b3		= 507
+
+	civ-house2c		= 508
+	civ-house2c1		= 509
+	civ-house-kicsi-oszlopos	 =510
+	civ-house-nagy-oszlopos 	=511
+
+	adminiroda01 = 55
+	adminiroda02 = 56
+
+	malay-house-a = 617
+	malay-house-b = 618
+	malay-house-c = 619
+	malay-house-d = 620
+	malay-house-e = 621
+	malay-house-f = 622
+	malay-house-g = 623
+	malay-house-h = 624
+	malay-house-i = 625
+	malay-house-j = 626
+	malay-house-k = 627
+	japanese_house_01 = 98
+	japanese_house_02 = 42
+	japanese_house_03 = 146
+	japanese_house_04 = 275
+	okinawa_house_01 = 282
+	okinawa_house_02 = 283
+	okinawa_house_03 = 284
+	okinawa_house_04 = 285
+	okinawa_house_05 = 286
+	okinawa_house_06 = 287
+	okinawa_house_07 = 288
+	okinawa_house_08 = 289
+	sydney_houses_01 = 290
+	sydney_houses_02 = 296
+	sydney_houses_03 = 297
+	sydney_houses_04 = 298
+	sydney_houses_05 = 299
+	sydney_houses_06 = 307
+	sydney_houses_07 = 308
+	sydney_houses_08 = 309
+	sydney_houses_09 = 315
+	sydney_houses_10 = 316
+	sydney_houses_11 = 317
+	sydney_houses_12 = 318
+	sydney_houses_13 = 319
+	sydney_houses_14 = 320
+	sydney_houses_15 = 321
+	sydney_houses_16 = 322
+	sydney_houses_17 = 323
+	sydney_houses_18 = 324
+	sydney_houses_19 = 325
+	sydney_houses_20 = 326
+	sydney_houses_21 = 327
+	sydney_houses_22 = 328
+	sydney_houses_23 = 329
+	sydney_houses_24 = 330
+	sydney_houses_25 = 331
+	sydney_houses_26 = 334
+	sydney_houses_27 = 335
+	sydney_houses_28 = 336
+	sydney_houses_29 = 337
+	sydney_houses_30 = 343
+	sydney_block_01 = 393
+	sydney_block_02 = 394
+	sydney_block_03 = 395
+	sydney_block_04 = 396
+	sydney_block_05 = 397
+	sydney_block_06 = 398
+	sydney_block_07 = 399
+	sydney_block_08 = 401
+	sydney_block_09 = 404
+	sydney_block_10 = 409
+	sydney_block_11 = 410
+	sydney_block_12 = 411
+	sydney_block_13 = 412
+	sydney_block_14 = 413
+	sydney_block_15 = 414
+	sydney_block_16 = 415
+	sydney_block_17 = 416
+	sydney_block_18 = 417
+	sydney_block_19 = 418
+	sydney_block_20 = 419
+	sydney_block_21 = 420
+	sydney_block_22 = 421
+	sydney_block_23 = 422
+	sydney_block_24 = 423
+	sydney_block_25 = 424
+	Sydney_raktarblokk_01 = 357
+	Kandelaber_01 = 382
+	Kandelaber_02 = 379
+	sydney_bridge = 383
+	battery_open_strafeable = 384
+	torpedo_base = 387
+
+	lakobarakk-1		=512
+	lakobarakk-2		=513
+	lakobarakk-3		=514
+	lakobarakk-4		=269
+	house1-oszlopos		=515
+
+	daru-b			=516
+	daru-c			=517
+	daru_japan	=132
+	watertank		=518
+	PTHangar		=572
+	PTHangar_single		=278
+	Multi_PTHangar		=592
+	lighthouse_1 = 138
+
+	tank_1			=520
+	oiltank_big		=571
+	oiltank_big_2x5		=358
+
+	//mostani, uj cuccok (torold kesobb a bejegyzest, aug elejen kellett)
+	Kunyho_A		=521
+	Kunyho_B		=522
+
+	//tankcsapda		=523
+	Viztartaly_B		=524
+
+	Molo_Beton_A		=525
+	Molo_Beton_B		=526
+	Molo_Beton_C		=563
+	Molo_Fa_A		=527
+	Molo_Fa_B		=528
+
+	//military innentol lefele
+	building1			=531
+	building2			=532
+	building3			=533
+	building4			=534
+	building5			=535
+	building6			=536
+	building7			=537
+	building8			=538
+	building9			=539
+	building10		=540
+	building11		=541
+	building12		=542
+	building13		=543
+	building14		=544
+	building15		=545
+	HANGAR_A			=550
+	HANGAR_A_double			=595
+	HANGAR_A_quad			=596
+	HANGAR_A_SINGLE	=280
+
+	//Uj hangarok nagy gepeknek
+	Hangar_new1		=586
+	Hangar_new2		=587
+	Hangar_new3		=588
+	Hangar_new4		=589
+	Hangar_Large_single	=279
+	Multi_Hangar_new2	=593
+	Multi_Hangar_new3	=594
+	//homokzsak_1		=551
+	//homokzsak_2		=552
+	iranyitotorony_a		=553
+	iranyitotorony_b	=590
+	dlc_controltower1 = 107
+	dlc_controltower2 = 123
+
+	//pearl epuletek
+	pearl_building01 = 345
+	pearl_building02 = 346
+	pearl_building03 = 347
+	pearl_building04 = 348
+	pearl_building05 = 349
+	pearl_building06 = 631
+	pearl_building07 = 351
+	pearl_building08 = 352
+	pearl_building09 = 344
+	pearl_building10 = 359
+	pearl_building11 = 360
+	pearl_building12 = 361
+	pearl_building13 = 362
+	pearl_building14 = 363
+	pearl_building15 = 364
+	pearl_building16 = 365
+	pearl_building17 = 366
+	pearl_building18 = 367
+	pearl_building19 = 368
+	pearl_building20 = 22
+	pearl_building21 = 369
+	pearl_building22 = 370
+	pearl_building23 = 371
+	pearl_building24 = 372
+	pearl_building25 = 373
+	pearl_building26 = 374
+	pearl_building27 = 375
+	pearl_building28 = 376
+	pearl_building29 = 377
+
+	Raktar_A			=554
+	Raktar_B			=555
+	Raktar_C			=556
+	Raktar_D			=557
+	Raktar_01			=105
+	Raktar_02			=111
+	Raktar_03 			=114
+
+	//tents
+	Tent_01				=115
+	Tent_02				=119
+	Tent_03				=126
+	Tent_04				=127
+
+	//containers
+	kontener_kupac1	=576
+	kontener_kupac2	=577
+	kontener_kupac3	=201
+	kontener_kupac4	=202
+	kontener_kupac5	=291
+	kontener_kupac6	=292
+	kontener_kupac7	=293
+	kontener_kupac8	=294
+	kontener_kupac9	=295
+
+	//hosszu hangarok Viktornak
+	hangar_a_long		= 579
+	hangar_a_long2		= 580
+	hangar_a_opened	= 581
+
+	//famolo am2
+	molo_fa_c			= 582
+	molo_fa_c_long		= 583
+	molo_fa_c_long_b	= 584
+
+	//seaplanehangars
+	SeaplaneHangar		= 585
+	Multi_SeaplaneHangar	= 591
+
+	//shipyard epuletek
+	PThangar_small		= 597
+	Shipyard_01		= 600
+	PThangar_small_single = 281
+
+	//uj bunkerek
+	newbunker-big		= 610
+	newbunker-medium	= 611
+	newbunker-small		= 612
+
+	//subhangar
+	subhangar = 613
+
+	//oil refinery
+	oilrefinery = 614
+
+	//BSM_DLC
+	OPBuilding	=701
+	GHouse =702
+	Office =703
+	Watchhouse =704
+	Office2 =705
+	Workshop =706
+	DLRadioTower =707
+	DLBarrak =708
+	Prison =709
+	DLWatchTower =710
+	Armory =44
+
+	//Yo fele stationary revizio
+	kishangar	= 720
+
+	fence01 = 217
+
+	tanker_wreck_a = 213
+	tanker_wreck_b = 214
+	cargo_wreck_a = 215
+	cargo_wreck_b = 216
+	tanker_wreck_underwater_a = 229
+	tanker_wreck_underwater_b = 230
+
+	Vizihulla1 = 721
+	Vizihulla2 = 722
+	Vizihulla3 = 723
+
+	Debrish1 = 724
+	Debrish2 = 725
+	Debrish3 = 726
+	Debrish4 = 727
+	borult_csonak = 128
+	gumicsonak = 129
+	mentoov = 130
+	szogesdrot1 = 131
+	szogesdrot2 = 208
+	szogesdrot3 = 209
+
+	tankcsapda2 = 728
+
+	homokzsak_kupac1	= 729
+	homokzsak_kupac2	= 730
+	homokzsak_1		= 731
+	homokzsak_2		= 732
+	homokzsak_3		= 218
+	homokzsak_4		= 219
+	homokzsak_5		= 220
+	homokzsak_6		= 222
+	homokzsak_7		= 223
+	homokzsak_8		= 225
+
+	foxhole_01		= 221
+	revetment_full		= 380
+	revetment_half		= 381
+
+	Barrel_black		= 733
+	Barrel_red		= 734
+	Barrel_lotz		= 735
+
+	szikla_1			= 736
+	szikla_2			= 737
+	szikla_3			= 738
+	szikla_4			= 739
+	szikla_5			= 740
+	szikla_6			= 741
+	szikla_7			= 742
+	szikla_8			= 743
+	szikla_9			= 744
+
+	bala_kicsi		= 745
+	bala_nagy			= 746
+	lada_kicsi		= 747
+	lada_nagy			= 748
+	kontener			= 749
+	kontener_nyitott	= 750
+	kontener_borithato	= 751
+	village_fence_01	= 338
+	village_fence_02	= 339
+	village_fence_03	= 340
+	village_fence_04	= 341
+	village_fence_05	= 342
+
+	Underwater_net		= 120
+
+	hatszogmolo		= 752
+
+	Stat_avenger	= 753
+	Stat_avenger_closed	= 754
+	Stat_dauntless	= 755
+	Stat_kate	= 756
+	Stat_kate_closed	= 757
+	Stat_val	= 758
+	Stat_val_closed	= 759
+	Stat_warhawk	= 760
+	Stat_wildcat	= 761
+	Stat_wildcat_closed	= 762
+	Stat_zero	= 763
+	Stat_b25	= 764
+	Static_Lightning = 765
+	Static_Gekko = 766
+	Stat_mavis_crashed	= 122
+	Stat_B_17 = 147
+	Stat_B_29 = 148
+	Stat_Dakota_japan = 149
+	Stat_Dakota_us = 153
+	Stat_Catalina = 155
+	Stat_Corsair = 157
+	Stat_Judy = 160
+	Stat_Jake = 161
+	Stat_Buffalo = 164
+	Stat_Hellcat = 165
+	Stat_Betty = 168
+	Stat_Mavis = 169
+	Stat_Emily = 170
+	Stat_Hurricane = 173
+	Stat_Raiden = 176
+	Stat_Shinden = 177
+	Stat_Oscar = 178
+	Stat_Kingfisher = 179
+	Stat_Seiran = 180
+	Stat_Baka = 181
+	Stat_Kikka = 182
+	Stat_ShootingStar = 184
+	Stat_Helldiver = 185
+	Stat_Swordfish = 187
+	Stat_Devastator = 188
+	Stat_Jill_closed = 190
+	Stat_Jill_opened = 191
+	Stat_Pete = 192
+}
+
+
+
+enum AirFieldClasses
+{
+	AirField 			= 200
+	MultiAirField 			= 207
+
+}
+
+enum ShipyardClasses
+{
+	Shipyard 			= 205
+	MultiShipyard 			= 276
+}
+
+// tok mindegy milyen szam van a stationary cuccokhoz rendelve, mivel a lua tabla nem szamozott, a nev a lenyeg
+// ismetles azert ne legyen...
+
+
+enum StationaryTypes
+{
+	Tree_palm01		=1
+	Tree_palm02		=2
+	Tree_palm03		=3
+
+	Bush01			=4
+	Bush02			=5
+	Bush03			=6
+	Bush04			=7
+	Bush05			=8
+
+	Cserje			=9
+	Cserje2			=10
+	Cserje3			=11
+	Tree_palm1		=12
+	Tree_palm2		=13
+
+	//uj palmak
+	Tree_palm3		=585
+	Tree_palm4		=586
+
+	Tree01			=14
+	Big_tree01		=15
+	Big_tree02		=16
+
+	//bunkerek
+	bunker-stairway = 17
+	tankcsapda2		=18
+	homokzsak_1		=19
+	homokzsak_2		=20
+
+	//sziklak
+	szikla_1			=21
+	szikla_2			=22
+	szikla_3			=23
+	szikla_4			=24
+	szikla_5			=25
+	szikla_6			=26
+	szikla_7			=27
+	szikla_8			=28
+	szikla_9			=29
+
+	//ladak,kontenerek stb.
+	bala_kicsi		=30
+	bala_nagy			=31
+	lada_kicsi		=32
+	lada_nagy			=33
+	kontener			=34
+	kontener_nyitott	=35
+	kontener_borithato	=36
+
+	//regi cuccok!
+
+	Probarakk		= 37
+	Hangar			= 38
+	House			= 39
+	Barrel_black		= 40
+	Barrel_red		= 41
+	Barrel_lotz		= 42
+	Homokzsak		= 43
+	Hangar1			= 44
+	Hangar2			= 45
+	Hangar3			= 46
+	House1			= 47
+	House2			= 48
+	House3			= 49
+	Barakk1			= 50
+	Barakk2			= 51
+	Barakk3			= 52
+	Daru1			= 53
+	Daru2			= 54
+	Doboz1			= 55
+	Doboz2			= 56
+	Doboz3			= 57
+	Doboz4			= 58
+	Doboz5			= 59
+	Doboz6			= 60
+	Doboz7			= 61
+	Doboz8			= 62
+	Doboz9			= 63
+	Doboz10			= 64
+	Kontener1		= 65
+	Kontener2		= 66
+	Kunyho1			= 67
+	Kunyho2			= 68
+	Betonmolo1		= 69
+	Betonmolo2		= 70
+	Famolo1			= 71
+	Famolo2			= 72
+	Olajtartaly1		= 73
+	Olajtartaly2		= 74
+	Olajtartaly3		= 75
+	Raktar1			= 76
+	Raktar2			= 77
+	Raktar3			= 78
+	Raktar4			= 79
+	Viztartaly1		= 80
+	Viztartaly2		= 81
+	Betonmolo3		= 82
+	Betonmolo4		= 83
+	Arok			= 84
+	Bunker1			= 85
+	Bunker2			= 86
+	Hangar4			= 87
+	Hangar5			= 88
+	Iranyitotorony1		= 89
+	Iranyitotorony2		= 90
+	Iranyitotorony3		= 592
+	Kpalya1			= 91
+	Kpalya2			= 92
+	Krater			= 93
+	Tankcsapda		= 94
+	Homokzsak2		= 95
+	Homokzsak3		= 96
+
+
+	//pearl harbor molo
+	molo_pearl		= 97
+	yorktown_burn		= 98
+	hatszogmolo		= 587
+
+	//osszevont epuletek
+	12epulet			= 111
+	3hangar			= 112
+	7raktar			= 113
+	6raktar			= 114
+
+	//osszevont homokzsak
+	homokzsak_kupac1	= 115
+	homokzsak_kupac2	= 116
+
+
+	//regi landfortok stationarykent kezdes
+
+
+	ProbarakkFort		= 310
+	Barakk2Fort		= 311
+	HangarFort		= 312
+	Olajtartaly1Fort	= 313
+	Barakk3Fort		= 314
+	Betonmolo_UFort	= 315
+
+	//uj epuletek
+
+	//bunkerek
+	bunker-big		= 400
+	bunker-hatchway	= 401
+	bunker-little		= 402
+	bunker-med		= 403
+	//bunker-stairway	= 404 ez stationary
+	bunker-tunnel		= 405
+	watchtower		= 564
+	radiotower		= 565
+	radarstation		= 570
+
+	//PEARL HARBOR SHIPS
+	phtexas			= 566
+	phtexas_dam		= 573
+	phatlanta			= 567
+	phatlanta_dam		= 574
+	phclemson			= 568
+	phclemson_dam		= 569
+	phneosho			= 578
+
+	//hazak, epuletek
+	hospital			= 575
+	civ-house1		= 500
+	civ-house1b		= 501
+	civ-house1-EMELETES	= 502
+
+	civ-house2		= 503
+	civ-house2b		= 504
+	civ-house2b1		= 505
+	civ-house2b2		= 506
+	civ-house2b3		= 507
+
+	civ-house2c		= 508
+	civ-house2c1		= 509
+	civ-house-kicsi-oszlopos	 =510
+	civ-house-nagy-oszlopos 	=511
+	malay-house-a = 617
+	malay-house-b = 618
+	malay-house-c = 619
+	malay-house-d = 620
+	malay-house-e = 621
+	malay-house-f = 622
+	malay-house-g = 623
+	malay-house-h = 624
+	malay-house-i = 625
+	malay-house-j = 626
+	malay-house-k = 627
+
+	lakobarakk-1		=512
+	lakobarakk-2		=513
+	lakobarakk-3		=514
+	house1-oszlopos		=515
+
+	daru-b			=516
+	daru-c			=517
+	daru_japan	=132
+	watertank		=518
+	molo-u-form		=519
+	PTHangar		=572
+	PTHangar_single		=278
+
+	//uj molo
+	molo-folyamatos		=558
+	molo-folyamatos2		=559
+	molo-folyamatos3		=560
+	molo-vege		=561
+	molo-vege-2		=562
+	//uj molo vege
+
+	tank_1			=520
+	oiltank_big		=571
+
+	//mostani, uj cuccok (torold kesobb a bejegyzest, aug elejen kellett)
+	Kunyho_A		=521
+	Kunyho_B		=522
+
+	//tankcsapda		=523
+	Viztartaly_B		=524
+
+	Molo_Beton_A		=525
+	Molo_Beton_B		=526
+	Molo_Beton_C		=563
+	Molo_Fa_A		=527
+	Molo_Fa_B		=528
+
+	//military innentol lefele
+	building1			=531
+	building2			=532
+	building3			=533
+	building4			=534
+	building5			=535
+	building6			=536
+	building7			=537
+	building8			=538
+	building9			=539
+	building10		=540
+	building11		=541
+	building12		=542
+	building13		=543
+	building14		=544
+	building15		=545
+	HANGAR_A			=550
+	HANGAR_A_double			=613
+	HANGAR_A_quad			=614
+	HANGAR_A_SINGLE =280
+
+	//homokzsak_1		=551
+	//homokzsak_2		=552
+	iranyitotorony_a		=553
+	dlc_controltower1 = 107
+	dlc_controltower2 = 123
+
+	Raktar_A			=554
+	Raktar_B			=555
+	Raktar_C			=556
+	Raktar_D			=557
+	Raktar_01			=105
+
+	//containers
+	kontener_kupac1	=576
+	kontener_kupac2	=577
+
+	//hosszu hangarok Viktornak
+	hangar_a_long		= 579
+	hangar_a_long2		= 580
+	hangar_a_opened	= 581
+
+	//famolo am2
+	molo_fa_c			= 582
+	molo_fa_c_long		= 583
+	molo_fa_c_long_b	= 584
+
+
+	//regi landfortok stationarykent vege
+
+	//uj hangarok
+	Hangar_new1		= 588
+	Hangar_new2		= 589
+	Hangar_new3		= 590
+	Hangar_new4		= 591
+	Hangar_Large_single	= 279
+	Shipyard_01		= 603
+	kishangar	= 628
+	PThangar_small_single =281
+
+	//stationary repulok
+	Stat_avenger	= 592
+	Stat_avenger_closed	= 593
+	Stat_dauntless	= 594
+	Stat_kate	= 595
+	Stat_kate_closed	= 596
+	Stat_val	= 597
+	Stat_val_closed	= 598
+	Stat_warhawk	= 599
+	Stat_wildcat	= 600
+	Stat_wildcat_closed	= 601
+	Stat_zero	= 602
+	Stat_b25	= 605
+
+	//subhangar
+	subhangar = 615
+
+	//oil refinery
+	oilrefinery = 616
+
+	//roncsok
+	Us_AAhalftruck_damaged = 267
+	Us_amphibian_damaged = 268
+	Us_amphibtank_damaged = 269
+	Us_tank_damaged = 270
+	Us_jeep_damaged = 271
+	Us_apc_damaged = 272
+
+	//uj bunkerek
+	newbunker-big		= 610
+	newbunker-medium	= 611
+	newbunker-small		= 612
+
+	//hulla
+	Vizihulla1 = 990
+	Vizihulla2 = 991
+	Vizihulla3 = 992
+	Debrish1 = 993
+	Debrish2 = 994
+	Debrish3 = 995
+	Debrish4 = 996
+
+	//uj raktarak by Frankie
+	raktar01 = 631
+	raktar02 = 632
+	raktar03 = 633
+
+	//mozi
+
+	//BSM_DLC
+	OPBuilding	=701
+	GHouse =702
+	Office =703
+	Watchhouse =704
+	Office2 =705
+	Workshop =706
+	DLRadioTower =707
+	DLBarrak =708
+	Prison =709
+	DLWatchTower =710
+	Static_Lightning = 711
+	Static_Gekko = 712
+	Armory =44
+}
+
+enum CloudTypes
+{
+	cloud_01 		= 0
+	cloud_02		= 1
+	cloud_03 		= 2
+	cloud_04 		= 3
+	cloud_05 		= 4
+	cloud_06 		= 5
+	cloud_07 		= 6
+	cloud_08 		= 7
+	cloud_09 		= 8
+	cloud_10 		= 9
+
+	fog_cloud		= 100
+	fog_cloud_02	= 101
+	fog_cloud_03 	= 102
+	fog_cloud_04 	= 103
+	fog_cloud_05 	= 104
+	fog_cloud_06 	= 105
+	fog_cloud_07 	= 106
+	fog_cloud_08 	= 107
+	fog_cloud_09 	= 108
+	fog_cloud_10 	= 109
+
+	Cloud000			= 11
+	Cloud001			= 12
+	Cloud002			= 13
+	Cloud003			= 14
+	Cloud004			= 15
+	Cloud005			= 16
+	Cloud006			= 17
+	Cloud007			= 18
+	Cloud008			= 19
+	Cloud009			= 20
+	Cloud010			= 21
+	Cloud011			= 22
+	Cloud012			= 23
+	Cloud013			= 24
+	Cloud014			= 25
+	Cloud015			= 26
+	Cloud016			= 27
+	Cloud017			= 28
+	Cloud018			= 29
+	Cloud019			= 30
+	Cloud020			= 31
+	Cloud021			= 32
+	Cloud022			= 33
+	Cloud023			= 34
+	Cloud024			= 35
+
+	CloudBarany		= 36
+}
+
+enum WreckTypes
+{
+	ProbaWreck = 999
+	KocsiDefaultWreck = 0
+	RepcsiDefaultWreck = 1
+}
+
+enum SoldierTypes
+{
+	USMatroz_shiptraffic	= 0
+	USOfficer_shiptraffic	= 1
+	JPMatroz_shiptraffic	= 2
+	JPOfficer_shiptraffic	= 3
+	USMarine_shiptraffic	= 4
+	JPMarine_shiptraffic	= 5
+}
+
+enum WaterMineTypes
+{
+	DefaultMine = 154
+}
+
+enum UnitCategories
+{
+	Mothership       		= 0
+	Destroyer       		= 1
+	Smallship       		= 2
+	Battleship      		= 3
+	Cruiser         		= 4
+
+	Levelbomber     		= 5
+	Divebomber      		= 6
+	Torpedobomber   		= 7
+	Fighter          		= 8
+	Reconplane      		= 9
+
+	Submarine        		= 10
+	Kamikaze						= 11
+
+}
+
+enum CrewXPLevels
+{
+	Rookie           		= 0
+	Regular           		= 1
+	Veteran           		= 2
+	Elite             		= 3
+}
+
+enum SkillLevels
+{
+	Stun       = 0
+	SPNormal   = 1
+	SPVeteran  = 2
+	MPNormal   = 3
+	MPVeteran  = 4
+	Elite      = 5
+}
+
+enum CommandBuildingLevels
+{
+	Basic		= 0
+	Medium		= 1
+	Advanced	= 2
+	Expert		= 3
+	XLevel    = 4
+}
+
+enum Party
+{
+	Allied 			= 0
+	Japanese 		= 1
+	Neutral 			= 2
+}
+
+enum Races
+{
+	Neutral 			= 0
+	Japan 			= 1
+	USA  			= 2
+	GB   			= 3
+	German 			= 4
+	Dutch 			= 5
+	Australian		= 6
+	"New Zealand"		= 7
+
+}
+
+enum Players
+{
+	"Player 1" = 0
+	"Player 2" = 1
+	"Player 3" = 2
+	"Player 4" = 3
+	"Player 5" = 4
+	"Player 6" = 5
+	"Player 7" = 6
+	"Player 8" = 7
+	"AI control" = 8
+	"Any player" = 9
+}
+
+enum EquipmentIndex
+{
+	"none" = 0
+	"1" = 1
+	"2" = 2
+	"3" = 3
+	"4" = 4
+	"5" = 5
+	"6" = 6
+	"7" = 7
+	"8" = 8
+	"9" = 9
+}
+
+properties Common
+{
+	Party = E Party:Allied ;
+	Race = E Races : Neutral;
+	OwnerPlayer = E Players:"Any player" ;
+	Invincible = F 0.0 ;
+	Hidden = B FALSE ;
+	GuiName = S ;
+	SceneGroupNum = I 0 ;
+}
+
+enum FireStances
+{
+	"Default" = -1
+	"HoldFire" = 0
+	"FreeFire" = 1
+	"FreeAttack" = 2
+}
+
+properties MultiEntity
+{
+	GenerateInEngineMovie = B true;
+	GenerateInGame = B true;
+	MultiType
+	{
+		MultiIslandCapture1v1 = B true;
+		MultiIslandCapture2v2 = B true;
+		MultiIslandCapture3v3 = B true;
+		MultiIslandCapture4v4 = B true;
+		MultiDuel = B true;
+		MultiEscort = B true;
+		MultiSiege = B true;
+		MultiCompetitive = B true;
+	}
+}
+
+properties GameUnit (MultiEntity)
+{
+	FireStance = E FireStances : Default;
+	PlayerCommandsEnabled = B true;
+}
+
+properties PowerupHandler
+{
+	PowerupClassID = S "";
+}
+
+enum CamoColors
+{
+	None  = 1
+	Blue  = 2
+	Brown = 3
+	Grey  = 4
+	Green = 5
+}
+
+enum PathType
+{
+	Normal = 1
+	Camera = 2
+}
+
+enum PathCameraPointType // osszhangban kell lennie a Path.h-val
+{
+	Normal = 0 ;
+	RotRefEntity = 1 ;
+	RotRefPosW = 2 ;
+	RotRefPosL = 3 ;
+	RotRefRotW = 4 ;
+	RotRefRotL = 5 ;
+}
+
+enum CausticsTypes
+{
+	CausticsDayLight = 0
+	CausticsBig = 1
+	CausticsLittle = 2
+}
+
+enum GameMode
+{
+	Single = 0
+	TaskForce = 1
+	IslandCapture = 2
+}

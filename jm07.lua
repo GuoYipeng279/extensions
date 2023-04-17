@@ -197,6 +197,7 @@ function luaInitJM7(this)
 		Mission.Hiryu = FindEntity("Hiryu-class 01")
 		Mission.Akagi = FindEntity("Akagi")
 		Mission.Soryu = FindEntity("Soryu")
+		Mission.Haruna = FindEntity("Haruna")
 		Mission.Tone = FindEntity("Tone-class 02")
 		Mission.Chikuma = FindEntity("Takao-class 01")
 		Mission.Nagara = FindEntity("Kuma-class 01")
@@ -231,11 +232,14 @@ function luaInitJM7(this)
 		table.insert(Mission.PlayerFleetNames, "Maikaze")
 
 	Mission.IJNInvasionFleetNames = {}
-		table.insert(Mission.IJNInvasionFleetNames, "ingame.shipnames_yamato")
-		table.insert(Mission.IJNInvasionFleetNames, "ingame.shipnames_meiko")
-		table.insert(Mission.IJNInvasionFleetNames, "ingame.shipnames_myoken")
-		table.insert(Mission.IJNInvasionFleetNames, "ingame.shipnames_fukusei")
-		table.insert(Mission.IJNInvasionFleetNames, "ingame.shipnames_harbin")
+		-- table.insert(Mission.IJNInvasionFleetNames, "ingame.shipnames_yamato")
+		-- table.insert(Mission.IJNInvasionFleetNames, "ingame.shipnames_meiko")
+		-- table.insert(Mission.IJNInvasionFleetNames, "ingame.shipnames_myoken")
+		-- table.insert(Mission.IJNInvasionFleetNames, "ingame.shipnames_fukusei")
+		-- table.insert(Mission.IJNInvasionFleetNames, "ingame.shipnames_harbin")
+		table.insert(Mission.IJNInvasionFleetNames, "Hosho")
+		table.insert(Mission.IJNInvasionFleetNames, "Naruto")
+		table.insert(Mission.IJNInvasionFleetNames, "Yukaze")
 
 	Mission.Fleets = {
 		[1] = {},
@@ -676,6 +680,7 @@ function luaJM7_think(this, msg)
 	luaBomberLanding(Mission.Kaga)
 	luaBomberLanding(Mission.Soryu)
 	luaBomberLanding(Mission.Hiryu, true)
+	luaBomberLanding(Mission.Hosho)
 	-- SetInvincible(Mission.Kaga, true)
 	-- SetInvincible(Mission.Akagi, true)
 	-- SetInvincible(Mission.Soryu, true)
@@ -790,6 +795,19 @@ function luaJM7CheckObjectives()
 			luaJM7StepPhase(99)
 		end
 
+		local danger = 0
+		for _, carrier in pairs({Mission.Akagi, Mission.Soryu, Mission.Kaga, Mission.Hiryu}) do
+			if carrier.RunwayFailure and carrier.efxList and #(carrier.efxList) >= 2 then
+				danger = danger + 1
+			end
+		end
+
+		if danger >= 3 and not Mission.StartHosho then
+			MissionNarrativePlayer(0, "Hosho is on her way")
+			Mission.StartHosho = true
+			luaDelay(luaJM7SpawnIJNHoshoFleet, random(300, 600))
+		end
+
 		if not luaObj_IsActive("hidden", 1) then
 			luaObj_Add("hidden",1)
 		else
@@ -847,14 +865,16 @@ function luaJM7CheckObjectives()
 				-- ShowHint("IJN07_Hint05")
 				ShowHint("IJN07_Hint05")
 				ShowHint("IJN07_Hint06")
-				luaJM7Sec2Score()
+				-- luaJM7Sec2Score()
+				luaJM7FuelScore()
 			elseif luaObj_IsActive("secondary",2) and luaObj_GetSuccess("secondary",2) == nil then
-				if luaJM7PrepObj() then
+				if false and luaJM7PrepObj() then
 					luaObj_Completed("secondary",2)
 					luaJM7RemoveScore(4)
 					luaJM7CAPHint()
 				else
-					luaJM7Sec2Score()
+					-- luaJM7Sec2Score()
+					luaJM7FuelScore()
 				end
 			end
 
@@ -881,6 +901,7 @@ function luaJM7CheckObjectives()
 
 
 			luaJM7Pri1Score()
+			luaJM7Pri4Score()
 			luaJM7AFMovie()
 			--luaJumpinMovieSetCurrentMovie("GoAround",Mission.Airfield3.ID)
 			--luaJM7AddAFMovie()
@@ -1189,6 +1210,7 @@ end
 
 function luaExpl(unit)
 	if not unit then return end
+	-- SetInvincible(unit, true)
 	local efxList = unit.efxList
 	local pos = ORIGO
 	pos.z = random(unit.Class.Length * 0.7) - unit.Class.Length * 0.35
@@ -1216,6 +1238,7 @@ function luaFireControlFail(carrier)
 	local unit = carrier.ParamTable.carrier
 	if not unit or unit.Dead then return end
 	luaExpl(unit)
+	unit.RunwayFailure = true
 	SetFailure(unit, "RunwayFailure")
 	local efxList = unit.efxList
 	-- Kill(unit, true)
@@ -1229,6 +1252,7 @@ function luaFireControlFail(carrier)
 		end
 		luaDelay(luaFireControlFail,luck*1.5,"carrier",unit)
 	end
+	MissionNarrativePlayer(0, unit.Name.." "..#efxList)
 end
 
 function luaFireControlSuccess(carrier)
@@ -1239,6 +1263,7 @@ function luaFireControlSuccess(carrier)
 	StopEffect(efxList[toStop].Pointer)
 	table.remove(efxList, toStop)
 	if #efxList == 0 then 
+		unit.RunwayFailure = false
 		ClearFailure(unit, "RunwayFailure")
 		unit.atFire = false
 		unit.enablehithint = true
@@ -1256,6 +1281,7 @@ function luaFireControlSuccess(carrier)
 		luaDelay(luaFireControlSuccess,20,"carrier",unit)
 	else luaDelay(luaFireControlFail,luck*1.5,"carrier",unit)
 	end
+	MissionNarrativePlayer(0, unit.Name.." "..#efxList)
 end
 
 function luaDitching(params)
@@ -1267,6 +1293,9 @@ function luaDitching(params)
 	SquadronSetTravelAlt(p, 0)
 	SquadronSetTravelSpeed(p, 0)
 	PilotStop(p)
+	if GetSelectedUnit() == p then
+		MissionNarrativePlayer(0, "squadron ditching "..p.Class.Name)
+	end
 	if luaHasFuel(p) then
 		luaDelay(luaDitching, 1, "sq", p, "burn", burn)
 	else
@@ -1275,9 +1304,11 @@ function luaDitching(params)
 	end
 end
 
-function luaIsLowFuel(plane)
+function luaIsLowFuel(plane, carrier)
 	if not plane.fuel then return false end
-	return plane.fuel <= 8.0
+	if not carrier then return plane.fuel <= 3000.0 end
+	if plane.fuel <= luaGetDistance(plane, carrier) + 10000 then return true end
+	return false
 end
 
 function luaHasFuel(plane)
@@ -1289,54 +1320,84 @@ function luaNearestLandingBase(plane, bases)
 end
 
 function luaLandable(carrier)
-	return carrier and not carrier.Dead and (carrier.Class.Type ~= "MotherShip" or not GetFailure(carrier, "RunwayFailure"))
+	return carrier and not carrier.Dead and (carrier.Class.Type ~= "MotherShip" or not carrier.RunwayFailure)
+end
+
+function burnStep(now, last)
+	return math.sqrt(math.pow(now.x-last.x, 2)+math.pow(now.z-last.z, 2)+math.pow(math.max(now.y-last.y,0), 3))
 end
 
 function luaFuel(params)
 	local p = params.ParamTable.sq
 	local burn = params.ParamTable.burn
 	local carrier = params.ParamTable.carrier
+	local last_loc = params.ParamTable.last_loc
 	if not p or p.Dead then return end
+	if not last_loc then last_loc = GetPosition(p) end
+	local curr_loc = GetPosition(p)
 	local fleet
 	if p.Party == PARTY_JAPANESE then fleet = luaRemoveDeadsFromTable({Mission.Akagi, Mission.Kaga, Mission.Hiryu, Mission.Soryu})
 	else fleet = luaRemoveDeadsFromTable({Mission.Yorktown, Mission.Enterprise, Mission.Hornet, Mission.Airfield1})
 	end
 	if p.burn_rate == nil then p.burn_rate = 1.0 end
-	p.fuel = p.fuel-burn*p.burn_rate
+	p.fuel = p.fuel-burnStep(curr_loc, last_loc)
+	-- MissionNarrativePlayer(0, "s4"..p.fuel.." ratio "..p.fuel/p.maxFuel*100)
+	-- p.fuel = p.fuel-burn*p.burn_rate
 	-- SetCheatTurbo(p,2)
-	if carrier and not p.sent then
+	if carrier and carrier.Class.Type == "MotherShip" and GetSquadronLanded(p) then
+		carrier.landingStack = carrier.landingStack - 1
+		return
+	end
+	if carrier and carrier.Class.Type == "MotherShip" and not p.sent then
 		if carrier.vulnerable == 0 and carrier.Party == PARTY_JAPANESE then
+			Effect("Recon", ORIGO, Mission.Akagi)
 			MissionNarrativePlayer(0, carrier.hithint..": launching")
 		end
 		carrier.vulnerable = carrier.vulnerable + 1
 		p.sent = true
 		luaDelay(luaPlaneSentSafe, 40, "carrier",carrier)
 	end
-	RemoveTrigger(p, "Reloader_"..tostring(p))
 	if not luaHasFuel(p) then
+		MissionNarrativePlayer(0, "Dit cuz no fuel")
 		luaDelay(luaDitching, 1, "sq", p, "burn", burn)
 		return
 	end
-	if luaIsLowFuel(p) and not luaLandable(carrier) then
+	if luaIsLowFuel(p, carrier) and (not luaLandable(carrier) or carrier.landingStack > 6) then
 		local possibles = {}
 		for _, mother in pairs(fleet) do
-			if luaLandable(mother) then table.insert(possibles, mother) end
+			if luaLandable(mother) and mother.landingStack < 4 then table.insert(possibles, mother) end
 		end
-		if not possibles then 
-			luaDelay(luaDitching, 1, "sq", p, "burn", burn)
-			return
+		if #possibles == 0 then 
+			MissionNarrativePlayer(0, "no carrier")
+			-- luaDelay(luaDitching, 1, "sq", p, "burn", burn)
+			-- return
+		else
+			local near = luaSortByDistance2(p, possibles, true)
+			MissionNarrativePlayer(0, "Landing from "..carrier.Name.." to "..near.Name)
+			if p.landing then p.landing.landingStack = p.landing.landingStack - 1 end
+			p.landing = near
+			-- PilotStop(p)
+			PilotLand(p,near)
+			-- p.burn_rate = 0.08
+			near.landingStack = near.landingStack + 1
+			carrier = near
 		end
-		local near = luaSortByDistance2(p, possibles, true)
-		p.landing = true
-		PilotLand(p,near)
-		p.burn_rate = 0.08
-		carrier = near
-	elseif not p.landing and (GetPlaneIsReloading(p) or p.fuel < 15.0) and carrier and not carrier.Dead and carrier.Class.Type == "MotherShip" then
-		p.landing = true
-		p.burn_rate = 0.08
+		-- p.signInLanding = false
+	elseif not p.landing and (GetPlaneIsReloading(p) or luaIsLowFuel(p, carrier)) and carrier and not carrier.Dead and carrier.Class.Type == "MotherShip" then
+		p.landing = carrier
+		-- p.burn_rate = 0.08
 		PilotLand(p,carrier)
+		carrier.landingStack = carrier.landingStack + 1
+		-- SquadronSetTravelAlt(p,1400)
+		-- PilotMoveTo(p,carrier)
+		-- if not p.signInLanding then 
+		-- 	p.signInLanding = true
+		-- 	table.insert(carrier.landingStack, p)
+		-- 	carrier.landingStack = luaSortByDistance2(carrier, luaRemoveDeadsFromTable(carrier.landingStack))
+		-- end
 	end
-	luaDelay(luaFuel, 1, "sq", p, "carrier", carrier, "burn", burn)
+	-- MissionNarrativePlayer(0, "s7")
+	luaDelay(luaFuel, 1, "sq", p, "carrier", carrier, "burn", burn, "last_loc", curr_loc)
 end
 
 function luaPlaneSentSafe(params)
@@ -1349,9 +1410,15 @@ function luaPlaneSentSafe(params)
 	end
 end
 
+function setInitFuel(p, f)
+	p.fuel = f
+	p.maxFuel = f
+end
+
 function luaBomberLanding(carrier)
 	if not carrier and show then MissionNarrativePlayer(0, "carrier vanished") end
 	if carrier and not carrier.Dead then
+		if math.floor(GameTime()) % 20 == 0 then MissionNarrativePlayer(0, carrier.Name.." "..#efxList) end
 		-- SetFailure(carrier, "RunwayFailure", 180)
 		-- SetFailure(carrier, "explosion", DAM_ENGINEROOM, 0, 100, 200, 154)
 		-- SetFailure(carrier, "EngineJam", 10)
@@ -1367,13 +1434,14 @@ function luaBomberLanding(carrier)
 		-- Effect("ExplosionBigShip", pos)
 		local _, sq = luaGetSlotsAndSquads(carrier)
 		local haveLanding = false
+		if not carrier.landingStack then carrier.landingStack = 0 end
 		carrier.landing_count = 0
 		if not carrier.backups then carrier.backups = 8 end
 		if sq then
 			for _,p in pairs(sq) do
 				-- SetCheatTurbo(p,5)
 				if p and not p.fuelCount then
-					p.fuel = 100.0
+					setInitFuel(p, 100000.0)
 					if carrier.Party == PARTY_JAPANESE then
 						if not Mission.JapPlanes then Mission.JapPlanes = {} end
 						table.insert(Mission.JapPlanes, p)
@@ -1383,7 +1451,8 @@ function luaBomberLanding(carrier)
 						end
 						if #sq > 4 then
 							carrier.backups = carrier.backups - 1
-							p.fuel = 30.0
+							p.fuel = 30000.0
+							p.maxFuel = 100000.0
 							if #sq == 5 then
 								MissionNarrativePlayer(0, carrier.hithint.." launching back up plane, "..carrier.backups.." left.")
 							end
@@ -1394,10 +1463,21 @@ function luaBomberLanding(carrier)
 					p.fuelCount = true
 				end
 				if p and p.landing then carrier.landing_count = carrier.landing_count + 1 end
-				if p and p.landing and not GetFailure(carrier,"RunwayFailure") then haveLanding = true end
+				if p and p.landing and not carrier.RunwayFailure then haveLanding = true end
 				-- if not GetPlaneIsReloading(p) then needReload = false break end
 			end
 		end
+		-- if carrier and not carrier.RunwayFailure then
+		-- 	for idx, landingRequest in pairs(carrier.landingStack) do
+		-- 		if landingRequest and not landingRequest.Dead and not GetSquadronLanded(landingRequest) then
+		-- 			if idx < 4 then
+		-- 				PilotLand(landingRequest, carrier)
+		-- 			else
+		-- 				PilotMoveTo(landingRequest, carrier)
+		-- 			end
+		-- 		end
+		-- 	end
+		-- end
 		-- SetAirBaseSlotCount(carrier, 4+carrier.landing_count)
 		if carrier.backups > 0 then
 			SetAirBaseSlotCount(carrier, 6)
@@ -1437,11 +1517,12 @@ function luaSeaPlaneManager(ship)
 				-- SetCheatTurbo(seaplane, 5)
 				-- Mission.Akagi.takeFire = true
 				-- if luaIsLowFuel(seaplane) then seaplane.flew = 2 end
-				if seaplane.fuel <= 15.0 then seaplane.flew = 2 end
+				-- if seaplane.fuel <= 15.0 then seaplane.flew = 2 end
+				if luaIsLowFuel(seaplane, ship) then seaplane.flew = 2 end
 			elseif seaplane.flew == 2 then
 				PilotMoveTo(seaplane, ship)
 				SquadronSetTravelAlt(seaplane, 1500)
-				seaplane.burn_rate = 0.08
+				-- seaplane.burn_rate = 0.08
 				local distance = math.sqrt(math.pow(GetPosition(seaplane).x-GetPosition(ship).x, 2)+math.pow(GetPosition(seaplane).z-GetPosition(ship).z, 2))
 				-- Mission.Akagi.takeFire = true
 				if distance < 500 then seaplane.flew = 3 end
@@ -1457,7 +1538,7 @@ function luaSeaPlaneManager(ship)
 				end
 			elseif GetEntitySpeed(seaplane) > 15 then 
 				seaplane.flew = 1
-				seaplane.fuel = 100.0
+				setInitFuel(seaplane, 180000.0)
 				local burn = random(14,16)/100
 				SquadronSetTravelAlt(seaplane, 1500)
 				PilotMoveTo(seaplane, ship)
@@ -2057,6 +2138,113 @@ function luaJM7IJNInvasionFleetSpawned(...)
 	luaJM7StartDialog("YamatoIn")
 end
 
+function luaJM7SpawnIJNHoshoFleet()
+	SpawnNew({
+	["party"] = PARTY_JAPANESE,
+	["groupMembers"] = {
+		{
+			["Type"] = 57,
+			["Name"] = "Hosho",
+			["Crew"] = Mission.SkillLevel,
+			["Race"] = Japan,
+			["NumSlots"] = 4,
+			["MaxInAirPlanes"] = 12,
+			["PlaneStock 1"] = {
+				["Type"] = 109,
+				["Count"] = 8,
+				["SquadLimit"] = 5,
+			},
+			["Slot 1"] = {
+				["Type"] = 109,
+				["Arm"] = 0,
+				["Count"] = 3,
+			},
+			["Class"] = "MotherShip",
+		},
+		{
+			["Type"] = 75,
+			["Name"] = "Yukaze",
+			["Crew"] = Mission.SkillLower,
+			["Race"] = Japan,
+			["Class"] = "Destroyer",
+		},
+		{
+			["Type"] = 86,
+			["Name"] = "Cargo2",
+			["Crew"] = 2,
+			["Race"] = Japan,
+		},
+		-- {
+		-- 	["Type"] = 86,
+		-- 	["Name"] = "Cargo3",
+		-- 	["Crew"] = 2,
+		-- 	["Race"] = Japan,
+		-- },
+		-- {
+		-- 	["Type"] = 86,
+		-- 	["Name"] = "Cargo4",
+		-- 	["Crew"] = 2,
+		-- 	["Race"] = Japan,
+		-- },
+	},
+	["area"] = {
+		["refPos"] = {["x"] = -25000, ["y"] = 0, ["z"] = 25000},
+		["angleRange"] = { luaJM7RAD(0), luaJM7RAD(180)},
+		["lookAt"] = GetPosition(Mission.Airfield1),
+	},
+	["excludeRadiusOverride"] = {
+		["ownHorizontal"] = 50,
+		["enemyHorizontal"] = 200,
+		["ownVertical"] = 75,
+		["enemyVertical"] = 150,
+		["formationHorizontal"] = 100,
+	},
+	["callback"] = "luaJM7IJNHoshoFleetSpawned",
+	["id"] = "Mission.IJNInvasionReq",
+	})
+end
+
+function luaJM7IJNHoshoFleetSpawned(...)
+	MissionNarrativePlayer(0, "Hosho has arrived")
+	for idx,unit in ipairs(arg) do
+		table.insert(Mission.IJNInvasionFleet, unit)
+		if unit.Class.Type == "Cargo" then
+			-- table.insert(Mission.IJNCargos, unit)
+		elseif unit.Class.Type == "BattleShip" then
+			-- Mission.Yamato = unit
+			-- SetShipMaxSpeed(Mission.Yamato, (Mission.Yamato.Class.MaxSpeed * 1.5))
+		elseif unit.Class.Type == "MotherShip" then
+			luaAddCVHitListener(unit)
+			Mission.Hosho = unit
+		end
+	end
+
+	for idx,unit in pairs(Mission.IJNInvasionFleet) do
+		-- SetRoleAvailable(unit, EROLF_ALL, PLAYER_AI)
+		if idx > 1 then
+			JoinFormation(unit, Mission.IJNInvasionFleet[1])
+		end
+	end
+
+
+	for idx, unit in pairs(Mission.IJNInvasionFleet) do
+		RepairEnable(unit, false)
+		SetGuiName(unit, Mission.IJNInvasionFleetNames[idx])
+	end
+
+	--luaJumpinMovieSetCurrentMovie("GoAround", Mission.IJNInvasionFleet[1].ID)
+	-- if not Mission.CheckpointLoaded then
+	-- 	luaJM7InvasionMovie()
+	-- end
+
+	-- NavigatorMoveToRange(Mission.IJNInvasionFleet[1], Mission.ShipyardLandingPoint)
+	-- Mission.InvasionStarted = math.floor(GameTime())
+
+	-- luaJM7StartDialog("JapInvFleetIn")
+	-- luaJM7StartDialog("YamatoIn")
+end
+
+
 function luaJM7CheckInvasionPart(unitTbl, nmiCmd)
 
 	--luaLog("luaJM7CheckInvasionPart called")
@@ -2285,14 +2473,32 @@ function antiAirFormation(fleet, center)
 	return poslist
 end
 
-function destroyerAntiSub(destroyer, subs)
+function destroyerAntiSub(params)
+	local destroyer = params.ParamTable.destroyer
+	local subs = luaRemoveDeadsFromTable(params.ParamTable.subs)
 	if not destroyer or destroyer.Dead then return end
-	for _,s in pairs(sub) do
+	luaDelay(destroyerAntiSub, 5, "destroyer",destroyer,"subs",subs)
+	if #subs == 0 then return end
+	if destroyer.AntiSub ~= nil then
+		if luaGetDistance(destroyer, destroyer.AntiSub) < 2500 then return end
+	end
+	local target, dist = luaSortByDistance2(destroyer,subs,true)
+	if dist < 2000 then
+		-- MissionNarrativePlayer(0, "iter2"..destroyer.Name)
+		destroyer.AntiSub = target
+		luaSetScriptTarget(destroyer, target)
+		NavigatorAttackMove(destroyer, target)
+	end
+end
 		
 
 function callbackSpawnUSNReinf(...)
 	if not Mission.reinf_ready then Mission.reinf_ready = {} end
 	table.insert(Mission.reinf_ready, arg[1])
+	if arg[1].Class.Type == "Destroyer" then
+		-- MissionNarrativePlayer(0, "new"..arg[1].Name)
+		luaDelay(destroyerAntiSub, 3, "destroyer",arg[1],"subs",{Mission.PlayerSub})
+	end
 	if #(Mission.reinf_ready) == Mission.reinf_total then
 		luaJM7USNReinfFleetSpawned(unpack(Mission.reinf_ready))
 	end
@@ -2318,7 +2524,7 @@ function luaJM7SpawnUSNReinf()
 	local rnd = (random(1,10)-1)*2+1
 	pos.x = possible_positions[rnd]
 	pos.z = possible_positions[rnd+1]
-	-- pos.x = pos.x + 5000
+	-- pos.x = pos.x - 7000
 	fleet = {
 		["party"] = PARTY_ALLIED,
 		["groupMembers"] = {
@@ -2490,7 +2696,7 @@ function luaJM7USNReinfFleetSpawned(...)
 
 	--NavigatorMoveOnPath(Mission.Hornet, FindEntity("USNReinfPath"), PATH_FM_CIRCLE, PATH_SM_JOIN)
 	NavigatorMoveOnPath(leader, FindEntity("USNReinfPath"), PATH_FM_CIRCLE, PATH_SM_JOIN)
-
+	-- luaJM7SpawnIJNHoshoFleet()
 end
 
 function luaAirfieldManager(airfield, fighterClassIDs, otherClassIDs, targetList, travelAlt, wingCount)
@@ -2775,10 +2981,24 @@ function luaAirfieldManager1(airfield, fighterClassIDs, otherClassIDs, targetLis
 		return
 	end
 	airfield.FighterCount = 0
+	airfield.CAP = 0
 	for index, unit in pairs (planeEntTable) do
 		unit.ammo = GetProperty(unit, "ammoType")
 		if unit.Class.Type == "Fighter" then
 			airfield.FighterCount = airfield.FighterCount + 1
+			if airfield.CAP > 0 then
+				for index1, unit1 in pairs (planeEntTable) do
+					ammo1 = GetProperty(unit1, "ammoType")
+					if luaGetDistance(unit, unit1) < 1000 and (ammo1 == AMMO_BOMB or ammo1 == AMMO_TORPEDO) then
+						PilotMoveTo(unit, unit1)
+					end
+				end
+			else
+				unit.CAP = true
+			end
+			if unit.CAP then
+				airfield.CAP = airfield.CAP + 1
+			end
 		-- RELEASE_LOGOFF  			luaHelperLog("Unit on patrol:"..unit.Name)
 		elseif ( UnitGetAttackTarget(unit) == nil ) and (unit.ammo ~= 0 or unit.Class.Type == "Kamikaze") then
 		-- RELEASE_LOGOFF  			luaHelperLog("Unit searching for new target:"..unit.Name)
@@ -2845,7 +3065,7 @@ function luaAirfieldManager1(airfield, fighterClassIDs, otherClassIDs, targetLis
 				-- PilotSetTarget(unit, currentTarget)
 				local alt = 1100
 				if unit.ammo == AMMO_TORPEDO then alt = 300 end
-				-- MissionNarrativePlayer(0, type(preferedTargets))
+				-- MissionNarrativePlayer(0, luaJM7GetUnits(nil, PARTY_JAPANESE)[1].Name)
 				luaDelay(luaPlaneManeuver, 1, "plane",unit,"trg",currentTarget,"attackAlt",alt,"attackAng",0,"distance",5000,"designated",preferedTargets,"skirmish",luaJM7GetUnits(nil, PARTY_JAPANESE))
 				if unit.ammo == AMMO_BOMB and travelAlt then
 					-- SetCheatTurbo(unit, 5)
@@ -2861,6 +3081,7 @@ function luaAirfieldManager1(airfield, fighterClassIDs, otherClassIDs, targetLis
 				local alt = 1100
 				if unit.ammo == AMMO_TORPEDO then alt = 300 end
 				-- MissionNarrativePlayer(0, type(filteredTargetList))
+				-- MissionNarrativePlayer(0, luaJM7GetUnits(nil, PARTY_JAPANESE)[1].Name)
 				luaDelay(luaPlaneManeuver, 1, "plane",unit,"trg",currentTarget,"attackAlt",alt,"attackAng",0,"distance",5000,"designated",filteredTargetList,"skirmish",luaJM7GetUnits(nil, PARTY_JAPANESE))
 				if unit.ammo == AMMO_BOMB and travelAlt then
 					-- SetCheatTurbo(unit, 2)
@@ -3028,10 +3249,10 @@ function luaJM7ScreenTargeting(screen,fleetNum)
 				end
 			else
 				if luaGetScriptTarget(unit) == nil or luaGetScriptTarget(unit).Dead then
-					if not IsInFormation(unit) then
-						if not CV1.Dead then
+					if not IsInFormation(unit) and (not unit.AntiSub or unit.AntiSub.Dead) then
+						if CV1 and not CV1.Dead then
 							JoinFormation(unit, CV1)
-						elseif not CV2 then
+						elseif CV2 and not CV2.Dead then
 							JoinFormation(unit, CV2)
 						end
 					end
@@ -3060,9 +3281,9 @@ function luaJM7ScreenTargeting(screen,fleetNum)
 			else
 				if luaGetScriptTarget(unit) == nil or luaGetScriptTarget(unit).Dead then
 					if not IsInFormation(unit) then
-						if not CV1.Dead then
+						if CV1 and not CV1.Dead then
 							JoinFormation(unit, CV1)
-						elseif not CV2.Dead then
+						elseif CV2 and not CV2.Dead then
 							JoinFormation(unit, CV2)
 						end
 					end
@@ -3297,24 +3518,8 @@ end
 
 ----
 function luaJM7ISPlayerInRecon()
-	-- local script = [[
-	-- Set Sound = CreateObject("WMPlayer.OCX.7")
-	-- Sound.URL = Wscript.Arguments(0)
-	-- Sound.Controls.play
-	-- do while Sound.currentmedia.duration = 0
-	-- 	wscript.sleep 100
-	-- loop
-	-- wscript.sleep Sound.currentmedia.duration*1000+100
-	-- ]]
-	-- local f = io.open("sound.vbs", "w")
-	-- f:write(script)
-	-- f:close()
-
-	-- local file = "wuuf.wav"
-	-- os.execute('wscript sound.vbs "'..file..'"')
-	-- Effect("Warning Dive DIVE Dive", ORIGO, Mission.Akagi)
-	-- os.execute("echo \a")
 	for idx,unitTbl in pairs(recon[PARTY_ALLIED].enemy) do
+		-- Effect("Warning Dive DIVE Dive", ORIGO, Mission.Akagi)
 		for idx2,unit in pairs(unitTbl) do
 			if unit and unit.Class.Type ~= "SmallReconPlane" then -- luaGetType(unit) == "ship" then
 				--Mission.PlayerSighted = true
@@ -3585,6 +3790,16 @@ function luaJM7Pri1Score()
 	luaJM7DisplayScore(1,line1,line2)
 end
 
+function luaJM7FuelScore()
+	Mission.SeletedFuel = GetSelectedUnit()
+	if not Mission.SeletedFuel.fuel then Mission.SqLaunched = 0
+	else Mission.SqLaunched = math.floor(Mission.SeletedFuel.fuel/Mission.SeletedFuel.maxFuel*100) end
+	local line1 = "Selected squadron"
+	local line2 = Mission.SqLaunched.."% of oil left"
+	luaJM7DisplayScore(4,line1,line2)
+	-- DisplayScores(4, 0,"Oil: "..math.floor(Mission.SeletedFuel.fuel).."% left","")
+end
+
 function luaJM7Pri2Score()
 	local line1 = "ijn07.obj_p2"
 	luaJM7DisplayScore(2,line1,"")
@@ -3595,6 +3810,13 @@ function luaJM7Pri3Score()
 	local line1 = "ijn07.obj_p3_onscreen"
 	local line2 = "ijn07.hint_5_desc"
 	luaJM7DisplayScore(3,line1,line2)
+end
+
+function luaJM7Pri4Score()
+	--Mission.CarriersSunk
+	-- local line1 = "ijn07.obj_p3_onscreen"
+	-- local line2 = "ijn07.hint_5_desc"
+	DisplayUnitHP({Mission.Akagi, Mission.Kaga, Mission.Soryu, Mission.Hiryu},"Kido Butai")
 end
 
 function luaJM7Sec1Score()
@@ -3903,7 +4125,7 @@ function luaJM7HangarHPOverride()
 	}
 
 	for idx,ent in pairs(ents) do
-		OverrideHP(ent, 2500)
+		OverrideHP(ent, 2300 + random(1,2000))
 	end
 end
 
@@ -4007,19 +4229,21 @@ function luaPlaneManeuver(params)
 	local designated = params.ParamTable.designated
 	local skirmish = params.ParamTable.skirmish
 	-- Kill(Mission.Akagi)
+	-- SetInvincible(Mission.Haruna, true)
 	if not plane or plane.Dead or not luaHasFuel(plane) or (plane.planed and attackAng == 0) or plane.landing then return end
-	if plane.hasTarget then
+	if plane.lockedUpTarget then
 		luaDelay(luaPlaneManeuver, 1, "plane",plane,"trg",trg,"attackAlt",attackAlt,"attackAng",deg,"distance",distance,"designated",designated, "skirmish",skirmish)
 		if not trg or trg.Dead then
-			plane.hasTarget = false
+			plane.lockedUpTarget = false
 		end
 		return
 	end
 	designated = luaRemoveDeadsFromTable(designated)
-	if #designated == 0 and Mission.Airfield3 and not Mission.Airfield3.Dead then PilotLand(plane, Mission.Airfield3) end
+	if #designated == 0 and Mission.Airfield3 and not Mission.Airfield3.Dead then PilotLand(plane, Mission.Airfield3) end --mission specific
 	if not trg or trg.Dead then trg = designated[1] end
 	plane.planed = true
-	if skirmish and not plane.hasTarget then
+	if skirmish then skirmish = luaRemoveDeadsFromTable(skirmish) end
+	if skirmish and #skirmish > 0 and not plane.lockedUpTarget then
 		new_skirmish = {}
 		for _, pot in pairs(skirmish) do
 			if pot and not pot.Dead and 
@@ -4030,11 +4254,14 @@ function luaPlaneManeuver(params)
 		end
 		local closestDesignated, closestd = luaSortByDistance2(plane, designated, true)
 		local closestSkirmish, closests = luaSortByDistance2(plane, new_skirmish, true)
-		if closests < 2500 and closestd > 5000 then
+		-- if closestSkirmish and math.floor(GameTime()) % 20 == 0 then MissionNarrativePlayer(0, "closestSkirmish"..closestSkirmish.Name) end
+		if closestSkirmish and not closestSkirmish.Dead and closests < 2000 and (#designated == 0 or closestd > 5000) then
 			trg = closestSkirmish
+			plane.lockedUpTarget = true
+			-- luaSetScriptTarget(plane, closestSkirmish)
+			PilotSetTarget(plane, trg)
 			luaDelay(luaPlaneManeuver, 1, "plane",plane,"trg",trg,"attackAlt",attackAlt,"attackAng",deg,"distance",distance,"designated",designated, "skirmish",skirmish)
-			plane.hasTarget = true
-			PilotSetTarget(plane, closestSkirmish)
+			-- if closestSkirmish and math.floor(GameTime()) % 3 == 0 then MissionNarrativePlayer(0, "in closestSkirmish"..closestSkirmish.Name) end
 			return
 		end
 	end
@@ -4053,7 +4280,7 @@ function luaPlaneManeuver(params)
 		enm.z = enm.z + inc_z
 		PilotMoveTo(plane, enm)
 		luaDelay(luaPlaneManeuver, 1, "plane",plane,"trg",trg,"attackAlt",attackAlt,"attackAng",deg,"distance",distance,"designated",designated, "skirmish",skirmish)
-	elseif dist < 3000 then
+	elseif dist < 4000 then
 		if not plane.lockedUpTarget then
 			plane.lockedUpTarget = true
 			local sel = GetPosition(plane)
@@ -4080,8 +4307,8 @@ function luaPlaneManeuver(params)
 				end
 			end
 			-- MissionNarrativePlayer(0, plane.Class.Name.." enter attack "..trg.Class.Name.." instead "..ori.Class.Name)
+			-- luaSetScriptTarget(plane, trg)
 			PilotSetTarget(plane, trg)
-			plane.hasTarget = true
 			luaDelay(luaPlaneManeuver, 1, "plane",plane,"trg",trg,"attackAlt",attackAlt,"attackAng",deg,"distance",distance,"designated",designated, "skirmish",skirmish)
 		end
 	else

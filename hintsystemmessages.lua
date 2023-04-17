@@ -2518,7 +2518,7 @@ HintSystemMessages = {
 				["id"] = "IJN07_Hint07",
 				["Title"] = "ijn07.hint_07_title",
 				["Type"] = "hints.gameplay_ijn07_hint",
-				["Description"] = "Convert from a battlecruiser, Akagi is an old but fast carrier, she carries 54 aircrafts. Akagi is the flagship of the Kido Butai and the First Carrier Fleet.",
+				["Description"] = "Converted from a battlecruiser, Akagi is an old but fast carrier, she carries 54 aircrafts and skillful pilots. Akagi is the flagship of the Kido Butai and the First Carrier Fleet.",
 				["critical"] = false,
 				["storingrule"] = "missionunique",
 				-- unique: 		only once in a player's life
@@ -2613,7 +2613,7 @@ HintSystemMessages = {
 				["id"] = "IJN07_Hint12",
 				["Title"] = "ijn07.hint_12_title",
 				["Type"] = "hints.gameplay_ijn07_hint",
-				["Description"] = "Level bombers usually create scary carpet bombing, but usually lack of accuracy due to their altitude.",
+				["Description"] = "Level bombers often create scary carpet bombing, but usually lack of accuracy due to their high altitude.",
 				["critical"] = false,
 				["storingrule"] = "missionunique",
 				-- unique: 		only once in a player's life
@@ -2670,7 +2670,7 @@ HintSystemMessages = {
 				["id"] = "IJN07_Hint15",
 				["Title"] = "ijn07.hint_15_title",
 				["Type"] = "hints.gameplay_ijn07_hint",
-				["Description"] = "Enemy attacks all focus on carriers. They seem ignoring your Kongo class battleships, prove them a mistake!",
+				["Description"] = "Enemy attacks highly focus on your carriers. They seem ignoring your battleships, prove them a mistake!",
 				["critical"] = false,
 				["storingrule"] = "missionunique",
 				-- unique: 		only once in a player's life

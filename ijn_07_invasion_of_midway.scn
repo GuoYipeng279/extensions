@@ -28228,6 +28228,81 @@ entity "Takao-class 02" (DestroyerGen) {
     Type = E ShipClasses : Tone  ;
   }
 }
+entity "Hosho" (MotherShipGen) {
+  localframe -0.6820 0.0000 -0.7314 0.0000 0.0000 1.0000 0.0000 0.0000 0.7314 0.0000 -0.6820 0.0000 -14328.4805 0.0002 15371.9131 1.0000 ;
+  template "Japan\SEA\Zuiho-class" ;
+
+  properties (Common, GameUnit, Ship, Command, MotherShipPlanes)  {
+    Hidden = B true ;
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    "PlaneStock 1" {
+      Count = E PlaneCount : 10  ;
+      SquadLimit = E MaxSquadSize : 5  ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "PlaneStock 2" {
+      Count = E PlaneCount : 18  ;
+      SquadLimit = E MaxSquadSize : 5  ;
+      Type = E PlaneClasses : Kate  ;
+    }
+    "PlaneStock 3" {
+      Count = E PlaneCount : 18  ;
+      SquadLimit = E MaxSquadSize : 5  ;
+      Type = E PlaneClasses : Val  ;
+    }
+    "PlaneStock 4" {
+      Count = E PlaneCount : 10  ;
+      SquadLimit = E MaxSquadSize : 5  ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    Race = E Races : Japan  ;
+    RepairZoneArea = R "" ;
+    SceneGroupNum = I 7 ;
+    "Slot 1" {
+      Count = E PlaneCount :" 3" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 2" {
+      Arm = E EquipmentIndex : 1  ;
+      Count = E PlaneCount :" 3" ;
+      Type = E PlaneClasses : Kate  ;
+    }
+    "Slot 3" {
+      Arm = E EquipmentIndex : 1  ;
+      Count = E PlaneCount :" 3" ;
+      Type = E PlaneClasses : Val  ;
+    }
+    "Slot 4" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 5" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 6" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 7" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    "Slot 8" {
+      Count = E PlaneCount :" 0" ;
+      Type = E PlaneClasses : Zero  ;
+    }
+    Type = E ShipClasses : Zuiho  ;
+  }
+}
 entity "Hiryu-class 01" (MotherShipGen) {
   localframe -0.6820 0.0000 -0.7314 0.0000 0.0000 1.0000 0.0000 0.0000 0.7314 0.0000 -0.6820 0.0000 -14328.4805 0.0002 15371.9131 1.0000 ;
   template "Japan\SEA\Hiryu-class" ;
@@ -28564,6 +28639,27 @@ entity "Japan Troop Transport 02" (DestroyerGen) {
     RepairZoneArea = R "" ;
     SceneGroupNum = I 8 ;
     Type = E ShipClasses : TroopTransJ  ;
+  }
+}
+entity "Yukaze" (DestroyerGen) {
+  localframe -0.6947 0.0000 -0.7193 0.0000 0.0000 1.0000 0.0000 0.0000 0.7193 0.0000 -0.6947 0.0000 -14786.0239 -0.0025 14767.1113 1.0000 ;
+  template "Japan\SEA\Minekaze-class" ;
+
+  properties (Common, GameUnit, Ship, Command)  {
+    Hidden = B true ;
+    "CamoColorGun" {
+    }
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    FireStance = E FireStances : FreeFire  ;
+    "MultiType" {
+    }
+    Party = E Party : Japanese  ;
+    Race = E Races : Japan  ;
+    RepairZoneArea = R "" ;
+    SceneGroupNum = I 7 ;
+    Type = E ShipClasses : Minekaze  ;
   }
 }
 entity "Fubuki-class 11" (DestroyerGen) {
@@ -29162,6 +29258,24 @@ entity "PBY Catalina 01" (PlaneSquadronGen) {
     Race = E Races : USA  ;
     SubType = E UnitCategories : Reconplane  ;
     Type = E PlaneClasses : Catalina  ;
+    Velocity = F 400.0000 ;
+  }
+}
+entity "Swordfish 01" (PlaneSquadronGen) {
+  localframe 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 -13026.0300 800.0000 15057.9600 1.0000 ;
+  template "USA\AIR\Swordfish" ;
+
+  properties (Common, GameUnit, PlaneSquadronWNavpoint, Command)  {
+    Hidden = B true ;
+    "Command" {
+      CommandTarget = R "" ;
+    }
+    HomeBase = R "" ;
+    "MultiType" {
+    }
+    Race = E Races : USA  ;
+    SubType = E UnitCategories : Reconplane  ;
+    Type = E PlaneClasses : Swordfish  ;
     Velocity = F 400.0000 ;
   }
 }
