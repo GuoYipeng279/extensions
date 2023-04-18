@@ -1160,6 +1160,7 @@ function luaJM7CarrierObj()
 end
 
 function luaAddCVHitListener(carrier, name)
+	-- luaDoCustomLog("debug.txt", {"luaAddCVHitListener",carrier, name}, "a")
 	carrier.efxList = {}
 	carrier.hithint = name
 	carrier.enablehithint = true
@@ -1187,6 +1188,7 @@ function luaCVHit1(target, targetDevice, attacker, attackType, attackerPlayerInd
 	-- 	Kill(Mission.Akagi, true) return
 	-- end
 	-- Kill(Mission.Hiryu, true)
+	-- luaDoCustomLog("debug.txt", {"luaCVHit1", target, targetDevice, attacker, attackType, attackerPlayerIndex, damageCaused, fireCaused, leakCaused}, "a")
 	local threshold = math.pow(damageCaused/300, 0.5) * 100
 	local rnd = random(1,100)
 	ShowHint("IJN07_Hint15")
@@ -1209,6 +1211,7 @@ function luaCVHit1(target, targetDevice, attacker, attackType, attackerPlayerInd
 end
 
 function luaExpl(unit)
+	-- luaDoCustomLog("debug.txt", {"luaExpl", unit}, "a")
 	if not unit then return end
 	-- SetInvincible(unit, true)
 	local efxList = unit.efxList
@@ -1235,6 +1238,7 @@ function luaExpl(unit)
 end
 
 function luaFireControlFail(carrier)
+	-- luaDoCustomLog("debug.txt", {"luaFireControlFail", carrier}, "a")
 	local unit = carrier.ParamTable.carrier
 	if not unit or unit.Dead then return end
 	luaExpl(unit)
@@ -1256,6 +1260,7 @@ function luaFireControlFail(carrier)
 end
 
 function luaFireControlSuccess(carrier)
+	-- luaDoCustomLog("debug.txt", {"luaFireControlSuccess", carrier}, "a")
 	local unit = carrier.ParamTable.carrier
 	if not unit or unit.Dead then return end
 	local efxList = unit.efxList
@@ -1285,6 +1290,8 @@ function luaFireControlSuccess(carrier)
 end
 
 function luaDitching(params)
+	-- luaDoCustomLog("debug.txt", {"luaDitching"}, "a")
+	-- luaDoCustomLog("debug.txt", params.ParamTable, "a")
 	local p = params.ParamTable.sq
 	local burn = params.ParamTable.burn
 	if not p or p.Dead then return end
@@ -1328,6 +1335,8 @@ function burnStep(now, last)
 end
 
 function luaFuel(params)
+	-- luaDoCustomLog("debug.txt", {"luaFuel"}, "a")
+	-- -- luaDoCustomLog("debug.txt", params.ParamTable, "a")
 	local p = params.ParamTable.sq
 	local burn = params.ParamTable.burn
 	local carrier = params.ParamTable.carrier
@@ -1401,6 +1410,8 @@ function luaFuel(params)
 end
 
 function luaPlaneSentSafe(params)
+	-- luaDoCustomLog("debug.txt", {"luaPlaneSentSafe"}, "a")
+	-- luaDoCustomLog("debug.txt", params.ParamTable, "a")
 	local carrier = params.ParamTable.carrier
 	if carrier and carrier.vulnerable > 0 then
 		carrier.vulnerable = carrier.vulnerable - 1
@@ -1416,6 +1427,7 @@ function setInitFuel(p, f)
 end
 
 function luaBomberLanding(carrier)
+	-- luaDoCustomLog("debug.txt", {"luaBomberLanding",carrier}, "a")
 	if not carrier and show then MissionNarrativePlayer(0, "carrier vanished") end
 	if carrier and not carrier.Dead then
 		if math.floor(GameTime()) % 20 == 0 then MissionNarrativePlayer(0, carrier.Name.." "..#efxList) end
@@ -1492,6 +1504,8 @@ function luaBomberLanding(carrier)
 end
 
 function luaRecoverSeaplane(params)
+	-- luaDoCustomLog("debug.txt", {"luaRecoverSeaplane"}, "a")
+	-- luaDoCustomLog("debug.txt", params.ParamTable, "a")
 	local seaplane = params.ParamTable.seaplane
 	local ship = params.ParamTable.ship
 	if seaplane and not seaplane.Dead and GetEntitySpeed(seaplane) < 20 then
@@ -1501,6 +1515,7 @@ function luaRecoverSeaplane(params)
 end
 
 function luaSeaPlaneManager(ship)
+	-- luaDoCustomLog("debug.txt", {"luaSeaPlaneManager",ship}, "a")
 	if ship and not ship.Dead then
 		if not ship.SeaPlanes then ship.SeaPlanes = {} end
 		local seaplane = GetLastCatapulted(ship)
@@ -1875,6 +1890,7 @@ end
 
 ---USNCarrierFleet1
 function luaJM7CheckUSNCarrierFleet1()
+	-- luaDoCustomLog("debug.txt", {"luaJM7CheckUSNCarrierFleet1"}, "a")
 	if Mission.Fleet1CarriersDead or not Mission.Fleet1Ready then
 		return
 	end
@@ -4374,7 +4390,10 @@ function luaJM7AF_Think(this, msg)
 			end
 			if squadTable then
 				for _, sq in pairs(squadTable) do
-					luaDelay(luaFuel, 1, "sq", sq, "carrier", Mission.Airfield1, "burn", random(12,14)/100)
+					if sq and not sq.fuelCount then
+						luaDelay(luaFuel, 1, "sq", sq, "carrier", Mission.Airfield1, "burn", random(12,14)/100)
+						sq.fuelCount = true
+					end
 				end
 				Mission.AirPatrol = luaAirPatrol(Mission.Airfield1, 1500, 3000, squadTable, Mission.AirPatrol)
 			end
@@ -4429,7 +4448,10 @@ function luaJM7AF_Think(this, msg)
 						--lualog("-------------")
 						--lualog(squadron)
 						local ammo = GetProperty(squadron, "ammoType")
-						luaDelay(luaFuel, 1, "sq", squadron, "carrier", Mission.Airfield2, "burn", random(12,14)/100)
+						if squadron and not squadron.fuelCount then
+							luaDelay(luaFuel, 1, "sq", squadron, "carrier", Mission.Airfield2, "burn", random(12,14)/100)
+							squadron.fuelCount = true
+						end
 						if ammo ~= 0 then
 							luaDelay(luaPlaneManeuver, 1, "plane",squadron,"trg",trg,"attackAlt",1500,"attackAng",0,"distance",5000,"designated",targetList)
 							-- luaSetScriptTarget(squadron, trg)
@@ -4506,7 +4528,10 @@ function luaJM7AF_Think(this, msg)
 						--lualog("-------------")
 						--lualog(squadron)
 						local ammo = GetProperty(squadron, "ammoType")
-						luaDelay(luaFuel, 1, "sq", squadron, "carrier", Mission.Airfield3, "burn", random(12,14)/100)
+						if squadron and not squadron.fuelCount then
+							luaDelay(luaFuel, 1, "sq", squadron, "carrier", Mission.Airfield3, "burn", random(12,14)/100)
+							squadron.fuelCount = true
+						end
 						if ammo ~= 0 then
 							luaDelay(luaPlaneManeuver, 1, "plane",squadron,"trg",trg,"attackAlt",1500,"attackAng",0,"distance",5000,"designated",targetList)
 							-- luaSetScriptTarget(squadron, trg)
