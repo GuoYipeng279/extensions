@@ -797,7 +797,7 @@ function luaJM7CheckObjectives()
 
 		local danger = 0
 		for _, carrier in pairs({Mission.Akagi, Mission.Soryu, Mission.Kaga, Mission.Hiryu}) do
-			if carrier.RunwayFailure and carrier.efxList and #(carrier.efxList) >= 2 then
+			if carrier.Dead or carrier.RunwayFailure and carrier.efxList and #(carrier.efxList) >= 2 then
 				danger = danger + 1
 			end
 		end
@@ -805,7 +805,7 @@ function luaJM7CheckObjectives()
 		if danger >= 3 and not Mission.StartHosho then
 			MissionNarrativePlayer(0, "Hosho is on her way")
 			Mission.StartHosho = true
-			luaDelay(luaJM7SpawnIJNHoshoFleet, random(300, 600))
+			luaDelay(luaJM7SpawnIJNHoshoFleet, random(200, 300))
 		end
 
 		if not luaObj_IsActive("hidden", 1) then
@@ -981,13 +981,14 @@ function luaJM7CheckObjectives()
 		end
 
 	elseif Mission.MissionPhase == 99 then
-
+		local killCheckList = {Mission.Yorktown, Mission.Hornet, Mission.Enterprise, Mission.Akagi, Mission.Kaga, Mission.Soryu, Mission.Hiryu, Mission.Haruna, Mission.Kirishima}
 		if Mission.MissionFailed then
 			if Mission.LastUnit then
 				luaMissionFailedNew(Mission.LastUnit, Mission.FailMsg)
 			else
 				luaMissionFailedNew(Mission.CommandBuilding1, Mission.FailMsg)
 			end
+			killList(killCheckList)
 			luaJM7StepPhase()
 
 		elseif Mission.MissionCompleted then
@@ -996,12 +997,25 @@ function luaJM7CheckObjectives()
 				luaObj_Completed("secondary",3)
 			end
 			luaJM7StartDialog("Outro")
+			killList(killCheckList)
 			luaDelay(luaJM7CompleteMission,20)
 			luaJM7StepPhase()
 		end
 
 	end
 
+end
+
+function killList(list)
+	for _, dead in pairs(list) do
+		if dead and dead.Dead then
+			if not dead.lastAttacker then
+				MissionNarrativePlayer(0, GetGuiName(dead).." scuttled")
+			else
+				MissionNarrativePlayer(0, dead.lastAttacker.." sunk "..GetGuiName(dead))
+			end
+		end
+	end
 end
 
 function luaAddPilotKillListener()
@@ -1160,7 +1174,7 @@ function luaJM7CarrierObj()
 end
 
 function luaAddCVHitListener(carrier, name)
-	-- luaDoCustomLog("debug.txt", {"luaAddCVHitListener",carrier, name}, "a")
+	luaDoCustomLog("debug.txt", {"luaAddCVHitListener",carrier, name}, "a")
 	carrier.efxList = {}
 	carrier.hithint = name
 	carrier.enablehithint = true
@@ -1181,14 +1195,11 @@ function luaAddCVHitListener(carrier, name)
 end
 
 function luaCVHit1(target, targetDevice, attacker, attackType, attackerPlayerIndex, damageCaused, fireCaused, leakCaused)
-	-- luaLog(damageCaused)
-	-- AddDamage(Mission.Akagi, damageCaused*10)
-	-- if damageCaused == 0 then 
-	-- 	-- AddDamage(Mission.Akagi, damageCaused)
-	-- 	Kill(Mission.Akagi, true) return
-	-- end
-	-- Kill(Mission.Hiryu, true)
-	-- luaDoCustomLog("debug.txt", {"luaCVHit1", target, targetDevice, attacker, attackType, attackerPlayerIndex, damageCaused, fireCaused, leakCaused}, "a")
+	-- MissionNarrativePlayer(0, GetGuiName(target)..GetGuiName(attacker))
+	target.lastAttacker = GetGuiName(attacker)
+	if attacker.from then target.lastAttacker = GetGuiName(attacker.from) end
+
+	luaDoCustomLog("debug.txt", {"luaCVHit1", target, targetDevice, attacker, attackType, attackerPlayerIndex, damageCaused, fireCaused, leakCaused}, "a")
 	local threshold = math.pow(damageCaused/300, 0.5) * 100
 	local rnd = random(1,100)
 	ShowHint("IJN07_Hint15")
@@ -1208,10 +1219,11 @@ function luaCVHit1(target, targetDevice, attacker, attackType, attackerPlayerInd
 			target.enablehithint = false
 		end
 	end
+	luaDoCustomLog("debug.txt", {"luaCVHit1End"}, "a")
 end
 
 function luaExpl(unit)
-	-- luaDoCustomLog("debug.txt", {"luaExpl", unit}, "a")
+	luaDoCustomLog("debug.txt", {"luaExpl", unit}, "a")
 	if not unit then return end
 	-- SetInvincible(unit, true)
 	local efxList = unit.efxList
@@ -1235,10 +1247,11 @@ function luaExpl(unit)
 	end
 	-- MissionNarrativePlayer(0, tostring(efx.big))
 	table.insert(efxList, efx)
+	luaDoCustomLog("debug.txt", {"luaExplEnd"}, "a")
 end
 
 function luaFireControlFail(carrier)
-	-- luaDoCustomLog("debug.txt", {"luaFireControlFail", carrier}, "a")
+	luaDoCustomLog("debug.txt", {"luaFireControlFail", carrier}, "a")
 	local unit = carrier.ParamTable.carrier
 	if not unit or unit.Dead then return end
 	luaExpl(unit)
@@ -1257,10 +1270,11 @@ function luaFireControlFail(carrier)
 		luaDelay(luaFireControlFail,luck*1.5,"carrier",unit)
 	end
 	MissionNarrativePlayer(0, unit.Name.." "..#efxList)
+	luaDoCustomLog("debug.txt", {"luaFireControlFailEnd"}, "a")
 end
 
 function luaFireControlSuccess(carrier)
-	-- luaDoCustomLog("debug.txt", {"luaFireControlSuccess", carrier}, "a")
+	luaDoCustomLog("debug.txt", {"luaFireControlSuccess", carrier}, "a")
 	local unit = carrier.ParamTable.carrier
 	if not unit or unit.Dead then return end
 	local efxList = unit.efxList
@@ -1287,14 +1301,14 @@ function luaFireControlSuccess(carrier)
 	else luaDelay(luaFireControlFail,luck*1.5,"carrier",unit)
 	end
 	MissionNarrativePlayer(0, unit.Name.." "..#efxList)
+	luaDoCustomLog("debug.txt", {"luaFireControlSuccessEnd"}, "a")
 end
 
 function luaDitching(params)
-	-- luaDoCustomLog("debug.txt", {"luaDitching"}, "a")
-	-- luaDoCustomLog("debug.txt", params.ParamTable, "a")
 	local p = params.ParamTable.sq
 	local burn = params.ParamTable.burn
 	if not p or p.Dead then return end
+	luaDoCustomLog("debug.txt", {"luaDitching"..p.Name}, "a")
 	p.burn_rate = 1.0
 	p.fuel = p.fuel-burn*p.burn_rate
 	SquadronSetTravelAlt(p, 0)
@@ -1309,11 +1323,12 @@ function luaDitching(params)
 		MissionNarrativePlayer(0, "squadron ditched "..p.Class.Name)
 		Kill(p)
 	end
+	luaDoCustomLog("debug.txt", {"luaDitchingEnd"}, "a")
 end
 
 function luaIsLowFuel(plane, carrier)
 	if not plane.fuel then return false end
-	if not carrier then return plane.fuel <= 3000.0 end
+	if not carrier or carrier.Dead then return plane.fuel <= 3000.0 end
 	if plane.fuel <= luaGetDistance(plane, carrier) + 10000 then return true end
 	return false
 end
@@ -1334,14 +1349,20 @@ function burnStep(now, last)
 	return math.sqrt(math.pow(now.x-last.x, 2)+math.pow(now.z-last.z, 2)+math.pow(math.max(now.y-last.y,0), 3))
 end
 
+function reloadingTag3sec(params)
+	local p = params.ParamTable.sq
+	if p and not p.Dead then
+		p.reloadingTag = true
+	end
+end
+
 function luaFuel(params)
-	-- luaDoCustomLog("debug.txt", {"luaFuel"}, "a")
-	-- -- luaDoCustomLog("debug.txt", params.ParamTable, "a")
 	local p = params.ParamTable.sq
 	local burn = params.ParamTable.burn
 	local carrier = params.ParamTable.carrier
 	local last_loc = params.ParamTable.last_loc
 	if not p or p.Dead then return end
+	if GetPlaneIsReloading(p) then luaDelay(reloadingTag3sec, 3, "sq", p) end
 	if not last_loc then last_loc = GetPosition(p) end
 	local curr_loc = GetPosition(p)
 	local fleet
@@ -1350,25 +1371,34 @@ function luaFuel(params)
 	end
 	if p.burn_rate == nil then p.burn_rate = 1.0 end
 	p.fuel = p.fuel-burnStep(curr_loc, last_loc)
+	luaDoCustomLog("debug.txt", {"luaFuel "..p.fuel.." "..p.Name}, "a")
 	-- MissionNarrativePlayer(0, "s4"..p.fuel.." ratio "..p.fuel/p.maxFuel*100)
 	-- p.fuel = p.fuel-burn*p.burn_rate
 	-- SetCheatTurbo(p,2)
-	if carrier and carrier.Class.Type == "MotherShip" and GetSquadronLanded(p) then
-		carrier.landingStack = carrier.landingStack - 1
+	if p.landing and carrier and carrier.Class.Type ~= "MotherShip" then
+		luaDelay(luaFuel, 1, "sq", p, "carrier", carrier, "burn", burn, "last_loc", curr_loc)
+		luaDoCustomLog("debug.txt", {"luaFuel End1"..p.fuel.." "..p.Name}, "a")
 		return
 	end
+	if carrier and carrier.Class.Type == "MotherShip" and GetSquadronLanded(p) then
+		carrier.landingStack = carrier.landingStack - 1
+		luaDoCustomLog("debug.txt", {"luaFuel End2"..p.fuel.." "..p.Name}, "a")
+		return
+	end
+	if carrier and not p.sent then p.from = carrier end
 	if carrier and carrier.Class.Type == "MotherShip" and not p.sent then
 		if carrier.vulnerable == 0 and carrier.Party == PARTY_JAPANESE then
 			Effect("Recon", ORIGO, Mission.Akagi)
 			MissionNarrativePlayer(0, carrier.hithint..": launching")
 		end
 		carrier.vulnerable = carrier.vulnerable + 1
-		p.sent = true
 		luaDelay(luaPlaneSentSafe, 40, "carrier",carrier)
 	end
+	p.sent = true
 	if not luaHasFuel(p) then
 		MissionNarrativePlayer(0, "Dit cuz no fuel")
 		luaDelay(luaDitching, 1, "sq", p, "burn", burn)
+		luaDoCustomLog("debug.txt", {"luaFuel End3"..p.fuel.." "..p.Name}, "a")
 		return
 	end
 	if luaIsLowFuel(p, carrier) and (not luaLandable(carrier) or carrier.landingStack > 6) then
@@ -1392,7 +1422,7 @@ function luaFuel(params)
 			carrier = near
 		end
 		-- p.signInLanding = false
-	elseif not p.landing and (GetPlaneIsReloading(p) or luaIsLowFuel(p, carrier)) and carrier and not carrier.Dead and carrier.Class.Type == "MotherShip" then
+	elseif not p.landing and (p.reloadingTag or luaIsLowFuel(p, carrier)) and carrier and not carrier.Dead and carrier.Class.Type == "MotherShip" then
 		p.landing = carrier
 		-- p.burn_rate = 0.08
 		PilotLand(p,carrier)
@@ -1407,11 +1437,12 @@ function luaFuel(params)
 	end
 	-- MissionNarrativePlayer(0, "s7")
 	luaDelay(luaFuel, 1, "sq", p, "carrier", carrier, "burn", burn, "last_loc", curr_loc)
+	luaDoCustomLog("debug.txt", {"luaFuel End4"..p.fuel.." "..p.Name}, "a")
 end
 
 function luaPlaneSentSafe(params)
-	-- luaDoCustomLog("debug.txt", {"luaPlaneSentSafe"}, "a")
-	-- luaDoCustomLog("debug.txt", params.ParamTable, "a")
+	luaDoCustomLog("debug.txt", {"luaPlaneSentSafe"}, "a")
+	luaDoCustomLog("debug.txt", params.ParamTable, "a")
 	local carrier = params.ParamTable.carrier
 	if carrier and carrier.vulnerable > 0 then
 		carrier.vulnerable = carrier.vulnerable - 1
@@ -1419,6 +1450,7 @@ function luaPlaneSentSafe(params)
 			MissionNarrativePlayer(0, carrier.hithint.." reporting flight deck clear.")
 		end
 	end
+	luaDoCustomLog("debug.txt", {"luaPlaneSentSafeEnd"}, "a")
 end
 
 function setInitFuel(p, f)
@@ -1427,8 +1459,7 @@ function setInitFuel(p, f)
 end
 
 function luaBomberLanding(carrier)
-	-- luaDoCustomLog("debug.txt", {"luaBomberLanding",carrier}, "a")
-	if not carrier and show then MissionNarrativePlayer(0, "carrier vanished") end
+	luaDoCustomLog("debug.txt", {"luaBomberLanding",carrier}, "a")
 	if carrier and not carrier.Dead then
 		if math.floor(GameTime()) % 20 == 0 then MissionNarrativePlayer(0, carrier.Name.." "..#efxList) end
 		-- SetFailure(carrier, "RunwayFailure", 180)
@@ -1453,7 +1484,10 @@ function luaBomberLanding(carrier)
 			for _,p in pairs(sq) do
 				-- SetCheatTurbo(p,5)
 				if p and not p.fuelCount then
-					setInitFuel(p, 100000.0)
+					if not carrier.defaultRange then
+						carrier.defaultRange = 100000.0
+					end
+					setInitFuel(p, carrier.defaultRange)
 					if carrier.Party == PARTY_JAPANESE then
 						if not Mission.JapPlanes then Mission.JapPlanes = {} end
 						table.insert(Mission.JapPlanes, p)
@@ -1471,8 +1505,8 @@ function luaBomberLanding(carrier)
 						end
 					end
 					local burn = random(14,16)/100
-					luaDelay(luaFuel, 1, "sq", p, "carrier", carrier, "burn", burn)
 					p.fuelCount = true
+					luaDelay(luaFuel, 1, "sq", p, "carrier", carrier, "burn", burn)
 				end
 				if p and p.landing then carrier.landing_count = carrier.landing_count + 1 end
 				if p and p.landing and not carrier.RunwayFailure then haveLanding = true end
@@ -1501,11 +1535,12 @@ function luaBomberLanding(carrier)
 		local checkHp = GetHpPercentage(carrier)
 		SetShipMaxSpeed(carrier, math.min(speedLimit, math.max(math.min(checkHp+0.3,1.0), 0.3) * carrier.Class.MaxSpeed))
 	end
+	luaDoCustomLog("debug.txt", {"luaBomberLandingEnd",carrier}, "a")
 end
 
 function luaRecoverSeaplane(params)
-	-- luaDoCustomLog("debug.txt", {"luaRecoverSeaplane"}, "a")
-	-- luaDoCustomLog("debug.txt", params.ParamTable, "a")
+	luaDoCustomLog("debug.txt", {"luaRecoverSeaplane"}, "a")
+	luaDoCustomLog("debug.txt", params.ParamTable, "a")
 	local seaplane = params.ParamTable.seaplane
 	local ship = params.ParamTable.ship
 	if seaplane and not seaplane.Dead and GetEntitySpeed(seaplane) < 20 then
@@ -1515,8 +1550,8 @@ function luaRecoverSeaplane(params)
 end
 
 function luaSeaPlaneManager(ship)
-	-- luaDoCustomLog("debug.txt", {"luaSeaPlaneManager",ship}, "a")
 	if ship and not ship.Dead then
+		luaDoCustomLog("debug.txt", {"luaSeaPlaneManager",ship.Name}, "a")
 		if not ship.SeaPlanes then ship.SeaPlanes = {} end
 		local seaplane = GetLastCatapulted(ship)
 		if #ship.SeaPlanes == 0 or seaplane ~= ship.SeaPlanes[#ship.SeaPlanes] then
@@ -1534,7 +1569,13 @@ function luaSeaPlaneManager(ship)
 				-- if luaIsLowFuel(seaplane) then seaplane.flew = 2 end
 				-- if seaplane.fuel <= 15.0 then seaplane.flew = 2 end
 				if luaIsLowFuel(seaplane, ship) then seaplane.flew = 2 end
+				if GetEntitySpeed(seaplane) < 13 and luaGetDistance(seaplane, ship) < 500 then
+					PilotStop(seaplane)
+					luaDelay(luaRecoverSeaplane, 5, "seaplane", seaplane, "ship", ship)
+					-- seaplane.flew = 4
+				end
 			elseif seaplane.flew == 2 then
+				seaplane.landing = ship
 				PilotMoveTo(seaplane, ship)
 				SquadronSetTravelAlt(seaplane, 1500)
 				-- seaplane.burn_rate = 0.08
@@ -1553,14 +1594,19 @@ function luaSeaPlaneManager(ship)
 				end
 			elseif GetEntitySpeed(seaplane) > 15 then 
 				seaplane.flew = 1
-				setInitFuel(seaplane, 180000.0)
+				if not ship.defaultRange then
+					ship.defaultRange = 180000.0
+				end
+				setInitFuel(seaplane, ship.defaultRange)
 				local burn = random(14,16)/100
 				SquadronSetTravelAlt(seaplane, 1500)
 				PilotMoveTo(seaplane, ship)
 				luaDelay(luaFuel, 1, "sq", seaplane, "carrier", ship, "burn", burn)
 			end
+			-- luaDoCustomLog("debug.txt", {"luaSeaPlaneManager1 "..seaplane.fuel.." "..seaplane.flew}, "a")
 		-- PilotSetTarget(seaplane, ship)
 		end
+		luaDoCustomLog("debug.txt", {"luaSeaPlaneManagerEnd",ship.Name}, "a")
 	end
 end
 
@@ -1890,7 +1936,7 @@ end
 
 ---USNCarrierFleet1
 function luaJM7CheckUSNCarrierFleet1()
-	-- luaDoCustomLog("debug.txt", {"luaJM7CheckUSNCarrierFleet1"}, "a")
+	luaDoCustomLog("debug.txt", {"luaJM7CheckUSNCarrierFleet1"}, "a")
 	if Mission.Fleet1CarriersDead or not Mission.Fleet1Ready then
 		return
 	end
@@ -2232,6 +2278,7 @@ function luaJM7IJNHoshoFleetSpawned(...)
 		elseif unit.Class.Type == "MotherShip" then
 			luaAddCVHitListener(unit)
 			Mission.Hosho = unit
+			Mission.Hosho.defaultRange = 70000.0
 		end
 	end
 
@@ -2540,7 +2587,7 @@ function luaJM7SpawnUSNReinf()
 	local rnd = (random(1,10)-1)*2+1
 	pos.x = possible_positions[rnd]
 	pos.z = possible_positions[rnd+1]
-	-- pos.x = pos.x - 7000
+	-- pos.x = pos.x - 6000
 	fleet = {
 		["party"] = PARTY_ALLIED,
 		["groupMembers"] = {
@@ -2660,6 +2707,8 @@ function luaJM7SpawnUSNReinf()
 end
 
 function luaJM7USNReinfFleetSpawned(...)
+	luaDoCustomLog("debug.txt", {"luaJM7USNReinfFleetSpawned"}, "a")
+	-- this function is called repetitively
 	local leader
 	for idx,unit in ipairs(arg) do
 		-- SetSkillLevel(unit, Mission.SkillLevel)
@@ -2711,8 +2760,103 @@ function luaJM7USNReinfFleetSpawned(...)
 	-- if true then return end
 
 	--NavigatorMoveOnPath(Mission.Hornet, FindEntity("USNReinfPath"), PATH_FM_CIRCLE, PATH_SM_JOIN)
-	NavigatorMoveOnPath(leader, FindEntity("USNReinfPath"), PATH_FM_CIRCLE, PATH_SM_JOIN)
+	-- NavigatorMoveOnPath(leader, FindEntity("USNReinfPath"), PATH_FM_CIRCLE, PATH_SM_JOIN)
+	local defaults = {FindEntity("USNReinfPath"), PATH_FM_CIRCLE, PATH_SM_JOIN}
+	local points = {{{10000,10000},{15000,15000},{20000,20000}},
+		{{-10000,10000},{-15000,15000},{-20000,20000}},
+		{{-10000,-10000},{-15000,-15000},{-20000,-20000}},
+		{{10000,-10000},{15000,-15000},{20000,-20000}}}
+	MissionNarrativePlayer(0, "s0")
+	luaDelay(strategicPath, 1, "fleet", Mission.USNReinforcements,"like",{Mission.Akagi, Mission.Kaga, Mission.Soryu, Mission.Hiryu}, "dislike", {Mission.Haruna, Mission.Kirishima}, "defaults", defaults, "points", points, "call", 0)
 	-- luaJM7SpawnIJNHoshoFleet()
+end
+
+function strategicPath(params)
+	if not Mission.strategicPathCall then Mission.strategicPathCall = 0  end
+	if params.ParamTable.call ~= Mission.strategicPathCall then return end -- It is crazy, idk why it is replicating!!!!!
+	Mission.strategicPathCall = Mission.strategicPathCall + 1
+	luaDoCustomLog("debug.txt", {"strategicPath "..Mission.strategicPathCall.." call from "..params.ParamTable.call}, "a")
+	local fleet = params.ParamTable.fleet
+	local like = params.ParamTable.like
+	local dislike = params.ParamTable.dislike
+	local defaults = params.ParamTable.defaults
+	local points = params.ParamTable.points
+	if fleet then fleet = luaRemoveDeadsFromTable(fleet) end
+	if like then like = luaRemoveDeadsFromTable(like) end
+	if dislike then dislike = luaRemoveDeadsFromTable(dislike) end
+	if #fleet == 0 then return end
+	local leader = fleet[1]
+	luaDelay(strategicPath, 5, "fleet", fleet, "like",like, "dislike", dislike, "defaults", defaults, "points", points, "call", Mission.strategicPathCall)
+	if not leader or leader.Dead then return end
+	-- MissionNarrativePlayer(0, "s3")
+	if #dislike == 0 then
+		NavigatorMoveOnPath(leader, defaults[1], defaults[2], defaults[3])
+	else
+		local closest_node
+		local distance = 99999999.0
+		local cur = GetPosition(leader)
+		for i, node in pairs(points) do
+			for j, subnode in pairs(node) do
+				local this_dist = math.pow(cur.x-subnode[1], 2)+math.pow(cur.z-subnode[2],2)
+				if this_dist < distance then
+					distance = this_dist
+					closest_node = {i,j}
+				end
+			end
+		end
+		-- MissionNarrativePlayer(0, "s4")
+		local target_node-- = points[closest_node[1]][closest_node[2]]
+		local score = -99999999.0
+		for i=-1,1 do
+			local index = (closest_node[1]-1+i)%(#points)+1
+			for j, subnode in pairs(points[index]) do
+				local sc1 = 99999999.0
+				local sc2 = 99999999.0
+				local sc3 = -99999999.0
+				for _, d in pairs(dislike) do
+					local dispos = GetPosition(d)
+					local enm_sel_x = subnode[1] - cur.x
+					local enm_sel_z = subnode[2] - cur.z
+					local enm_sel = math.sqrt(math.pow(enm_sel_x,2)+math.pow(enm_sel_z,2))
+					local enm_pos_x = dispos.x - cur.x
+					local enm_pos_z = dispos.z - cur.z
+					local enm_pos = math.sqrt(math.pow(enm_pos_x,2)+math.pow(enm_pos_z,2))
+					local cosine = (enm_sel_x*enm_pos_x+enm_sel_z*enm_pos_z)/enm_sel/enm_pos
+					-- local dist = math.sqrt(math.pow(dispos.x-subnode[1], 2)+math.pow(dispos.z-subnode[2],2))
+					local dist = math.sqrt(math.pow(enm_pos_x, 2)+math.pow(enm_pos_z,2))
+					sc1 = math.min(-cosine, sc1)
+					sc2 = math.min(dist, sc2)
+				end
+				for _, l in pairs(like) do
+					local dispos = GetPosition(l)
+					local enm_sel_x = subnode[1] - cur.x
+					local enm_sel_z = subnode[2] - cur.z
+					local enm_sel = math.sqrt(math.pow(enm_sel_x,2)+math.pow(enm_sel_z,2))
+					local enm_pos_x = dispos.x - cur.x
+					local enm_pos_z = dispos.z - cur.z
+					local enm_pos = math.sqrt(math.pow(enm_pos_x,2)+math.pow(enm_pos_z,2))
+					local cosine = (enm_sel_x*enm_pos_x+enm_sel_z*enm_pos_z)/enm_sel/enm_pos
+					-- local dist = math.sqrt(math.pow(dispos.x-subnode[1], 2)+math.pow(dispos.z-subnode[2],2))
+					local dist = math.sqrt(math.pow(enm_pos_x, 2)+math.pow(enm_pos_z,2))
+					sc3 = math.max(cosine, sc3)-dist
+				end
+				local sc4
+				if sc2 < 10000 then sc4 = sc1
+				else sc4 = sc3 end
+				if subnode == points[closest_node[1]][closest_node[2]] then
+					sc4 = -999999999.0
+				end
+				if sc4 > score then
+					target_node = subnode
+					score = sc4
+				end
+			end
+		end
+		NavigatorMoveToPos(leader, {["x"] = target_node[1], ["y"] = 0.0, ["z"] = target_node[2]})
+		-- MissionNarrativePlayer(0, target_node[1].."  "..target_node[2])
+	end
+	luaDoCustomLog("debug.txt", {"strategicPath End"}, "a")
+
 end
 
 function luaAirfieldManager(airfield, fighterClassIDs, otherClassIDs, targetList, travelAlt, wingCount)
@@ -2933,7 +3077,7 @@ function luaAirfieldManager1(airfield, fighterClassIDs, otherClassIDs, targetLis
 		-- MissionNarrativePlayer(0,airfield.Name.." active squads: "..tostring(activeSquads))
 	end
 	if airfield.FighterCount == nil then airfield.FighterCount = 0 end
-	if (activeSquads == 0 or airfield.FighterCount < 2) and IsReadyToSendPlanes(airfield) then
+	if (activeSquads == 0) and IsReadyToSendPlanes(airfield) then
 		local i = luaRnd(1,table.getn(fighterClassIDs))
 		if VehicleClass[fighterClassIDs[i]].Type == "Kamikaze" then
 			slotIndex = LaunchSquadron(airfield,fighterClassIDs[i],wingCount)
@@ -2952,7 +3096,7 @@ function luaAirfieldManager1(airfield, fighterClassIDs, otherClassIDs, targetLis
 		
 		-- RELEASE_LOGOFF  		luaHelperLog("luaAirfieldManager Generated:"..planeEntTable[table.getn(planeEntTable)].Name)
 	elseif activeSquads < slotSetting and IsReadyToSendPlanes(airfield) then
-		if table.getn(luaTypeFilter(planeEntTable, "Fighter")) == 0 then
+		if table.getn(luaTypeFilter(planeEntTable, "Fighter")) < 2 then
 			local i = luaRnd(1,table.getn(fighterClassIDs))
 			if VehicleClass[fighterClassIDs[i]].Type == "Kamikaze" then
 				slotIndex = LaunchSquadron(airfield,fighterClassIDs[i],wingCount)
@@ -2997,23 +3141,27 @@ function luaAirfieldManager1(airfield, fighterClassIDs, otherClassIDs, targetLis
 		return
 	end
 	airfield.FighterCount = 0
-	airfield.CAP = 0
+	if not airfield.CAP then airfield.CAP = {} end
+	airfield.CAP = luaRemoveDeadsFromTable(airfield.CAP)
 	for index, unit in pairs (planeEntTable) do
 		unit.ammo = GetProperty(unit, "ammoType")
 		if unit.Class.Type == "Fighter" then
 			airfield.FighterCount = airfield.FighterCount + 1
-			if airfield.CAP > 0 then
-				for index1, unit1 in pairs (planeEntTable) do
-					ammo1 = GetProperty(unit1, "ammoType")
-					if luaGetDistance(unit, unit1) < 1000 and (ammo1 == AMMO_BOMB or ammo1 == AMMO_TORPEDO) then
-						PilotMoveTo(unit, unit1)
+			if #(airfield.CAP) > 0 and not unit.CAP then
+				for index1, unit1 in pairs(planeEntTable) do
+					if unit1 and not unit1.Dead then
+						ammo1 = GetProperty(unit1, "ammoType")
+						if luaGetDistance(unit, unit1) < 1000 and (ammo1 == AMMO_BOMB or ammo1 == AMMO_TORPEDO) then
+							PilotMoveTo(unit, unit1)
+						end
 					end
 				end
-			else
+			elseif luaGetDistance(unit, airfield) < 3000 then
+				if not unit.CAP then
+					table.insert(airfield.CAP, unit)
+					PilotSetTarget(unit, airfield)
+				end
 				unit.CAP = true
-			end
-			if unit.CAP then
-				airfield.CAP = airfield.CAP + 1
 			end
 		-- RELEASE_LOGOFF  			luaHelperLog("Unit on patrol:"..unit.Name)
 		elseif ( UnitGetAttackTarget(unit) == nil ) and (unit.ammo ~= 0 or unit.Class.Type == "Kamikaze") then
@@ -3082,7 +3230,10 @@ function luaAirfieldManager1(airfield, fighterClassIDs, otherClassIDs, targetLis
 				local alt = 1100
 				if unit.ammo == AMMO_TORPEDO then alt = 300 end
 				-- MissionNarrativePlayer(0, luaJM7GetUnits(nil, PARTY_JAPANESE)[1].Name)
-				luaDelay(luaPlaneManeuver, 1, "plane",unit,"trg",currentTarget,"attackAlt",alt,"attackAng",0,"distance",5000,"designated",preferedTargets,"skirmish",luaJM7GetUnits(nil, PARTY_JAPANESE))
+				if not unit.RegisteredWave then
+					unit.wave = airfield.wave
+					luaDelay(luaPlaneManeuver, 1, "plane",unit,"trg",currentTarget,"attackAlt",alt,"attackAng",0,"distance",5000,"designated",preferedTargets,"skirmish",luaJM7GetUnits(nil, PARTY_JAPANESE))
+				end
 				if unit.ammo == AMMO_BOMB and travelAlt then
 					-- SetCheatTurbo(unit, 5)
 					-- luaDelay(luaPlaneManeuver, 1, "plane",unit,"trg",currentTarget,"attackAlt",1500,"attackAng",0)
@@ -3098,7 +3249,10 @@ function luaAirfieldManager1(airfield, fighterClassIDs, otherClassIDs, targetLis
 				if unit.ammo == AMMO_TORPEDO then alt = 300 end
 				-- MissionNarrativePlayer(0, type(filteredTargetList))
 				-- MissionNarrativePlayer(0, luaJM7GetUnits(nil, PARTY_JAPANESE)[1].Name)
-				luaDelay(luaPlaneManeuver, 1, "plane",unit,"trg",currentTarget,"attackAlt",alt,"attackAng",0,"distance",5000,"designated",filteredTargetList,"skirmish",luaJM7GetUnits(nil, PARTY_JAPANESE))
+				if not unit.RegisteredWave then 
+					unit.wave = airfield.wave
+					luaDelay(luaPlaneManeuver, 1, "plane",unit,"trg",currentTarget,"attackAlt",alt,"attackAng",0,"distance",5000,"designated",filteredTargetList,"skirmish",luaJM7GetUnits(nil, PARTY_JAPANESE))
+				end
 				if unit.ammo == AMMO_BOMB and travelAlt then
 					-- SetCheatTurbo(unit, 2)
 					-- luaDelay(luaPlaneManeuver, 1, "plane",unit,"trg",currentTarget,"attackAlt",1500,"attackAng",0)
@@ -3121,6 +3275,10 @@ end
 
 
 function luaJM7CheckUSNCarrierFleet2()
+	if Mission.USNReinforcementsWave == nil then
+		Mission.USNReinforcementsWave = {["Wave"] = {}, ["Require"] = 0, ["Assemble"] = 0, ["NoWait"] = 600}
+	end
+	local wave = Mission.USNReinforcementsWave
 	if Mission.Fleet2CarriersDead or not Mission.USNReinfIn then
 		return
 	end
@@ -3155,12 +3313,25 @@ function luaJM7CheckUSNCarrierFleet2()
 			else
 				targetList = luaJM7GetUnits(nil,PARTY_JAPANESE)
 			end
+		wave["Require"] = 0
 		if not Mission.Hornet.Dead then
+			Mission.Hornet.wave = wave
+			if not Mission.Hornet.RunwayFailure then wave["Require"] = wave["Require"] + 4 end
 			luaAirfieldManager1(Mission.Hornet, fighterClassIDs, otherClassIDs, targetList, 1500, 3)
+			if math.floor(GameTime()) % 10 == 0 then MissionNarrativePlayer(0, "Hornet"..Mission.Hornet.FighterCount.." "..#(Mission.Hornet.CAP)) end
 		end
 		if not Mission.Enterprise.Dead then
+			Mission.Enterprise.wave = wave
+			if not Mission.Enterprise.RunwayFailure then wave["Require"] = wave["Require"] + 4 end
 			-- luaLaunchAirstrike1()
 			luaAirfieldManager1(Mission.Enterprise, fighterClassIDs, otherClassIDs, targetList, 1500, 3)
+			if math.floor(GameTime()) % 10 == 0 then MissionNarrativePlayer(0, "Enterprise"..Mission.Enterprise.FighterCount.." "..#(Mission.Enterprise.CAP)) end
+		end
+		if math.floor(GameTime()) % 10 == 0 then MissionNarrativePlayer(0, #(wave["Wave"])..wave["Require"]..wave["Assemble"]..wave["NoWait"]) end
+		if #(wave["Wave"]) >= wave["Require"] or wave["Assemble"] >= wave["NoWait"] then
+			for _, p in pairs(wave["Wave"]) do p.wave = nil end -- wave control reach launch attack wave condition. 
+			wave["Wave"] = {} -- start to prepare next attack wave
+			wave["Assemble"] = 0
 		end
 		luaJM7ScreenTargeting(Mission.USNReinforcements,2)
 	end
@@ -4244,10 +4415,15 @@ function luaPlaneManeuver(params)
 	local distance = params.ParamTable.distance
 	local designated = params.ParamTable.designated
 	local skirmish = params.ParamTable.skirmish
-	-- Kill(Mission.Akagi)
-	-- SetInvincible(Mission.Haruna, true)
 	if not plane or plane.Dead or not luaHasFuel(plane) or (plane.planed and attackAng == 0) or plane.landing then return end
-	if plane.lockedUpTarget then
+	local wave = plane.wave
+	-- wave["Wave"] < wave["Require"] and wave["Assemble"] < wave["NoWait"]
+	if wave and not plane.RegisteredWave then
+		table.insert(wave["Wave"], plane)
+	end
+	plane.RegisteredWave = true
+	if plane.lockedUpTarget or wave then
+		if wave then wave["Assemble"] = wave["Assemble"] + 1 end
 		luaDelay(luaPlaneManeuver, 1, "plane",plane,"trg",trg,"attackAlt",attackAlt,"attackAng",deg,"distance",distance,"designated",designated, "skirmish",skirmish)
 		if not trg or trg.Dead then
 			plane.lockedUpTarget = false
@@ -4339,7 +4515,7 @@ function luaPlaneManeuver(params)
 		enm.x = enm.x + inc_x
 		enm.z = enm.z + inc_z
 		PilotMoveTo(plane, enm)
-		luaDelay(luaPlaneManeuver, 0.1, "plane",plane,"trg",trg,"attackAlt",attackAlt,"attackAng",deg,"distance",math.min(distance,dist)*0.8,"designated",designated, "skirmish",skirmish)
+		luaDelay(luaPlaneManeuver, 0.5, "plane",plane,"trg",trg,"attackAlt",attackAlt,"attackAng",deg,"distance",math.min(distance,dist)*0.8,"designated",designated, "skirmish",skirmish)
 	end
 end
 
