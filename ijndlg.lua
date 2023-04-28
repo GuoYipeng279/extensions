@@ -2849,7 +2849,7 @@ Messages =
 				{"1^Catalina spotted enemy mobile fleet sir, there are ten plus of them, carriers present. ",  0.000,  0.0},  --  Take out that plane and they'll be blind.
 
 			},
-			["voice"] = "campaign/ijn07/dlg02c",
+			["voice"] = "CAMPAIGN/IJN07/DLG02C",
 		},
 		["dlg2d"] = {
 			["subtitles"] = {

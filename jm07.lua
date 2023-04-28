@@ -224,10 +224,10 @@ function luaInitJM7(this)
 		table.insert(Mission.PlayerFleetNames, "Hagikaze")
 		table.insert(Mission.PlayerFleetNames, "Nagara")
 		--table.insert(Mission.PlayerFleetNames, "ingame.shipnames_shirayuki")
-		table.insert(Mission.PlayerFleetNames, "ingame.shipnames_hiryu")
+		table.insert(Mission.PlayerFleetNames, "Hiryu")
 		table.insert(Mission.PlayerFleetNames, "Soryu")
 		table.insert(Mission.PlayerFleetNames, "Haruna")
-		table.insert(Mission.PlayerFleetNames, "ingame.shipnames_tone")
+		table.insert(Mission.PlayerFleetNames, "Tone")
 		table.insert(Mission.PlayerFleetNames, "Arashi")
 		table.insert(Mission.PlayerFleetNames, "Maikaze")
 
@@ -256,11 +256,11 @@ function luaInitJM7(this)
 		table.insert(Mission.USNReinfFleetNames, {"ingame.shipnames_astoria", 34})			--CA34
 
 		--table.insert(Mission.USNReinfFleetNames, "USS John P. Holder")
-		table.insert(Mission.USNReinfFleetNames, {"ingame.shipnames_reid", 369})				--DD369
-		table.insert(Mission.USNReinfFleetNames, {"ingame.shipnames_dent", 116})				--DD116
-		table.insert(Mission.USNReinfFleetNames, {"ingame.shipnames_russell", 414})			--DD414
+		table.insert(Mission.USNReinfFleetNames, {"USS Balch", 363})				--DD369
+		table.insert(Mission.USNReinfFleetNames, {"USS Conyngham", 371})				--DD116
+		table.insert(Mission.USNReinfFleetNames, {"USS Benham", 397})			--DD414
 		table.insert(Mission.USNReinfFleetNames, {"ingame.shipnames_ellett", 398})			--DD398
-		table.insert(Mission.USNReinfFleetNames, {"ingame.shipnames_gwin", 433})				--DD433
+		table.insert(Mission.USNReinfFleetNames, {"USS Maury", 401})				--DD433
 
 	Mission.MainIJNFleet = {}
 	Mission.IJNInvasionFleet = {}
@@ -679,7 +679,7 @@ function luaJM7_think(this, msg)
 	luaBomberLanding(Mission.Akagi)
 	luaBomberLanding(Mission.Kaga)
 	luaBomberLanding(Mission.Soryu)
-	luaBomberLanding(Mission.Hiryu, true)
+	luaBomberLanding(Mission.Hiryu)
 	luaBomberLanding(Mission.Hosho)
 	-- SetInvincible(Mission.Kaga, true)
 	-- SetInvincible(Mission.Akagi, true)
@@ -858,7 +858,10 @@ function luaJM7CheckObjectives()
 			detailHints()
 			if not luaObj_IsActive("secondary",2) then
 				luaObj_Add("secondary",2)
-				Mission.PilotLoss = 0
+				Mission.JapPilotLoss = 0
+				Mission.AllyPilotLoss = 0
+				Mission.JapDead = " "
+				Mission.AllyDead = " "
 				luaAddPilotKillListener()
 				luaObj_Add("secondary",3)
 				luaJM7AirstrikeHint()
@@ -981,48 +984,40 @@ function luaJM7CheckObjectives()
 		end
 
 	elseif Mission.MissionPhase == 99 then
-		local killCheckList = {Mission.Yorktown, Mission.Hornet, Mission.Enterprise, Mission.Akagi, Mission.Kaga, Mission.Soryu, Mission.Hiryu, Mission.Haruna, Mission.Kirishima}
 		if Mission.MissionFailed then
 			if Mission.LastUnit then
 				luaMissionFailedNew(Mission.LastUnit, Mission.FailMsg)
 			else
 				luaMissionFailedNew(Mission.CommandBuilding1, Mission.FailMsg)
 			end
-			killList(killCheckList)
 			luaJM7StepPhase()
+			killList()
 
 		elseif Mission.MissionCompleted then
 			luaObj_Completed("primary",4)
-			if Mission.PilotLoss < 60 then
+			if Mission.JapPilotLoss < 60 then
 				luaObj_Completed("secondary",3)
 			end
 			luaJM7StartDialog("Outro")
-			killList(killCheckList)
 			luaDelay(luaJM7CompleteMission,20)
 			luaJM7StepPhase()
+			killList()
 		end
 
 	end
 
 end
 
-function killList(list)
-	for _, dead in pairs(list) do
-		if dead and dead.Dead then
-			if not dead.lastAttacker then
-				MissionNarrativePlayer(0, GetGuiName(dead).." scuttled")
-			else
-				MissionNarrativePlayer(0, dead.lastAttacker.." sunk "..GetGuiName(dead))
-			end
-		end
-	end
+function killList()
+	MissionNarrativePlayer(0, "Imperial Navy loss:"..Mission.JapDead)
+	MissionNarrativePlayer(0, "US Navy loss:"..Mission.AllyDead)
+	MissionNarrativePlayer(0, "Aircraft loss: IJN "..Mission.JapPilotLoss.." - "..Mission.AllyPilotLoss.." USN")
 end
 
 function luaAddPilotKillListener()
-	Mission.JapPlanes = {}
 	AddListener("kill", "PilotKillListener", {
 		["callback"] = "luaPilotKill",
-		["entity"] = Mission.JapPlanes,
+		["entity"] = {},
 		["lastAttacker"] = {},
 		["lastAttackerPlayerIndex"] = {},
 	})
@@ -1030,10 +1025,14 @@ function luaAddPilotKillListener()
 end
 
 function luaPilotKill(target)
-	if target.Party ~= PARTY_JAPANESE then return end
-	Mission.PilotLoss = Mission.PilotLoss + 1
-	if Mission.PilotLoss % 1 == 0 or Mission.PilotLoss > 50 and Mission.PilotLoss <= 60 then
-		MissionNarrativePlayer(0, "Pilot loss: "..Mission.PilotLoss)
+	if Mission.IDInfo and Mission.IDInfo[target.ID] and Mission.IDInfo[target.ID]["party"] == PARTY_JAPANESE then
+		Mission.JapPilotLoss = Mission.JapPilotLoss + 1
+		if Mission.JapPilotLoss < 5 == 0 or Mission.JapPilotLoss > 50 and Mission.JapPilotLoss <= 60 then
+			MissionNarrativePlayer(0, "Pilot loss: "..Mission.JapPilotLoss)
+		end
+	end
+	if Mission.IDInfo and Mission.IDInfo[target.ID] and Mission.IDInfo[target.ID]["party"] == PARTY_ALLIED then
+		Mission.AllyPilotLoss = Mission.AllyPilotLoss + 1
 	end
 end
 
@@ -1174,7 +1173,6 @@ function luaJM7CarrierObj()
 end
 
 function luaAddCVHitListener(carrier, name)
-	luaDoCustomLog("debug.txt", {"luaAddCVHitListener",carrier, name}, "a")
 	carrier.efxList = {}
 	carrier.hithint = name
 	carrier.enablehithint = true
@@ -1191,15 +1189,33 @@ function luaAddCVHitListener(carrier, name)
 		["fireCaused"] = {}, -- ket ertek kozotti tuzsebzes szures
 		["leakCaused"] = {}, -- ket ertek kozotti viz damage szures
 	})
+	AddListener("kill", "CVKillListener"..name, {
+		["callback"] = "luaCVKill1",  -- callback fuggveny
+		["entity"] = {carrier}, -- entityk akiken a listener aktiv
+		["lastAttacker"] = {},  -- tamado entitas, vagy entitasok
+		["lastAttackerPlayerIndex"] = {}, -- PLAYER_1..PLAYER_32
+	})
 
+end
+
+function luaCVKill1(entity)
+	luaDoCustomLog("debug.txt", {"luaCVKill1", entity}, "a")
+	if entity.Party == PARTY_JAPANESE then
+		Mission.JapDead = Mission.JapDead..GetGuiName(entity).." "
+	elseif entity.Party == PARTY_ALLIED then
+		Mission.AllyDead = Mission.AllyDead..GetGuiName(entity).." "
+	end
+	luaDoCustomLog("debug.txt", {"luaCVKill1End", entity}, "a")
 end
 
 function luaCVHit1(target, targetDevice, attacker, attackType, attackerPlayerIndex, damageCaused, fireCaused, leakCaused)
 	-- MissionNarrativePlayer(0, GetGuiName(target)..GetGuiName(attacker))
-	target.lastAttacker = GetGuiName(attacker)
-	if attacker.from then target.lastAttacker = GetGuiName(attacker.from) end
 
 	luaDoCustomLog("debug.txt", {"luaCVHit1", target, targetDevice, attacker, attackType, attackerPlayerIndex, damageCaused, fireCaused, leakCaused}, "a")
+	-- MissionNarrativePlayer(0, type(attacker).." hit "..target.Name)
+	-- target.lastAttacker = attacker
+	-- if Mission.IDInfo and Mission.IDInfo[attacker.ID] and Mission.IDInfo[attacker.ID]["takeOff"] then target.lastAttacker = Mission.IDInfo[attacker.ID]["takeOff"] end
+	-- MissionNarrativePlayer(0, GetGuiName(target).." hit by "..GetGuiName(target.lastAttacker))
 	local threshold = math.pow(damageCaused/300, 0.5) * 100
 	local rnd = random(1,100)
 	ShowHint("IJN07_Hint15")
@@ -1251,9 +1267,9 @@ function luaExpl(unit)
 end
 
 function luaFireControlFail(carrier)
-	luaDoCustomLog("debug.txt", {"luaFireControlFail", carrier}, "a")
 	local unit = carrier.ParamTable.carrier
 	if not unit or unit.Dead then return end
+	luaDoCustomLog("debug.txt", {"luaFireControlFail", carrier}, "a")
 	luaExpl(unit)
 	unit.RunwayFailure = true
 	SetFailure(unit, "RunwayFailure")
@@ -1269,14 +1285,14 @@ function luaFireControlFail(carrier)
 		end
 		luaDelay(luaFireControlFail,luck*1.5,"carrier",unit)
 	end
-	MissionNarrativePlayer(0, unit.Name.." "..#efxList)
+	-- MissionNarrativePlayer(0, unit.Name.." "..#efxList)
 	luaDoCustomLog("debug.txt", {"luaFireControlFailEnd"}, "a")
 end
 
 function luaFireControlSuccess(carrier)
-	luaDoCustomLog("debug.txt", {"luaFireControlSuccess", carrier}, "a")
 	local unit = carrier.ParamTable.carrier
 	if not unit or unit.Dead then return end
+	luaDoCustomLog("debug.txt", {"luaFireControlSuccess", unit}, "a")
 	local efxList = unit.efxList
 	local toStop = random(#efxList)
 	StopEffect(efxList[toStop].Pointer)
@@ -1362,6 +1378,7 @@ function luaFuel(params)
 	local carrier = params.ParamTable.carrier
 	local last_loc = params.ParamTable.last_loc
 	if not p or p.Dead then return end
+	luaDoCustomLog("debug.txt", {"luaFuel "..p.fuel.." "..p.Name}, "a")
 	if GetPlaneIsReloading(p) then luaDelay(reloadingTag3sec, 3, "sq", p) end
 	if not last_loc then last_loc = GetPosition(p) end
 	local curr_loc = GetPosition(p)
@@ -1371,7 +1388,6 @@ function luaFuel(params)
 	end
 	if p.burn_rate == nil then p.burn_rate = 1.0 end
 	p.fuel = p.fuel-burnStep(curr_loc, last_loc)
-	luaDoCustomLog("debug.txt", {"luaFuel "..p.fuel.." "..p.Name}, "a")
 	-- MissionNarrativePlayer(0, "s4"..p.fuel.." ratio "..p.fuel/p.maxFuel*100)
 	-- p.fuel = p.fuel-burn*p.burn_rate
 	-- SetCheatTurbo(p,2)
@@ -1385,10 +1401,9 @@ function luaFuel(params)
 		luaDoCustomLog("debug.txt", {"luaFuel End2"..p.fuel.." "..p.Name}, "a")
 		return
 	end
-	if carrier and not p.sent then p.from = carrier end
 	if carrier and carrier.Class.Type == "MotherShip" and not p.sent then
 		if carrier.vulnerable == 0 and carrier.Party == PARTY_JAPANESE then
-			Effect("Recon", ORIGO, Mission.Akagi)
+			-- Effect("Recon", ORIGO, Mission.Akagi)
 			MissionNarrativePlayer(0, carrier.hithint..": launching")
 		end
 		carrier.vulnerable = carrier.vulnerable + 1
@@ -1407,7 +1422,7 @@ function luaFuel(params)
 			if luaLandable(mother) and mother.landingStack < 4 then table.insert(possibles, mother) end
 		end
 		if #possibles == 0 then 
-			MissionNarrativePlayer(0, "no carrier")
+			-- MissionNarrativePlayer(0, "no carrier")
 			-- luaDelay(luaDitching, 1, "sq", p, "burn", burn)
 			-- return
 		else
@@ -1422,8 +1437,9 @@ function luaFuel(params)
 			carrier = near
 		end
 		-- p.signInLanding = false
-	elseif not p.landing and (p.reloadingTag or luaIsLowFuel(p, carrier)) and carrier and not carrier.Dead and carrier.Class.Type == "MotherShip" then
+	elseif not p.landing and (p.reloadingTag or luaIsLowFuel(p, carrier) or p.CAP and not p.CAPing and luaGetSquadronPlaneNum(p) < 2) and carrier and not carrier.Dead and carrier.Class.Type == "MotherShip" then
 		p.landing = carrier
+		p.CAP = nil
 		-- p.burn_rate = 0.08
 		PilotLand(p,carrier)
 		carrier.landingStack = carrier.landingStack + 1
@@ -1434,6 +1450,32 @@ function luaFuel(params)
 		-- 	table.insert(carrier.landingStack, p)
 		-- 	carrier.landingStack = luaSortByDistance2(carrier, luaRemoveDeadsFromTable(carrier.landingStack))
 		-- end
+	elseif p.CAP and carrier and not carrier.Dead then -- .CAP only can be true if not controled by player
+		local CAPAt = GetPosition(carrier)
+		local minDist = 99999999.0
+		local nearest
+		if Mission.AllPlanes then
+			for _, plane in pairs(Mission.AllPlanes) do
+				if plane and not plane.Dead and plane.Party ~= carrier.Party and GetProperty(plane, "ammoType") ~= 0 then
+					local distance = luaGetDistance(carrier, plane)
+					if distance < minDist then
+						nearest = plane
+						minDist = distance
+					end
+				end
+			end
+		end
+		if minDist > 5000*(p.CAP-1) then
+			p.CAPing = false
+			PilotSetTarget(p, carrier)
+		elseif nearest and not nearest.Dead then
+			p.CAPing = true
+			PilotSetTarget(p, nearest)
+		end
+		if minDist < 3000 then
+			p.CAPing = true
+			PilotSetTarget(p, carrier)
+		end
 	end
 	-- MissionNarrativePlayer(0, "s7")
 	luaDelay(luaFuel, 1, "sq", p, "carrier", carrier, "burn", burn, "last_loc", curr_loc)
@@ -1488,13 +1530,16 @@ function luaBomberLanding(carrier)
 						carrier.defaultRange = 100000.0
 					end
 					setInitFuel(p, carrier.defaultRange)
+					luaDoCustomLog("debug.txt", {"luaBomberLandingpp00"}, "a")
+					for _, pp in pairs(GetSquadronPlanes(p)) do
+						if not Mission.IDInfo then Mission.IDInfo = {} end
+						Mission.IDInfo[pp] = {["takeOff"] = carrier, ["party"] = p.Party}
+					end
 					if carrier.Party == PARTY_JAPANESE then
-						if not Mission.JapPlanes then Mission.JapPlanes = {} end
-						table.insert(Mission.JapPlanes, p)
-						for _, pp in pairs(GetSquadronPlanes(p)) do
-							table.insert(Mission.JapPlanes, pp)
-							-- pp.elite = true do not assign variables to entity planes!!!
-						end
+						-- for _, pp in pairs(GetSquadronPlanes(p)) do
+						-- 	table.insert(Mission.JapPlanes, pp)
+						-- 	-- pp.elite = true do not assign variables to entity planes!!! Later NOTE: this is a interger, not even entity
+						-- end
 						if #sq > 4 then
 							carrier.backups = carrier.backups - 1
 							p.fuel = 30000.0
@@ -1504,6 +1549,8 @@ function luaBomberLanding(carrier)
 							end
 						end
 					end
+					if not Mission.AllPlanes then Mission.AllPlanes = {} end
+					table.insert(Mission.AllPlanes, p)
 					local burn = random(14,16)/100
 					p.fuelCount = true
 					luaDelay(luaFuel, 1, "sq", p, "carrier", carrier, "burn", burn)
@@ -1603,7 +1650,6 @@ function luaSeaPlaneManager(ship)
 				PilotMoveTo(seaplane, ship)
 				luaDelay(luaFuel, 1, "sq", seaplane, "carrier", ship, "burn", burn)
 			end
-			-- luaDoCustomLog("debug.txt", {"luaSeaPlaneManager1 "..seaplane.fuel.." "..seaplane.flew}, "a")
 		-- PilotSetTarget(seaplane, ship)
 		end
 		luaDoCustomLog("debug.txt", {"luaSeaPlaneManagerEnd",ship.Name}, "a")
@@ -2201,6 +2247,7 @@ function luaJM7IJNInvasionFleetSpawned(...)
 end
 
 function luaJM7SpawnIJNHoshoFleet()
+	luaDoCustomLog("debug.txt", {"luaJM7SpawnIJNHoshoFleet"}, "a")
 	SpawnNew({
 	["party"] = PARTY_JAPANESE,
 	["groupMembers"] = {
@@ -2264,11 +2311,14 @@ function luaJM7SpawnIJNHoshoFleet()
 	["callback"] = "luaJM7IJNHoshoFleetSpawned",
 	["id"] = "Mission.IJNInvasionReq",
 	})
+	luaDoCustomLog("debug.txt", {"luaJM7SpawnIJNHoshoFleetEnd"}, "a")
 end
 
 function luaJM7IJNHoshoFleetSpawned(...)
+	luaDoCustomLog("debug.txt", {"luaJM7IJNHoshoFleetSpawned"}, "a")
 	MissionNarrativePlayer(0, "Hosho has arrived")
 	for idx,unit in ipairs(arg) do
+		RepairEnable(unit, false)
 		table.insert(Mission.IJNInvasionFleet, unit)
 		if unit.Class.Type == "Cargo" then
 			-- table.insert(Mission.IJNCargos, unit)
@@ -2276,7 +2326,7 @@ function luaJM7IJNHoshoFleetSpawned(...)
 			-- Mission.Yamato = unit
 			-- SetShipMaxSpeed(Mission.Yamato, (Mission.Yamato.Class.MaxSpeed * 1.5))
 		elseif unit.Class.Type == "MotherShip" then
-			luaAddCVHitListener(unit)
+			luaAddCVHitListener(unit, "Hosho")
 			Mission.Hosho = unit
 			Mission.Hosho.defaultRange = 70000.0
 		end
@@ -2305,6 +2355,7 @@ function luaJM7IJNHoshoFleetSpawned(...)
 
 	-- luaJM7StartDialog("JapInvFleetIn")
 	-- luaJM7StartDialog("YamatoIn")
+	luaDoCustomLog("debug.txt", {"luaJM7IJNHoshoFleetSpawned End"}, "a")
 end
 
 
@@ -2766,7 +2817,7 @@ function luaJM7USNReinfFleetSpawned(...)
 		{{-10000,10000},{-15000,15000},{-20000,20000}},
 		{{-10000,-10000},{-15000,-15000},{-20000,-20000}},
 		{{10000,-10000},{15000,-15000},{20000,-20000}}}
-	MissionNarrativePlayer(0, "s0")
+	-- MissionNarrativePlayer(0, "s0")
 	luaDelay(strategicPath, 1, "fleet", Mission.USNReinforcements,"like",{Mission.Akagi, Mission.Kaga, Mission.Soryu, Mission.Hiryu}, "dislike", {Mission.Haruna, Mission.Kirishima}, "defaults", defaults, "points", points, "call", 0)
 	-- luaJM7SpawnIJNHoshoFleet()
 end
@@ -3142,12 +3193,19 @@ function luaAirfieldManager1(airfield, fighterClassIDs, otherClassIDs, targetLis
 	end
 	airfield.FighterCount = 0
 	if not airfield.CAP then airfield.CAP = {} end
+	local CAPStrength = 2
 	airfield.CAP = luaRemoveDeadsFromTable(airfield.CAP)
+	if not airfield.CAPlevel then airfield.CAPlevel = {[1] = nil, [2] = nil, [3] = nil} end
+	for i=1, CAPStrength do
+		if not airfield.CAPlevel[i] or airfield.CAPlevel[i].Dead then
+			airfield.CAPlevel[i] = nil
+		end
+	end
 	for index, unit in pairs (planeEntTable) do
 		unit.ammo = GetProperty(unit, "ammoType")
 		if unit.Class.Type == "Fighter" then
 			airfield.FighterCount = airfield.FighterCount + 1
-			if #(airfield.CAP) > 0 and not unit.CAP then
+			if #(airfield.CAP) >= CAPStrength and not unit.CAP then
 				for index1, unit1 in pairs(planeEntTable) do
 					if unit1 and not unit1.Dead then
 						ammo1 = GetProperty(unit1, "ammoType")
@@ -3158,10 +3216,15 @@ function luaAirfieldManager1(airfield, fighterClassIDs, otherClassIDs, targetLis
 				end
 			elseif luaGetDistance(unit, airfield) < 3000 then
 				if not unit.CAP then
+					for i=1, CAPStrength do
+						if not airfield.CAPlevel[i] then
+							airfield.CAPlevel[i] = unit
+							unit.CAP = i
+						end
+					end
 					table.insert(airfield.CAP, unit)
 					PilotSetTarget(unit, airfield)
 				end
-				unit.CAP = true
 			end
 		-- RELEASE_LOGOFF  			luaHelperLog("Unit on patrol:"..unit.Name)
 		elseif ( UnitGetAttackTarget(unit) == nil ) and (unit.ammo ~= 0 or unit.Class.Type == "Kamikaze") then
@@ -3316,13 +3379,13 @@ function luaJM7CheckUSNCarrierFleet2()
 		wave["Require"] = 0
 		if not Mission.Hornet.Dead then
 			Mission.Hornet.wave = wave
-			if not Mission.Hornet.RunwayFailure then wave["Require"] = wave["Require"] + 4 end
+			if not Mission.Hornet.RunwayFailure then wave["Require"] = wave["Require"] + 3 end
 			luaAirfieldManager1(Mission.Hornet, fighterClassIDs, otherClassIDs, targetList, 1500, 3)
 			if math.floor(GameTime()) % 10 == 0 then MissionNarrativePlayer(0, "Hornet"..Mission.Hornet.FighterCount.." "..#(Mission.Hornet.CAP)) end
 		end
 		if not Mission.Enterprise.Dead then
 			Mission.Enterprise.wave = wave
-			if not Mission.Enterprise.RunwayFailure then wave["Require"] = wave["Require"] + 4 end
+			if not Mission.Enterprise.RunwayFailure then wave["Require"] = wave["Require"] + 3 end
 			-- luaLaunchAirstrike1()
 			luaAirfieldManager1(Mission.Enterprise, fighterClassIDs, otherClassIDs, targetList, 1500, 3)
 			if math.floor(GameTime()) % 10 == 0 then MissionNarrativePlayer(0, "Enterprise"..Mission.Enterprise.FighterCount.." "..#(Mission.Enterprise.CAP)) end
@@ -4865,7 +4928,7 @@ end
 
 function luaJM7USNCVFleetSpawned(...)
 	Mission.USNFleet1 = {}
-	local ddname
+	local ddname = 1
 
 	for idx,unit in ipairs(arg) do
 		RepairEnable(unit, false)
@@ -4896,14 +4959,23 @@ function luaJM7USNCVFleetSpawned(...)
 		end
 
 		if unit.Class.Type == "Destroyer" then
-			if not ddname then
+			if ddname == 1 then
 				SetGuiName(unit, "ingame.shipnames_hamman")
-				SetNumbering(unit, 131)
-				ddname = true
-			else
+				SetNumbering(unit, 412)
+			elseif ddname == 2 then
+				SetGuiName(unit, "USS Anderson")
+				SetNumbering(unit, 411)
+			elseif ddname == 3 then
+				SetGuiName(unit, "USS Gwin")
+				SetNumbering(unit, 433)
+			elseif ddname == 4 then
 				SetGuiName(unit, "ingame.shipnames_hughes")
 				SetNumbering(unit, 410)
+			elseif ddname >= 5 then
+				SetGuiName(unit, "USS Morris")
+				SetNumbering(unit, 417)
 			end
+			ddname = ddname + 1
 		end
 
 	end
