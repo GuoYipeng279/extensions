@@ -945,6 +945,56 @@ MissionTree = {
 			["gratMsg"] = "FE.rewards_congratulations_uscampaign",
 			["gratDate"] = { 1942, 06, 04 },
 			["missions"] = {
+				
+				{
+					["id"] = "USN15",
+ 					["name"] = "Defending of Wake",
+ 					["helpline"] = "FE.mtree_usn01_helpline",
+ 					["background"] = "fe.mtree_usn01_background",
+ 					["backgroundVoice"] = "campaign/USN01/USN01.fsb",
+					["backgroundMovie"] = "movies/Footage_USN01.bik",
+					["debriefingText"] = "usn01.debriefing",
+ 					["debriefingVoice"] = "campaign/USN01/USN01_out.fsb",
+ 					["sceneFile"] = "universe/Scenes/missions/USN/usn_15_Defending_of_Wake.scn",
+					["date"] = { 1941, 12, 10, },
+					["Pos"] = { 0.502083, 0.670139, 5.000000 },
+					["prerequisites"] = {},
+					["description"] = "",
+					["navalacademy"] = { 1, 2, 21, 22, 23, 25, 26, 27, 48 },
+					["picture"] = "fe/missions/USN01.tga",
+					["forcedDifficultyLevel"] = nil,
+					["allied"] = {
+						["briefingGuiLayer"] = "USN01",
+						["primaryObjectives"] = {
+							"usn01.obj_p1",
+							"usn01.obj_p2",
+						},
+						["secondaryObjectives"] = {
+						},
+						["hiddenObjectives"] = {
+							"usn01.obj_h1",
+						},
+						["hiddenHints"] = {
+							"usn01.obj_h1_hint" --hint az 1-es hidden objektiva teljesitesehez
+						},
+--						["loadingBackgrounds"] = {
+--							"fe/missions/USN01.tga",
+--							"fe/missions/USN02.tga",
+--							"fe/missions/USN03.tga",
+--						},
+						["hints"] = {
+							"usn01.hint_loadinghint1",
+							"usn01.hint_loadinghint2",
+							"usn01.hint_loadinghint3",
+							"usn01.hint_loadinghint4",
+						},
+						["allunitsid"] = {"101","113","108"},
+						["allunitsnum"] = {"60","60","60"},
+						["allunitslockid"] = {},
+						["allunitslocknum"] = {},
+						["changeables"] = {"101", "113"}, --Wildcat, Avenger
+					},
+				},
 				{
 					["id"] = "USN01",
  					["name"] = "FE.mtree_usn01_name",

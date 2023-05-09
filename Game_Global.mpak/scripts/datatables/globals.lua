@@ -30,6 +30,7 @@ Globals =
 		"PlaneRumble",
 		"EnvironmentAirRaid",
 		"EnvironmentUSHorn",
+		"Akagi Launching",
 	},
 
 	["CameraShake"] =

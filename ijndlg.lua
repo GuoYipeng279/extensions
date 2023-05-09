@@ -2797,32 +2797,32 @@ Messages =
 		},
 		["dlg1a"] = {
 			["subtitles"] = {
-				{"2^ijn07.dlg_1a_frag1",  0.000,  0.0},  --  This is our chance to save face after the scandalous "Doolittle" raid. The bombings were inaccurate, but the Americans were able to penetrate the Empire's inner defense lines. We must learn from this warning.
+				{"2^Second Carrier Fleet, Solyu, flight deck clear! ",  0.000,  0.0},  --  This is our chance to save face after the scandalous "Doolittle" raid. The bombings were inaccurate, but the Americans were able to penetrate the Empire's inner defense lines. We must learn from this warning.
 
 			},
 			["voice"] = "CAMPAIGN/IJN07/DLG01A",
 		},
-		["dlg1a_1"] = {
-			["subtitles"] = {
-				{"2^ijn07.dlg_1a_frag2",  0.000,  0.0},  --  This is our chance to save face after the scandalous "Doolittle" raid. The bombings were inaccurate, but the Americans were able to penetrate the Empire's inner defense lines. We must learn from this warning.
+		-- ["dlg1a_1"] = {
+		-- 	["subtitles"] = {
+		-- 		{"2^ijn07.dlg_1a_frag2",  0.000,  0.0},  --  This is our chance to save face after the scandalous "Doolittle" raid. The bombings were inaccurate, but the Americans were able to penetrate the Empire's inner defense lines. We must learn from this warning.
 
-			},
-			["voice"] = "CAMPAIGN/IJN07/DLG01A_1",
-		},
+		-- 	},
+		-- 	["voice"] = "CAMPAIGN/IJN07/DLG01A_1",
+		-- },
 		["dlg1b"] = {
 			["subtitles"] = {
-				{"2^ijn07.dlg_1b_frag1",  0.000,  0.0},  --  For the Army it highlighted the strategic importance and sheer size of the Pacific. And the need to work more closely with the Navy.
+				{"2^Second Carrier Fleet, Hilyu, flight deck clear!",  0.000,  0.0},  --  For the Army it highlighted the strategic importance and sheer size of the Pacific. And the need to work more closely with the Navy.
 
 			},
 			["voice"] = "CAMPAIGN/IJN07/DLG01B",
 		},
-		["dlg1b_1"] = {
-			["subtitles"] = {
-				{"2^ijn07.dlg_1b_frag2",  0.000,  0.0},  --  For the Army it highlighted the strategic importance and sheer size of the Pacific. And the need to work more closely with the Navy.
+		-- ["dlg1b_1"] = {
+		-- 	["subtitles"] = {
+		-- 		{"2^ijn07.dlg_1b_frag2",  0.000,  0.0},  --  For the Army it highlighted the strategic importance and sheer size of the Pacific. And the need to work more closely with the Navy.
 
-			},
-			["voice"] = "CAMPAIGN/IJN07/DLG01B_1",
-		},
+		-- 	},
+		-- 	["voice"] = "CAMPAIGN/IJN07/DLG01B_1",
+		-- },
 		["dlg1c"] = {
 			["subtitles"] = {
 				{"2^ijn07.dlg_1c_frag1",  0.000,  0.0},  --  So the next step is to knock out those airfields and pave the way for the Army and victory.
@@ -2844,19 +2844,19 @@ Messages =
 			},
 			["voice"] = "CAMPAIGN/IJN07/DLG02B",
 		},
-		["dlg2c"] = {
+		["dlg5a"] = {
 			["subtitles"] = {
 				{"1^Catalina spotted enemy mobile fleet sir, there are ten plus of them, carriers present. ",  0.000,  0.0},  --  Take out that plane and they'll be blind.
 
 			},
-			["voice"] = "CAMPAIGN/IJN07/DLG02C",
+			["voice"] = "CAMPAIGN/IJN07/DLG05A",
 		},
-		["dlg2d"] = {
+		["dlg5b"] = {
 			["subtitles"] = {
 				{"1^This is Midway. Copy that Catalina. All hands battlestations! ",  0.000,  0.0},  --  Take out that plane and they'll be blind.
 
 			},
-			["voice"] = "CAMPAIGN/IJN07/DLG01D",
+			["voice"] = "CAMPAIGN/IJN07/DLG05B",
 		},
 		["dlg3"] = {
 			["subtitles"] = {
@@ -2879,20 +2879,20 @@ Messages =
 			},
 			["voice"] = "CAMPAIGN/IJN07/DLG04B",
 		},
-		["dlg5a"] = {
-			["subtitles"] = {
-				{"2^ijn07.dlg_5a_frag1",  0.000,  0.0},  --  Army troop transports have arrived, sir!
+		-- ["dlg5a"] = {
+		-- 	["subtitles"] = {
+		-- 		{"2^ijn07.dlg_5a_frag1",  0.000,  0.0},  --  Army troop transports have arrived, sir!
 
-			},
-			["voice"] = "CAMPAIGN/IJN07/DLG05A",
-		},
-		["dlg5b"] = {
-			["subtitles"] = {
-				{"2^ijn07.dlg_5b_frag1",  0.000,  0.0},  --  Excellent. Not long ago these men would have been fighting on mainland Asia. But the war has changed and combined actions have become the way forward.
+		-- 	},
+		-- 	["voice"] = "CAMPAIGN/IJN07/DLG05A",
+		-- },
+		-- ["dlg5b"] = {
+		-- 	["subtitles"] = {
+		-- 		{"2^ijn07.dlg_5b_frag1",  0.000,  0.0},  --  Excellent. Not long ago these men would have been fighting on mainland Asia. But the war has changed and combined actions have become the way forward.
 
-			},
-			["voice"] = "CAMPAIGN/IJN07/DLG05B",
-		},
+		-- 	},
+		-- 	["voice"] = "CAMPAIGN/IJN07/DLG05B",
+		-- },
 		["dlg5b_1"] = {
 			["subtitles"] = {
 				{"2^ijn07.dlg_5b_frag2",  0.000,  0.0},  --  Excellent. Not long ago these men would have been fighting on mainland Asia. But the war has changed and combined actions have become the way forward.
@@ -2979,56 +2979,70 @@ Messages =
 		},
 		["dlg11a"] = {
 			["subtitles"] = {
-				{"2^ijn07.dlg_11a_frag1",  0.000,  0.0},  --  An enemy shipyard has been located, sir!
+				{"2^First Carrier Fleet, Akagi, launching!",  0.000,  0.0},  --  An enemy shipyard has been located, sir!
 
 			},
 			["voice"] = "CAMPAIGN/IJN07/DLG11A",
 		},
 		["dlg11b"] = {
 			["subtitles"] = {
-				{"2^ijn07.dlg_11b_frag1",  0.000,  0.0},  --  Watch out. They could be planning to launch vessels from it.
+				{"2^First Carrier Fleet, Kaga, launching!",  0.000,  0.0},  --  Watch out. They could be planning to launch vessels from it.
 
 			},
 			["voice"] = "CAMPAIGN/IJN07/DLG11B",
 		},
 		["dlg12a"] = {
 			["subtitles"] = {
-				{"2^ijn07.dlg_12a_frag1",  0.000,  0.0},  --  Submarine reporting, sir. We found and sunk the Hornet earlier. She's been removed from the theatre of operations.
+				{"2^Second Carrier Fleet, Soryu, launching!",  0.000,  0.0},  --  Submarine reporting, sir. We found and sunk the Hornet earlier. She's been removed from the theatre of operations.
 
 			},
 			["voice"] = "CAMPAIGN/IJN07/DLG12A",
 		},
 		["dlg12b"] = {
 			["subtitles"] = {
-				{"2^ijn07.dlg_12b_frag1",  0.000,  0.0},  --  Excellent! But there's no time for celebration. The Americans have more carriers at Midway.
+				{"2^First Carrier Fleet, Hiryu, launching!",  0.000,  0.0},  --  Excellent! But there's no time for celebration. The Americans have more carriers at Midway.
 
 			},
 			["voice"] = "CAMPAIGN/IJN07/DLG12B",
 		},
 		["dlg12c"] = {
 			["subtitles"] = {
-				{"2^ijn07.dlg_12c_frag1",  0.000,  0.0},  --  Yes sir. We will do our best to cripple them.
+				{"2^Huge fire in Akagi's hanger. Aviation tasks have been suspended! ",  0.000,  0.0},  --  Yes sir. We will do our best to cripple them.
 
 			},
 			["voice"] = "CAMPAIGN/IJN07/DLG12C",
 		},
 		["dlg14a"] = {
 			["subtitles"] = {
-				{"2^ijn07.dlg_14a_frag1",  0.000,  0.0},  --  Sir, an enemy cruiser is stationed between the islands. It is Atlanta-class with strong Anti-Air weapons.
+				{"2^Hiryu's situation is critical, we are examining the damage! ",  0.000,  0.0},  --  Sir, an enemy cruiser is stationed between the islands. It is Atlanta-class with strong Anti-Air weapons.
 
 			},
 			["voice"] = "CAMPAIGN/IJN07/DLG14A",
 		},
+		["dlg1a_1"] = {
+			["subtitles"] = {
+				{"2^Kaga reports multiple explosions. The flight deck is severely damaged. ",  0.000,  0.0},  --  Yes sir. We will do our best to cripple them.
+
+			},
+			["voice"] = "CAMPAIGN/IJN07/DLG01A_1",
+		},
+		["dlg1b_1"] = {
+			["subtitles"] = {
+				{"2^Solyu is badly damaged, we are trying to extinguish the fire on deck!",  0.000,  0.0},  --  Sir, an enemy cruiser is stationed between the islands. It is Atlanta-class with strong Anti-Air weapons.
+
+			},
+			["voice"] = "CAMPAIGN/IJN07/DLG01B_1",
+		},
 		["dlg14b"] = {
 			["subtitles"] = {
-				{"2^ijn07.dlg_14b_frag1",  0.000,  0.0},  --  Get rid of her. Use bombs, torpedoes, whatever you can. Just destroy her!
+				{"2^First Carrier Fleet, Akagi, flight deck clear!",  0.000,  0.0},  --  Get rid of her. Use bombs, torpedoes, whatever you can. Just destroy her!
 
 			},
 			["voice"] = "CAMPAIGN/IJN07/DLG14B",
 		},
 		["dlg15"] = {
 			["subtitles"] = {
-				{"2^ijn07.dlg_15_frag1",  0.000,  0.0},  --  The Atlanta-class cruiser has been destroyed, sir.
+				{"2^First Carrier Fleet, Kaga, flight deck clear!",  0.000,  0.0},  --  The Atlanta-class cruiser has been destroyed, sir.
 
 			},
 			["voice"] = "CAMPAIGN/IJN07/DLG15",

@@ -29003,6 +29003,7 @@ entity "Atlanta-class 01" (DestroyerGen) {
   template "USA\SEA\Atlanta-class" ;
 
   properties (Common, Command, GameUnit, Ship)  {
+    Hidden = B true ;
     "CamoColorGun" {
     }
     "Command" {

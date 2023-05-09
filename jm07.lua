@@ -2,6 +2,7 @@
 DoFile("Scripts/datatables/Inputs.lua")
 
 function luaEngineMovieInit()
+	-- -- luaDoCustomLog("debug.txt", "luaEngineMovieInit", "a")--
 	EnableMessages(false)
 	Music_Control_SetLevel(MUSIC_CALM)
 	LoadMessageMap("ijndlg",7)
@@ -43,21 +44,25 @@ function luaEngineMovieInit()
 end
 
 function luaEngineInit()
+	-- -- luaDoCustomLog("debug.txt", "luaEngineInit", "a")--
 	StartDialog("Intro_dlg1", Dialogues["Intro"] );
 	--StartDialog("Intro_dlg2", Dialogues["Intro_B"] );
 	--StartDialog("Intro_dlg3", Dialogues["Intro_C"] );
 end
 
 function luaStageInitMulti()
+	-- -- luaDoCustomLog("debug.txt", "luaStageInitMulti", "a")--
 	luaLoadControlFunctionNames()
 end
 
 function luaStageInit()
+	-- -- luaDoCustomLog("debug.txt", "luaStageInit", "a")--
 	CreateScript("luaInitJM7")
 	Scoring_RealPlayTimeRunning(true)
 end
 
 function luaInitJM7(this)
+	-- -- luaDoCustomLog("debug.txt", "luaInitJM7", "a")--
 	Mission = this
 	Mission.ScriptFile = "Scripts/missions/Ijn/JM07.lua"
 
@@ -169,6 +174,7 @@ function luaInitJM7(this)
 		table.insert(Mission.AirGuns, FindEntity("Coastal Gun, US 18"))
 		table.insert(Mission.AirGuns, FindEntity("Coastal Gun, US 19"))
 
+	Mission.AllShips = {}
 	Mission.PlayerFleet = {}
 		table.insert(Mission.PlayerFleet, FindEntity("Akagi"))
 		table.insert(Mission.PlayerFleet, FindEntity("Kaga-class 01"))
@@ -185,6 +191,7 @@ function luaInitJM7(this)
 		table.insert(Mission.PlayerFleet, FindEntity("Fubuki-class 21"))
 		table.insert(Mission.PlayerFleet, FindEntity("Fubuki-class 41"))
 		for idx,unit in pairs(Mission.PlayerFleet) do
+			table.insert(Mission.AllShips, unit)
 			if idx > 1 and idx < 8 then
 				JoinFormation(unit, Mission.PlayerFleet[1])
 			end
@@ -256,7 +263,7 @@ function luaInitJM7(this)
 		table.insert(Mission.USNReinfFleetNames, {"ingame.shipnames_astoria", 34})			--CA34
 
 		--table.insert(Mission.USNReinfFleetNames, "USS John P. Holder")
-		table.insert(Mission.USNReinfFleetNames, {"USS Balch", 363})				--DD369
+		table.insert(Mission.USNReinfFleetNames, {"USS Atlanta", 51})				--DD369
 		table.insert(Mission.USNReinfFleetNames, {"USS Conyngham", 371})				--DD116
 		table.insert(Mission.USNReinfFleetNames, {"USS Benham", 397})			--DD414
 		table.insert(Mission.USNReinfFleetNames, {"ingame.shipnames_ellett", 398})			--DD398
@@ -267,10 +274,10 @@ function luaInitJM7(this)
 	Mission.IJNCargos = {}
 	Mission.IJNInvasionReq = "IJNInvasionReq"
 
-	Mission.Atlanta = FindEntity("Atlanta-class 01")
-	luaJM7InitalSkillzLower({Mission.Atlanta})
-	SetGuiName(Mission.Atlanta, "ingame.shipnames_atlanta")	--CL51
-	SetNumbering(Mission.Atlanta, 51)
+	-- Mission.Atlanta = FindEntity("Atlanta-class 01")
+	-- luaJM7InitalSkillzLower({Mission.Atlanta})
+	-- SetGuiName(Mission.Atlanta, "ingame.shipnames_atlanta")	--CL51
+	-- SetNumbering(Mission.Atlanta, 51)
 
 	Mission.USReinforcementHeading = FindEntity("USReinforcementHeading")
 
@@ -367,15 +374,15 @@ function luaInitJM7(this)
 			},
 		},
 		["secondary"] = {
-			[1] = {
-				["ID"] = "AtlantaKill",
-				["Text"] = "ijn07.obj_s1",
-				["Active"] = false,
-				["Success"] = nil,
-				["Target"] = {},
-				["ScoreCompleted"] = 500 * OBJ_SECONDARY_MULTIPLIER,
-				["ScoreFailed"] = 0
-			},
+			-- [1] = {
+			-- 	["ID"] = "AtlantaKill",
+			-- 	["Text"] = "ijn07.obj_s1",
+			-- 	["Active"] = false,
+			-- 	["Success"] = nil,
+			-- 	["Target"] = {},
+			-- 	["ScoreCompleted"] = 500 * OBJ_SECONDARY_MULTIPLIER,
+			-- 	["ScoreFailed"] = 0
+			-- },
 			[2] = {
 				["ID"] = "Preparation",
 				["Text"] = "ijn07.obj_s2",
@@ -444,10 +451,10 @@ function luaInitJM7(this)
 					["message"] = "dlg2b",
 				},
 				{
-					["message"] = "dlg2c",
+					["message"] = "dlg5a",
 				},
 				{
-					["message"] = "dlg2d",
+					["message"] = "dlg5b",
 				},
 			},
 		},
@@ -547,13 +554,89 @@ function luaInitJM7(this)
 				},
 			},
 		},
-		["ShipyardInRecon"] = {
+		["AkagiLaunching"] = {
 			["sequence"] = {
 				{
 					["message"] = "dlg11a",
 				},
+			},
+		},
+		["KagaLaunching"] = {
+			["sequence"] = {
 				{
 					["message"] = "dlg11b",
+				},
+			},
+		},
+		["SoryuLaunching"] = {
+			["sequence"] = {
+				{
+					["message"] = "dlg12a",
+				},
+			},
+		},
+		["HiryuLaunching"] = {
+			["sequence"] = {
+				{
+					["message"] = "dlg12b",
+				},
+			},
+		},
+		
+		["AkagiSuspend"] = {
+			["sequence"] = {
+				{
+					["message"] = "dlg12c",
+				},
+			},
+		},
+		["KagaSuspend"] = {
+			["sequence"] = {
+				{
+					["message"] = "dlg1a_1",
+				},
+			},
+		},
+		["SoryuSuspend"] = {
+			["sequence"] = {
+				{
+					["message"] = "dlg1b_1",
+				},
+			},
+		},
+		["HiryuSuspend"] = {
+			["sequence"] = {
+				{
+					["message"] = "dlg14a",
+				},
+			},
+		},
+		
+		["AkagiClear"] = {
+			["sequence"] = {
+				{
+					["message"] = "dlg14b",
+				},
+			},
+		},
+		["KagaClear"] = {
+			["sequence"] = {
+				{
+					["message"] = "dlg15",
+				},
+			},
+		},
+		["SoryuClear"] = {
+			["sequence"] = {
+				{
+					["message"] = "dlg1a",
+				},
+			},
+		},
+		["HiryuClear"] = {
+			["sequence"] = {
+				{
+					["message"] = "dlg1b",
 				},
 			},
 		},
@@ -570,23 +653,23 @@ function luaInitJM7(this)
 				-- },
 			},
 		},
-		["AtlantaSighted"] = {
-			["sequence"] = {
-				{
-					["message"] = "dlg14a",
-				},
-				{
-					["message"] = "dlg14b",
-				},
-			},
-		},
-		["AtlantaKilled"] = {
-			["sequence"] = {
-				{
-					["message"] = "dlg15",
-				},
-			},
-		},
+		-- ["AtlantaSighted"] = {
+		-- 	["sequence"] = {
+		-- 		{
+		-- 			["message"] = "dlg14a",
+		-- 		},
+		-- 		{
+		-- 			["message"] = "dlg14b",
+		-- 		},
+		-- 	},
+		-- },
+		-- ["AtlantaKilled"] = {
+		-- 	["sequence"] = {
+		-- 		{
+		-- 			["message"] = "dlg15",
+		-- 		},
+		-- 	},
+		-- },
 		["Subseen"] = {
 			["sequence"] = {
 				{
@@ -612,9 +695,9 @@ function luaInitJM7(this)
 
 	LoadMessageMap("ijndlg",7)
 
-	luaJM7AddAtlantaListener()
+	-- luaJM7AddAtlantaListener()
 	luaJM7AddSubReconListener()
-	luaJM7AddSYListener()
+	-- luaJM7AddSYListener()
 	luaJM7SetGuiNames()
 	
 	luaAddCVHitListener(Mission.Akagi,"Akagi")
@@ -639,7 +722,7 @@ function luaInitJM7(this)
 		luaDelay(luaJM7UnlockDlg,3)
 	end
 
-	luaJM7AtlantaGo()
+	-- luaJM7AtlantaGo()
 	luaAddSeagulls()
 	luaJM7HangarHPOverride()
 
@@ -659,7 +742,47 @@ function luaInitJM7(this)
 	SetThink(this, "luaJM7_think")
 end
 
+function checkDialog(class, unit)
+	-- luaDoCustomLog("debug.txt", "checkDialog", "a")--
+	if class == "launching" then
+		if unit == Mission.Akagi then
+			luaJM7StartDialog("AkagiLaunching", false, true)
+		elseif unit == Mission.Kaga then
+			luaJM7StartDialog("KagaLaunching", false, true)
+		elseif unit == Mission.Soryu then
+			luaJM7StartDialog("SoryuLaunching", false, true)
+		elseif unit == Mission.Hiryu then
+			luaJM7StartDialog("HiryuLaunching", false, true)
+		end
+	end
+	
+	if class == "suspend" then
+		if unit == Mission.Akagi then
+			luaJM7StartDialog("AkagiSuspend", false, true)
+		elseif unit == Mission.Kaga then
+			luaJM7StartDialog("KagaSuspend", false, true)
+		elseif unit == Mission.Soryu then
+			luaJM7StartDialog("SoryuSuspend", false, true)
+		elseif unit == Mission.Hiryu then
+			luaJM7StartDialog("HiryuSuspend", false, true)
+		end
+	end
+	
+	if class == "clear" then
+		if unit == Mission.Akagi then
+			luaJM7StartDialog("AkagiClear", false, true)
+		elseif unit == Mission.Kaga then
+			luaJM7StartDialog("KagaClear", false, true)
+		elseif unit == Mission.Soryu then
+			luaJM7StartDialog("SoryuClear", false, true)
+		elseif unit == Mission.Hiryu then
+			luaJM7StartDialog("HiryuClear", false, true)
+		end
+	end
+end
+
 function luaJM7_think(this, msg)
+	-- -- luaDoCustomLog("debug.txt", "luaJM7_think", "a")--
 	--luaLog(this.Name.." mission is thinkin' !")
 
 	if luaMessageHandler (this, msg) == "killed" then
@@ -676,6 +799,10 @@ function luaJM7_think(this, msg)
 	luaJM7CheckShipyards()
 	luaJM7CheckAirGuns()
 	luaJM7CheckSub()
+	Mission.AllShips = luaRemoveDeadsFromTable(Mission.AllShips)
+	for _, unit in pairs(Mission.AllShips) do
+		SetShipMaxSpeed(unit, realSpeed(unit))
+	end
 	luaBomberLanding(Mission.Akagi)
 	luaBomberLanding(Mission.Kaga)
 	luaBomberLanding(Mission.Soryu)
@@ -737,30 +864,35 @@ function luaJM7_think(this, msg)
 end
 
 function hintAkagi()
+	-- luaDoCustomLog("debug.txt", "hintAkagi", "a")--
 	if GetSelectedUnit() == Mission.Akagi then
 		ShowHint("IJN07_Hint07")
 	end
 end
 
 function hintKaga()
+	-- luaDoCustomLog("debug.txt", "hintKaga", "a")--
 	if GetSelectedUnit() == Mission.Kaga then
 		ShowHint("IJN07_Hint08")
 	end
 end
 
 function hintSoryu()
+	-- luaDoCustomLog("debug.txt", "hintSoryu", "a")--
 	if GetSelectedUnit() == Mission.Soryu then
 		ShowHint("IJN07_Hint09")
 	end
 end
 
 function hintHiryu()
+	-- luaDoCustomLog("debug.txt", "hintHiryu", "a")--
 	if GetSelectedUnit() == Mission.Hiryu then
 		ShowHint("IJN07_Hint10")
 	end
 end
 
 function detailHints()
+	-- luaDoCustomLog("debug.txt", "detailHints", "a")--
 	if GetSelectedUnit() == Mission.Akagi then
 		luaDelay(hintAkagi, 10)
 	elseif GetSelectedUnit() == Mission.Kaga then
@@ -774,6 +906,7 @@ end
 
 --objectives
 function luaJM7CheckObjectives()
+	-- luaDoCustomLog("debug.txt", "luaJM7CheckObjectives", "a")--
 	-- Mission.MissionPhase = 99
 	-- Mission.MissionCompleted = true
 
@@ -881,9 +1014,9 @@ function luaJM7CheckObjectives()
 				end
 			end
 
-			if luaObj_IsActive("secondary",1) and luaObj_GetSuccess("secondary",1) == nil then
-				luaJM7Sec1Score()
-			end
+			-- if luaObj_IsActive("secondary",1) and luaObj_GetSuccess("secondary",1) == nil then
+			-- 	luaJM7Sec1Score()
+			-- end
 		end
 
 		luaJM7CheckObjReminders()
@@ -992,6 +1125,7 @@ function luaJM7CheckObjectives()
 			end
 			luaJM7StepPhase()
 			killList()
+			killList()
 
 		elseif Mission.MissionCompleted then
 			luaObj_Completed("primary",4)
@@ -1002,6 +1136,7 @@ function luaJM7CheckObjectives()
 			luaDelay(luaJM7CompleteMission,20)
 			luaJM7StepPhase()
 			killList()
+			killList()
 		end
 
 	end
@@ -1009,12 +1144,14 @@ function luaJM7CheckObjectives()
 end
 
 function killList()
+	-- luaDoCustomLog("debug.txt", "killList", "a")--
 	MissionNarrativePlayer(0, "Imperial Navy loss:"..Mission.JapDead)
 	MissionNarrativePlayer(0, "US Navy loss:"..Mission.AllyDead)
 	MissionNarrativePlayer(0, "Aircraft loss: IJN "..Mission.JapPilotLoss.." - "..Mission.AllyPilotLoss.." USN")
 end
 
 function luaAddPilotKillListener()
+	-- luaDoCustomLog("debug.txt", "luaAddPilotKillListener", "a")--
 	AddListener("kill", "PilotKillListener", {
 		["callback"] = "luaPilotKill",
 		["entity"] = {},
@@ -1025,6 +1162,7 @@ function luaAddPilotKillListener()
 end
 
 function luaPilotKill(target)
+	-- luaDoCustomLog("debug.txt", "luaPilotKill", "a")--
 	if Mission.IDInfo and Mission.IDInfo[target.ID] and Mission.IDInfo[target.ID]["party"] == PARTY_JAPANESE then
 		Mission.JapPilotLoss = Mission.JapPilotLoss + 1
 		if Mission.JapPilotLoss < 5 == 0 or Mission.JapPilotLoss > 50 and Mission.JapPilotLoss <= 60 then
@@ -1037,17 +1175,20 @@ function luaPilotKill(target)
 end
 
 function luaJM7Checkpoint1()
+	-- luaDoCustomLog("debug.txt", "luaJM7Checkpoint1", "a")--
 	luaCheckpoint(1,133)
 	Blackout(false, "", 1)
 end
 
 
 function luaJM7Checkpoint2()
+	-- luaDoCustomLog("debug.txt", "luaJM7Checkpoint2", "a")--
 	luaCheckpoint(2,133)
 	Blackout(false, "", 1)
 end
 
 function luaJM7CompleteMission()
+	-- luaDoCustomLog("debug.txt", "luaJM7CompleteMission", "a")--
 						-- RELEASE_LOGOFF  	luaLog(debug.traceback())
 	local finale = luaRemoveDeadsFromTable({Mission.Akagi, Mission.Kaga, Mission.Hiryu, Mission.Soryu, Mission.Kirishima, Mission.Haruna, Mission.CommandBuilding1})[1]
 	luaMissionCompletedNew(finale, "ijn07.obj_missioncompl")
@@ -1055,6 +1196,7 @@ function luaJM7CompleteMission()
 end
 
 function luaJM7CheckObjReminders()
+	-- luaDoCustomLog("debug.txt", "luaJM7CheckObjReminders", "a")--
 	if luaObj_IsActive("secondary",2) and luaObj_GetSuccess("secondary",2) == nil and not Mission.Objectives.secondary[2].Remind then
 
 		for idx,obj in pairs(Mission.Objectives.primary) do
@@ -1103,6 +1245,7 @@ function luaJM7CheckObjReminders()
 end
 
 function luaJM7AirfieldObj()
+	-- luaDoCustomLog("debug.txt", "luaJM7AirfieldObj", "a")--
 
 	local AirfieldsDestroyed = 0
 	if Mission.Airfield1.Dead or luaJM7IsDisabled(Mission.Airfield1) or Mission.Airfield1.Party ~= PARTY_ALLIED then
@@ -1132,6 +1275,7 @@ function luaJM7AirfieldObj()
 end
 
 function luaJM7InvasionObj()
+	-- luaDoCustomLog("debug.txt", "luaJM7InvasionObj", "a")--
 	if Mission.CommandBuilding1.Party == PARTY_JAPANESE and Mission.CommandBuilding2.Party == PARTY_JAPANESE then
 		return true
 	else
@@ -1140,6 +1284,7 @@ function luaJM7InvasionObj()
 end
 
 function luaJM7CarrierObj()
+	-- luaDoCustomLog("debug.txt", "luaJM7CarrierObj", "a")--
 	local deads = 0
 	if Mission.Yorktown and Mission.Yorktown.Dead then
 		deads = deads + 1
@@ -1173,6 +1318,7 @@ function luaJM7CarrierObj()
 end
 
 function luaAddCVHitListener(carrier, name)
+	-- luaDoCustomLog("debug.txt", "luaAddCVHitListener", "a")--
 	carrier.efxList = {}
 	carrier.hithint = name
 	carrier.enablehithint = true
@@ -1199,19 +1345,21 @@ function luaAddCVHitListener(carrier, name)
 end
 
 function luaCVKill1(entity)
-	luaDoCustomLog("debug.txt", {"luaCVKill1", entity}, "a")
+	-- luaDoCustomLog("debug.txt", "luaCVKill1", "a")--
+	-- -- luaDoCustomLog("debug.txt", {"luaCVKill1", entity}, "a")
 	if entity.Party == PARTY_JAPANESE then
 		Mission.JapDead = Mission.JapDead..GetGuiName(entity).." "
 	elseif entity.Party == PARTY_ALLIED then
 		Mission.AllyDead = Mission.AllyDead..GetGuiName(entity).." "
 	end
-	luaDoCustomLog("debug.txt", {"luaCVKill1End", entity}, "a")
+	-- -- luaDoCustomLog("debug.txt", {"luaCVKill1End", entity}, "a")
 end
 
 function luaCVHit1(target, targetDevice, attacker, attackType, attackerPlayerIndex, damageCaused, fireCaused, leakCaused)
+	-- luaDoCustomLog("debug.txt", "luaCVHit1", "a")--
 	-- MissionNarrativePlayer(0, GetGuiName(target)..GetGuiName(attacker))
 
-	luaDoCustomLog("debug.txt", {"luaCVHit1", target, targetDevice, attacker, attackType, attackerPlayerIndex, damageCaused, fireCaused, leakCaused}, "a")
+	-- -- luaDoCustomLog("debug.txt", {"luaCVHit1", target, targetDevice, attacker, attackType, attackerPlayerIndex, damageCaused, fireCaused, leakCaused}, "a")
 	-- MissionNarrativePlayer(0, type(attacker).." hit "..target.Name)
 	-- target.lastAttacker = attacker
 	-- if Mission.IDInfo and Mission.IDInfo[attacker.ID] and Mission.IDInfo[attacker.ID]["takeOff"] then target.lastAttacker = Mission.IDInfo[attacker.ID]["takeOff"] end
@@ -1235,11 +1383,12 @@ function luaCVHit1(target, targetDevice, attacker, attackType, attackerPlayerInd
 			target.enablehithint = false
 		end
 	end
-	luaDoCustomLog("debug.txt", {"luaCVHit1End"}, "a")
+	-- -- luaDoCustomLog("debug.txt", {"luaCVHit1End"}, "a")
 end
 
 function luaExpl(unit)
-	luaDoCustomLog("debug.txt", {"luaExpl", unit}, "a")
+	-- luaDoCustomLog("debug.txt", "luaExpl", "a")--
+	-- -- luaDoCustomLog("debug.txt", {"luaExpl", unit}, "a")
 	if not unit then return end
 	-- SetInvincible(unit, true)
 	local efxList = unit.efxList
@@ -1251,6 +1400,9 @@ function luaExpl(unit)
 	if unit.deadlyExpl and (random(1,100) > 70 or unit.fatalExpl) then
 		Effect("ExplosionBigShip", pos, unit)
 		Effect("ExplosionMagazine", pos, unit)
+		if unit.fatalExpl then
+			checkDialog("suspend", unit)
+		end
 		unit.fatalExpl = false
 		AddDamage(unit, 500)
 		efx = Effect("BigFire", pos, unit)
@@ -1263,13 +1415,14 @@ function luaExpl(unit)
 	end
 	-- MissionNarrativePlayer(0, tostring(efx.big))
 	table.insert(efxList, efx)
-	luaDoCustomLog("debug.txt", {"luaExplEnd"}, "a")
+	-- -- luaDoCustomLog("debug.txt", {"luaExplEnd"}, "a")
 end
 
 function luaFireControlFail(carrier)
+	-- luaDoCustomLog("debug.txt", "luaFireControlFail", "a")--
 	local unit = carrier.ParamTable.carrier
 	if not unit or unit.Dead then return end
-	luaDoCustomLog("debug.txt", {"luaFireControlFail", carrier}, "a")
+	-- -- luaDoCustomLog("debug.txt", {"luaFireControlFail", carrier}, "a")
 	luaExpl(unit)
 	unit.RunwayFailure = true
 	SetFailure(unit, "RunwayFailure")
@@ -1286,13 +1439,14 @@ function luaFireControlFail(carrier)
 		luaDelay(luaFireControlFail,luck*1.5,"carrier",unit)
 	end
 	-- MissionNarrativePlayer(0, unit.Name.." "..#efxList)
-	luaDoCustomLog("debug.txt", {"luaFireControlFailEnd"}, "a")
+	-- -- luaDoCustomLog("debug.txt", {"luaFireControlFailEnd"}, "a")
 end
 
 function luaFireControlSuccess(carrier)
+	-- luaDoCustomLog("debug.txt", "luaFireControlSuccess", "a")--
 	local unit = carrier.ParamTable.carrier
 	if not unit or unit.Dead then return end
-	luaDoCustomLog("debug.txt", {"luaFireControlSuccess", unit}, "a")
+	-- -- luaDoCustomLog("debug.txt", {"luaFireControlSuccess", unit}, "a")
 	local efxList = unit.efxList
 	local toStop = random(#efxList)
 	StopEffect(efxList[toStop].Pointer)
@@ -1303,6 +1457,7 @@ function luaFireControlSuccess(carrier)
 		unit.atFire = false
 		unit.enablehithint = true
 		if unit.Party == PARTY_JAPANESE then
+			checkDialog("clear", unit)
 			MissionNarrativePlayer(0, unit.hithint.." reporting flight deck clear.")
 		end
 		return
@@ -1316,15 +1471,16 @@ function luaFireControlSuccess(carrier)
 		luaDelay(luaFireControlSuccess,20,"carrier",unit)
 	else luaDelay(luaFireControlFail,luck*1.5,"carrier",unit)
 	end
-	MissionNarrativePlayer(0, unit.Name.." "..#efxList)
-	luaDoCustomLog("debug.txt", {"luaFireControlSuccessEnd"}, "a")
+	-- MissionNarrativePlayer(0, unit.Name.." "..#efxList)
+	-- -- luaDoCustomLog("debug.txt", {"luaFireControlSuccessEnd"}, "a")
 end
 
 function luaDitching(params)
+	-- luaDoCustomLog("debug.txt", "luaDitching", "a")--
 	local p = params.ParamTable.sq
 	local burn = params.ParamTable.burn
 	if not p or p.Dead then return end
-	luaDoCustomLog("debug.txt", {"luaDitching"..p.Name}, "a")
+	-- -- luaDoCustomLog("debug.txt", {"luaDitching"..p.Name}, "a")
 	p.burn_rate = 1.0
 	p.fuel = p.fuel-burn*p.burn_rate
 	SquadronSetTravelAlt(p, 0)
@@ -1339,10 +1495,11 @@ function luaDitching(params)
 		MissionNarrativePlayer(0, "squadron ditched "..p.Class.Name)
 		Kill(p)
 	end
-	luaDoCustomLog("debug.txt", {"luaDitchingEnd"}, "a")
+	-- -- luaDoCustomLog("debug.txt", {"luaDitchingEnd"}, "a")
 end
 
 function luaIsLowFuel(plane, carrier)
+	-- luaDoCustomLog("debug.txt", "luaIsLowFuel", "a")--
 	if not plane.fuel then return false end
 	if not carrier or carrier.Dead then return plane.fuel <= 3000.0 end
 	if plane.fuel <= luaGetDistance(plane, carrier) + 10000 then return true end
@@ -1350,22 +1507,27 @@ function luaIsLowFuel(plane, carrier)
 end
 
 function luaHasFuel(plane)
+	-- luaDoCustomLog("debug.txt", "luaHasFuel", "a")--
 	if not plane.fuel then return true end
 	return plane.fuel > 0.0
 end
 
 function luaNearestLandingBase(plane, bases)
+	-- luaDoCustomLog("debug.txt", "luaNearestLandingBase", "a")--
 end
 
 function luaLandable(carrier)
+	-- luaDoCustomLog("debug.txt", "luaLandable", "a")--
 	return carrier and not carrier.Dead and (carrier.Class.Type ~= "MotherShip" or not carrier.RunwayFailure)
 end
 
 function burnStep(now, last)
+	-- luaDoCustomLog("debug.txt", "burnStep", "a")--
 	return math.sqrt(math.pow(now.x-last.x, 2)+math.pow(now.z-last.z, 2)+math.pow(math.max(now.y-last.y,0), 3))
 end
 
 function reloadingTag3sec(params)
+	-- luaDoCustomLog("debug.txt", "reloadingTag3sec", "a")--
 	local p = params.ParamTable.sq
 	if p and not p.Dead then
 		p.reloadingTag = true
@@ -1373,12 +1535,13 @@ function reloadingTag3sec(params)
 end
 
 function luaFuel(params)
+	-- luaDoCustomLog("debug.txt", "luaFuel", "a")--
 	local p = params.ParamTable.sq
 	local burn = params.ParamTable.burn
 	local carrier = params.ParamTable.carrier
 	local last_loc = params.ParamTable.last_loc
 	if not p or p.Dead then return end
-	luaDoCustomLog("debug.txt", {"luaFuel "..p.fuel.." "..p.Name}, "a")
+	-- -- luaDoCustomLog("debug.txt", {"luaFuel "..p.fuel.." "..p.Name}, "a")
 	if GetPlaneIsReloading(p) then luaDelay(reloadingTag3sec, 3, "sq", p) end
 	if not last_loc then last_loc = GetPosition(p) end
 	local curr_loc = GetPosition(p)
@@ -1393,27 +1556,28 @@ function luaFuel(params)
 	-- SetCheatTurbo(p,2)
 	if p.landing and carrier and carrier.Class.Type ~= "MotherShip" then
 		luaDelay(luaFuel, 1, "sq", p, "carrier", carrier, "burn", burn, "last_loc", curr_loc)
-		luaDoCustomLog("debug.txt", {"luaFuel End1"..p.fuel.." "..p.Name}, "a")
+		-- -- luaDoCustomLog("debug.txt", {"luaFuel End1"..p.fuel.." "..p.Name}, "a")
 		return
 	end
 	if carrier and carrier.Class.Type == "MotherShip" and GetSquadronLanded(p) then
 		carrier.landingStack = carrier.landingStack - 1
-		luaDoCustomLog("debug.txt", {"luaFuel End2"..p.fuel.." "..p.Name}, "a")
+		-- -- luaDoCustomLog("debug.txt", {"luaFuel End2"..p.fuel.." "..p.Name}, "a")
 		return
 	end
 	if carrier and carrier.Class.Type == "MotherShip" and not p.sent then
 		if carrier.vulnerable == 0 and carrier.Party == PARTY_JAPANESE then
 			-- Effect("Recon", ORIGO, Mission.Akagi)
-			MissionNarrativePlayer(0, carrier.hithint..": launching")
+			checkDialog("launching", carrier)
+			-- MissionNarrativePlayer(0, carrier.hithint..": launching")
 		end
 		carrier.vulnerable = carrier.vulnerable + 1
 		luaDelay(luaPlaneSentSafe, 40, "carrier",carrier)
 	end
 	p.sent = true
 	if not luaHasFuel(p) then
-		MissionNarrativePlayer(0, "Dit cuz no fuel")
+		-- MissionNarrativePlayer(0, "Dit cuz no fuel")
 		luaDelay(luaDitching, 1, "sq", p, "burn", burn)
-		luaDoCustomLog("debug.txt", {"luaFuel End3"..p.fuel.." "..p.Name}, "a")
+		-- -- luaDoCustomLog("debug.txt", {"luaFuel End3"..p.fuel.." "..p.Name}, "a")
 		return
 	end
 	if luaIsLowFuel(p, carrier) and (not luaLandable(carrier) or carrier.landingStack > 6) then
@@ -1479,29 +1643,32 @@ function luaFuel(params)
 	end
 	-- MissionNarrativePlayer(0, "s7")
 	luaDelay(luaFuel, 1, "sq", p, "carrier", carrier, "burn", burn, "last_loc", curr_loc)
-	luaDoCustomLog("debug.txt", {"luaFuel End4"..p.fuel.." "..p.Name}, "a")
+	-- -- luaDoCustomLog("debug.txt", {"luaFuel End4"..p.fuel.." "..p.Name}, "a")
 end
 
 function luaPlaneSentSafe(params)
-	luaDoCustomLog("debug.txt", {"luaPlaneSentSafe"}, "a")
-	luaDoCustomLog("debug.txt", params.ParamTable, "a")
+	-- luaDoCustomLog("debug.txt", "luaPlaneSentSafe", "a")--
+	-- -- luaDoCustomLog("debug.txt", {"luaPlaneSentSafe"}, "a")
+	-- -- luaDoCustomLog("debug.txt", params.ParamTable, "a")
 	local carrier = params.ParamTable.carrier
 	if carrier and carrier.vulnerable > 0 then
 		carrier.vulnerable = carrier.vulnerable - 1
 		if carrier.vulnerable == 0 and carrier.Party == PARTY_JAPANESE then
-			MissionNarrativePlayer(0, carrier.hithint.." reporting flight deck clear.")
+			-- MissionNarrativePlayer(0, carrier.hithint.." reporting flight deck clear.")
 		end
 	end
-	luaDoCustomLog("debug.txt", {"luaPlaneSentSafeEnd"}, "a")
+	-- -- luaDoCustomLog("debug.txt", {"luaPlaneSentSafeEnd"}, "a")
 end
 
 function setInitFuel(p, f)
+	-- luaDoCustomLog("debug.txt", "setInitFuel", "a")--
 	p.fuel = f
 	p.maxFuel = f
 end
 
 function luaBomberLanding(carrier)
-	luaDoCustomLog("debug.txt", {"luaBomberLanding",carrier}, "a")
+	-- luaDoCustomLog("debug.txt", "luaBomberLanding", "a")--
+	-- -- luaDoCustomLog("debug.txt", {"luaBomberLanding",carrier}, "a")
 	if carrier and not carrier.Dead then
 		if math.floor(GameTime()) % 20 == 0 then MissionNarrativePlayer(0, carrier.Name.." "..#efxList) end
 		-- SetFailure(carrier, "RunwayFailure", 180)
@@ -1530,7 +1697,7 @@ function luaBomberLanding(carrier)
 						carrier.defaultRange = 100000.0
 					end
 					setInitFuel(p, carrier.defaultRange)
-					luaDoCustomLog("debug.txt", {"luaBomberLandingpp00"}, "a")
+					-- -- luaDoCustomLog("debug.txt", {"luaBomberLandingpp00"}, "a")
 					for _, pp in pairs(GetSquadronPlanes(p)) do
 						if not Mission.IDInfo then Mission.IDInfo = {} end
 						Mission.IDInfo[pp] = {["takeOff"] = carrier, ["party"] = p.Party}
@@ -1579,15 +1746,32 @@ function luaBomberLanding(carrier)
 		end
 		local speedLimit = 999
 		if haveLanding and carrier.maxLandSpeed then speedLimit = carrier.maxLandSpeed end
-		local checkHp = GetHpPercentage(carrier)
-		SetShipMaxSpeed(carrier, math.min(speedLimit, math.max(math.min(checkHp+0.3,1.0), 0.3) * carrier.Class.MaxSpeed))
+		SetShipMaxSpeed(carrier, math.min(speedLimit, realSpeed(carrier)))
 	end
-	luaDoCustomLog("debug.txt", {"luaBomberLandingEnd",carrier}, "a")
+	-- -- luaDoCustomLog("debug.txt", {"luaBomberLandingEnd",carrier}, "a")
+end
+
+function realSpeed(unit)
+	-- luaDoCustomLog("debug.txt", "realSpeed", "a")--
+	if not unit or unit.Dead then return 0 end
+	local checkHp = GetHpPercentage(unit)
+	if unit.Class.Type == "Destroyer" then
+		return unit.Class.MaxSpeed
+	elseif unit.Class.Type == "Cruiser" then
+		return math.max(math.min(checkHp+0.4,1.0), 0.5) * unit.Class.MaxSpeed
+	elseif unit.Class.Type == "BattleShip" then
+		return math.max(math.min(checkHp+0.2,1.0), 0.2) * unit.Class.MaxSpeed
+	elseif unit.Class.Type == "MotherShip" then
+		return math.max(math.min(checkHp+0.3,1.0), 0.3) * unit.Class.MaxSpeed
+	else
+		return unit.Class.MaxSpeed
+	end
 end
 
 function luaRecoverSeaplane(params)
-	luaDoCustomLog("debug.txt", {"luaRecoverSeaplane"}, "a")
-	luaDoCustomLog("debug.txt", params.ParamTable, "a")
+	-- luaDoCustomLog("debug.txt", "luaRecoverSeaplane", "a")--
+	-- -- luaDoCustomLog("debug.txt", {"luaRecoverSeaplane"}, "a")
+	-- -- luaDoCustomLog("debug.txt", params.ParamTable, "a")
 	local seaplane = params.ParamTable.seaplane
 	local ship = params.ParamTable.ship
 	if seaplane and not seaplane.Dead and GetEntitySpeed(seaplane) < 20 then
@@ -1597,8 +1781,9 @@ function luaRecoverSeaplane(params)
 end
 
 function luaSeaPlaneManager(ship)
+	-- luaDoCustomLog("debug.txt", "luaSeaPlaneManager", "a")--
 	if ship and not ship.Dead then
-		luaDoCustomLog("debug.txt", {"luaSeaPlaneManager",ship.Name}, "a")
+		-- -- luaDoCustomLog("debug.txt", {"luaSeaPlaneManager",ship.Name}, "a")
 		if not ship.SeaPlanes then ship.SeaPlanes = {} end
 		local seaplane = GetLastCatapulted(ship)
 		if #ship.SeaPlanes == 0 or seaplane ~= ship.SeaPlanes[#ship.SeaPlanes] then
@@ -1652,11 +1837,12 @@ function luaSeaPlaneManager(ship)
 			end
 		-- PilotSetTarget(seaplane, ship)
 		end
-		luaDoCustomLog("debug.txt", {"luaSeaPlaneManagerEnd",ship.Name}, "a")
+		-- -- luaDoCustomLog("debug.txt", {"luaSeaPlaneManagerEnd",ship.Name}, "a")
 	end
 end
 
 function luaJM7PrepObj()
+	-- luaDoCustomLog("debug.txt", "luaJM7PrepObj", "a")--
 	local numsquads = 0
 	if not Mission.Kaga.Dead then
 		_, sq = luaGetSlotsAndSquads(Mission.Kaga)
@@ -1681,6 +1867,7 @@ function luaJM7PrepObj()
 end
 
 function luaJM7PowerupCheck()
+	-- luaDoCustomLog("debug.txt", "luaJM7PowerupCheck", "a")--
 	if not Mission.CVPowerup then
 
 		if not Mission.YorktownPowerup and Mission.Yorktown and Mission.Yorktown.Dead and Mission.Yorktown.KillReason ~= "exitzone" then
@@ -1704,6 +1891,7 @@ end
 
 --- PHASE1 Bombers
 function luaJM7CheckIJNBombers()
+	-- luaDoCustomLog("debug.txt", "luaJM7CheckIJNBombers", "a")--
 	if Mission.IJNBombersSpawned >= 0 then  -- do not spawn land-based bombers
 		return
 	end
@@ -1754,6 +1942,7 @@ function luaJM7CheckIJNBombers()
 end
 
 function luaJM7SpawnIJNBombers()
+	-- luaDoCustomLog("debug.txt", "luaJM7SpawnIJNBombers", "a")--
 	local grpTbl =  {}
 	local squadNum = random(3,5)
 						-- RELEASE_LOGOFF  	luaLog("Spawning "..tostring(squadNum).." bomberssquadrons")
@@ -1792,6 +1981,7 @@ function luaJM7SpawnIJNBombers()
 end
 
 function luaJM7IJNBombersSpawned(...)
+	-- luaDoCustomLog("debug.txt", "luaJM7IJNBombersSpawned", "a")--
 
 	local targets = {}
 	local trg
@@ -1838,11 +2028,13 @@ function luaJM7IJNBombersSpawned(...)
 end
 
 function luaJM7RAD(x)
+	-- luaDoCustomLog("debug.txt", "luaJM7RAD", "a")--
 	return x *  0.0174532925
 end
 
 ---Airfields
 function luaJM7CheckMaxplanes(airfield)
+	-- luaDoCustomLog("debug.txt", "luaJM7CheckMaxplanes", "a")--
 	--maxplanes check
 	if not airfield or airfield.Dead then
 		return
@@ -1881,6 +2073,7 @@ function luaJM7CheckMaxplanes(airfield)
 end
 
 function luaJM7AirfieldIsActive()
+	-- luaDoCustomLog("debug.txt", "luaJM7AirfieldIsActive", "a")--
 	if Mission.NoAcitveCheckNeeded then
 		return
 	end
@@ -1908,39 +2101,46 @@ function luaJM7AirfieldIsActive()
 end
 
 function luaJM7ReloadAF1()
+	-- luaDoCustomLog("debug.txt", "luaJM7ReloadAF1", "a")--
 	MissionNarrativePlayer(0, "reload af1")
 	Mission.Airfield1.Maxplanes = 24
 	Mission.Airfield1.Reload = false
 end
 
 function luaJM7ReloadAF2()
+	-- luaDoCustomLog("debug.txt", "luaJM7ReloadAF2", "a")--
 	MissionNarrativePlayer(0, "reload af2")
 	Mission.Airfield2.Maxplanes = 36
 	Mission.Airfield2.Reload = false
 end
 
 function luaJM7ReloadAF3()
+	-- luaDoCustomLog("debug.txt", "luaJM7ReloadAF3", "a")--
 	MissionNarrativePlayer(0, "reload af3")
 	Mission.Airfield3.Maxplanes = 24
 	Mission.Airfield3.Reload = false
 end
 
 function luaJM7ReloadYorktown()
+	-- luaDoCustomLog("debug.txt", "luaJM7ReloadYorktown", "a")--
 	Mission.Yorktown.Maxplanes = 24
 	Mission.Yorktown.Reload = false
 end
 
 function luaJM7ReloadEnterprise()
+	-- luaDoCustomLog("debug.txt", "luaJM7ReloadEnterprise", "a")--
 	Mission.Enterprise.Maxplanes = 24
 	Mission.Enterprise.Reload = false
 end
 
 function luaJM7ReloadHornet()
+	-- luaDoCustomLog("debug.txt", "luaJM7ReloadHornet", "a")--
 	Mission.Hornet.Maxplanes = 24
 	Mission.Hornet.Reload = false
 end
 
 function luaJM7GetUnits(searchedType,searchedParty)
+	-- luaDoCustomLog("debug.txt", "luaJM7GetUnits", "a")--
 	local returnTbl = {}
 
 	if type(searchedType) == "string" then --and recon[PARTY_JAPANESE].own.searchedType then
@@ -1967,6 +2167,7 @@ function luaJM7GetUnits(searchedType,searchedParty)
 end
 
 function luaJM7IsDisabled(ent)
+	-- luaDoCustomLog("debug.txt", "luaJM7IsDisabled", "a")--
 	if not luaIsEntityTable({ent},false) then
 						-- RELEASE_LOGOFF  		luaLog("luaJM5IsDisabled got a wrong param")
 						-- RELEASE_LOGOFF  		luaLog(ent.Name)
@@ -1982,7 +2183,8 @@ end
 
 ---USNCarrierFleet1
 function luaJM7CheckUSNCarrierFleet1()
-	luaDoCustomLog("debug.txt", {"luaJM7CheckUSNCarrierFleet1"}, "a")
+	-- luaDoCustomLog("debug.txt", "luaJM7CheckUSNCarrierFleet1", "a")--
+	-- -- luaDoCustomLog("debug.txt", {"luaJM7CheckUSNCarrierFleet1"}, "a")
 	if Mission.Fleet1CarriersDead or not Mission.Fleet1Ready then
 		return
 	end
@@ -2100,6 +2302,7 @@ function luaJM7CheckUSNCarrierFleet1()
 end
 
 function luaJM7SumEnemyTables(...)
+	-- luaDoCustomLog("debug.txt", "luaJM7SumEnemyTables", "a")--
 	--luaLog("--luaJM7SumEnemyTables--")
 	local nmi = {}
 	for idx,unitTbl in ipairs(arg) do
@@ -2121,6 +2324,7 @@ function luaJM7SumEnemyTables(...)
 end
 
 function luaJM7USNFleet1PathListener()
+	-- luaDoCustomLog("debug.txt", "luaJM7USNFleet1PathListener", "a")--
 	AddListener("command", "fleet1move", {
 		["callback"] = "luaJM7ChangeUSNFleet1Path",  -- callback fuggveny
 		["entity"] = Mission.USNFleet1, -- entityk akiken a listener aktiv
@@ -2131,6 +2335,7 @@ function luaJM7USNFleet1PathListener()
 end
 
 function luaJM7ChangeUSNFleet1Path()
+	-- luaDoCustomLog("debug.txt", "luaJM7ChangeUSNFleet1Path", "a")--
 	RemoveListener("command", "fleet1move")
 
 	local path
@@ -2150,6 +2355,7 @@ function luaJM7ChangeUSNFleet1Path()
 end
 
 function luaJM7StepPhase(phase)
+	-- luaDoCustomLog("debug.txt", "luaJM7StepPhase", "a")--
 	if phase and type(phase) == "number" then
 		Mission.MissionPhase = phase
 	else
@@ -2158,6 +2364,7 @@ function luaJM7StepPhase(phase)
 end
 
 function luaJM7SpawnIJNInvasionFleet()
+	-- luaDoCustomLog("debug.txt", "luaJM7SpawnIJNInvasionFleet", "a")--
 	SpawnNew({
 	["party"] = PARTY_JAPANESE,
 	["groupMembers"] = {
@@ -2210,6 +2417,7 @@ function luaJM7SpawnIJNInvasionFleet()
 end
 
 function luaJM7IJNInvasionFleetSpawned(...)
+	-- luaDoCustomLog("debug.txt", "luaJM7IJNInvasionFleetSpawned", "a")--
 
 	for idx,unit in ipairs(arg) do
 		table.insert(Mission.IJNInvasionFleet, unit)
@@ -2247,7 +2455,8 @@ function luaJM7IJNInvasionFleetSpawned(...)
 end
 
 function luaJM7SpawnIJNHoshoFleet()
-	luaDoCustomLog("debug.txt", {"luaJM7SpawnIJNHoshoFleet"}, "a")
+	-- luaDoCustomLog("debug.txt", "luaJM7SpawnIJNHoshoFleet", "a")--
+	-- -- luaDoCustomLog("debug.txt", {"luaJM7SpawnIJNHoshoFleet"}, "a")
 	SpawnNew({
 	["party"] = PARTY_JAPANESE,
 	["groupMembers"] = {
@@ -2311,11 +2520,12 @@ function luaJM7SpawnIJNHoshoFleet()
 	["callback"] = "luaJM7IJNHoshoFleetSpawned",
 	["id"] = "Mission.IJNInvasionReq",
 	})
-	luaDoCustomLog("debug.txt", {"luaJM7SpawnIJNHoshoFleetEnd"}, "a")
+	-- -- luaDoCustomLog("debug.txt", {"luaJM7SpawnIJNHoshoFleetEnd"}, "a")
 end
 
 function luaJM7IJNHoshoFleetSpawned(...)
-	luaDoCustomLog("debug.txt", {"luaJM7IJNHoshoFleetSpawned"}, "a")
+	-- luaDoCustomLog("debug.txt", "luaJM7IJNHoshoFleetSpawned", "a")--
+	-- -- luaDoCustomLog("debug.txt", {"luaJM7IJNHoshoFleetSpawned"}, "a")
 	MissionNarrativePlayer(0, "Hosho has arrived")
 	for idx,unit in ipairs(arg) do
 		RepairEnable(unit, false)
@@ -2342,6 +2552,7 @@ function luaJM7IJNHoshoFleetSpawned(...)
 
 	for idx, unit in pairs(Mission.IJNInvasionFleet) do
 		RepairEnable(unit, false)
+		table.insert(Mission.AllShips, unit)
 		SetGuiName(unit, Mission.IJNInvasionFleetNames[idx])
 	end
 
@@ -2355,11 +2566,12 @@ function luaJM7IJNHoshoFleetSpawned(...)
 
 	-- luaJM7StartDialog("JapInvFleetIn")
 	-- luaJM7StartDialog("YamatoIn")
-	luaDoCustomLog("debug.txt", {"luaJM7IJNHoshoFleetSpawned End"}, "a")
+	-- -- luaDoCustomLog("debug.txt", {"luaJM7IJNHoshoFleetSpawned End"}, "a")
 end
 
 
 function luaJM7CheckInvasionPart(unitTbl, nmiCmd)
+	-- luaDoCustomLog("debug.txt", "luaJM7CheckInvasionPart", "a")--
 
 	--luaLog("luaJM7CheckInvasionPart called")
 
@@ -2406,6 +2618,7 @@ end
 
 ---IJNInvasion Fleet
 function luaJM7CheckInvasionFleet()
+	-- luaDoCustomLog("debug.txt", "luaJM7CheckInvasionFleet", "a")--
 	Mission.IJNInvasionFleet = luaRemoveDeadsFromTable(Mission.IJNInvasionFleet)
 	Mission.IJNCargos = luaRemoveDeadsFromTable(Mission.IJNCargos)
 
@@ -2502,6 +2715,7 @@ function luaJM7CheckInvasionFleet()
 end
 
 function luaJM7GetInvasionFleetLeader()
+	-- luaDoCustomLog("debug.txt", "luaJM7GetInvasionFleetLeader", "a")--
 	Mission.IJNInvasionFleet = luaRemoveDeadsFromTable(Mission.IJNInvasionFleet)
 	for idx,unit in pairs(Mission.IJNInvasionFleet) do
 		if IsInFormation(unit) then
@@ -2520,6 +2734,7 @@ end
 
 
 function antiAirFormation(fleet, center)
+	-- luaDoCustomLog("debug.txt", "antiAirFormation", "a")--
 	-- SetFormationShape
 	-- MissionNarrativePlayer(0, "Start formation")
 	-- MissionNarrativePlayer(0, "Get position")
@@ -2588,6 +2803,7 @@ function antiAirFormation(fleet, center)
 end
 
 function destroyerAntiSub(params)
+	-- luaDoCustomLog("debug.txt", "destroyerAntiSub", "a")--
 	local destroyer = params.ParamTable.destroyer
 	local subs = luaRemoveDeadsFromTable(params.ParamTable.subs)
 	if not destroyer or destroyer.Dead then return end
@@ -2607,6 +2823,7 @@ end
 		
 
 function callbackSpawnUSNReinf(...)
+	-- luaDoCustomLog("debug.txt", "callbackSpawnUSNReinf", "a")--
 	if not Mission.reinf_ready then Mission.reinf_ready = {} end
 	table.insert(Mission.reinf_ready, arg[1])
 	if arg[1].Class.Type == "Destroyer" then
@@ -2622,6 +2839,7 @@ end
 --spawnsecond--
 ---USNreinf
 function luaJM7SpawnUSNReinf()
+	-- luaDoCustomLog("debug.txt", "luaJM7SpawnUSNReinf", "a")--
 	---test---
 	local possible_positions = {
 	10000, 10000, 
@@ -2702,11 +2920,11 @@ function luaJM7SpawnUSNReinf()
 				["Class"] = "Cruiser",
 			},
 			{
-				["Type"] = 23,
+				["Type"] = 17,
 				["Name"] = "Fletcher1",
-				["Crew"] = Mission.SkillLower,
+				["Crew"] = Mission.SkillLevel,
 				["Race"] = USA,
-				["Class"] = "Destroyer",
+				["Class"] = "Cruiser",
 			},
 			{
 				["Type"] = 23,
@@ -2758,7 +2976,8 @@ function luaJM7SpawnUSNReinf()
 end
 
 function luaJM7USNReinfFleetSpawned(...)
-	luaDoCustomLog("debug.txt", {"luaJM7USNReinfFleetSpawned"}, "a")
+	-- luaDoCustomLog("debug.txt", "luaJM7USNReinfFleetSpawned", "a")--
+	-- -- luaDoCustomLog("debug.txt", {"luaJM7USNReinfFleetSpawned"}, "a")
 	-- this function is called repetitively
 	local leader
 	for idx,unit in ipairs(arg) do
@@ -2804,6 +3023,7 @@ function luaJM7USNReinfFleetSpawned(...)
 						-- RELEASE_LOGOFF  		luaLog("assigning name "..Mission.USNReinfFleetNames[idx][1].." to "..unit.Name)
 		SetGuiName(unit, Mission.USNReinfFleetNames[idx][1])
 		RepairEnable(unit, false)
+		table.insert(Mission.AllShips, unit)
 		SetNumbering(unit, Mission.USNReinfFleetNames[idx][2])
 	end
 	
@@ -2818,15 +3038,16 @@ function luaJM7USNReinfFleetSpawned(...)
 		{{-10000,-10000},{-15000,-15000},{-20000,-20000}},
 		{{10000,-10000},{15000,-15000},{20000,-20000}}}
 	-- MissionNarrativePlayer(0, "s0")
-	luaDelay(strategicPath, 1, "fleet", Mission.USNReinforcements,"like",{Mission.Akagi, Mission.Kaga, Mission.Soryu, Mission.Hiryu}, "dislike", {Mission.Haruna, Mission.Kirishima}, "defaults", defaults, "points", points, "call", 0)
+	luaDelay(strategicPath, 1, "fleet", Mission.USNReinforcements,"like",{Mission.Akagi, Mission.Kaga, Mission.Soryu, Mission.Hiryu, Mission.PlayerSub}, "dislike", {Mission.Haruna, Mission.Kirishima}, "defaults", defaults, "points", points, "call", 0)
 	-- luaJM7SpawnIJNHoshoFleet()
 end
 
 function strategicPath(params)
+	-- luaDoCustomLog("debug.txt", "strategicPath", "a")--
 	if not Mission.strategicPathCall then Mission.strategicPathCall = 0  end
 	if params.ParamTable.call ~= Mission.strategicPathCall then return end -- It is crazy, idk why it is replicating!!!!!
 	Mission.strategicPathCall = Mission.strategicPathCall + 1
-	luaDoCustomLog("debug.txt", {"strategicPath "..Mission.strategicPathCall.." call from "..params.ParamTable.call}, "a")
+	-- -- luaDoCustomLog("debug.txt", {"strategicPath "..Mission.strategicPathCall.." call from "..params.ParamTable.call}, "a")
 	local fleet = params.ParamTable.fleet
 	local like = params.ParamTable.like
 	local dislike = params.ParamTable.dislike
@@ -2876,6 +3097,9 @@ function strategicPath(params)
 					-- local dist = math.sqrt(math.pow(dispos.x-subnode[1], 2)+math.pow(dispos.z-subnode[2],2))
 					local dist = math.sqrt(math.pow(enm_pos_x, 2)+math.pow(enm_pos_z,2))
 					sc1 = math.min(-cosine, sc1)
+					if d.Class.Type == "Submarine" then --subs is 2 times harder to discover
+						dist = dist*2.0
+					end
 					sc2 = math.min(dist, sc2)
 				end
 				for _, l in pairs(like) do
@@ -2906,11 +3130,12 @@ function strategicPath(params)
 		NavigatorMoveToPos(leader, {["x"] = target_node[1], ["y"] = 0.0, ["z"] = target_node[2]})
 		-- MissionNarrativePlayer(0, target_node[1].."  "..target_node[2])
 	end
-	luaDoCustomLog("debug.txt", {"strategicPath End"}, "a")
+	-- -- luaDoCustomLog("debug.txt", {"strategicPath End"}, "a")
 
 end
 
 function luaAirfieldManager(airfield, fighterClassIDs, otherClassIDs, targetList, travelAlt, wingCount)
+	-- luaDoCustomLog("debug.txt", "luaAirfieldManager", "a")--
 		-- RELEASE_LOGOFF  	luaHelperLog("luaAirfieldManager Called!")
 		-- RELEASE_LOGOFF  	Assert(luaIsAirfieldTable({airfield}), "***ERROR: luaAirfieldManager needs an airfield/carrier as first param!"..debug.traceback())
 		-- RELEASE_LOGOFF  	Assert(fighterClassIDs ~= nil and luaIsNumberTable(fighterClassIDs), "***ERROR: luaAirfieldManager needs a classID table as second param!"..debug.traceback())
@@ -3100,6 +3325,7 @@ function luaAirfieldManager(airfield, fighterClassIDs, otherClassIDs, targetList
 end
 
 function luaAirfieldManager1(airfield, fighterClassIDs, otherClassIDs, targetList, travelAlt, wingCount)
+	-- luaDoCustomLog("debug.txt", "luaAirfieldManager1", "a")--
 	-- RELEASE_LOGOFF  	luaHelperLog("luaAirfieldManager Called!")
 	-- RELEASE_LOGOFF  	Assert(luaIsAirfieldTable({airfield}), "***ERROR: luaAirfieldManager needs an airfield/carrier as first param!"..debug.traceback())
 	-- RELEASE_LOGOFF  	Assert(fighterClassIDs ~= nil and luaIsNumberTable(fighterClassIDs), "***ERROR: luaAirfieldManager needs a classID table as second param!"..debug.traceback())
@@ -3338,6 +3564,7 @@ end
 
 
 function luaJM7CheckUSNCarrierFleet2()
+	-- luaDoCustomLog("debug.txt", "luaJM7CheckUSNCarrierFleet2", "a")--
 	if Mission.USNReinforcementsWave == nil then
 		Mission.USNReinforcementsWave = {["Wave"] = {}, ["Require"] = 0, ["Assemble"] = 0, ["NoWait"] = 600}
 	end
@@ -3381,16 +3608,16 @@ function luaJM7CheckUSNCarrierFleet2()
 			Mission.Hornet.wave = wave
 			if not Mission.Hornet.RunwayFailure then wave["Require"] = wave["Require"] + 3 end
 			luaAirfieldManager1(Mission.Hornet, fighterClassIDs, otherClassIDs, targetList, 1500, 3)
-			if math.floor(GameTime()) % 10 == 0 then MissionNarrativePlayer(0, "Hornet"..Mission.Hornet.FighterCount.." "..#(Mission.Hornet.CAP)) end
+			-- if math.floor(GameTime()) % 10 == 0 then MissionNarrativePlayer(0, "Hornet"..Mission.Hornet.FighterCount.." "..#(Mission.Hornet.CAP)) end
 		end
 		if not Mission.Enterprise.Dead then
 			Mission.Enterprise.wave = wave
 			if not Mission.Enterprise.RunwayFailure then wave["Require"] = wave["Require"] + 3 end
 			-- luaLaunchAirstrike1()
 			luaAirfieldManager1(Mission.Enterprise, fighterClassIDs, otherClassIDs, targetList, 1500, 3)
-			if math.floor(GameTime()) % 10 == 0 then MissionNarrativePlayer(0, "Enterprise"..Mission.Enterprise.FighterCount.." "..#(Mission.Enterprise.CAP)) end
+			-- if math.floor(GameTime()) % 10 == 0 then MissionNarrativePlayer(0, "Enterprise"..Mission.Enterprise.FighterCount.." "..#(Mission.Enterprise.CAP)) end
 		end
-		if math.floor(GameTime()) % 10 == 0 then MissionNarrativePlayer(0, #(wave["Wave"])..wave["Require"]..wave["Assemble"]..wave["NoWait"]) end
+		-- if math.floor(GameTime()) % 10 == 0 then MissionNarrativePlayer(0, #(wave["Wave"])..wave["Require"]..wave["Assemble"]..wave["NoWait"]) end
 		if #(wave["Wave"]) >= wave["Require"] or wave["Assemble"] >= wave["NoWait"] then
 			for _, p in pairs(wave["Wave"]) do p.wave = nil end -- wave control reach launch attack wave condition. 
 			wave["Wave"] = {} -- start to prepare next attack wave
@@ -3427,6 +3654,7 @@ function luaJM7CheckUSNCarrierFleet2()
 end
 
 function luaJM7TorpCheat(unit)
+	-- luaDoCustomLog("debug.txt", "luaJM7TorpCheat", "a")--
 	if unit and not unit.Dead then
 		local stock = GetProperty(unit, "TorpedoStock")
 		if stock == 0 then
@@ -3436,6 +3664,7 @@ function luaJM7TorpCheat(unit)
 end
 
 function luaJM7ScreenTargeting(screen,fleetNum)
+	-- luaDoCustomLog("debug.txt", "luaJM7ScreenTargeting", "a")--
 	screen = luaRemoveDeadsFromTable(screen)
 
 	local CV1
@@ -3546,6 +3775,7 @@ end
 
 ---shipyard
 function luaJM7CheckShipyards()
+	-- luaDoCustomLog("debug.txt", "luaJM7CheckShipyards", "a")--
 	--sy1
 	--[[
 
@@ -3625,6 +3855,7 @@ end
 
 
 function luaJM7SpawnShipyardShip(shipyardNum)
+	-- luaDoCustomLog("debug.txt", "luaJM7SpawnShipyardShip", "a")--
 	local grpTbl
 	local req
 	local refPoint
@@ -3670,6 +3901,7 @@ function luaJM7SpawnShipyardShip(shipyardNum)
 end
 
 function luaJM7ShipyardShipSpawned(unit)
+	-- luaDoCustomLog("debug.txt", "luaJM7ShipyardShipSpawned", "a")--
 						-- RELEASE_LOGOFF  	luaLog("luaJM7ShipyardShipSpawned called")
 						-- RELEASE_LOGOFF  	luaLog("spawnedunit type: "..unit.Class.Type)
 
@@ -3689,6 +3921,7 @@ end
 
 --listener
 function luaJM7AddCVReconListener()
+	-- luaDoCustomLog("debug.txt", "luaJM7AddCVReconListener", "a")--
 	AddListener("recon", "CVrecon", {
 		["callback"] = "luaJM7CVsSighted",  -- callback fuggveny
 		--["entity"] = {Mission.Yorktown, Mission.Enterprise}, -- entityk akiken a listener aktiv
@@ -3700,6 +3933,7 @@ function luaJM7AddCVReconListener()
 end
 
 function luaJM7AddAtlantaListener()
+	-- luaDoCustomLog("debug.txt", "luaJM7AddAtlantaListener", "a")--
 	AddListener("recon", "atlantarecon", {
 		["callback"] = "luaJM7AtlantaRecon",  -- callback fuggveny
 		["entity"] = {Mission.Atlanta}, -- entityk akiken a listener aktiv
@@ -3719,6 +3953,7 @@ end
 
 --listener
 function luaJM7AddSubReconListener()
+	-- luaDoCustomLog("debug.txt", "luaJM7AddSubReconListener", "a")--
 	AddListener("recon", "Subrecon", {
 		["callback"] = "luaJM7SubSighted",  -- callback fuggveny
 		["entity"] = {Mission.Nautilus}, -- entityk akiken a listener aktiv
@@ -3729,12 +3964,14 @@ function luaJM7AddSubReconListener()
 end
 
 function luaJM7SubSighted()
+	-- luaDoCustomLog("debug.txt", "luaJM7SubSighted", "a")--
 	RemoveListener("recon", "Subrecon")
 	luaJM7StartDialog("Subseen")
 	luaJM7SubHint()
 end
 
 function luaJM7AtlantaRecon()
+	-- luaDoCustomLog("debug.txt", "luaJM7AtlantaRecon", "a")--
 	RemoveListener("recon", "atlantarecon")
 	luaJM7StartDialog("AtlantaSighted")
 	if not luaObj_IsActive("secondary", 1) then
@@ -3747,6 +3984,7 @@ function luaJM7AtlantaRecon()
 end
 
 function luaJM7AtlantaKill()
+	-- luaDoCustomLog("debug.txt", "luaJM7AtlantaKill", "a")--
 	RemoveListener("kill", "atlantakill")
 	luaJM7StartDialog("AtlantaKilled")
 	if not luaObj_GetSuccess("secondary", 1) then
@@ -3758,6 +3996,7 @@ end
 
 
 function luaJM7CVsSighted(...)
+	-- luaDoCustomLog("debug.txt", "luaJM7CVsSighted", "a")--
 	--for idx,x in ipairs(arg) do
 						-- RELEASE_LOGOFF  	--	luaLog(idx)
 						-- RELEASE_LOGOFF  	--	luaLog(x)
@@ -3768,6 +4007,7 @@ end
 
 ----
 function luaJM7ISPlayerInRecon()
+	-- luaDoCustomLog("debug.txt", "luaJM7ISPlayerInRecon", "a")--
 	for idx,unitTbl in pairs(recon[PARTY_ALLIED].enemy) do
 		-- Effect("Warning Dive DIVE Dive", ORIGO, Mission.Akagi)
 		for idx2,unit in pairs(unitTbl) do
@@ -3784,6 +4024,7 @@ function luaJM7ISPlayerInRecon()
 end
 
 function luaJM7AddPowerup(type)
+	-- luaDoCustomLog("debug.txt", "luaJM7AddPowerup", "a")--
 	AddPowerup({
 		["classID"] = type,
 		["useLimit"] = 1,
@@ -3791,6 +4032,7 @@ function luaJM7AddPowerup(type)
 end
 
 function luaJM7FadeIn()
+	-- luaDoCustomLog("debug.txt", "luaJM7FadeIn", "a")--
 
 	Blackout(true, "", 0)
 
@@ -3804,6 +4046,7 @@ function luaJM7FadeIn()
 end
 
 function luaJM7StartDialog(dialogID, log, ignorePrinted)
+	-- luaDoCustomLog("debug.txt", "luaJM7StartDialog", "a")--
 	-- dialog indito wrapper
 	if type(dialogID) ~= "string" then
 		error("***ERROR: luaJM6StartDialog's param must be a string!", 2)
@@ -3827,6 +4070,7 @@ function luaJM7StartDialog(dialogID, log, ignorePrinted)
 end
 
 function luaJM7IncPlanesDlgTrigger(CV1,CV2,num) --2 carrier, es elso vagy reinf vizsgalat e
+	-- luaDoCustomLog("debug.txt", "luaJM7IncPlanesDlgTrigger", "a")--
 
 	if num == 1 and (Mission.NmiPlanesInrecon1 or Mission.CVsSighted) then
 		return
@@ -3865,6 +4109,7 @@ function luaJM7IncPlanesDlgTrigger(CV1,CV2,num) --2 carrier, es elso vagy reinf 
 end
 
 function luaJM7AddSYListener()
+	-- luaDoCustomLog("debug.txt", "luaJM7AddSYListener", "a")--
 	AddListener("recon", "SYRecon", {
 		["callback"] = "luaJM7SYSighted",  -- callback fuggveny
 		--["entity"] = {Mission.Shipyard1, Mission.Shipyard2}, -- entityk akiken a listener aktiv
@@ -3875,15 +4120,18 @@ function luaJM7AddSYListener()
 end
 
 function luaJM7SYSighted()
+	-- luaDoCustomLog("debug.txt", "luaJM7SYSighted", "a")--
 	RemoveListener("recon", "SYRecon")
 	luaJM7StartDialog("ShipyardInRecon")
 end
 
 function luaJM7UnlockDlg()
+	-- luaDoCustomLog("debug.txt", "luaJM7UnlockDlg", "a")--
 	luaJM7StartDialog("UnlockSub")
 end
 
 function luaPrecacheUnits()
+	-- luaDoCustomLog("debug.txt", "luaPrecacheUnits", "a")--
 	Loading_Start()
 	PrepareClass(1)
 	PrepareClass(2)
@@ -3902,6 +4150,7 @@ function luaPrecacheUnits()
 end
 
 function luaJM7SetGuiNames()
+	-- luaDoCustomLog("debug.txt", "luaJM7SetGuiNames", "a")--
 						-- RELEASE_LOGOFF  	luaLog("allitom a guineveket")
 
 
@@ -3935,6 +4184,7 @@ function luaJM7SetGuiNames()
 end
 
 function luaJM7CheckAirGuns()
+	-- luaDoCustomLog("debug.txt", "luaJM7CheckAirGuns", "a")--
 
 	if Mission.CommandBuilding2.Party ~= Mission.PrevParty then
 
@@ -3947,6 +4197,7 @@ function luaJM7CheckAirGuns()
 end
 
 function luaJM7CheckSub()
+	-- luaDoCustomLog("debug.txt", "luaJM7CheckSub", "a")--
 
 	if Mission.Nautilus.Dead then
 		return
@@ -3975,14 +4226,17 @@ function luaJM7CheckSub()
 end
 
 function luaJM7SubHint()
+	-- luaDoCustomLog("debug.txt", "luaJM7SubHint", "a")--
 	ShowHint("IJN07_Hint01")
 end
 
 function luaJM7FusoHint()
+	-- luaDoCustomLog("debug.txt", "luaJM7FusoHint", "a")--
 	ShowHint("IJN07_Hint02")
 end
 
 function luaJM7CAPHint()
+	-- luaDoCustomLog("debug.txt", "luaJM7CAPHint", "a")--
 	ShowHint("IJN07_Hint03")
 	ShowHint("IJN07_Hint11")
 	ShowHint("IJN07_Hint12")
@@ -3992,14 +4246,17 @@ function luaJM7CAPHint()
 end
 
 function luaJM7AirstrikeHint()
+	-- luaDoCustomLog("debug.txt", "luaJM7AirstrikeHint", "a")--
 	ShowHint("IJN07_Hint04")
 end
 
 function luaJM7CargoHint()
+	-- luaDoCustomLog("debug.txt", "luaJM7CargoHint", "a")--
 	ShowHint("IJN11_AK")
 end
 
 function luaJM7CVsInvincible()
+	-- luaDoCustomLog("debug.txt", "luaJM7CVsInvincible", "a")--
 	if not Mission.Kaga.Dead then
 		SetInvincible(Mission.Kaga, true)
 	end
@@ -4009,10 +4266,12 @@ function luaJM7CVsInvincible()
 end
 
 function luaJM7AddAFMovie()
+	-- luaDoCustomLog("debug.txt", "luaJM7AddAFMovie", "a")--
 	luaJumpinMovieSetCurrentMovie("JumpTo", GetPosition(FindEntity("MoviePoint")), GetPosition(FindEntity("MovieLookatPoint")))
 end
 
 function luaJM7AtlantaPathListener()
+	-- luaDoCustomLog("debug.txt", "luaJM7AtlantaPathListener", "a")--
 	AddListener("command", "atlantamove", {
 		["callback"] = "luaJM7AtlantaStop",  -- callback fuggveny
 		["entity"] = {Mission.Atlanta}, -- entityk akiken a listener aktiv
@@ -4023,16 +4282,19 @@ function luaJM7AtlantaPathListener()
 end
 
 function luaJM7AtlantaStop()
+	-- luaDoCustomLog("debug.txt", "luaJM7AtlantaStop", "a")--
 	RemoveListener("command", "atlantamove")
 	NavigatorStop(Mission.Atlanta)
 end
 
 function luaJM7AtlantaGo()
+	-- luaDoCustomLog("debug.txt", "luaJM7AtlantaGo", "a")--
 	NavigatorMoveOnPath(Mission.Atlanta, FindEntity("AtlantaPath"), PATH_FM_SIMPLE, PATH_SM_JOIN)
 	luaJM7AtlantaPathListener()
 end
 
 function luaJM7Pri1Score()
+	-- luaDoCustomLog("debug.txt", "luaJM7Pri1Score", "a")--
 	local _,hd = luaJM7AirfieldObj()
 	Mission.HangarsDestroyed = hd
 	local line1 = "ijn07.obj_p1_onscreen"
@@ -4041,6 +4303,7 @@ function luaJM7Pri1Score()
 end
 
 function luaJM7FuelScore()
+	-- luaDoCustomLog("debug.txt", "luaJM7FuelScore", "a")--
 	Mission.SeletedFuel = GetSelectedUnit()
 	if not Mission.SeletedFuel.fuel then Mission.SqLaunched = 0
 	else Mission.SqLaunched = math.floor(Mission.SeletedFuel.fuel/Mission.SeletedFuel.maxFuel*100) end
@@ -4051,11 +4314,13 @@ function luaJM7FuelScore()
 end
 
 function luaJM7Pri2Score()
+	-- luaDoCustomLog("debug.txt", "luaJM7Pri2Score", "a")--
 	local line1 = "ijn07.obj_p2"
 	luaJM7DisplayScore(2,line1,"")
 end
 
 function luaJM7Pri3Score()
+	-- luaDoCustomLog("debug.txt", "luaJM7Pri3Score", "a")--
 	--Mission.CarriersSunk
 	local line1 = "ijn07.obj_p3_onscreen"
 	local line2 = "ijn07.hint_5_desc"
@@ -4063,6 +4328,7 @@ function luaJM7Pri3Score()
 end
 
 function luaJM7Pri4Score()
+	-- luaDoCustomLog("debug.txt", "luaJM7Pri4Score", "a")--
 	--Mission.CarriersSunk
 	-- local line1 = "ijn07.obj_p3_onscreen"
 	-- local line2 = "ijn07.hint_5_desc"
@@ -4070,6 +4336,7 @@ function luaJM7Pri4Score()
 end
 
 function luaJM7Sec1Score()
+	-- luaDoCustomLog("debug.txt", "luaJM7Sec1Score", "a")--
 
 	local i = 0
 	for idx,score in pairs(Mission.ScoreDisplay) do
@@ -4092,6 +4359,7 @@ function luaJM7Sec1Score()
 end
 
 function luaJM7Sec2Score()
+	-- luaDoCustomLog("debug.txt", "luaJM7Sec2Score", "a")--
 	--Mission.SqLaunched
 	local line1 = "ijn07.obj_s2_onscreen"
 	local line2 = "ijn07.hint_6_desc"
@@ -4099,16 +4367,19 @@ function luaJM7Sec2Score()
 end
 
 function luaJM7DisplayScore(scoreID, line1, line2)
+	-- luaDoCustomLog("debug.txt", "luaJM7DisplayScore", "a")--
 	DisplayScores(scoreID,0,line1,line2)
 	Mission.ScoreDisplay[scoreID] = true
 end
 
 function luaJM7RemoveScore(scoreID)
+	-- luaDoCustomLog("debug.txt", "luaJM7RemoveScore", "a")--
 	HideScoreDisplay(scoreID,0)
 	Mission.ScoreDisplay[scoreID] = false
 end
 
 function luaJM7PauseAirstrike()
+	-- luaDoCustomLog("debug.txt", "luaJM7PauseAirstrike", "a")--
 	if Mission.AFPauseReset then
 		Mission.AFPauseReset = false
 	end
@@ -4116,6 +4387,7 @@ function luaJM7PauseAirstrike()
 end
 
 function luaJM7IsEnemyNear()
+	-- luaDoCustomLog("debug.txt", "luaJM7IsEnemyNear", "a")--
 	local shipsAround
 	local planesAround
 
@@ -4134,6 +4406,7 @@ end
 
 -----------------------------moviez-----------------------------------------
 function luaJM7MovieInit()
+	-- luaDoCustomLog("debug.txt", "luaJM7MovieInit", "a")--
 	Mission.MovieUnitPL = GetSelectedUnit()
 	if Mission.MovieUnitPL then
 		SetInvincible(Mission.MovieUnitPL, 0.1)
@@ -4141,6 +4414,7 @@ function luaJM7MovieInit()
 end
 
 function luaJM7SelectUnit()
+	-- luaDoCustomLog("debug.txt", "luaJM7SelectUnit", "a")--
 	if Mission.MovieUnitPL then
 		SetSelectedUnit(Mission.MovieUnitPL)
 		SetInvincible(Mission.MovieUnitPL, false)
@@ -4150,6 +4424,7 @@ function luaJM7SelectUnit()
 end
 
 function luaJM7AFMovie()
+	-- luaDoCustomLog("debug.txt", "luaJM7AFMovie", "a")--
 	if IsListenerActive("input", "IngameMovieInputListenerID") then
 		luaDelay(luaJM7AFMovie, 5)
 		return
@@ -4168,10 +4443,12 @@ function luaJM7AFMovie()
 end
 
 function luaJM7AFMFlag()
+	-- luaDoCustomLog("debug.txt", "luaJM7AFMFlag", "a")--
 	Mission.AFMovieOK = true
 end
 
 function luaJM7InvasionMovie()
+	-- luaDoCustomLog("debug.txt", "luaJM7InvasionMovie", "a")--
 	if IsListenerActive("input", "IngameMovieInputListenerID") then
 		luaDelay(luaJM7InvasionMovie, 5)
 		return
@@ -4185,6 +4462,7 @@ function luaJM7InvasionMovie()
 end
 
 function luaJM7CarrierMovie()
+	-- luaDoCustomLog("debug.txt", "luaJM7CarrierMovie", "a")--
 	if IsListenerActive("input", "IngameMovieInputListenerID") then
 		luaDelay(luaJM7CarrierMovie, 5)
 		return
@@ -4209,6 +4487,7 @@ function luaJM7CarrierMovie()
 end
 
 function luaJM7AtlantaMovie()
+	-- luaDoCustomLog("debug.txt", "luaJM7AtlantaMovie", "a")--
 	if IsListenerActive("input", "IngameMovieInputListenerID") then
 		luaDelay(luaJM7AtlantaMovie, 5)
 		return
@@ -4222,6 +4501,7 @@ function luaJM7AtlantaMovie()
 end
 
 function luaJM7IsHintActive(hintID)
+	-- luaDoCustomLog("debug.txt", "luaJM7IsHintActive", "a")--
 
 	local hintTbl = IsHintActive()
 
@@ -4242,15 +4522,17 @@ end
 
 ---checkpoints
 function luaJM7SaveMissionData()
+	-- luaDoCustomLog("debug.txt", "luaJM7SaveMissionData", "a")--
 	luaRegisterCheckpointData("Dialogues", "DialogTbl", Mission.Dialogues)
 	luaRegisterCheckpointData("NavPoints", "NavpointTbl", GetPosition(FindEntity("FleetChck")))
-	if Mission.Atlanta and not Mission.Atlanta.Dead then
-		Mission.Checkpoint.AtlantaPos = GetPosition(Mission.Atlanta)
-	end
+	-- if Mission.Atlanta and not Mission.Atlanta.Dead then
+	-- 	Mission.Checkpoint.AtlantaPos = GetPosition(Mission.Atlanta)
+	-- end
 	Mission.Checkpoint.USNReinfCalled = Mission.USNReinfCalled
 end
 
 function luaJM7LoadMissionData()
+	-- luaDoCustomLog("debug.txt", "luaJM7LoadMissionData", "a")--
 	--Blackout(true, "", 0.5)
 	Mission.Dialogues = Mission.Checkpoint.Dialogues.DialogTbl[1]
 
@@ -4291,31 +4573,32 @@ function luaJM7LoadMissionData()
 	local USUnits = luaGetCheckpointData("Units", "USUnits")
 
 						-- RELEASE_LOGOFF  	luaLog(Mission.ChckLogPrefix.."Checking allied units")
-	for idx,unit in pairs(luaSumTablesIndex({Mission.Atlanta})) do
-		local found = false
-		for idx2,unitTbl in pairs(USUnits[1]) do
-			if unit.Name == unitTbl[1] then
-						-- RELEASE_LOGOFF  				luaLog(Mission.ChckLogPrefix.."Found unit "..unit.Name)
-				if unitTbl[4] and unitTbl[4] >= 0 then
-						-- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."Setting torp stock to "..unitTbl[4])
-					ShipSetTorpedoStock(unit, unitTbl[4])
-				end
-				found = true
-				break
-			end
-		end
+	-- for idx,unit in pairs(luaSumTablesIndex({Mission.Atlanta})) do
+	-- 	local found = false
+	-- 	for idx2,unitTbl in pairs(USUnits[1]) do
+	-- 		if unit.Name == unitTbl[1] then
+	-- 					-- RELEASE_LOGOFF  				luaLog(Mission.ChckLogPrefix.."Found unit "..unit.Name)
+	-- 			if unitTbl[4] and unitTbl[4] >= 0 then
+	-- 					-- RELEASE_LOGOFF  					luaLog(Mission.ChckLogPrefix.."Setting torp stock to "..unitTbl[4])
+	-- 				ShipSetTorpedoStock(unit, unitTbl[4])
+	-- 			end
+	-- 			found = true
+	-- 			break
+	-- 		end
+	-- 	end
 
-		if not found then
-						-- RELEASE_LOGOFF  			luaLog(Mission.ChckLogPrefix.."Unit not found, killing her "..unit.Name)
-			Kill(unit, true)
-		end
-	end
+	-- 	if not found then
+	-- 					-- RELEASE_LOGOFF  			luaLog(Mission.ChckLogPrefix.."Unit not found, killing her "..unit.Name)
+	-- 		Kill(unit, true)
+	-- 	end
+	-- end
 
 	--PutTo
 	luaDelay(luaJM7PutUnits,2)
 end
 
 function luaJM7PutUnits()
+	-- luaDoCustomLog("debug.txt", "luaJM7PutUnits", "a")--
 						-- RELEASE_LOGOFF  	luaLog("luaJM7PutUnits called")
 	local tbl = luaGetCheckpointData("NavPoints", "NavpointTbl")
 	local navPoint = tbl[1]
@@ -4351,9 +4634,9 @@ function luaJM7PutUnits()
 	SetShipSpeed(leader, 10)
 	SetSelectedUnit(leader)
 
-	if Mission.Atlanta and not Mission.Atlanta.Dead and Mission.Checkpoint.AtlantaPos then
-		PutTo(Mission.Atlanta, Mission.Checkpoint.AtlantaPos)
-	end
+	-- if Mission.Atlanta and not Mission.Atlanta.Dead and Mission.Checkpoint.AtlantaPos then
+	-- 	PutTo(Mission.Atlanta, Mission.Checkpoint.AtlantaPos)
+	-- end
 
 	--SoundFade(1, "",0.5)
 	Blackout(false, "luaJM7AddInput", 2.5)
@@ -4361,10 +4644,12 @@ function luaJM7PutUnits()
 end
 
 function luaJM7AddInput()
+	-- luaDoCustomLog("debug.txt", "luaJM7AddInput", "a")--
 	EnableInput(true)
 end
 
 function luaJM7HangarHPOverride()
+	-- luaDoCustomLog("debug.txt", "luaJM7HangarHPOverride", "a")--
 	local ents = {
 		FindEntity("Hangar, Large, 08 01"),
 		FindEntity("Hangar, Large, 08 02"),
@@ -4375,21 +4660,24 @@ function luaJM7HangarHPOverride()
 	}
 
 	for idx,ent in pairs(ents) do
-		OverrideHP(ent, 2300 + random(1,2000))
+		OverrideHP(ent, 2000 + random(1,6000))
 	end
 end
 
 ------airfields--------
 function luaJM7StartAFManager()
+	-- luaDoCustomLog("debug.txt", "luaJM7StartAFManager", "a")--
 	Mission.FlakManager = CreateScript("luaJM7AFInit")
 end
 
 function luaJM7AFInit(this)
+	-- luaDoCustomLog("debug.txt", "luaJM7AFInit", "a")--
 	--luaLog("FM called")
 	SetThink(this, "luaJM7AF_Think")
 end
 
 function luaLaunchAirstrike1(phase, stopPhase, airfields, classIDs, entities, num, equipments)
+	-- luaDoCustomLog("debug.txt", "luaLaunchAirstrike1", "a")--
 		-- RELEASE_LOGOFF  	Assert(type(phase) == "number" and phase > 0, "***ERROR: luaLaunchAirstrike needs a positive number as first param!"..debug.traceback())
 		-- RELEASE_LOGOFF  	Assert(type(stopPhase) == "number" and phase > 0, "***ERROR: luaLaunchAirstrike needs a positive number as second param!"..debug.traceback())
 		-- RELEASE_LOGOFF  	Assert(airfields ~= nil and luaIsAirfieldTable(airfields, true), "***ERROR: luaLaunchAirstrike needs a table which consists of airfield/carrier entities as third param!"..debug.traceback())
@@ -4471,6 +4759,7 @@ function luaLaunchAirstrike1(phase, stopPhase, airfields, classIDs, entities, nu
 end
 
 function luaPlaneManeuver(params)
+	-- luaDoCustomLog("debug.txt", "luaPlaneManeuver", "a")--
 	local plane = params.ParamTable.plane
 	local trg = params.ParamTable.trg
 	local attackAlt = params.ParamTable.attackAlt
@@ -4583,6 +4872,7 @@ function luaPlaneManeuver(params)
 end
 
 function luaJM7AF_Think(this, msg)
+	-- luaDoCustomLog("debug.txt", "luaJM7AF_Think", "a")--
 
 	-- if true then return end
 	if luaMessageHandler (this, msg) == "killed" then
@@ -4796,6 +5086,7 @@ function luaJM7AF_Think(this, msg)
 end
 --spawnfirst--
 function luaJM7SpawnFirstCVFleet()
+	-- luaDoCustomLog("debug.txt", "luaJM7SpawnFirstCVFleet", "a")--
 	---test---
 	local possible_positions = {
 	10000, 10000, 
@@ -4919,6 +5210,7 @@ function luaJM7SpawnFirstCVFleet()
 end
 
 function callbackSpawnUSNCVFleet(...)
+	-- luaDoCustomLog("debug.txt", "callbackSpawnUSNCVFleet", "a")--
 	if not Mission.cv_ready then Mission.cv_ready = {} end
 	table.insert(Mission.cv_ready, arg[1])
 	if #(Mission.cv_ready) == Mission.cv_total then
@@ -4927,6 +5219,7 @@ function callbackSpawnUSNCVFleet(...)
 end
 
 function luaJM7USNCVFleetSpawned(...)
+	-- luaDoCustomLog("debug.txt", "luaJM7USNCVFleetSpawned", "a")--
 	Mission.USNFleet1 = {}
 	local ddname = 1
 
@@ -4981,6 +5274,7 @@ function luaJM7USNCVFleetSpawned(...)
 	end
 
 	for idx,unit in pairs(Mission.USNFleet1) do
+		table.insert(Mission.AllShips, unit)
 		if unit.ID ~= Mission.Yorktown.ID then
 			JoinFormation(unit, Mission.Yorktown)
 		else
@@ -4994,6 +5288,7 @@ function luaJM7USNCVFleetSpawned(...)
 end
 
 function luaJM7FollowTheLeader()
+	-- luaDoCustomLog("debug.txt", "luaJM7FollowTheLeader", "a")--
 	local leader = Mission.Yorktown
 	local x = {FindEntity("USNCarrierPath1"), FindEntity("USNCarrierPath4"), FindEntity("USNCarrierPath5")}
 	path = luaPickRnd(x)
@@ -5008,18 +5303,21 @@ function luaJM7FollowTheLeader()
 end
 
 function luaJM7InitalSkillz(tbl)
+	-- luaDoCustomLog("debug.txt", "luaJM7InitalSkillz", "a")--
 	for idx,unit in pairs(tbl) do
 		SetSkillLevel(unit, Mission.SkillLevel)
 	end
 end
 
 function luaJM7InitalSkillzLower(tbl)
+	-- luaDoCustomLog("debug.txt", "luaJM7InitalSkillzLower", "a")--
 	for idx,unit in pairs(tbl) do
 		SetSkillLevel(unit, Mission.SkillLower)
 	end
 end
 
 function luaJM7SetSkillLvlOptions(unit)
+	-- luaDoCustomLog("debug.txt", "luaJM7SetSkillLvlOptions", "a")--
 	if unit and not unit.Dead then
 		if not unit.skillcheckOK then
 
@@ -5033,6 +5331,7 @@ function luaJM7SetSkillLvlOptions(unit)
 end
 
 function luaJM7CheckEndConds()
+	-- luaDoCustomLog("debug.txt", "luaJM7CheckEndConds", "a")--
 
 	--[[
 	local own = recon[PARTY_JAPANESE].own

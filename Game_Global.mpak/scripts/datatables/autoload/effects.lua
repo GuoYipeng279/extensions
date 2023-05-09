@@ -10860,16 +10860,20 @@ Effects =
 		["Type"] = "ThunderStorm",
 	},
 	[196] = 
-	{
+	{		
 		[1] = 
 		{
 			["Autostart"] = true,
-			["Particle"] = "ps2_test.pes",
-			["Type"] = "Particle",
+			["Category"] = "3DEffect",
+			["Persistent"] = false,
+			["PitchRnd"] = 0.1,
+			["Sample"] = "akagi_launching.fsb",
+			["SoundType"] = "AirSpecial",
+			["Type"] = "Sound",
 		},
+		["Type"] = "Effect",
 		["Comment"] = "!nem hasznalt sehol (ps2 maradvany?)",
 		["Name"] = "ObsoleteTest_effect",
-		["Type"] = "Particle",
 	},
 	[197] = 
 	{
@@ -124066,19 +124070,64 @@ Effects =
 		["Name"] = "Huge Battery Open for DL content",
 		["Type"] = "Effect",
 	},
-	[999] = 
+	[80] = 
 	{
 		[1] = 
 		{
 			["Autostart"] = true,
 			["Category"] = "3DEffect",
 			["Persistent"] = false,
-			["Sample"] = "recon.fsb",
+			["Sample"] = "akagi_launching.fsb",
 			["SoundType"] = "AirSpecial",
 			["Type"] = "Sound",
 		},
 		["Comment"] = "New Event 20mm Bradley Like",
-		["Name"] = "Recon",
+		["Name"] = "Akagi Launching",
+		["Type"] = "Effect",
+	},
+	[1003] = 
+	{
+		[1] = 
+		{
+			["Autostart"] = true,
+			["Category"] = "3DEffect",
+			["Persistent"] = false,
+			["Sample"] = "kaga_launching.fsb",
+			["SoundType"] = "AirSpecial",
+			["Type"] = "Sound",
+		},
+		["Comment"] = "New Event 20mm Bradley Like",
+		["Name"] = "Kaga Launching",
+		["Type"] = "Effect",
+	},
+	[1001] = 
+	{
+		[1] = 
+		{
+			["Autostart"] = true,
+			["Category"] = "3DEffect",
+			["Persistent"] = false,
+			["Sample"] = "hiryu_launching.fsb",
+			["SoundType"] = "AirSpecial",
+			["Type"] = "Sound",
+		},
+		["Comment"] = "New Event 20mm Bradley Like",
+		["Name"] = "Hiryu_Launching",
+		["Type"] = "Effect",
+	},
+	[1002] = 
+	{
+		[1] = 
+		{
+			["Autostart"] = true,
+			["Category"] = "3DEffect",
+			["Persistent"] = false,
+			["Sample"] = "soryu_launching.fsb",
+			["SoundType"] = "AirSpecial",
+			["Type"] = "Sound",
+		},
+		["Comment"] = "New Event 20mm Bradley Like",
+		["Name"] = "Soryu_Launching",
 		["Type"] = "Effect",
 	},
 }
