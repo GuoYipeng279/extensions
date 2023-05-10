@@ -3000,7 +3000,7 @@ Messages =
 		},
 		["dlg12b"] = {
 			["subtitles"] = {
-				{"2^First Carrier Fleet, Hiryu, launching!",  0.000,  0.0},  --  Excellent! But there's no time for celebration. The Americans have more carriers at Midway.
+				{"2^Second Carrier Fleet, Hiryu, launching!",  0.000,  0.0},  --  Excellent! But there's no time for celebration. The Americans have more carriers at Midway.
 
 			},
 			["voice"] = "CAMPAIGN/IJN07/DLG12B",
