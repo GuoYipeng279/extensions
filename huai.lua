@@ -2192,30 +2192,163 @@ feidie:addSkill(xiufu)
 feidie:addSkill(xuanfu)
 feidie:addSkill(bossdidong)
 feidie:addSkill(tuxi)
-youli = sgs.General(extension1, "youli", "god", "4")
+dizhuan = sgs.General(extension, "dizhuan", "god", "7")
+youli = sgs.General(extension, "youli$", "god", "4")
+zhengweiCard = sgs.CreateSkillCard{
+    name = "zhengweiCard",
+	filter = function(self, targets, to_select, player)
+        return #targets < player:getHp()
+	end ,
+	feasible = function(self, targets)
+		return #targets > 0
+	end,
+	on_use = function(self, room, source, targets)
+        -- sgs.Sanguosha:playSkillAudioEffect("zhuosi",math.random(1))
+        local subcards = {}
+        local pilecards = {}
+        for _, p in ipairs(targets) do
+            table.insert(subcards, zhengweiCard:clone())
+            local give = zhengweiCard:clone()
+            for _, c in sgs.qlist(p:getHandcards()) do
+                give:addSubcard(c)
+                table.insert(pilecards, c)
+            end
+            source:addToPile("zhengwei",give, false)
+        end
+        local mark = #pilecards
+        local y = math.floor(#pilecards/#targets)
+        for _, c in ipairs(subcards) do
+            for i=1,y do
+                local sel = math.random(1,#pilecards)
+                c:addSubcard(pilecards[sel])
+                table.removeOne(pilecards, pilecards[sel])
+            end
+        end
+        local rem = zhengweiCard:clone()
+        for _, c in ipairs(pilecards) do
+            rem:addSubcard(c)
+        end
+        for i=1,#targets do
+            targets[i]:obtainCard(subcards[i])
+        end
+        source:obtainCard(rem)
+        source:gainMark("@xinzhi", mark)
+    end
+}
+zhengwei = sgs.CreateZeroCardViewAsSkill{
+    name = "zhengwei",
+	response_pattern = "@zhengwei" ,
+    view_as = function(self)
+		return zhengweiCard:clone()
+	end ,
+    enabled_at_play = function(self, player)
+		return not player:hasUsed("#zhengweiCard")
+	end,
+}
+pantao = sgs.CreateTriggerSkill{
+    name = "pantao",
+	frequency = sgs.Skill_Wake,
+    events = {sgs.Death, sgs.CardFinished},
+    on_trigger = function(self, event, player, data)
+        local room = player:getRoom()
+        -- pt(room, data:toCardUse().card:objectName())
+        sgs.Sanguosha:playSkillAudioEffect(self:objectName(),1)
+        room:recover(player, sgs.RecoverStruct(player, nil, player:getMaxHp()))
+        room:detachSkillFromPlayer(player, "zhengwei")
+        player:gainMark("pantao")
+        local total = player:getMark("@xinzhi")
+        player:loseAllMarks("@xinzhi")
+        for _, p in sgs.qlist(room:getOtherPlayers(player)) do
+            if total <= 0 then return end
+            local choices = {}
+            for i=0, total do table.insert(choices,p:getGeneralName().." "..i) end
+            local choice = room:askForChoice(player, self:objectName(), table.concat(choices, "+"), sgs.QVariant(p:objectName().."-"..total)):split(" ")
+            -- pt(room, "choice")
+            -- pt(room, choice[#choice])
+            total = total - choice[#choice]
+            p:gainMark("@xinzhi", choice[#choice])
+        end
+        player:gainMark("@xinzhi", total)
+    end,
+    can_trigger = function(self, target)
+		return (target and target:isAlive() and target:hasSkill(self:objectName()))
+			and (target:getMark("pantao") == 0)
+			and (target:getMark("@xinzhi") > target:getRoom():getAllPlayers():length())
+    end
+}
 xinkong = sgs.CreateTriggerSkill{
     name = "xinkong",
+    frequency = sgs.Skill_Compulsory,
     events = {sgs.DamageInflicted},
-    on_trigger = function()
+    on_trigger = function(self, event, player, data)
+        local room = player:getRoom()
+        local youli = room:findPlayerBySkillName(self:objectName())
+        local damage = data:toDamage()
+        if damage.from:hasFlag("xinkong") or damage.from:getMark("@xinzhi") == 0 then return end
+        damage.from:loseMark("@xinzhi")
+        local trans = room:askForPlayerChosen(youli, room:getAllPlayers(), self:objectName())
+        local name = trans:getGeneralName()
+        sgs.Sanguosha:playSkillAudioEffect(self:objectName(),1)
+        local choice = room:askForChoice(damage.from, self:objectName(), name.."+toSel", sgs.QVariant(trans:objectName()))
+        local target
+        if choice == name then target = trans
+        else target = damage.from end
+		damage.transfer = true
+        damage.to = target
+        damage.from:setFlags("xinkong")
+        room:damage(damage)
+        damage.from:setFlags("-xinkong")
+        return true
+    end,
+    can_trigger = function(self, target)
+        return target ~= nil
     end
 }
-naobo = sgs.CreateTriggerSkill{
-    name = "naobo",
-    events = {sgs.DamageInflicted},
-    on_trigger = function()
+fuchouCard = sgs.CreateSkillCard{
+    name = "fuchouCard",
+    target_fixed = true,
+	on_use = function(self, room, source)
+        local big = 1
+        local user = nil
+        local small = 999
+        for _, p in sgs.qlist(room:getOtherPlayers(source)) do
+            local thisMark = p:getMark("@xinzhi")
+            if thisMark == big then user = nil end
+            if thisMark > big then
+                big = thisMark
+                user = p
+            end
+            if thisMark > 0 and thisMark < small then small = thisMark end
+        end
+        if not user then return end
+        local markNum = user:getMark("@xinzhi")
+        for _, p in sgs.qlist(room:getAllPlayers()) do
+            if p:getMark("@xinzhi") == small then
+                local slash = sgs.Sanguosha:cloneCard("FireAttack", sgs.Card_NoSuit, 0)
+                slash:setSkillName("fuchou")
+                local card_use = sgs.CardUseStruct()
+                card_use.from = user
+                card_use.to:append(p)
+                card_use.card = slash
+                room:useCard(card_use, false)
+            end
+        end
     end
 }
-bossguimei = sgs.CreateTriggerSkill{
-    name = "bossguimei",
-    events = {sgs.DamageInflicted},
-    on_trigger = function()
-    end
+fuchou = sgs.CreateZeroCardViewAsSkill{
+    name = "fuchou$",
+	response_pattern = "@fuchou" ,
+    view_as = function(self)
+		return fuchouCard:clone()
+	end,
+    enabled_at_play = function(self, player)
+		return not player:hasUsed("#fuchouCard")
+	end,
 }
+youli:addSkill(zhengwei)
+youli:addSkill(pantao)
 youli:addSkill(xinkong)
-youli:addSkill(naobo)
-youli:addSkill(bossguimei)
-
-dizhuan = sgs.General(extension, "dizhuan", "god", "7")
+youli:addSkill(fuchou)
 -- jiguanshi = sgs.General(extension, "jiguanshi", "qun", "3")
 
 muchao = sgs.General(extension, "muchao$", "qun", "3", false)
@@ -2611,6 +2744,9 @@ duobian = sgs.CreateTriggerSkill{
                 end
             end
         end
+    end,
+    can_trigger = function(self, target)
+        return target:hasLordSkill(self:objectName())
     end
 }
 chaonengxiansheng:addSkill(chaoneng)
@@ -2651,10 +2787,17 @@ sgs.LoadTranslationTable{
     ["xuanfu"] = "悬浮",
     [":xuanfu"] = "<font color=\"blue\"><b>锁定技</b></font>，其他角色与你计算距离时+4。",
     ["youli"] = "尤里X",
+    ["~youli"] = "尤里X",
+    ["#youli"] = "尤里国之主",
+    ["zhengwei"] = "政委",
+    [":zhengwei"] = "出牌阶段限一次，你可以指定至多X名角色，你将这些角色全部手牌打乱后依次分配每人Y张牌，剩余的牌分配给你自己，然后你获得分配总牌数的“心智”标记。（X为你已损失的体力值+1，Y为所选角色手牌数除以角色数，向下取整）",
+    ["pantao"] = "叛逃",
+    [":pantao"] = "觉醒技。若你的“心智”标记数大于存活人数，你将体力值回复至上限，失去技能“政委”，然后将全部“心智”标记任意分配至场上任意存活角色。",
     ["xinkong"] = "心控",
-    [":xinkong"] = "出牌阶段限一次，你可以操控一名其他角色进行一个额外的回合。",
-    ["naobo"] = "脑波",
-    [":naobo"] = "出牌阶段限一次，你可以令与你相邻的全部角色流失一点体力。",
+    ["@xinzhi"] = "心智",
+    [":xinkong"] = "锁定技。当拥有“心智”标记的角色造成伤害时，你须弃置其一枚“心智”标记，指定一名角色并令其选择：1.将伤害转移至你指定的角色。2.将伤害转移至自己。",
+    ["fuchou"] = "复仇",
+    [":fuchou"] = "主公技。出牌阶段限一次，你可以指定一名其他角色，若该角色为场上除你以外“心智”标记唯一最多（至少为1）的角色，则其视为对场上“心智”标记最少（至少为1）的所有角色每人使用一张【火攻】。",
     ["zhoushan"] = "周善",
     ["~zhoushan"] = "周善",
     ["#zhoushan"] = "强夺幼主",
@@ -2797,13 +2940,6 @@ sgs.LoadTranslationTable{
     [":kongdi"] = "每名与你相邻的角色每回合限一次，其可以与你交换位置，或获取你的两张手牌。",
     ["dimian"] = "地面",
     [":dimian"] = "<font color=\"blue\"><b>锁定技</b></font>，你跳过摸牌阶段，出牌阶段，和弃牌阶段。你受到伤害时此伤害-1。",
-    ["youli"] = "机关师",
-    ["jiangxin"] = "匠心",
-    [":jiangxin"] = "<font color=\"blue\"><b>锁定技。</b></font>每名角色回合结束时，若其手牌数与回合开始时相同，其获得一个【械】标记，否则其弃置一个【械】标记。",
-    ["jiguan"] = "机关",
-    [":jiguan"] = "出牌阶段限一次，你可以对任意名角色造成其【械】标记数点数的伤害，若其因此死亡，其变身为“机弩”。",
-    ["shenji"] = "神机",
-    [":shenji"] = "<font color=\"blue\"><b>限定技。</b></font>出牌阶段，你可以弃置X张牌，指定至多X个手牌数相同的“机弩”，对一名角色造成X点伤害。",
     ["muchao"] = "母巢",
     ["#muchao"] = "苗床少女",
     ["~muchao"] = "（蟲水迸出...）",
